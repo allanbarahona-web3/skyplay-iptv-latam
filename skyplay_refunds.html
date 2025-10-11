@@ -1,0 +1,762 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Reembolsos | Skyplay Streaming</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .lang-btn {
+            padding: 8px 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-1px);
+        }
+        
+        .lang-btn.active {
+            background: white;
+            color: #1e3c72;
+            border-color: white;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .content {
+            padding: 40px 30px;
+            line-height: 1.8;
+            color: #374151;
+        }
+        
+        .content h2 {
+            color: #1e3c72;
+            font-size: 24px;
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .content h3 {
+            color: #2a5298;
+            font-size: 18px;
+            margin: 20px 0 10px 0;
+        }
+        
+        .content p {
+            margin-bottom: 15px;
+        }
+        
+        .content ul {
+            margin: 15px 0 15px 30px;
+        }
+        
+        .content li {
+            margin-bottom: 10px;
+        }
+        
+        .highlight-success {
+            background: #d1fae5;
+            padding: 20px;
+            border-left: 4px solid #10b981;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .highlight-warning {
+            background: #fef3c7;
+            padding: 20px;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .highlight-info {
+            background: #dbeafe;
+            padding: 20px;
+            border-left: 4px solid #3b82f6;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .highlight-danger {
+            background: #fee2e2;
+            padding: 20px;
+            border-left: 4px solid #ef4444;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .process-steps {
+            background: #f9fafb;
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+        
+        .process-steps ol {
+            margin-left: 20px;
+        }
+        
+        .process-steps li {
+            margin-bottom: 15px;
+            padding-left: 10px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        
+        .contact-box {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .contact-box h3 {
+            color: white;
+            margin-bottom: 15px;
+            font-size: 22px;
+        }
+        
+        .contact-box p {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        
+        .contact-box a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 2px solid white;
+        }
+        
+        .footer {
+            background: #f9fafb;
+            padding: 20px 30px;
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        table th {
+            background: #667eea;
+            color: white;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+        }
+        
+        table td {
+            padding: 15px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        table tr:last-child td {
+            border-bottom: none;
+        }
+        
+        table tr:nth-child(even) {
+            background: #f9fafb;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .language-switcher {
+                position: relative;
+                top: auto;
+                right: auto;
+                justify-content: center;
+                margin: 20px 0;
+            }
+            
+            table {
+                font-size: 14px;
+            }
+            
+            table th,
+            table td {
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="language-switcher">
+                <button class="lang-btn active" onclick="changeLanguage('es')" id="btnEs">🇪🇸 ES</button>
+                <button class="lang-btn" onclick="changeLanguage('en')" id="btnEn">🇺🇸 EN</button>
+            </div>
+            <h1 id="headerTitle">💰 Política de Reembolsos</h1>
+            <p id="headerSubtitle">Última actualización: Enero 2025</p>
+        </div>
+        
+        <div class="content">
+            <a href="index.html" class="back-link">← Volver al Inicio</a>
+            
+            <div class="highlight-success">
+                <strong>✅ Garantía de Satisfacción:</strong> En Skyplay Streaming nos comprometemos con la calidad de nuestro servicio. Si no está satisfecho, ofrecemos reembolsos bajo las condiciones descritas en esta política.
+            </div>
+            
+            <h2>1. Política General de Reembolsos</h2>
+            
+            <h3>1.1 Periodo de Garantía</h3>
+            <p>Ofrecemos un periodo de garantía de <strong>48 horas</strong> desde la fecha de su primer pago para solicitar un reembolso completo si el servicio no funciona correctamente.</p>
+            
+            <div class="highlight-info">
+                <strong>📅 Periodo de Garantía:</strong> 48 horas desde la activación
+                <br><strong>💯 Reembolso:</strong> 100% del monto pagado
+                <br><strong>⏱️ Tiempo de procesamiento:</strong> 5-10 días hábiles
+            </div>
+            
+            <h3>1.2 Condiciones para Reembolso Completo</h3>
+            <p>Se otorgará reembolso completo dentro de las primeras 48 horas si:</p>
+            <ul>
+                <li>El servicio no funciona en su dispositivo después de seguir las instrucciones de configuración</li>
+                <li>El contenido prometido no está disponible</li>
+                <li>Experimenta problemas técnicos que no pueden resolverse</li>
+                <li>La calidad del servicio es significativamente inferior a la descrita</li>
+            </ul>
+            
+            <h2>2. Casos que NO Califican para Reembolso</h2>
+            
+            <div class="highlight-danger">
+                <strong>⚠️ No se otorgarán reembolsos en los siguientes casos:</strong>
+            </div>
+            
+            <ul>
+                <li><strong>Después de 48 horas:</strong> Una vez transcurrido el periodo de garantía</li>
+                <li><strong>Uso completo:</strong> Si ha utilizado el servicio extensivamente durante el periodo de garantía</li>
+                <li><strong>Cambio de opinión:</strong> Simplemente decidió que no quiere el servicio</li>
+                <li><strong>Problemas de internet:</strong> Fallas causadas por su proveedor de internet</li>
+                <li><strong>Dispositivo incompatible:</strong> Si no verificó compatibilidad antes de comprar</li>
+                <li><strong>Compartir cuenta:</strong> Violación de términos de servicio</li>
+                <li><strong>Renovaciones automáticas:</strong> Si olvidó cancelar antes de la renovación</li>
+                <li><strong>Suspensión por incumplimiento:</strong> Si su servicio fue suspendido por violar términos</li>
+            </ul>
+            
+            <h2>3. Reembolsos Parciales</h2>
+            
+            <h3>3.1 Reembolso Prorrateado</h3>
+            <p>En circunstancias excepcionales, podemos ofrecer reembolsos parciales prorrateados:</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Situación</th>
+                        <th>Reembolso</th>
+                        <th>Condiciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Interrupción prolongada del servicio</td>
+                        <td>Crédito proporcional</td>
+                        <td>Más de 72 horas sin servicio</td>
+                    </tr>
+                    <tr>
+                        <td>Cambio significativo en el servicio</td>
+                        <td>Hasta 50%</td>
+                        <td>Evaluación caso por caso</td>
+                    </tr>
+                    <tr>
+                        <td>Error en facturación</td>
+                        <td>100% del cargo erróneo</td>
+                        <td>Inmediato tras verificación</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h3>3.2 Créditos de Servicio</h3>
+            <p>En lugar de reembolsos monetarios, podemos ofrecer créditos que pueden usarse para:</p>
+            <ul>
+                <li>Extensión de suscripción actual</li>
+                <li>Upgrade a un plan superior</li>
+                <li>Aplicar a futuros pagos</li>
+            </ul>
+            
+            <h2>4. Cancelaciones y Renovaciones</h2>
+            
+            <h3>4.1 Cancelación Antes de Renovación</h3>
+            <div class="highlight-warning">
+                <strong>⏰ Importante:</strong> Debe cancelar su suscripción <strong>al menos 24 horas antes</strong> de la fecha de renovación para evitar el siguiente cargo. Las cancelaciones no generan reembolso del periodo actual.
+            </div>
+            
+            <h3>4.2 Renovación Automática</h3>
+            <p>Si olvidó cancelar antes de la renovación:</p>
+            <ul>
+                <li><strong>Dentro de 24 horas del cargo:</strong> Puede solicitar reembolso (evaluación caso por caso)</li>
+                <li><strong>Después de 24 horas:</strong> No se otorgan reembolsos, pero puede cancelar para evitar futuras renovaciones</li>
+            </ul>
+            
+            <h2>5. Proceso de Solicitud de Reembolso</h2>
+            
+            <div class="process-steps">
+                <h3>Pasos para Solicitar un Reembolso:</h3>
+                <ol>
+                    <li><strong>Contáctenos dentro de las 48 horas</strong>
+                        <ul>
+                            <li>Email: support@skyplay.us</li>
+                            <li>WhatsApp: +1 (786) 391-8722</li>
+                            <li>Asunto: "Solicitud de Reembolso"</li>
+                        </ul>
+                    </li>
+                    <li><strong>Proporcione la siguiente información:</strong>
+                        <ul>
+                            <li>Número de orden o ID de transacción</li>
+                            <li>Email asociado a la cuenta</li>
+                            <li>Descripción detallada del problema</li>
+                            <li>Capturas de pantalla (si aplica)</li>
+                        </ul>
+                    </li>
+                    <li><strong>Intentaremos resolver el problema</strong>
+                        <ul>
+                            <li>Nuestro equipo de soporte intentará solucionar su problema</li>
+                            <li>Tiempo de respuesta: Máximo 24 horas</li>
+                        </ul>
+                    </li>
+                    <li><strong>Evaluación de la solicitud</strong>
+                        <ul>
+                            <li>Revisaremos su caso según esta política</li>
+                            <li>Recibirá respuesta en máximo 48 horas</li>
+                        </ul>
+                    </li>
+                    <li><strong>Procesamiento del reembolso</strong>
+                        <ul>
+                            <li>Si se aprueba, procesamos el reembolso inmediatamente</li>
+                            <li>Aparecerá en su cuenta en 5-10 días hábiles</li>
+                        </ul>
+                    </li>
+                </ol>
+            </div>
+            
+            <h2>6. Métodos de Reembolso</h2>
+            
+            <h3>6.1 Reembolso al Método Original</h3>
+            <p>Los reembolsos se procesan al método de pago original:</p>
+            <ul>
+                <li><strong>Tarjeta de crédito/débito:</strong> 5-10 días hábiles</li>
+                <li><strong>Transferencia bancaria:</strong> 3-7 días hábiles</li>
+            </ul>
+            
+            <h3>6.2 Procesamiento a través de Stripe</h3>
+            <p>Todos los reembolsos son procesados a través de Stripe. Recibirá un email de confirmación cuando el reembolso sea procesado.</p>
+            
+            <div class="highlight-info">
+                <strong>📧 Confirmación:</strong> Recibirá dos emails:
+                <br>1. Confirmación de aprobación de reembolso (de Skyplay)
+                <br>2. Confirmación de procesamiento (de Stripe)
+            </div>
+            
+            <h2>7. Excepciones y Casos Especiales</h2>
+            
+            <h3>7.1 Problemas Técnicos Prolongados</h3>
+            <p>Si experimenta interrupciones del servicio por más de 72 horas debido a problemas de nuestra parte:</p>
+            <ul>
+                <li>Recibirá compensación automática en forma de días adicionales de servicio</li>
+                <li>Opción de reembolso prorrateado por el tiempo sin servicio</li>
+                <li>Crédito aplicable a su próxima factura</li>
+            </ul>
+            
+            <h3>7.2 Cargos Duplicados</h3>
+            <p>Si detectamos o nos informa sobre un cargo duplicado:</p>
+            <ul>
+                <li>Reembolso automático e inmediato del 100%</li>
+                <li>Sin necesidad de periodo de espera</li>
+                <li>Investigación para prevenir futuros errores</li>
+            </ul>
+            
+            <h3>7.3 Cambios en el Servicio</h3>
+            <p>Si realizamos cambios significativos en el servicio que afecten negativamente su experiencia:</p>
+            <ul>
+                <li>Opción de cancelar con reembolso prorrateado</li>
+                <li>Notificación previa de 30 días</li>
+                <li>Alternativas de planes disponibles</li>
+            </ul>
+            
+            <h2>8. Disputas y Contracargos</h2>
+            
+            <h3>8.1 Antes de Iniciar una Disputa</h3>
+            <div class="highlight-warning">
+                <strong>⚠️ Por Favor Contáctenos Primero:</strong> Antes de iniciar una disputa o contracargo con su banco, contáctenos directamente. Resolveremos su problema más rápido y evitará complicaciones.
+            </div>
+            
+            <h3>8.2 Consecuencias de Contracargos</h3>
+            <p>Si inicia un contracargo sin contactarnos primero:</p>
+            <ul>
+                <li>Su cuenta será suspendida automáticamente</li>
+                <li>Se cobrará una tarifa de procesamiento de $25 USD</li>
+                <li>Perderá acceso inmediato al servicio</li>
+                <li>Puede afectar futuras suscripciones</li>
+            </ul>
+            
+            <h3>8.3 Disputas Válidas</h3>
+            <p>Entendemos que las disputas son necesarias en casos de:</p>
+            <ul>
+                <li>Fraude o uso no autorizado de su tarjeta</li>
+                <li>Cargos después de cancelar dentro del periodo permitido</li>
+                <li>Cantidades incorrectas cobradas</li>
+            </ul>
+            <p>En estos casos, colaboraremos completamente con la investigación de su banco.</p>
+            
+            <h2>9. Reembolsos en Promociones y Descuentos</h2>
+            
+            <h3>9.1 Planes con Descuento</h3>
+            <p>Si adquirió su plan con un descuento o promoción:</p>
+            <ul>
+                <li>El reembolso será por el monto efectivamente pagado</li>
+                <li>No se reembolsa el valor "regular" del plan</li>
+                <li>Los descuentos no son transferibles ni acumulables</li>
+            </ul>
+            
+            <h3>9.2 Pruebas Gratuitas</h3>
+            <p>Para planes que incluyen prueba gratuita:</p>
+            <ul>
+                <li>Puede cancelar durante el periodo de prueba sin cargo</li>
+                <li>Si cancela después, aplican las políticas regulares de reembolso</li>
+                <li>Una prueba gratuita por cliente</li>
+            </ul>
+            
+            <h2>10. Circunstancias Especiales</h2>
+            
+            <h3>10.1 Fallecimiento</h3>
+            <p>En caso de fallecimiento del titular:</p>
+            <ul>
+                <li>Cancelación inmediata sin penalización</li>
+                <li>Reembolso prorrateado del periodo no utilizado</li>
+                <li>Requiere presentar certificado de defunción</li>
+            </ul>
+            
+            <h3>10.2 Enfermedad o Emergencia</h3>
+            <p>En situaciones de enfermedad grave o emergencia:</p>
+            <ul>
+                <li>Opción de pausar la suscripción (hasta 3 meses)</li>
+                <li>Reembolso prorrateado evaluado caso por caso</li>
+                <li>Requiere documentación médica</li>
+            </ul>
+            
+            <h3>10.3 Problemas Financieros</h3>
+            <p>Si enfrenta dificultades financieras:</p>
+            <ul>
+                <li>Opción de downgrade a plan más económico</li>
+                <li>Planes de pago flexibles</li>
+                <li>No se otorgan reembolsos por esta razón, pero ayudamos con alternativas</li>
+            </ul>
+            
+            <h2>11. Política de No Reembolso en Casos Específicos</h2>
+            
+            <div class="highlight-danger">
+                <strong>❌ NO se otorgan reembolsos en:</strong>
+            </div>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Situación</th>
+                        <th>Motivo</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Uso durante más de 48 horas</td>
+                        <td>Fuera del periodo de garantía</td>
+                    </tr>
+                    <tr>
+                        <td>Violación de términos de servicio</td>
+                        <td>Compartir cuenta, revender servicio</td>
+                    </tr>
+                    <tr>
+                        <td>Cambio de opinión después de 48h</td>
+                        <td>Servicio funcional y utilizado</td>
+                    </tr>
+                    <tr>
+                        <td>Problemas de internet del usuario</td>
+                        <td>No es responsabilidad de Skyplay</td>
+                    </tr>
+                    <tr>
+                        <td>Dispositivo no compatible</td>
+                        <td>Lista de compatibilidad disponible</td>
+                    </tr>
+                    <tr>
+                        <td>Falta de conocimiento técnico</td>
+                        <td>Ofrecemos soporte de configuración</td>
+                    </tr>
+                    <tr>
+                        <td>Expectativas no realistas</td>
+                        <td>Descripción clara del servicio</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2>12. Derechos del Consumidor</h2>
+            
+            <h3>12.1 Legislación Aplicable</h3>
+            <p>Esta política cumple con las leyes de protección al consumidor aplicables. Sus derechos legales no se ven afectados por esta política.</p>
+            
+            <h3>12.2 Garantías Legales</h3>
+            <p>Además de esta política, usted conserva todos los derechos bajo las leyes de protección al consumidor de su jurisdicción.</p>
+            
+            <h2>13. Tiempos de Procesamiento</h2>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>Etapa</th>
+                        <th>Tiempo Estimado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Respuesta inicial a solicitud</td>
+                        <td>Máximo 24 horas</td>
+                    </tr>
+                    <tr>
+                        <td>Evaluación de solicitud</td>
+                        <td>24-48 horas</td>
+                    </tr>
+                    <tr>
+                        <td>Aprobación de reembolso</td>
+                        <td>48 horas</td>
+                    </tr>
+                    <tr>
+                        <td>Procesamiento en Stripe</td>
+                        <td>1-2 días hábiles</td>
+                    </tr>
+                    <tr>
+                        <td>Aparición en cuenta bancaria</td>
+                        <td>5-10 días hábiles</td>
+                    </tr>
+                    <tr>
+                        <td>Total estimado</td>
+                        <td>7-14 días hábiles</td>
+                    </tr>
+                </tbody>
+            </table>
+            
+            <h2>14. Apelaciones</h2>
+            
+            <h3>14.1 Si su Solicitud es Denegada</h3>
+            <p>Si su solicitud de reembolso es denegada y no está de acuerdo:</p>
+            <ul>
+                <li>Puede solicitar una revisión de la decisión</li>
+                <li>Proporcione información adicional que apoye su caso</li>
+                <li>Un supervisor revisará su apelación</li>
+                <li>Recibirá respuesta final en 48-72 horas</li>
+            </ul>
+            
+            <h3>14.2 Mediación</h3>
+            <p>Si después de la apelación aún no está satisfecho, puede solicitar mediación a través de:</p>
+            <ul>
+                <li>Organizaciones de protección al consumidor</li>
+                <li>Servicios de mediación en línea</li>
+                <li>Autoridades regulatorias aplicables</li>
+            </ul>
+            
+            <h2>15. Transparencia en Reembolsos</h2>
+            
+            <h3>15.1 Estadísticas</h3>
+            <p>Mantenemos registros de todas las solicitudes de reembolso para mejorar nuestro servicio:</p>
+            <ul>
+                <li>Tiempo promedio de procesamiento</li>
+                <li>Razones más comunes de solicitudes</li>
+                <li>Tasa de aprobación</li>
+            </ul>
+            
+            <h3>15.2 Mejora Continua</h3>
+            <p>Utilizamos datos de reembolsos para:</p>
+            <ul>
+                <li>Identificar problemas recurrentes</li>
+                <li>Mejorar la calidad del servicio</li>
+                <li>Actualizar documentación y soporte</li>
+                <li>Capacitar mejor a nuestro equipo</li>
+            </ul>
+            
+            <h2>16. Preguntas Frecuentes sobre Reembolsos</h2>
+            
+            <h3>¿Cuánto tarda en procesarse mi reembolso?</h3>
+            <p>Una vez aprobado, el reembolso se procesa inmediatamente pero puede tardar 5-10 días hábiles en aparecer en su cuenta, dependiendo de su banco.</p>
+            
+            <h3>¿Puedo obtener reembolso si cancelo después de 48 horas?</h3>
+            <p>No, el periodo de garantía es de 48 horas desde la activación. Después de este tiempo, no se otorgan reembolsos por cambio de opinión.</p>
+            
+            <h3>¿Qué pasa si el servicio deja de funcionar después de 48 horas?</h3>
+            <p>Contáctenos inmediatamente. Si es un problema de nuestra parte, ofreceremos crédito o extensión de servicio proporcional al tiempo sin acceso.</p>
+            
+            <h3>¿Me reembolsan si olvidé cancelar antes de la renovación?</h3>
+            <p>Si nos contacta dentro de 24 horas del cargo de renovación, evaluaremos su caso. Después de 24 horas, no se otorgan reembolsos pero puede cancelar para evitar futuras renovaciones.</p>
+            
+            <h3>¿Puedo obtener reembolso si no me gusta el contenido?</h3>
+            <p>Solo dentro de las primeras 48 horas. Recomendamos usar las pruebas gratuitas disponibles en algunos planes para evaluar el contenido antes de comprometerse.</p>
+            
+            <h2>17. Cambios a esta Política</h2>
+            
+            <p>Nos reservamos el derecho de modificar esta Política de Reembolsos. Los cambios serán notificados mediante:</p>
+            <ul>
+                <li>Email a todos los clientes activos</li>
+                <li>Aviso en nuestro sitio web</li>
+                <li>Actualización de la fecha "Última actualización"</li>
+            </ul>
+            
+            <p>Los cambios entrarán en vigor 30 días después de la notificación.</p>
+            
+            <div class="contact-box">
+                <h3>¿Necesita Solicitar un Reembolso?</h3>
+                <p><strong>📧 Email:</strong> <a href="mailto:support@skyplay.us">support@skyplay.us</a></p>
+                <p><strong>📱 WhatsApp:</strong> <a href="https://wa.me/17863918722">+1 (786) 391-8722</a></p>
+                <p><strong>🕐 Horario:</strong> Lunes a Domingo, 8:00 AM - 10:00 PM</p>
+                <p style="margin-top: 20px; font-size: 14px;">
+                    <strong>Asunto del email:</strong> "Solicitud de Reembolso"<br>
+                    <strong>Incluya:</strong> Número de orden, email de cuenta y descripción del problema
+                </p>
+            </div>
+            
+            <h2>18. Compromiso con la Satisfacción del Cliente</h2>
+            
+            <p>En Skyplay Streaming, nuestra prioridad es su satisfacción. Esta política de reembolsos está diseñada para ser justa y transparente, protegiendo tanto sus derechos como consumidor como la sostenibilidad de nuestro servicio.</p>
+            
+            <p>Si tiene alguna duda o inquietud sobre esta política, no dude en contactarnos. Estamos aquí para ayudarle.</p>
+            
+            <a href="index.html" class="back-link">← Volver al Inicio</a>
+        </div>
+        
+        <div class="footer">
+            <p id="footerCopy">© 2025 Skyplay Streaming. Todos los derechos reservados.</p>
+            <p id="footerRefunds">Nos comprometemos con la transparencia y su satisfacción.</p>
+        </div>
+    </div>
+
+    <script>
+        // Translations
+        const translations = {
+            es: {
+                headerTitle: '💰 Política de Reembolsos',
+                headerSubtitle: 'Última actualización: Enero 2025',
+                backLink: '← Volver al Inicio',
+                footerCopy: '© 2025 Skyplay Streaming. Todos los derechos reservados.',
+                footerRefunds: 'Nos comprometemos con la transparencia y su satisfacción.'
+            },
+            en: {
+                headerTitle: '💰 Refund Policy',
+                headerSubtitle: 'Last updated: January 2025',
+                backLink: '← Back to Home',
+                footerCopy: '© 2025 Skyplay Streaming. All rights reserved.',
+                footerRefunds: 'We are committed to transparency and your satisfaction.'
+            }
+        };
+
+        let currentLanguage = 'es';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            const translation = translations[lang];
+            
+            Object.keys(translation).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.innerHTML = translation[key];
+                }
+            });
+            
+            // Update back link
+            const backLink = document.querySelector('.back-link');
+            if (backLink) backLink.textContent = translation.backLink;
+            
+            document.getElementById('btnEs').classList.toggle('active', lang === 'es');
+            document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+            document.documentElement.lang = lang;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            changeLanguage('es');
+        });
+    </script>
+</body>
+</html>

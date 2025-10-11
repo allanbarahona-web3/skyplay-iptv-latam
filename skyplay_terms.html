@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Términos y Condiciones | Skyplay Streaming</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+            position: relative;
+        }
+        
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .lang-btn {
+            padding: 8px 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-1px);
+        }
+        
+        .lang-btn.active {
+            background: white;
+            color: #1e3c72;
+            border-color: white;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .content {
+            padding: 40px 30px;
+            line-height: 1.8;
+            color: #374151;
+        }
+        
+        .content h2 {
+            color: #1e3c72;
+            font-size: 24px;
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .content h3 {
+            color: #2a5298;
+            font-size: 18px;
+            margin: 20px 0 10px 0;
+        }
+        
+        .content p {
+            margin-bottom: 15px;
+        }
+        
+        .content ul {
+            margin: 15px 0 15px 30px;
+        }
+        
+        .content li {
+            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            background: #fef3c7;
+            padding: 20px;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        
+        .footer {
+            background: #f9fafb;
+            padding: 20px 30px;
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .language-switcher {
+                position: relative;
+                top: auto;
+                right: auto;
+                justify-content: center;
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="language-switcher">
+                <button class="lang-btn active" onclick="changeLanguage('es')" id="btnEs">🇪🇸 ES</button>
+                <button class="lang-btn" onclick="changeLanguage('en')" id="btnEn">🇺🇸 EN</button>
+            </div>
+            <h1 id="headerTitle">📋 Términos y Condiciones</h1>
+            <p id="headerSubtitle">Última actualización: Enero 2025</p>
+        </div>
+        
+        <div class="content">
+            <a href="index.html" class="back-link">← Volver al Inicio</a>
+            
+            <h2>1. Aceptación de los Términos</h2>
+            <p>Al acceder y utilizar los servicios de Skyplay Streaming, usted acepta estar sujeto a estos Términos y Condiciones. Si no está de acuerdo con alguna parte de estos términos, no debe utilizar nuestros servicios.</p>
+            
+            <h2>2. Descripción del Servicio</h2>
+            <p>Skyplay Streaming proporciona acceso a contenido de entretenimiento IPTV, incluyendo:</p>
+            <ul>
+                <li>Más de 1,000 canales de televisión en vivo</li>
+                <li>Más de 6,000 series y películas bajo demanda</li>
+                <li>Contenido deportivo, animé y programación internacional</li>
+                <li>Acceso en múltiples dispositivos según el plan contratado</li>
+            </ul>
+            
+            <h2>3. Registro y Cuenta</h2>
+            <h3>3.1 Elegibilidad</h3>
+            <p>Debe tener al menos 18 años de edad para suscribirse a nuestros servicios. Al registrarse, garantiza que toda la información proporcionada es precisa y completa.</p>
+            
+            <h3>3.2 Seguridad de la Cuenta</h3>
+            <p>Usted es responsable de mantener la confidencialidad de sus credenciales de acceso. Cualquier actividad realizada bajo su cuenta es su responsabilidad.</p>
+            
+            <h2>4. Suscripción y Pagos</h2>
+            <h3>4.1 Planes de Suscripción</h3>
+            <p>Ofrecemos diferentes planes de suscripción con características y precios variables. Los precios están sujetos a cambios con previo aviso de 30 días.</p>
+            
+            <h3>4.2 Renovación Automática</h3>
+            <div class="highlight">
+                <strong>⚠️ Importante:</strong> Todas las suscripciones se renuevan automáticamente cada mes. Se le cobrará automáticamente en la fecha de renovación utilizando el método de pago registrado.
+            </div>
+            
+            <h3>4.3 Métodos de Pago</h3>
+            <p>Los pagos se procesan de manera segura a través de Stripe. Aceptamos tarjetas de crédito y débito. No almacenamos información de tarjetas en nuestros servidores.</p>
+            
+            <h2>5. Cancelación y Reembolsos</h2>
+            <h3>5.1 Cancelación</h3>
+            <p>Puede cancelar su suscripción en cualquier momento desde su panel de cliente o contactándonos directamente. La cancelación será efectiva al final del periodo de facturación actual.</p>
+            
+            <h3>5.2 Política de Reembolsos</h3>
+            <p>Ofrecemos reembolso completo dentro de las primeras 48 horas si el servicio no funciona correctamente. Para más detalles, consulte nuestra <a href="refunds.html">Política de Reembolsos</a>.</p>
+            
+            <h2>6. Uso Aceptable</h2>
+            <h3>6.1 Restricciones de Uso</h3>
+            <p>Usted acepta NO:</p>
+            <ul>
+                <li>Compartir sus credenciales de acceso con terceros</li>
+                <li>Revender o redistribuir el servicio</li>
+                <li>Utilizar el servicio para fines comerciales sin autorización</li>
+                <li>Intentar acceder a partes no autorizadas del sistema</li>
+                <li>Utilizar más dispositivos simultáneos que los permitidos en su plan</li>
+            </ul>
+            
+            <h3>6.2 Suspensión del Servicio</h3>
+            <p>Nos reservamos el derecho de suspender o terminar su acceso si detectamos violaciones de estos términos, incluyendo pero no limitado a compartir cuentas o uso fraudulento.</p>
+            
+            <h2>7. Limitación de Dispositivos</h2>
+            <p>El número de dispositivos en los que puede usar el servicio simultáneamente está limitado según su plan:</p>
+            <ul>
+                <li><strong>Planes 1 Dispositivo:</strong> Acceso en un solo dispositivo a la vez</li>
+                <li><strong>Planes 3 Dispositivos:</strong> Acceso en hasta tres dispositivos simultáneamente</li>
+            </ul>
+            
+            <h2>8. Propiedad Intelectual</h2>
+            <p>Todo el contenido, marcas registradas, logos y material disponible a través de Skyplay Streaming están protegidos por derechos de autor y otras leyes de propiedad intelectual. El contenido es solo para uso personal y no comercial.</p>
+            
+            <h2>9. Disponibilidad del Servicio</h2>
+            <h3>9.1 Garantía de Servicio</h3>
+            <p>Nos esforzamos por mantener el servicio disponible 24/7, pero no garantizamos acceso ininterrumpido. Pueden ocurrir interrupciones debido a mantenimiento, actualizaciones o problemas técnicos.</p>
+            
+            <h3>9.2 Modificaciones al Servicio</h3>
+            <p>Nos reservamos el derecho de modificar, suspender o descontinuar cualquier aspecto del servicio en cualquier momento, incluyendo la disponibilidad de contenido específico.</p>
+            
+            <h2>10. Privacidad y Datos</h2>
+            <p>Su privacidad es importante para nosotros. El uso de sus datos personales está regido por nuestra <a href="privacy.html">Política de Privacidad</a>. Al utilizar nuestros servicios, acepta la recopilación y uso de información según esa política.</p>
+            
+            <h2>11. Limitación de Responsabilidad</h2>
+            <p>Skyplay Streaming no será responsable por:</p>
+            <ul>
+                <li>Daños indirectos, incidentales o consecuentes</li>
+                <li>Pérdida de datos o ganancias</li>
+                <li>Interrupciones del servicio fuera de nuestro control</li>
+                <li>Contenido de terceros accesible a través del servicio</li>
+            </ul>
+            
+            <div class="highlight">
+                <strong>Exención de Responsabilidad:</strong> El servicio se proporciona "tal cual" sin garantías de ningún tipo, ya sean expresas o implícitas.
+            </div>
+            
+            <h2>12. Ley Aplicable</h2>
+            <p>Estos términos se regirán e interpretarán de acuerdo con las leyes aplicables en la jurisdicción donde opera Skyplay Streaming, sin consideración a conflictos de principios legales.</p>
+            
+            <h2>13. Resolución de Disputas</h2>
+            <p>Cualquier disputa que surja en relación con estos términos se resolverá primero a través de negociación de buena fe. Si no se logra una resolución, las partes pueden recurrir a arbitraje o mediación antes de proceder a litigio.</p>
+            
+            <h2>14. Modificaciones a los Términos</h2>
+            <p>Nos reservamos el derecho de modificar estos Términos y Condiciones en cualquier momento. Las modificaciones entrarán en vigor inmediatamente después de su publicación. Se le notificará de cambios significativos por email.</p>
+            
+            <h2>15. Contacto</h2>
+            <p>Si tiene preguntas sobre estos Términos y Condiciones, puede contactarnos:</p>
+            <ul>
+                <li><strong>Email:</strong> support@skyplay.us</li>
+                <li><strong>Teléfono/WhatsApp:</strong> +1 (786) 391-8722</li>
+                <li><strong>Horario:</strong> Lunes a Domingo, 8:00 AM - 10:00 PM</li>
+            </ul>
+            
+            <h2>16. Disposiciones Generales</h2>
+            <h3>16.1 Acuerdo Completo</h3>
+            <p>Estos términos constituyen el acuerdo completo entre usted y Skyplay Streaming con respecto al uso del servicio.</p>
+            
+            <h3>16.2 Divisibilidad</h3>
+            <p>Si alguna disposición de estos términos se considera inválida o inaplicable, las disposiciones restantes seguirán siendo válidas y aplicables.</p>
+            
+            <h3>16.3 Renuncia</h3>
+            <p>La falta de ejercicio de cualquier derecho bajo estos términos no constituirá una renuncia a dicho derecho.</p>
+            
+            <a href="index.html" class="back-link">← Volver al Inicio</a>
+        </div>
+        
+        <div class="footer">
+            <p id="footerCopy">© 2025 Skyplay Streaming. Todos los derechos reservados.</p>
+            <p id="footerTerms">Al utilizar nuestro servicio, usted acepta estos Términos y Condiciones.</p>
+        </div>
+    </div>
+
+    <script>
+        // Translations
+        const translations = {
+            es: {
+                headerTitle: '📋 Términos y Condiciones',
+                headerSubtitle: 'Última actualización: Enero 2025',
+                backLink: '← Volver al Inicio',
+                footerCopy: '© 2025 Skyplay Streaming. Todos los derechos reservados.',
+                footerTerms: 'Al utilizar nuestro servicio, usted acepta estos Términos y Condiciones.'
+            },
+            en: {
+                headerTitle: '📋 Terms and Conditions',
+                headerSubtitle: 'Last updated: January 2025',
+                backLink: '← Back to Home',
+                footerCopy: '© 2025 Skyplay Streaming. All rights reserved.',
+                footerTerms: 'By using our service, you agree to these Terms and Conditions.'
+            }
+        };
+
+        let currentLanguage = 'es';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            const translation = translations[lang];
+            
+            Object.keys(translation).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.innerHTML = translation[key];
+                }
+            });
+            
+            // Update back link
+            const backLink = document.querySelector('.back-link');
+            if (backLink) backLink.textContent = translation.backLink;
+            
+            document.getElementById('btnEs').classList.toggle('active', lang === 'es');
+            document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+            document.documentElement.lang = lang;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            changeLanguage('es');
+        });
+    </script>
+</body>
+</html>

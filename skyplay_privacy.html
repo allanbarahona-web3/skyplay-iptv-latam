@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad | Skyplay Streaming</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 40px 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+        
+        .content {
+            padding: 40px 30px;
+            line-height: 1.8;
+            color: #374151;
+        }
+        
+        .content h2 {
+            color: #1e3c72;
+            font-size: 24px;
+            margin: 30px 0 15px 0;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #667eea;
+        }
+        
+        .content h3 {
+            color: #2a5298;
+            font-size: 18px;
+            margin: 20px 0 10px 0;
+        }
+        
+        .content p {
+            margin-bottom: 15px;
+        }
+        
+        .content ul {
+            margin: 15px 0 15px 30px;
+        }
+        
+        .content li {
+            margin-bottom: 10px;
+        }
+        
+        .highlight {
+            background: #dbeafe;
+            padding: 20px;
+            border-left: 4px solid #3b82f6;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .warning {
+            background: #fef3c7;
+            padding: 20px;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 12px 24px;
+            background: #667eea;
+            color: white;
+            text-decoration: none;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .back-link:hover {
+            background: #5568d3;
+            transform: translateY(-2px);
+        }
+        
+        .footer {
+            background: #f9fafb;
+            padding: 20px 30px;
+            text-align: center;
+            color: #6b7280;
+            font-size: 14px;
+        }
+        
+        .language-switcher {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            display: flex;
+            gap: 8px;
+        }
+        
+        .lang-btn {
+            padding: 8px 16px;
+            border: 2px solid rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.1);
+            color: white;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .lang-btn:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-1px);
+        }
+        
+        .lang-btn.active {
+            background: white;
+            color: #1e3c72;
+            border-color: white;
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 24px;
+            }
+            
+            .language-switcher {
+                position: relative;
+                top: auto;
+                right: auto;
+                justify-content: center;
+                margin: 20px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="language-switcher">
+                <button class="lang-btn active" onclick="changeLanguage('es')" id="btnEs">🇪🇸 ES</button>
+                <button class="lang-btn" onclick="changeLanguage('en')" id="btnEn">🇺🇸 EN</button>
+            </div>
+            <h1 id="headerTitle">🔒 Política de Privacidad</h1>
+            <p id="headerSubtitle">Última actualización: Enero 2025</p>
+        </div>
+        
+        <div class="content">
+            <a href="index.html" class="back-link">← Volver al Inicio</a>
+            
+            <div class="highlight">
+                <strong>🛡️ Su privacidad es importante:</strong> En Skyplay Streaming nos comprometemos a proteger su información personal. Esta política explica qué datos recopilamos, cómo los usamos y sus derechos sobre ellos.
+            </div>
+            
+            <h2>1. Información que Recopilamos</h2>
+            
+            <h3>1.1 Información Proporcionada Directamente</h3>
+            <p>Cuando se registra o utiliza nuestros servicios, recopilamos:</p>
+            <ul>
+                <li><strong>Información de cuenta:</strong> Nombre, dirección de email, número de teléfono</li>
+                <li><strong>Información de pago:</strong> Procesada y almacenada de forma segura por Stripe (no almacenamos datos de tarjetas)</li>
+                <li><strong>Información de contacto:</strong> WhatsApp, preferencias de comunicación</li>
+                <li><strong>Selección de país:</strong> Para mostrar precios en moneda local</li>
+            </ul>
+            
+            <h3>1.2 Información Recopilada Automáticamente</h3>
+            <ul>
+                <li><strong>Datos de uso:</strong> Contenido visualizado, duración, frecuencia de uso</li>
+                <li><strong>Información del dispositivo:</strong> Tipo de dispositivo, sistema operativo, dirección IP</li>
+                <li><strong>Datos de ubicación:</strong> País y región (no recopilamos ubicación GPS precisa)</li>
+                <li><strong>Cookies y tecnologías similares:</strong> Para mejorar su experiencia</li>
+            </ul>
+            
+            <h2>2. Cómo Utilizamos su Información</h2>
+            
+            <p>Utilizamos su información personal para:</p>
+            
+            <h3>2.1 Prestación del Servicio</h3>
+            <ul>
+                <li>Crear y gestionar su cuenta</li>
+                <li>Procesar pagos y suscripciones</li>
+                <li>Entregar credenciales de acceso</li>
+                <li>Proporcionar soporte técnico</li>
+                <li>Enviar notificaciones sobre su cuenta</li>
+            </ul>
+            
+            <h3>2.2 Mejora del Servicio</h3>
+            <ul>
+                <li>Analizar patrones de uso para mejorar contenido</li>
+                <li>Personalizar recomendaciones</li>
+                <li>Desarrollar nuevas funcionalidades</li>
+                <li>Resolver problemas técnicos</li>
+            </ul>
+            
+            <h3>2.3 Comunicación</h3>
+            <ul>
+                <li>Enviar confirmaciones de pago y facturas</li>
+                <li>Notificar sobre cambios en el servicio</li>
+                <li>Responder a consultas de soporte</li>
+                <li>Enviar ofertas promocionales (si aceptó recibirlas)</li>
+            </ul>
+            
+            <h3>2.4 Seguridad y Cumplimiento</h3>
+            <ul>
+                <li>Detectar y prevenir fraude</li>
+                <li>Hacer cumplir nuestros términos de servicio</li>
+                <li>Cumplir con obligaciones legales</li>
+                <li>Proteger derechos y propiedad</li>
+            </ul>
+            
+            <h2>3. Compartir Información</h2>
+            
+            <div class="warning">
+                <strong>⚠️ Importante:</strong> Nunca vendemos su información personal a terceros. Solo compartimos datos con los proveedores necesarios para operar el servicio.
+            </div>
+            
+            <h3>3.1 Proveedores de Servicios</h3>
+            <p>Compartimos información con terceros que nos ayudan a operar:</p>
+            <ul>
+                <li><strong>Stripe:</strong> Procesamiento de pagos (PCI-DSS compliant)</li>
+                <li><strong>Proveedores de email:</strong> Para enviar notificaciones y credenciales</li>
+                <li><strong>Servicios de hosting:</strong> Para almacenar datos de forma segura</li>
+                <li><strong>WhatsApp Business:</strong> Para comunicación con clientes</li>
+            </ul>
+            
+            <h3>3.2 Cumplimiento Legal</h3>
+            <p>Podemos divulgar información cuando sea requerido por ley o para:</p>
+            <ul>
+                <li>Cumplir con procesos legales</li>
+                <li>Responder a solicitudes gubernamentales</li>
+                <li>Proteger derechos, propiedad o seguridad</li>
+                <li>Prevenir fraude o actividades ilegales</li>
+            </ul>
+            
+            <h2>4. Seguridad de Datos</h2>
+            
+            <h3>4.1 Medidas de Seguridad</h3>
+            <p>Implementamos medidas técnicas y organizativas para proteger su información:</p>
+            <ul>
+                <li>Encriptación SSL/TLS para transmisión de datos</li>
+                <li>Almacenamiento seguro en servidores protegidos</li>
+                <li>Acceso limitado solo a personal autorizado</li>
+                <li>Monitoreo regular de vulnerabilidades</li>
+                <li>Copias de seguridad periódicas</li>
+            </ul>
+            
+            <h3>4.2 Procesamiento de Pagos</h3>
+            <p>Los pagos son procesados por Stripe, certificado PCI-DSS nivel 1. No almacenamos información completa de tarjetas de crédito en nuestros servidores.</p>
+            
+            <h2>5. Retención de Datos</h2>
+            
+            <p>Conservamos su información personal mientras:</p>
+            <ul>
+                <li>Su cuenta esté activa</li>
+                <li>Sea necesario para proporcionar servicios</li>
+                <li>Se requiera para cumplir obligaciones legales</li>
+                <li>Sea necesario para resolver disputas</li>
+            </ul>
+            
+            <p>Después de la cancelación de su cuenta, retenemos cierta información durante:</p>
+            <ul>
+                <li><strong>Datos de facturación:</strong> 7 años (requisitos fiscales)</li>
+                <li><strong>Datos de cuenta:</strong> 90 días (reactivación posible)</li>
+                <li><strong>Datos de uso:</strong> 30 días (análisis agregados)</li>
+            </ul>
+            
+            <h2>6. Sus Derechos</h2>
+            
+            <h3>6.1 Acceso y Control</h3>
+            <p>Usted tiene derecho a:</p>
+            <ul>
+                <li><strong>Acceder:</strong> Solicitar copia de su información personal</li>
+                <li><strong>Rectificar:</strong> Corregir información inexacta</li>
+                <li><strong>Eliminar:</strong> Solicitar eliminación de sus datos</li>
+                <li><strong>Portar:</strong> Recibir sus datos en formato estructurado</li>
+                <li><strong>Objetar:</strong> Oponerse a ciertos usos de sus datos</li>
+                <li><strong>Restringir:</strong> Limitar cómo usamos sus datos</li>
+            </ul>
+            
+            <h3>6.2 Cómo Ejercer sus Derechos</h3>
+            <p>Para ejercer cualquiera de estos derechos, contáctenos en:</p>
+            <ul>
+                <li><strong>Email:</strong> support@skyplay.us</li>
+                <li><strong>Asunto:</strong> "Solicitud de Privacidad"</li>
+            </ul>
+            <p>Responderemos a su solicitud dentro de 30 días.</p>
+            
+            <h3>6.3 Cancelar Suscripción</h3>
+            <p>Puede cancelar el envío de emails promocionales:</p>
+            <ul>
+                <li>Haciendo clic en "Cancelar suscripción" en cualquier email</li>
+                <li>Contactándonos directamente</li>
+                <li>Ajustando preferencias en su panel de cuenta</li>
+            </ul>
+            <p><em>Nota: Los emails transaccionales (facturas, confirmaciones) no pueden cancelarse mientras su cuenta esté activa.</em></p>
+            
+            <h2>7. Cookies y Tecnologías de Seguimiento</h2>
+            
+            <h3>7.1 Tipos de Cookies</h3>
+            <p>Utilizamos las siguientes cookies:</p>
+            <ul>
+                <li><strong>Cookies esenciales:</strong> Necesarias para el funcionamiento del sitio</li>
+                <li><strong>Cookies de preferencias:</strong> Recuerdan su idioma y país</li>
+                <li><strong>Cookies analíticas:</strong> Nos ayudan a entender cómo se usa el sitio</li>
+                <li><strong>Cookies de marketing:</strong> Para mostrar contenido relevante (opcional)</li>
+            </ul>
+            
+            <h3>7.2 Gestión de Cookies</h3>
+            <p>Puede controlar cookies a través de su navegador. Note que desactivar cookies esenciales puede afectar la funcionalidad del servicio.</p>
+            
+            <h2>8. Transferencias Internacionales</h2>
+            
+            <p>Sus datos pueden ser transferidos y procesados en servidores ubicados fuera de su país. Aseguramos que estas transferencias cumplan con leyes de protección de datos mediante:</p>
+            <ul>
+                <li>Cláusulas contractuales estándar</li>
+                <li>Certificaciones de privacidad</li>
+                <li>Medidas de seguridad adicionales</li>
+            </ul>
+            
+            <h2>9. Privacidad de Menores</h2>
+            
+            <div class="warning">
+                <strong>⚠️ Restricción de Edad:</strong> Nuestros servicios están destinados a personas mayores de 18 años. No recopilamos intencionalmente información de menores de edad.
+            </div>
+            
+            <p>Si descubrimos que hemos recopilado información de un menor sin verificación de edad apropiada, eliminaremos esa información inmediatamente.</p>
+            
+            <h2>10. Enlaces a Terceros</h2>
+            
+            <p>Nuestro servicio puede contener enlaces a sitios web de terceros. No somos responsables de las prácticas de privacidad de estos sitios. Le recomendamos leer sus políticas de privacidad.</p>
+            
+            <h2>11. Cambios a esta Política</h2>
+            
+            <p>Podemos actualizar esta Política de Privacidad periódicamente. Los cambios importantes serán notificados mediante:</p>
+            <ul>
+                <li>Email a su cuenta registrada</li>
+                <li>Aviso en nuestro sitio web</li>
+                <li>Notificación al iniciar sesión</li>
+            </ul>
+            
+            <p>La fecha de "Última actualización" al inicio de esta política indica cuándo fue modificada por última vez.</p>
+            
+            <h2>12. Contacto sobre Privacidad</h2>
+            
+            <p>Si tiene preguntas, inquietudes o solicitudes relacionadas con su privacidad, contáctenos:</p>
+            
+            <div class="highlight">
+                <p><strong>📧 Email:</strong> support@skyplay.us</p>
+                <p><strong>📱 WhatsApp:</strong> +1 (786) 391-8722</p>
+                <p><strong>🕐 Horario:</strong> Lunes a Domingo, 8:00 AM - 10:00 PM</p>
+                <p><strong>✉️ Asunto:</strong> "Consulta de Privacidad"</p>
+            </div>
+            
+            <h2>13. Cumplimiento Legal</h2>
+            
+            <h3>13.1 GDPR (Regulación General de Protección de Datos)</h3>
+            <p>Para usuarios en la Unión Europea, cumplimos con GDPR garantizando:</p>
+            <ul>
+                <li>Base legal para procesamiento de datos</li>
+                <li>Derechos de acceso, rectificación y eliminación</li>
+                <li>Notificación de brechas de seguridad</li>
+                <li>Transferencias internacionales seguras</li>
+            </ul>
+            
+            <h3>13.2 CCPA (California Consumer Privacy Act)</h3>
+            <p>Para residentes de California, cumplimos con CCPA proporcionando:</p>
+            <ul>
+                <li>Derecho a saber qué información recopilamos</li>
+                <li>Derecho a eliminar información personal</li>
+                <li>Derecho a optar por no vender información (no vendemos datos)</li>
+                <li>No discriminación por ejercer derechos</li>
+            </ul>
+            
+            <h2>14. Consentimiento</h2>
+            
+            <p>Al utilizar nuestros servicios, usted consiente la recopilación y uso de información según se describe en esta Política de Privacidad.</p>
+            
+            <p>Si no está de acuerdo con esta política, por favor no utilice nuestros servicios.</p>
+            
+            <a href="index.html" class="back-link">← Volver al Inicio</a>
+        </div>
+        
+        <div class="footer">
+            <p id="footerCopy">© 2025 Skyplay Streaming. Todos los derechos reservados.</p>
+            <p id="footerPrivacy">Nos comprometemos a proteger su privacidad y mantener sus datos seguros.</p>
+        </div>
+    </div>
+
+    <script>
+        // Translations
+        const translations = {
+            es: {
+                headerTitle: '🔒 Política de Privacidad',
+                headerSubtitle: 'Última actualización: Enero 2025',
+                backLink: '← Volver al Inicio',
+                highlightText: '<strong>🛡️ Su privacidad es importante:</strong> En Skyplay Streaming nos comprometemos a proteger su información personal. Esta política explica qué datos recopilamos, cómo los usamos y sus derechos sobre ellos.',
+                footerCopy: '© 2025 Skyplay Streaming. Todos los derechos reservados.',
+                footerPrivacy: 'Nos comprometemos a proteger su privacidad y mantener sus datos seguros.'
+            },
+            en: {
+                headerTitle: '🔒 Privacy Policy',
+                headerSubtitle: 'Last updated: January 2025',
+                backLink: '← Back to Home',
+                highlightText: '<strong>🛡️ Your privacy matters:</strong> At Skyplay Streaming we are committed to protecting your personal information. This policy explains what data we collect, how we use it, and your rights regarding it.',
+                footerCopy: '© 2025 Skyplay Streaming. All rights reserved.',
+                footerPrivacy: 'We are committed to protecting your privacy and keeping your data secure.'
+            }
+        };
+
+        let currentLanguage = 'es';
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            const translation = translations[lang];
+            
+            Object.keys(translation).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.innerHTML = translation[key];
+                }
+            });
+            
+            // Update back link
+            const backLink = document.querySelector('.back-link');
+            if (backLink) backLink.textContent = translation.backLink;
+            
+            // Update highlight div
+            const highlight = document.querySelector('.highlight');
+            if (highlight) highlight.innerHTML = translation.highlightText;
+            
+            document.getElementById('btnEs').classList.toggle('active', lang === 'es');
+            document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+            document.documentElement.lang = lang;
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            changeLanguage('es');
+        });
+    </script>
+</body>
+</html>

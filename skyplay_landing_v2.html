@@ -1,0 +1,1628 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Skyplay Streaming - Planes IPTV para Latinoamérica</title>
+    <meta name="description" content="Los mejores planes de streaming IPTV para Latinoamérica. +1000 canales, series, películas y deportes. Cancela cuando quieras.">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #1e3c72;
+            --primary-light: #2a5298;
+            --secondary: #667eea;
+            --accent: #764ba2;
+            --success: #10b981;
+            --white: #ffffff;
+            --gray-50: #f9fafb;
+            --gray-100: #f3f4f6;
+            --gray-200: #e5e7eb;
+            --gray-600: #4b5563;
+            --gray-900: #111827;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            min-height: 100vh;
+            line-height: 1.6;
+        }
+        
+        /* Header mejorado */
+        .top-bar {
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        
+        .contact-info {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+        
+        .contact-item {
+            color: white;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            text-decoration: none;
+            transition: opacity 0.3s;
+        }
+        
+        .contact-item:hover {
+            opacity: 0.8;
+        }
+        
+        .language-switcher {
+            display: flex;
+            gap: 8px;
+            background: rgba(255,255,255,0.2);
+            padding: 6px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .lang-btn {
+            padding: 6px 16px;
+            border: none;
+            border-radius: 20px;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 13px;
+        }
+        
+        .lang-btn.active {
+            background: white;
+            color: var(--primary);
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 20px auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        /* Header principal */
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+            color: white;
+            padding: 40px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            opacity: 0.3;
+        }
+        
+        .logo-section {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .logo {
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            padding: 25px 40px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: translateY(-5px);
+        }
+        
+        .logo-skyplay {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        
+        .logo-icon-original {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+        
+        .dots-row {
+            display: flex;
+            gap: 4px;
+            justify-content: center;
+        }
+        
+        .dot-skyplay {
+            width: 7px;
+            height: 7px;
+            background: #00bcd4;
+            border-radius: 50%;
+        }
+        
+        .bars-row {
+            display: flex;
+            gap: 3px;
+            align-items: flex-end;
+            margin-top: 2px;
+        }
+        
+        .bar-skyplay {
+            width: 7px;
+            background: #00bcd4;
+        }
+        
+        .bar-skyplay:nth-child(1) { height: 20px; }
+        .bar-skyplay:nth-child(2) { height: 24px; }
+        .bar-skyplay:nth-child(3) { height: 22px; }
+        .bar-skyplay:nth-child(4) { height: 18px; }
+        
+        .divider-line {
+            width: 2px;
+            height: 50px;
+            background: var(--primary);
+            opacity: 0.3;
+        }
+        
+        .logo-text-original {
+            display: flex;
+            flex-direction: column;
+            line-height: 1;
+        }
+        
+        .brand-name {
+            font-size: 36px;
+            font-weight: 400;
+            color: var(--primary);
+            letter-spacing: 0.5px;
+        }
+        
+        .brand-tagline {
+            font-size: 18px;
+            color: var(--primary);
+            opacity: 0.8;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .header-content h1 {
+            font-size: 42px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .header-content p {
+            font-size: 20px;
+            opacity: 0.95;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Trust badges */
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255,255,255,0.15);
+            padding: 12px 20px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            font-size: 14px;
+            font-weight: 600;
+        }
+        
+        .badge-icon {
+            font-size: 20px;
+        }
+        
+        /* Como funciona */
+        .how-it-works {
+            padding: 60px 20px;
+            background: var(--gray-50);
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 50px;
+            font-weight: 700;
+        }
+        
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .step-card {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+        }
+        
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 28px;
+            font-weight: bold;
+            margin: 0 auto 20px;
+        }
+        
+        .step-card h3 {
+            font-size: 20px;
+            color: var(--primary);
+            margin-bottom: 12px;
+        }
+        
+        .step-card p {
+            color: var(--gray-600);
+            font-size: 15px;
+            line-height: 1.6;
+        }
+        
+        /* Planes */
+        .plans-section {
+            padding: 60px 20px;
+        }
+        
+        .country-selector {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .country-selector-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 30px;
+            background: white;
+            border: 3px solid var(--secondary);
+            border-radius: 50px;
+            cursor: pointer;
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        
+        .country-selector-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(102, 126, 234, 0.3);
+        }
+        
+        .plans-container {
+            overflow-x: auto;
+            padding: 0 15px 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            min-width: 900px;
+        }
+        
+        th {
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            color: white;
+            padding: 20px 15px;
+            font-size: 14px;
+            font-weight: 700;
+            text-align: center;
+            border: 2px solid white;
+        }
+        
+        th:first-child {
+            text-align: left;
+            border-top-left-radius: 15px;
+        }
+        
+        th:last-child {
+            border-top-right-radius: 15px;
+        }
+        
+        td {
+            padding: 18px 15px;
+            text-align: center;
+            border: 1px solid var(--gray-200);
+            font-size: 14px;
+        }
+        
+        td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: var(--gray-900);
+            background: var(--gray-50);
+        }
+        
+        .check {
+            color: var(--success);
+            font-size: 22px;
+            font-weight: bold;
+        }
+        
+        .dash {
+            color: var(--gray-200);
+            font-size: 20px;
+        }
+        
+        .price-row td {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            font-weight: 800;
+            font-size: 20px;
+            padding: 25px 15px;
+        }
+        
+        .price-row td:first-child {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+        }
+        
+        .price-local {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            opacity: 0.9;
+            margin-top: 8px;
+        }
+        
+        .action-row td {
+            padding: 25px 15px;
+            background: white;
+        }
+        
+        .action-row td:first-child {
+            background: var(--gray-50);
+            border-bottom-left-radius: 15px;
+        }
+        
+        .action-row td:last-child {
+            border-bottom-right-radius: 15px;
+        }
+        
+        .buy-btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+        
+        .buy-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 25px rgba(16, 185, 129, 0.4);
+        }
+        
+        .buy-btn:active {
+            transform: translateY(-1px);
+        }
+        
+        /* FAQs */
+        .faqs {
+            padding: 60px 20px;
+            background: var(--gray-50);
+        }
+        
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            background: white;
+            margin-bottom: 15px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+        
+        .faq-question {
+            padding: 20px 25px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: 600;
+            color: var(--primary);
+            font-size: 16px;
+            transition: background 0.3s;
+        }
+        
+        .faq-question:hover {
+            background: var(--gray-50);
+        }
+        
+        .faq-icon {
+            font-size: 20px;
+            transition: transform 0.3s;
+        }
+        
+        .faq-item.active .faq-icon {
+            transform: rotate(180deg);
+        }
+        
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 25px;
+        }
+        
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding: 0 25px 20px;
+        }
+        
+        .faq-answer p {
+            color: var(--gray-600);
+            line-height: 1.7;
+        }
+        
+        /* CTA */
+        .cta-section {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            padding: 60px 25px;
+            text-align: center;
+        }
+        
+        .cta-section h2 {
+            color: white;
+            font-size: 36px;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .cta-section p {
+            color: white;
+            font-size: 18px;
+            margin-bottom: 30px;
+            opacity: 0.95;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            color: #25D366;
+            padding: 18px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 8px 30px rgba(0,0,0,0.3);
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 40px rgba(0,0,0,0.4);
+        }
+        
+        /* Footer */
+        .footer {
+            background: var(--primary);
+            color: white;
+            padding: 40px 20px 20px;
+        }
+        
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .footer-section h3 {
+            margin-bottom: 20px;
+            font-size: 18px;
+        }
+        
+        .footer-section ul {
+            list-style: none;
+        }
+        
+        .footer-section li {
+            margin-bottom: 10px;
+        }
+        
+        .footer-section a {
+            color: rgba(255,255,255,0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-section a:hover {
+            color: white;
+        }
+        
+        .footer-bottom {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 14px;
+            opacity: 0.8;
+        }
+        
+        /* Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 40px 30px;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 100%;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            animation: slideUp 0.4s ease;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal h2 {
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .option-card {
+            padding: 25px 15px;
+            border: 3px solid var(--gray-200);
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+            text-align: center;
+        }
+        
+        .option-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+        
+        .flag-big {
+            font-size: 60px;
+            margin-bottom: 12px;
+            display: block;
+        }
+        
+        .option-name {
+            font-size: 18px;
+            font-weight: bold;
+            color: var(--primary);
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .option-currency {
+            font-size: 13px;
+            color: var(--gray-600);
+        }
+        
+        /* Confirmation Modal */
+        .confirm-content {
+            text-align: center;
+        }
+        
+        .plan-summary {
+            background: var(--gray-50);
+            padding: 25px;
+            border-radius: 15px;
+            margin: 25px 0;
+        }
+        
+        .plan-summary h3 {
+            color: var(--primary);
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .plan-summary .price-big {
+            font-size: 36px;
+            font-weight: 800;
+            color: var(--success);
+            margin: 10px 0;
+        }
+        
+        .plan-details {
+            text-align: left;
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border: 2px solid var(--gray-200);
+        }
+        
+        .plan-details li {
+            padding: 8px 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+        
+        .modal-btn {
+            flex: 1;
+            padding: 15px;
+            border: none;
+            border-radius: 50px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-cancel {
+            background: var(--gray-200);
+            color: var(--gray-600);
+        }
+        
+        .btn-cancel:hover {
+            background: var(--gray-300);
+        }
+        
+        .btn-confirm {
+            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+            color: white;
+        }
+        
+        .btn-confirm:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.3);
+        }
+        
+        /* Floating WhatsApp */
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+        
+        .floating-whatsapp a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .floating-whatsapp a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.7);
+        }
+        
+        .floating-whatsapp svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header-content h1 {
+                font-size: 28px;
+            }
+            
+            .section-title {
+                font-size: 28px;
+            }
+            
+            .trust-badges {
+                gap: 15px;
+            }
+            
+            .badge {
+                font-size: 12px;
+                padding: 10px 15px;
+            }
+            
+            .top-bar {
+                justify-content: center;
+            }
+            
+            .contact-info {
+                justify-content: center;
+                width: 100%;
+            }
+            
+            table {
+                min-width: 700px;
+            }
+            
+            .options-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Top Bar -->
+    <div class="top-bar">
+        <div class="contact-info">
+            <a href="tel:+17863918722" class="contact-item">
+                <span>📞</span>
+                <span>+1 (786) 391-8722</span>
+            </a>
+            <a href="mailto:support@skyplay.us" class="contact-item">
+                <span>✉️</span>
+                <span>support@skyplay.us</span>
+            </a>
+        </div>
+        <div class="language-switcher">
+            <button class="lang-btn active" onclick="changeLanguage('es')" id="btnEs">🇪🇸 ES</button>
+            <button class="lang-btn" onclick="changeLanguage('en')" id="btnEn">🇺🇸 EN</button>
+        </div>
+    </div>
+
+    <!-- Country Selection Modal -->
+    <div class="modal active" id="countryModal">
+        <div class="modal-content">
+            <h2 id="countryModalTitle">Selecciona tu país</h2>
+            <p id="countryModalSubtitle">Los precios se mostrarán en tu moneda local</p>
+            <div class="options-grid">
+                <div class="option-card" onclick="selectCountry('usa')">
+                    <span class="flag-big">🇺🇸</span>
+                    <span class="option-name">USA</span>
+                    <div class="option-currency">USD</div>
+                </div>
+                <div class="option-card" onclick="selectCountry('mexico')">
+                    <span class="flag-big">🇲🇽</span>
+                    <span class="option-name">México</span>
+                    <div class="option-currency">MXN</div>
+                </div>
+                <div class="option-card" onclick="selectCountry('costarica')">
+                    <span class="flag-big">🇨🇷</span>
+                    <span class="option-name">Costa Rica</span>
+                    <div class="option-currency">CRC</div>
+                </div>
+                <div class="option-card" onclick="selectCountry('panama')">
+                    <span class="flag-big">🇵🇦</span>
+                    <span class="option-name">Panamá</span>
+                    <div class="option-currency">USD</div>
+                </div>
+                <div class="option-card" onclick="selectCountry('bolivia')">
+                    <span class="flag-big">🇧🇴</span>
+                    <span class="option-name">Bolivia</span>
+                    <div class="option-currency">BOB</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Confirmation Modal -->
+    <div class="modal" id="confirmModal">
+        <div class="modal-content confirm-content">
+            <h2 id="confirmTitle">Confirmar Compra</h2>
+            <div class="plan-summary">
+                <h3 id="confirmPlanName">Plan Seleccionado</h3>
+                <div class="price-big" id="confirmPrice">$9.99</div>
+                <p id="confirmRecurring">Renovación automática mensual</p>
+            </div>
+            <div class="plan-details">
+                <ul id="confirmFeatures">
+                    <li>✅ Característica 1</li>
+                </ul>
+            </div>
+            <p id="confirmPolicy">Puedes cancelar cuando quieras desde tu panel de cliente. Sin penalidades ni cargos adicionales.</p>
+            <div class="modal-actions">
+                <button class="modal-btn btn-cancel" onclick="closeConfirmModal()" id="btnCancel">Cancelar</button>
+                <button class="modal-btn btn-confirm" onclick="proceedToStripe()" id="btnConfirm">Ir a Pago Seguro</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">
+                    <div class="logo-skyplay">
+                        <div class="logo-icon-original">
+                            <div class="dots-row">
+                                <div class="dot-skyplay"></div>
+                                <div class="dot-skyplay"></div>
+                                <div class="dot-skyplay"></div>
+                                <div class="dot-skyplay"></div>
+                            </div>
+                            <div class="dots-row">
+                                <div class="dot-skyplay"></div>
+                                <div class="dot-skyplay"></div>
+                                <div class="dot-skyplay"></div>
+                                <div class="dot-skyplay"></div>
+                                <div class="dot-skyplay"></div>
+                            </div>
+                            <div class="bars-row">
+                                <div class="bar-skyplay"></div>
+                                <div class="bar-skyplay"></div>
+                                <div class="bar-skyplay"></div>
+                                <div class="bar-skyplay"></div>
+                            </div>
+                        </div>
+                        <div class="divider-line"></div>
+                        <div class="logo-text-original">
+                            <div class="brand-name">Skyplay</div>
+                            <div class="brand-tagline">streaming</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="header-content">
+                <h1 id="headerTitle">📺 Los Mejores Planes de Streaming IPTV</h1>
+                <p id="headerSubtitle">Paquetes Premium para Latinoamérica • +1000 Canales • Series • Películas • Deportes</p>
+            </div>
+            
+            <div class="trust-badges">
+                <div class="badge">
+                    <span class="badge-icon">🔒</span>
+                    <span id="badge1">Pago Seguro</span>
+                </div>
+                <div class="badge">
+                    <span class="badge-icon">✅</span>
+                    <span id="badge2">Activación Inmediata</span>
+                </div>
+                <div class="badge">
+                    <span class="badge-icon">🔄</span>
+                    <span id="badge3">Cancela Cuando Quieras</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- How It Works -->
+        <div class="how-it-works">
+            <h2 class="section-title" id="howTitle">¿Cómo Funciona?</h2>
+            <div class="steps-grid">
+                <div class="step-card">
+                    <div class="step-number">1</div>
+                    <h3 id="step1Title">Elige tu Plan</h3>
+                    <p id="step1Desc">Selecciona el plan que mejor se adapte a tus necesidades y presupuesto</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">2</div>
+                    <h3 id="step2Title">Pago Seguro</h3>
+                    <p id="step2Desc">Completa tu pago de forma segura con tarjeta de crédito o débito</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">3</div>
+                    <h3 id="step3Title">Recibe Credenciales</h3>
+                    <p id="step3Desc">Te enviamos tus credenciales por WhatsApp y email en minutos</p>
+                </div>
+                <div class="step-card">
+                    <div class="step-number">4</div>
+                    <h3 id="step4Title">¡Disfruta!</h3>
+                    <p id="step4Desc">Activa tu servicio y comienza a disfrutar de todo el contenido</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Plans Section -->
+        <div class="plans-section">
+            <h2 class="section-title" id="plansTitle">Nuestros Planes</h2>
+            
+            <div class="country-selector">
+                <button class="country-selector-btn" onclick="openCountryModal()" id="countrySelectorBtn">
+                    <span id="currentCountryFlag">🇺🇸</span>
+                    <span id="currentCountryName">USA</span>
+                    <span>▼</span>
+                </button>
+            </div>
+            
+            <div class="plans-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th id="thFeatures">Características</th>
+                            <th>FLUJO TV</th>
+                            <th>MAGISTV PRO<br>1 DISP</th>
+                            <th>MAGISTV PRO<br>3 DISP</th>
+                            <th>TELE-LATINO<br>1 DISP</th>
+                            <th>TELE-LATINO<br>3 DISP</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong id="feat1">CANALES +1000</strong></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong id="feat2">SERIES Y PELÍCULAS +6000</strong></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong id="feat3">ANIMÉ</strong></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong id="feat4">DEPORTES</strong></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong id="feat5">CANALES LOCALES E INTERNACIONALES</strong></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong id="feat6">3 DISPOSITIVOS</strong></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="dash">—</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="dash">—</span></td>
+                            <td><span class="check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong id="feat7">1 DISPOSITIVO</strong></td>
+                            <td><span class="dash">—</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="dash">—</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong id="feat8">ANDROID - TV BOX - FIRE TV</strong></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong id="feat9">ACCESO WEB - IOS/ANDROID/WINDOWS</strong></td>
+                            <td><span class="dash">—</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="dash">—</span></td>
+                            <td><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong id="feat10">PRUEBA GRATUITA 24H (APP)</strong></td>
+                            <td><span class="dash">—</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="dash">—</span></td>
+                            <td><span class="dash">—</span></td>
+                        </tr>
+                        <tr>
+                            <td><strong id="feat11">PRUEBA GRATUITA 72H (APP)</strong></td>
+                            <td><span class="dash">—</span></td>
+                            <td><span class="dash">—</span></td>
+                            <td><span class="dash">—</span></td>
+                            <td><span class="check">✓</span></td>
+                            <td><span class="check">✓</span></td>
+                        </tr>
+                        <tr class="price-row">
+                            <td id="priceLabel">💲 Precio Mensual</td>
+                            <td>
+                                <div id="price1">$7.75</div>
+                                <span class="price-local" id="priceLocal1"></span>
+                            </td>
+                            <td>
+                                <div id="price2">$3.95</div>
+                                <span class="price-local" id="priceLocal2"></span>
+                            </td>
+                            <td>
+                                <div id="price3">$5.25</div>
+                                <span class="price-local" id="priceLocal3"></span>
+                            </td>
+                            <td>
+                                <div id="price4">$3.95</div>
+                                <span class="price-local" id="priceLocal4"></span>
+                            </td>
+                            <td>
+                                <div id="price5">$5.60</div>
+                                <span class="price-local" id="priceLocal5"></span>
+                            </td>
+                        </tr>
+                        <tr class="action-row">
+                            <td id="actionLabel">Acción</td>
+                            <td><button class="buy-btn" onclick="showConfirmModal(0)" id="buyBtn1">Comprar Ahora</button></td>
+                            <td><button class="buy-btn" onclick="showConfirmModal(1)" id="buyBtn2">Comprar Ahora</button></td>
+                            <td><button class="buy-btn" onclick="showConfirmModal(2)" id="buyBtn3">Comprar Ahora</button></td>
+                            <td><button class="buy-btn" onclick="showConfirmModal(3)" id="buyBtn4">Comprar Ahora</button></td>
+                            <td><button class="buy-btn" onclick="showConfirmModal(4)" id="buyBtn5">Comprar Ahora</button></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- FAQs -->
+        <div class="faqs">
+            <h2 class="section-title" id="faqTitle">Preguntas Frecuentes</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span id="faq1Q">¿Puedo cancelar mi suscripción en cualquier momento?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p id="faq1A">Sí, puedes cancelar cuando quieras desde tu panel de cliente. Tu servicio seguirá activo hasta el final del periodo que pagaste. Sin penalidades ni cargos adicionales.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span id="faq2Q">¿Cómo recibiré mis credenciales?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p id="faq2A">Después de completar tu pago, recibirás tus credenciales de acceso por WhatsApp y correo electrónico en un plazo máximo de 2 horas. La mayoría de entregas son inmediatas.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span id="faq3Q">¿La renovación es automática?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p id="faq3A">Sí, tu suscripción se renueva automáticamente cada mes para que no pierdas acceso al servicio. Recibirás un recibo por email cada mes y puedes cancelar cuando desees.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span id="faq4Q">¿En qué dispositivos puedo ver el contenido?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p id="faq4A">Puedes ver en Android TV, TV Box, Fire TV Stick, smartphones, tablets y computadoras. Algunos planes incluyen acceso web para iOS y Windows.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span id="faq5Q">¿El pago es seguro?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p id="faq5A">Absolutamente. Todos los pagos se procesan a través de Stripe, una plataforma líder mundial en pagos online. No almacenamos información de tu tarjeta.</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <div class="faq-question" onclick="toggleFaq(this)">
+                        <span id="faq6Q">¿Ofrecen reembolsos?</span>
+                        <span class="faq-icon">▼</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p id="faq6A">Ofrecemos reembolso completo dentro de las primeras 48 horas si el servicio no funciona correctamente. Consulta nuestra política de reembolsos completa en el footer.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA Section -->
+        <div class="cta-section">
+            <h2 id="ctaTitle">¿Necesitas Ayuda para Elegir?</h2>
+            <p id="ctaSubtitle">Contáctanos y te asesoramos para encontrar el plan perfecto para ti</p>
+            <a href="https://wa.me/17863918722?text=Hola,%20necesito%20ayuda%20para%20elegir%20un%20plan%20de%20Skyplay%20Streaming" class="whatsapp-btn" target="_blank">
+                <span style="font-size: 24px;">💬</span>
+                <span id="ctaButton">Contactar por WhatsApp</span>
+            </a>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3 id="footerAbout">Sobre Skyplay</h3>
+                    <p id="footerAboutText">Proveedor líder de servicios IPTV en Latinoamérica. Ofrecemos contenido premium con la mejor calidad y soporte.</p>
+                </div>
+                <div class="footer-section">
+                    <h3 id="footerLinks">Enlaces Útiles</h3>
+                    <ul>
+                        <li><a href="terms.html" id="linkTerms">Términos y Condiciones</a></li>
+                        <li><a href="privacy.html" id="linkPrivacy">Política de Privacidad</a></li>
+                        <li><a href="refunds.html" id="linkRefunds">Política de Reembolsos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3 id="footerContact">Contacto</h3>
+                    <ul>
+                        <li>📞 +1 (786) 391-8722</li>
+                        <li>✉️ support@skyplay.us</li>
+                        <li>🕐 Lun - Dom: 8AM - 10PM</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p id="footerCopy">© 2025 Skyplay Streaming. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Floating WhatsApp -->
+    <div class="floating-whatsapp">
+        <a href="https://wa.me/17863918722?text=Hola,%20necesito%20información%20sobre%20Skyplay%20Streaming" target="_blank">
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.245 1.407 1.433-5.204-0.321-0.521c-1.325-2.155-2.024-4.621-2.024-7.187 0-7.51 6.11-13.62 13.62-13.62s13.62 6.11 13.62 13.62-6.11 13.62-13.62 13.62zM21.803 19.066c-0.291-0.146-1.722-0.85-1.988-0.947s-0.461-0.146-0.655 0.146c-0.194 0.291-0.752 0.947-0.922 1.141s-0.34 0.219-0.631 0.073c-0.291-0.146-1.229-0.453-2.341-1.446-0.866-0.771-1.451-1.723-1.621-2.014s-0.018-0.448 0.128-0.593c0.131-0.131 0.291-0.34 0.437-0.51s0.194-0.291 0.291-0.485c0.097-0.194 0.049-0.364-0.024-0.51s-0.655-1.579-0.898-2.162c-0.236-0.568-0.476-0.491-0.655-0.5-0.17-0.008-0.364-0.010-0.558-0.010s-0.51 0.073-0.776 0.364c-0.267 0.291-1.018 0.995-1.018 2.428s1.042 2.817 1.187 3.011c0.146 0.194 2.064 3.15 5.002 4.417 0.699 0.301 1.244 0.481 1.668 0.616 0.703 0.224 1.342 0.192 1.847 0.117 0.564-0.084 1.722-0.703 1.964-1.383s0.243-1.262 0.17-1.383c-0.073-0.121-0.267-0.194-0.558-0.34z"/>
+            </svg>
+        </a>
+    </div>
+
+    <script>
+        // CONFIGURACIÓN - AQUÍ VAN TUS STRIPE PAYMENT LINKS
+        const stripeLinks = {
+            plan1: 'TU_STRIPE_LINK_PLAN_1', // FLUJO TV
+            plan2: 'TU_STRIPE_LINK_PLAN_2', // MAGISTV PRO 1DISP
+            plan3: 'TU_STRIPE_LINK_PLAN_3', // MAGISTV PRO 3DISP
+            plan4: 'TU_STRIPE_LINK_PLAN_4', // TELE-LATINO 1DISP
+            plan5: 'TU_STRIPE_LINK_PLAN_5'  // TELE-LATINO 3DISP
+        };
+
+        // Exchange rates
+        const exchangeRates = {
+            usa: { currency: 'USD', symbol: '$', rate: 1, flag: '🇺🇸', name: 'USA' },
+            mexico: { currency: 'MXN', symbol: '$', rate: 18.75, flag: '🇲🇽', name: 'México' },
+            costarica: { currency: 'CRC', symbol: '₡', rate: 525, flag: '🇨🇷', name: 'Costa Rica' },
+            panama: { currency: 'USD', symbol: '$', rate: 1, flag: '🇵🇦', name: 'Panamá' },
+            bolivia: { currency: 'BOB', symbol: 'Bs', rate: 6.95, flag: '🇧🇴', name: 'Bolivia' }
+        };
+
+        // Plan data
+        const plans = [
+            {
+                name: 'FLUJO TV',
+                basePrice: 7.75,
+                features: ['+ 1000 Canales', '+ 6000 Series y Películas', 'Animé y Deportes', 'Canales Locales e Internacionales', '3 Dispositivos', 'Android - TV Box - Fire TV'],
+                stripeKey: 'plan1'
+            },
+            {
+                name: 'MAGISTV PRO 1 DISP',
+                basePrice: 3.95,
+                features: ['+ 1000 Canales', '+ 6000 Series y Películas', 'Animé y Deportes', '1 Dispositivo', 'Acceso Web multiplataforma', 'Prueba Gratuita 24H'],
+                stripeKey: 'plan2'
+            },
+            {
+                name: 'MAGISTV PRO 3 DISP',
+                basePrice: 5.25,
+                features: ['+ 1000 Canales', '+ 6000 Series y Películas', 'Animé y Deportes', '3 Dispositivos', 'Acceso Web multiplataforma', 'Prueba Gratuita 24H'],
+                stripeKey: 'plan3'
+            },
+            {
+                name: 'TELE-LATINO 1 DISP',
+                basePrice: 3.95,
+                features: ['+ 1000 Canales', '+ 6000 Series y Películas', 'Animé y Deportes', '1 Dispositivo', 'Android - TV Box - Fire TV', 'Prueba Gratuita 72H'],
+                stripeKey: 'plan4'
+            },
+            {
+                name: 'TELE-LATINO 3 DISP',
+                basePrice: 5.60,
+                features: ['+ 1000 Canales', '+ 6000 Series y Películas', 'Animé y Deportes', '3 Dispositivos', 'Android - TV Box - Fire TV', 'Prueba Gratuita 72H'],
+                stripeKey: 'plan5'
+            }
+        ];
+
+        // Surcharges
+        const crSurcharge = 1.50;
+        const usSurcharge = 2.24;
+
+        let currentCountry = 'usa';
+        let currentLanguage = 'es';
+        let selectedPlan = null;
+
+        // Translations
+        const translations = {
+            es: {
+                headerTitle: '📺 Los Mejores Planes de Streaming IPTV',
+                headerSubtitle: 'Paquetes Premium para Latinoamérica • +1000 Canales • Series • Películas • Deportes',
+                badge1: 'Pago Seguro',
+                badge2: 'Activación Inmediata',
+                badge3: 'Cancela Cuando Quieras',
+                howTitle: '¿Cómo Funciona?',
+                step1Title: 'Elige tu Plan',
+                step1Desc: 'Selecciona el plan que mejor se adapte a tus necesidades y presupuesto',
+                step2Title: 'Pago Seguro',
+                step2Desc: 'Completa tu pago de forma segura con tarjeta de crédito o débito',
+                step3Title: 'Recibe Credenciales',
+                step3Desc: 'Te enviamos tus credenciales por WhatsApp y email en minutos',
+                step4Title: '¡Disfruta!',
+                step4Desc: 'Activa tu servicio y comienza a disfrutar de todo el contenido',
+                plansTitle: 'Nuestros Planes',
+                thFeatures: 'Características',
+                feat1: 'CANALES +1000',
+                feat2: 'SERIES Y PELÍCULAS +6000',
+                feat3: 'ANIMÉ',
+                feat4: 'DEPORTES',
+                feat5: 'CANALES LOCALES E INTERNACIONALES',
+                feat6: '3 DISPOSITIVOS',
+                feat7: '1 DISPOSITIVO',
+                feat8: 'ANDROID - TV BOX - FIRE TV',
+                feat9: 'ACCESO WEB - IOS/ANDROID/WINDOWS',
+                feat10: 'PRUEBA GRATUITA 24H (APP)',
+                feat11: 'PRUEBA GRATUITA 72H (APP)',
+                priceLabel: '💲 Precio Mensual',
+                actionLabel: 'Acción',
+                buyBtn1: 'Comprar Ahora',
+                faqTitle: 'Preguntas Frecuentes',
+                faq1Q: '¿Puedo cancelar mi suscripción en cualquier momento?',
+                faq1A: 'Sí, puedes cancelar cuando quieras desde tu panel de cliente. Tu servicio seguirá activo hasta el final del periodo que pagaste. Sin penalidades ni cargos adicionales.',
+                faq2Q: '¿Cómo recibiré mis credenciales?',
+                faq2A: 'Después de completar tu pago, recibirás tus credenciales de acceso por WhatsApp y correo electrónico en un plazo máximo de 2 horas. La mayoría de entregas son inmediatas.',
+                faq3Q: '¿La renovación es automática?',
+                faq3A: 'Sí, tu suscripción se renueva automáticamente cada mes para que no pierdas acceso al servicio. Recibirás un recibo por email cada mes y puedes cancelar cuando desees.',
+                faq4Q: '¿En qué dispositivos puedo ver el contenido?',
+                faq4A: 'Puedes ver en Android TV, TV Box, Fire TV Stick, smartphones, tablets y computadoras. Algunos planes incluyen acceso web para iOS y Windows.',
+                faq5Q: '¿El pago es seguro?',
+                faq5A: 'Absolutamente. Todos los pagos se procesan a través de Stripe, una plataforma líder mundial en pagos online. No almacenamos información de tu tarjeta.',
+                faq6Q: '¿Ofrecen reembolsos?',
+                faq6A: 'Ofrecemos reembolso completo dentro de las primeras 48 horas si el servicio no funciona correctamente. Consulta nuestra política de reembolsos completa en el footer.',
+                ctaTitle: '¿Necesitas Ayuda para Elegir?',
+                ctaSubtitle: 'Contáctanos y te asesoramos para encontrar el plan perfecto para ti',
+                ctaButton: 'Contactar por WhatsApp',
+                footerAbout: 'Sobre Skyplay',
+                footerAboutText: 'Proveedor líder de servicios IPTV en Latinoamérica. Ofrecemos contenido premium con la mejor calidad y soporte.',
+                footerLinks: 'Enlaces Útiles',
+                linkTerms: 'Términos y Condiciones',
+                linkPrivacy: 'Política de Privacidad',
+                linkRefunds: 'Política de Reembolsos',
+                footerContact: 'Contacto',
+                footerCopy: '© 2025 Skyplay Streaming. Todos los derechos reservados.',
+                countryModalTitle: 'Selecciona tu país',
+                countryModalSubtitle: 'Los precios se mostrarán en tu moneda local',
+                confirmTitle: 'Confirmar Compra',
+                confirmRecurring: 'Renovación automática mensual',
+                confirmPolicy: 'Puedes cancelar cuando quieras desde tu panel de cliente. Sin penalidades ni cargos adicionales.',
+                btnCancel: 'Cancelar',
+                btnConfirm: 'Ir a Pago Seguro'
+            },
+            en: {
+                headerTitle: '📺 Best IPTV Streaming Plans',
+                headerSubtitle: 'Premium Packages for Latin America • +1000 Channels • Series • Movies • Sports',
+                badge1: 'Secure Payment',
+                badge2: 'Instant Activation',
+                badge3: 'Cancel Anytime',
+                howTitle: 'How It Works?',
+                step1Title: 'Choose Your Plan',
+                step1Desc: 'Select the plan that best fits your needs and budget',
+                step2Title: 'Secure Payment',
+                step2Desc: 'Complete your payment securely with credit or debit card',
+                step3Title: 'Get Credentials',
+                step3Desc: 'We send your credentials via WhatsApp and email within minutes',
+                step4Title: 'Enjoy!',
+                step4Desc: 'Activate your service and start enjoying all the content',
+                plansTitle: 'Our Plans',
+                thFeatures: 'Features',
+                feat1: 'CHANNELS +1000',
+                feat2: 'SERIES & MOVIES +6000',
+                feat3: 'ANIME',
+                feat4: 'SPORTS',
+                feat5: 'LOCAL & INTERNATIONAL CHANNELS',
+                feat6: '3 DEVICES',
+                feat7: '1 DEVICE',
+                feat8: 'ANDROID - TV BOX - FIRE TV',
+                feat9: 'WEB ACCESS - IOS/ANDROID/WINDOWS',
+                feat10: 'FREE 24H TRIAL (APP)',
+                feat11: 'FREE 72H TRIAL (APP)',
+                priceLabel: '💲 Monthly Price',
+                actionLabel: 'Action',
+                buyBtn1: 'Buy Now',
+                faqTitle: 'Frequently Asked Questions',
+                faq1Q: 'Can I cancel my subscription at any time?',
+                faq1A: 'Yes, you can cancel whenever you want from your customer panel. Your service will remain active until the end of the period you paid for. No penalties or additional charges.',
+                faq2Q: 'How will I receive my credentials?',
+                faq2A: 'After completing your payment, you will receive your access credentials via WhatsApp and email within a maximum of 2 hours. Most deliveries are immediate.',
+                faq3Q: 'Is renewal automatic?',
+                faq3A: 'Yes, your subscription renews automatically every month so you don\'t lose access to the service. You\'ll receive a receipt by email each month and can cancel whenever you want.',
+                faq4Q: 'On which devices can I watch the content?',
+                faq4A: 'You can watch on Android TV, TV Box, Fire TV Stick, smartphones, tablets and computers. Some plans include web access for iOS and Windows.',
+                faq5Q: 'Is payment secure?',
+                faq5A: 'Absolutely. All payments are processed through Stripe, a world-leading online payment platform. We do not store your card information.',
+                faq6Q: 'Do you offer refunds?',
+                faq6A: 'We offer a full refund within the first 48 hours if the service does not work properly. Check our complete refund policy in the footer.',
+                ctaTitle: 'Need Help Choosing?',
+                ctaSubtitle: 'Contact us and we\'ll help you find the perfect plan for you',
+                ctaButton: 'Contact via WhatsApp',
+                footerAbout: 'About Skyplay',
+                footerAboutText: 'Leading IPTV service provider in Latin America. We offer premium content with the best quality and support.',
+                footerLinks: 'Useful Links',
+                linkTerms: 'Terms and Conditions',
+                linkPrivacy: 'Privacy Policy',
+                linkRefunds: 'Refund Policy',
+                footerContact: 'Contact',
+                footerCopy: '© 2025 Skyplay Streaming. All rights reserved.',
+                countryModalTitle: 'Select your country',
+                countryModalSubtitle: 'Prices will be shown in your local currency',
+                confirmTitle: 'Confirm Purchase',
+                confirmRecurring: 'Monthly automatic renewal',
+                confirmPolicy: 'You can cancel anytime from your customer panel. No penalties or additional charges.',
+                btnCancel: 'Cancel',
+                btnConfirm: 'Go to Secure Payment'
+            }
+        };
+
+        // Functions
+        function selectCountry(country) {
+            currentCountry = country;
+            updateCountryDisplay();
+            updatePrices();
+            document.getElementById('countryModal').classList.remove('active');
+        }
+
+        function updateCountryDisplay() {
+            const countryData = exchangeRates[currentCountry];
+            document.getElementById('currentCountryFlag').textContent = countryData.flag;
+            document.getElementById('currentCountryName').textContent = countryData.name;
+        }
+
+        function updatePrices() {
+            const countryData = exchangeRates[currentCountry];
+            const isCR = currentCountry === 'costarica';
+            const isUSA = currentCountry === 'usa';
+            
+            plans.forEach((plan, index) => {
+                let finalUSDPrice = plan.basePrice;
+                if (isCR) {
+                    finalUSDPrice = plan.basePrice + crSurcharge;
+                } else if (isUSA) {
+                    finalUSDPrice = plan.basePrice + usSurcharge;
+                }
+                
+                const localPrice = finalUSDPrice * countryData.rate;
+                const priceIndex = index + 1;
+                
+                document.getElementById(`price${priceIndex}`).textContent = `${finalUSDPrice.toFixed(2)}`;
+                
+                const localPriceEl = document.getElementById(`priceLocal${priceIndex}`);
+                if (countryData.currency !== 'USD') {
+                    localPriceEl.textContent = `${countryData.symbol}${localPrice.toFixed(countryData.currency === 'CRC' ? 0 : 2)} ${countryData.currency}`;
+                } else {
+                    localPriceEl.textContent = '';
+                }
+            });
+        }
+
+        function openCountryModal() {
+            document.getElementById('countryModal').classList.add('active');
+        }
+
+        function changeLanguage(lang) {
+            currentLanguage = lang;
+            const translation = translations[lang];
+            
+            Object.keys(translation).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.innerHTML = translation[key];
+                }
+            });
+            
+            // Update all buy buttons
+            for (let i = 1; i <= 5; i++) {
+                const btn = document.getElementById(`buyBtn${i}`);
+                if (btn) btn.textContent = translation.buyBtn1;
+            }
+            
+            document.getElementById('btnEs').classList.toggle('active', lang === 'es');
+            document.getElementById('btnEn').classList.toggle('active', lang === 'en');
+            document.documentElement.lang = lang;
+        }
+
+        function showConfirmModal(planIndex) {
+            selectedPlan = planIndex;
+            const plan = plans[planIndex];
+            const countryData = exchangeRates[currentCountry];
+            const isCR = currentCountry === 'costarica';
+            const isUSA = currentCountry === 'usa';
+            
+            let finalUSDPrice = plan.basePrice;
+            if (isCR) {
+                finalUSDPrice = plan.basePrice + crSurcharge;
+            } else if (isUSA) {
+                finalUSDPrice = plan.basePrice + usSurcharge;
+            }
+            
+            const localPrice = finalUSDPrice * countryData.rate;
+            
+            document.getElementById('confirmPlanName').textContent = plan.name;
+            
+            let priceText = `${finalUSDPrice.toFixed(2)} USD`;
+            if (countryData.currency !== 'USD') {
+                priceText += ` / ${countryData.symbol}${localPrice.toFixed(countryData.currency === 'CRC' ? 0 : 2)} ${countryData.currency}`;
+            }
+            document.getElementById('confirmPrice').textContent = priceText;
+            
+            const featuresList = document.getElementById('confirmFeatures');
+            featuresList.innerHTML = plan.features.map(f => `<li>✅ ${f}</li>`).join('');
+            
+            document.getElementById('confirmModal').classList.add('active');
+        }
+
+        function closeConfirmModal() {
+            document.getElementById('confirmModal').classList.remove('active');
+            selectedPlan = null;
+        }
+
+        function proceedToStripe() {
+            if (selectedPlan !== null) {
+                const plan = plans[selectedPlan];
+                const stripeLink = stripeLinks[plan.stripeKey];
+                
+                // Verificar si el link está configurado
+                if (stripeLink.startsWith('TU_STRIPE_LINK')) {
+                    alert('⚠️ Los Payment Links de Stripe aún no están configurados. Por favor, agrega tus links en la sección de configuración del código.');
+                    return;
+                }
+                
+                // Redirigir a Stripe
+                window.location.href = stripeLink;
+            }
+        }
+
+        function toggleFaq(element) {
+            const faqItem = element.parentElement;
+            const isActive = faqItem.classList.contains('active');
+            
+            // Close all FAQs
+            document.querySelectorAll('.faq-item').forEach(item => {
+                item.classList.remove('active');
+            });
+            
+            // Open clicked FAQ if it wasn't active
+            if (!isActive) {
+                faqItem.classList.add('active');
+            }
+        }
+
+        // Close modals when clicking outside
+        document.getElementById('countryModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+
+        document.getElementById('confirmModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeConfirmModal();
+            }
+        });
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('countryModal').classList.add('active');
+        });
+
+        // Expose functions globally
+        window.selectCountry = selectCountry;
+        window.openCountryModal = openCountryModal;
+        window.changeLanguage = changeLanguage;
+        window.showConfirmModal = showConfirmModal;
+        window.closeConfirmModal = closeConfirmModal;
+        window.proceedToStripe = proceedToStripe;
+        window.toggleFaq = toggleFaq;
+    </script>
+</body>
+</html>

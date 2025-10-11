@@ -1,0 +1,1263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Planes de Streaming LATAM | Skyplay</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px 10px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 15px;
+            position: relative;
+        }
+        
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            width: 100%;
+            justify-content: center;
+        }
+        
+        .logo {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 20px 30px;
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .logo:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 35px rgba(0,0,0,0.2);
+        }
+        
+        .logo img {
+            height: 55px;
+            width: auto;
+            object-fit: contain;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.1));
+        }
+        
+        /* Logo CSS que replica el diseño original */
+        .logo-skyplay {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-icon-original {
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+            align-items: center;
+        }
+        
+        .dots-row {
+            display: flex;
+            gap: 4px;
+            justify-content: center;
+        }
+        
+        .dot-skyplay {
+            width: 6px;
+            height: 6px;
+            background: #00bcd4;
+            border-radius: 50%;
+        }
+        
+        .bars-row {
+            display: flex;
+            gap: 3px;
+            align-items: flex-end;
+            margin-top: 2px;
+        }
+        
+        .bar-skyplay {
+            width: 6px;
+            background: #00bcd4;
+        }
+        
+        .bar-skyplay:nth-child(1) { height: 18px; }
+        .bar-skyplay:nth-child(2) { height: 22px; }
+        .bar-skyplay:nth-child(3) { height: 20px; }
+        .bar-skyplay:nth-child(4) { height: 16px; }
+        
+        .divider-line {
+            width: 2px;
+            height: 45px;
+            background: #1e3c72;
+            opacity: 0.8;
+        }
+        
+        .logo-text-original {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            line-height: 1;
+        }
+        
+        .brand-name {
+            font-size: 32px;
+            font-weight: 400;
+            color: #1e3c72;
+            letter-spacing: 0.5px;
+            margin: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        .brand-tagline {
+            font-size: 16px;
+            font-weight: 400;
+            color: #1e3c72;
+            margin: -2px 0 0 0;
+            opacity: 0.9;
+        }
+        
+        /* CSS del logo-icon eliminado - ahora usando imagen real */
+        
+        .header-content {
+            width: 100%;
+            text-align: center;
+            order: 2;
+        }
+        
+        .header-content h1 {
+            font-size: 32px;
+            margin-bottom: 8px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .header-content p {
+            font-size: 16px;
+            opacity: 0.95;
+        }
+        
+        .country-selector-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            justify-content: center;
+            padding: 8px 16px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .country-selector-header:hover {
+            background: rgba(255,255,255,0.3);
+            transform: scale(1.05);
+        }
+        
+        .country-flag-current {
+            font-size: 28px;
+        }
+        
+        .country-name-current {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .language-switcher {
+            width: 100%;
+            display: flex;
+            gap: 8px;
+            background: rgba(255,255,255,0.2);
+            padding: 6px;
+            border-radius: 25px;
+            backdrop-filter: blur(10px);
+            justify-content: center;
+            order: 4;
+        }
+        
+        .lang-btn {
+            padding: 8px 20px;
+            border: none;
+            border-radius: 20px;
+            background: transparent;
+            color: white;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .lang-btn.active {
+            background: white;
+            color: #1e3c72;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        
+        .lang-btn:hover {
+            transform: scale(1.05);
+        }
+        
+        .plans-container {
+            padding: 30px 15px;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            min-width: 900px;
+        }
+        
+        th {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 15px 10px;
+            font-size: 13px;
+            font-weight: 600;
+            text-align: center;
+            border: 2px solid white;
+        }
+        
+        th:first-child {
+            text-align: left;
+            border-top-left-radius: 10px;
+            min-width: 200px;
+        }
+        
+        th:last-child {
+            border-top-right-radius: 10px;
+        }
+        
+        td {
+            padding: 15px 10px;
+            text-align: center;
+            border: 1px solid #e0e0e0;
+            font-size: 13px;
+        }
+        
+        td:first-child {
+            text-align: left;
+            font-weight: 600;
+            color: #2c3e50;
+            background: #f8f9fa;
+        }
+        
+        .check {
+            color: #10b981;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        
+        .dash {
+            color: #d1d5db;
+            font-size: 18px;
+        }
+        
+        .price-row td {
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            color: white;
+            font-weight: 800;
+            font-size: 18px;
+            padding: 22px 12px;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+        
+        .price-row td:first-child {
+            background: linear-gradient(135deg, #1e40af 0%, #1e3a8a 100%);
+            border-bottom-left-radius: 10px;
+            font-weight: 700;
+        }
+        
+        .price-row td:last-child {
+            border-bottom-right-radius: 10px;
+        }
+        
+        .price-local {
+            display: block;
+            font-size: 15px;
+            font-weight: 600;
+            opacity: 0.95;
+            margin-top: 6px;
+            background: rgba(255,255,255,0.15);
+            padding: 3px 8px;
+            border-radius: 8px;
+            text-align: center;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.2);
+        }
+        
+        .notes {
+            background: #f8f9fa;
+            padding: 25px 20px;
+            margin: 0 15px 20px 15px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+        }
+        
+        .notes h2 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .notes ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .notes li {
+            padding: 10px 0;
+            color: #4b5563;
+            font-size: 14px;
+            line-height: 1.6;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .notes li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #10b981;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        
+        .footer {
+            background: #1e3c72;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+        }
+        
+        .cta-section {
+            background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);
+            padding: 35px 25px;
+            text-align: center;
+            margin: 20px 15px;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+        }
+        
+        .cta-section h2 {
+            color: white;
+            font-size: 24px;
+            margin-bottom: 12px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+        }
+        
+        .cta-section p {
+            color: white;
+            font-size: 16px;
+            margin-bottom: 25px;
+            opacity: 0.95;
+        }
+        
+        .whatsapp-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            background: white;
+            color: #25D366;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+        
+        .whatsapp-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.4);
+            background: #f0f0f0;
+        }
+        
+        .whatsapp-icon {
+            font-size: 26px;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+        }
+        
+        .floating-whatsapp {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .floating-whatsapp a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background: #25D366;
+            border-radius: 50%;
+            box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .floating-whatsapp a:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 30px rgba(37, 211, 102, 0.7);
+        }
+        
+        .floating-whatsapp svg {
+            width: 32px;
+            height: 32px;
+            fill: white;
+        }
+        
+        .floating-whatsapp .tooltip {
+            position: absolute;
+            right: 70px;
+            background: #1e3c72;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 10px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+            font-size: 13px;
+            font-weight: 600;
+            display: none;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 9999;
+            justify-content: center;
+            align-items: flex-start;
+            animation: fadeIn 0.3s ease;
+            padding: 20px;
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .modal.active {
+            display: flex;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .modal-content {
+            background: white;
+            padding: 25px 20px;
+            border-radius: 20px;
+            text-align: center;
+            max-width: 600px;
+            width: 100%;
+            animation: slideUp 0.4s ease;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            margin: 40px auto;
+            max-height: calc(100vh - 80px);
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        
+        .modal h2 {
+            font-size: 26px;
+            color: #1e3c72;
+            margin-bottom: 12px;
+        }
+        
+        .modal p {
+            font-size: 15px;
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            justify-content: center;
+            max-height: 400px;
+            overflow-y: auto;
+            padding: 10px 0;
+            -webkit-overflow-scrolling: touch;
+        }
+        
+        .option-card {
+            padding: 25px 15px;
+            border: 3px solid #e5e7eb;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .option-card:hover {
+            border-color: #667eea;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+        
+        .option-card .flag-big {
+            font-size: 54px;
+            margin-bottom: 12px;
+            display: block;
+        }
+        
+        .option-card .option-name {
+            font-size: 16px;
+            font-weight: bold;
+            color: #1e3c72;
+        }
+        
+        .option-card .option-currency {
+            font-size: 12px;
+            color: #6b7280;
+            margin-top: 4px;
+        }
+        
+        .scroll-hint {
+            display: none;
+            text-align: center;
+            padding: 18px 25px;
+            background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            border-radius: 15px;
+            margin: 0 15px 20px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 6px 20px rgba(79, 70, 229, 0.4);
+            animation: pulseGlow 2s ease-in-out infinite;
+            cursor: pointer;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            user-select: none;
+        }
+        
+        .scroll-hint:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(79, 70, 229, 0.6);
+        }
+        
+        .scroll-hint:active {
+            transform: translateY(0);
+            box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+        }
+        
+        .scroll-hint::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shimmer 3s ease-in-out infinite;
+        }
+        
+        .scroll-hint-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .scroll-text {
+            font-size: 16px;
+            font-weight: 700;
+        }
+        
+        .scroll-arrows {
+            display: flex;
+            gap: 4px;
+            animation: slideArrows 1.5s ease-in-out infinite;
+        }
+        
+        .arrow {
+            width: 0;
+            height: 0;
+            border-left: 8px solid white;
+            border-top: 5px solid transparent;
+            border-bottom: 5px solid transparent;
+            opacity: 0;
+            animation: arrowFlow 1.5s ease-in-out infinite;
+        }
+        
+        .arrow:nth-child(1) { animation-delay: 0s; }
+        .arrow:nth-child(2) { animation-delay: 0.2s; }
+        .arrow:nth-child(3) { animation-delay: 0.4s; }
+        
+        @keyframes pulseGlow {
+            0%, 100% { 
+                transform: scale(1);
+                box-shadow: 0 4px 15px rgba(79, 70, 229, 0.3);
+            }
+            50% { 
+                transform: scale(1.02);
+                box-shadow: 0 6px 25px rgba(79, 70, 229, 0.5);
+            }
+        }
+        
+        @keyframes shimmer {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+        
+        @keyframes slideArrows {
+            0%, 100% { transform: translateX(0); }
+            50% { transform: translateX(5px); }
+        }
+        
+        @keyframes arrowFlow {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+        
+        @media (max-width: 1024px) {
+            .scroll-hint {
+                display: block;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            body {
+                padding: 10px 5px;
+            }
+            
+            .header {
+                padding: 20px 15px;
+            }
+            
+            .logo-brand {
+                font-size: 22px;
+            }
+            
+            .header-content h1 {
+                font-size: 24px;
+            }
+            
+            .country-flag-current {
+                font-size: 24px;
+            }
+            
+            /* Optimizaciones específicas para modal en móviles */
+            .modal {
+                padding: 10px;
+                align-items: flex-start;
+            }
+            
+            .modal-content {
+                margin: 20px auto 20px auto;
+                padding: 20px 15px;
+                max-height: calc(100vh - 40px);
+            }
+            
+            .options-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+                max-height: 350px;
+                padding: 5px;
+            }
+            
+            .option-card {
+                padding: 15px 10px;
+                min-height: 90px;
+            }
+            
+            .country-name-current {
+                font-size: 14px;
+            }
+            
+            table {
+                min-width: 700px;
+            }
+            
+            .options-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .options-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Selection Modal -->
+    <div class="modal active" id="languageModal">
+        <div class="modal-content">
+            <h2>Selecciona tu idioma</h2>
+            <p>Choose your language</p>
+            <div class="options-grid" style="grid-template-columns: repeat(2, 1fr);">
+                <div class="option-card" onclick="selectLanguage('es')">
+                    <span class="flag-big">🇪🇸</span>
+                    <span class="option-name">Español</span>
+                </div>
+                <div class="option-card" onclick="selectLanguage('en')">
+                    <span class="flag-big">🇺🇸</span>
+                    <span class="option-name">English</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Country Selection Modal -->
+    <div class="modal" id="countryModal">
+        <div class="modal-content">
+            <h2 id="countryModalTitle">Selecciona tu país</h2>
+            <p id="countryModalSubtitle">Precios se mostrarán en tu moneda local</p>
+            <div class="options-grid">
+                <div class="option-card" onclick="selectCountry('usa')">
+                    <span class="flag-big">🇺🇸</span>
+                    <span class="option-name">USA</span>
+                    <div class="option-currency">USD</div>
+                </div>
+                <div class="option-card" onclick="selectCountry('mexico')">
+                    <span class="flag-big">🇲🇽</span>
+                    <span class="option-name">México</span>
+                    <div class="option-currency">MXN</div>
+                </div>
+                <div class="option-card" onclick="selectCountry('costarica')">
+                    <span class="flag-big">🇨🇷</span>
+                    <span class="option-name">Costa Rica</span>
+                    <div class="option-currency">CRC</div>
+                </div>
+                <div class="option-card" onclick="selectCountry('panama')">
+                    <span class="flag-big">🇵🇦</span>
+                    <span class="option-name">Panamá</span>
+                    <div class="option-currency">USD</div>
+                </div>
+                <div class="option-card" onclick="selectCountry('bolivia')">
+                    <span class="flag-big">🇧🇴</span>
+                    <span class="option-name">Bolivia</span>
+                    <div class="option-currency">BOB</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <div class="logo-section">
+                <div class="logo">
+                    <!-- Logo CSS que imita el diseño original -->
+                    <div class="logo-skyplay">
+                        <div class="logo-icon-original">
+                            <!-- Dots superiores -->
+                            <div class="dots-row">
+                                <div class="dot-skyplay"></div>
+                                <div class="dot-skyplay"></div>
+                                <div class="dot-skyplay"></div>
+                                <div class="dot-skyplay"></div>
+                            </div>
+                            <div class="dots-row">
+                                <div class="dot-skyplay"></div>
+                                <div class="dot-skyplay"></div>
+                                <div class="dot-skyplay"></div>
+                                <div class="dot-skyplay"></div>
+                                <div class="dot-skyplay"></div>
+                            </div>
+                            <!-- Barras inferiores -->
+                            <div class="bars-row">
+                                <div class="bar-skyplay"></div>
+                                <div class="bar-skyplay"></div>
+                                <div class="bar-skyplay"></div>
+                                <div class="bar-skyplay"></div>
+                            </div>
+                        </div>
+                        <div class="divider-line"></div>
+                        <div class="logo-text-original">
+                            <div class="brand-name">Skyplay</div>
+                            <div class="brand-tagline">streaming</div>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                    <div class="logo-text">
+                        <span class="logo-brand">Skyplay</span>
+                        <span class="logo-tagline">streaming</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="country-selector-header" onclick="openCountryModal()" id="countrySelectorHeader">
+                <span class="country-flag-current" id="currentCountryFlag">🇺🇸</span>
+                <span class="country-name-current" id="currentCountryName">USA</span>
+            </div>
+            
+            <div class="language-switcher">
+                <button class="lang-btn active" onclick="changeLanguage('es')" id="btnEs">🇪🇸 ES</button>
+                <button class="lang-btn" onclick="changeLanguage('en')" id="btnEn">🇺🇸 EN</button>
+            </div>
+            
+            <div class="header-content">
+                <h1 id="headerTitle">📺 Planes de Streaming</h1>
+                <p id="headerSubtitle">Paquetes Exclusivos para Latinoamérica</p>
+            </div>
+        </div>
+        
+        <div class="scroll-hint" id="scrollHint">
+            <div class="scroll-hint-content">
+                <span class="scroll-text">📱 Desliza horizontalmente para ver todos los planes</span>
+                <div class="scroll-arrows">
+                    <div class="arrow"></div>
+                    <div class="arrow"></div>
+                    <div class="arrow"></div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="plans-container">
+            <table>
+                <thead>
+                    <tr>
+                        <th id="thPlatform">Características</th>
+                        <th>FLUJO TV</th>
+                        <th>MAGISTV PRO<br>1DISP</th>
+                        <th>MAGISTV PRO<br>3DISP</th>
+                        <th>TELE-LATINO<br>1DISP</th>
+                        <th>TELE-LATINO<br>3DISP</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong id="feat1">CANALES + 1000</strong></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong id="feat2">SERIES Y PELÍCULAS + 6000</strong></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong id="feat3">ANIMÉ</strong></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong id="feat4">DEPORTES</strong></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong id="feat5">CANALES LOCALES E INTERNACIONALES</strong></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong id="feat6">3 DISPOSITIVOS</strong></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong id="feat7">1 DISPOSITIVO</strong></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="dash">—</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong id="feat8">SISTEMAS ANDROID - TV BOX -FIRE TV</strong></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong id="feat9">ACCESO WEB - OIS/ANDROID/WINDOWS</strong></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="dash">—</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong id="feat10">PRUEBA GRATUITA 24 HORAS DESCARGA APP ES NECESARIA - NO WEB</strong></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="dash">—</span></td>
+                    </tr>
+                    <tr>
+                        <td><strong id="feat11">PRUEBA GRATUITA 72 HORAS DESCARGA APP ES NECESARIA</strong></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="dash">—</span></td>
+                        <td><span class="check">✓</span></td>
+                        <td><span class="check">✓</span></td>
+                    </tr>
+                    <tr class="price-row">
+                        <td id="priceLabel">💲 Precio Mensual</td>
+                        <td class="price-cell">
+                            <div id="price1">$7.75</div>
+                            <span class="price-local" id="priceLocal1"></span>
+                        </td>
+                        <td class="price-cell">
+                            <div id="price2">$3.95</div>
+                            <span class="price-local" id="priceLocal2"></span>
+                        </td>
+                        <td class="price-cell">
+                            <div id="price3">$5.25</div>
+                            <span class="price-local" id="priceLocal3"></span>
+                        </td>
+                        <td class="price-cell">
+                            <div id="price4">$3.95</div>
+                            <span class="price-local" id="priceLocal4"></span>
+                        </td>
+                        <td class="price-cell">
+                            <div id="price5">$5.60</div>
+                            <span class="price-local" id="priceLocal5"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="cta-section">
+            <h2 id="ctaTitle">¿Listo para disfrutar del mejor streaming?</h2>
+            <p id="ctaSubtitle">Contáctanos ahora y activa tu plan en minutos</p>
+            <a href="https://wa.me/50670067572?text=Hola,%20quiero%20información%20sobre%20los%20planes%20de%20streaming%20de%20Skyplay" class="whatsapp-btn" target="_blank" id="whatsappBtn">
+                <span class="whatsapp-icon">💬</span>
+                <span id="ctaButton">Contactar por WhatsApp</span>
+            </a>
+        </div>
+        
+        <div class="notes">
+            <h2 id="notesTitle">💡 Notas Importantes</h2>
+            <ul id="notesList">
+                <li id="note1">Todos los precios son <strong>por mes</strong></li>
+                <li id="note2">Los planes incluyen canales locales e internacionales según tu país</li>
+                <li id="note3">Acceso garantizado según plan contratado</li>
+                <li id="note4">Incluye soporte técnico y configuración inicial</li>
+                <li id="note5">Prueba gratuita disponible en planes seleccionados, contáctanos por la tuya</li>
+            </ul>
+        </div>
+        
+        <div class="footer" id="footer">
+            © 2025 Skyplay IPTV Streaming | Planes LATAM | Calidad Premium Garantizada
+        </div>
+    </div>
+    
+    <!-- Floating WhatsApp Button -->
+    <div class="floating-whatsapp">
+        <span class="tooltip" id="waTooltip">¡Contáctanos!</span>
+        <a href="https://wa.me/50670067572?text=Hola,%20quiero%20información%20sobre%20los%20planes%20de%20streaming%20de%20Skyplay" target="_blank">
+            <svg viewBox="0 0 32 32" xmlns="http://www.w3.org/2000/svg">
+                <path d="M16 0c-8.837 0-16 7.163-16 16 0 2.825 0.737 5.607 2.137 8.048l-2.137 7.952 7.933-2.127c2.42 1.37 5.173 2.127 8.067 2.127 8.837 0 16-7.163 16-16s-7.163-16-16-16zM16 29.467c-2.482 0-4.908-0.646-7.07-1.87l-0.507-0.292-5.245 1.407 1.433-5.204-0.321-0.521c-1.325-2.155-2.024-4.621-2.024-7.187 0-7.51 6.11-13.62 13.62-13.62s13.62 6.11 13.62 13.62-6.11 13.62-13.62 13.62zM21.803 19.066c-0.291-0.146-1.722-0.85-1.988-0.947s-0.461-0.146-0.655 0.146c-0.194 0.291-0.752 0.947-0.922 1.141s-0.34 0.219-0.631 0.073c-0.291-0.146-1.229-0.453-2.341-1.446-0.866-0.771-1.451-1.723-1.621-2.014s-0.018-0.448 0.128-0.593c0.131-0.131 0.291-0.34 0.437-0.51s0.194-0.291 0.291-0.485c0.097-0.194 0.049-0.364-0.024-0.51s-0.655-1.579-0.898-2.162c-0.236-0.568-0.476-0.491-0.655-0.5-0.17-0.008-0.364-0.010-0.558-0.010s-0.51 0.073-0.776 0.364c-0.267 0.291-1.018 0.995-1.018 2.428s1.042 2.817 1.187 3.011c0.146 0.194 2.064 3.15 5.002 4.417 0.699 0.301 1.244 0.481 1.668 0.616 0.703 0.224 1.342 0.192 1.847 0.117 0.564-0.084 1.722-0.703 1.964-1.383s0.243-1.262 0.17-1.383c-0.073-0.121-0.267-0.194-0.558-0.34z"/>
+            </svg>
+        </a>
+    </div>
+    
+    <script>
+        // DEFINE ALL FUNCTIONS FIRST
+        function selectLanguage(lang) {
+            console.log('selectLanguage called with:', lang);
+            window.currentLanguage = lang;
+            changeLanguage(lang);
+            document.getElementById('languageModal').classList.remove('active');
+            document.getElementById('countryModal').classList.add('active');
+        }
+
+        function changeLanguage(lang) {
+            console.log('changeLanguage called with:', lang);
+            window.currentLanguage = lang;
+            const translation = translations[lang];
+            
+            Object.keys(translation).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.innerHTML = translation[key];
+                }
+            });
+            
+            const btnEs = document.getElementById('btnEs');
+            const btnEn = document.getElementById('btnEn');
+            if (btnEs) btnEs.classList.toggle('active', lang === 'es');
+            if (btnEn) btnEn.classList.toggle('active', lang === 'en');
+            document.documentElement.lang = lang;
+        }
+
+        function selectCountry(country) {
+            console.log('selectCountry called with:', country);
+            window.currentCountry = country;
+            updateCountryDisplay();
+            updatePrices();
+            document.getElementById('countryModal').classList.remove('active');
+        }
+
+        function updateCountryDisplay() {
+            const countryData = exchangeRates[window.currentCountry];
+            const flagEl = document.getElementById('currentCountryFlag');
+            const nameEl = document.getElementById('currentCountryName');
+            if (flagEl) flagEl.textContent = countryData.flag;
+            if (nameEl) nameEl.textContent = countryData.name;
+        }
+
+        function updatePrices() {
+            const countryData = exchangeRates[window.currentCountry];
+            const isCR = window.currentCountry === 'costarica';
+            const isUSA = window.currentCountry === 'usa';
+            
+            basePrices.forEach((basePrice, index) => {
+                const priceIndex = index + 1;
+                
+                // Apply surcharges based on country
+                let finalUSDPrice = basePrice;
+                if (isCR) {
+                    finalUSDPrice = basePrice + crSurcharge; // Add Costa Rica surcharge
+                } else if (isUSA) {
+                    finalUSDPrice = basePrice + usSurcharge; // Add USA surcharge
+                }
+                
+                const localPrice = finalUSDPrice * countryData.rate;
+                
+                // Update USD price display
+                document.getElementById(`price${priceIndex}`).textContent = `$${finalUSDPrice.toFixed(2)}`;
+                
+                // Update local price if different currency
+                const localPriceEl = document.getElementById(`priceLocal${priceIndex}`);
+                if (countryData.currency !== 'USD') {
+                    localPriceEl.textContent = `${countryData.symbol}${localPrice.toFixed(countryData.currency === 'CRC' ? 0 : 2)} ${countryData.currency}`;
+                } else {
+                    localPriceEl.textContent = ''; // Don't show duplicate USD price
+                }
+            });
+        }
+
+        function openCountryModal() {
+            document.getElementById('countryModal').classList.add('active');
+        }
+
+        // EXPOSE FUNCTIONS GLOBALLY IMMEDIATELY
+        window.selectLanguage = selectLanguage;
+        window.changeLanguage = changeLanguage;
+        window.selectCountry = selectCountry;
+        window.openCountryModal = openCountryModal;
+
+        // Exchange rates (approximate)
+        const exchangeRates = {
+            usa: { currency: 'USD', symbol: '$', rate: 1, flag: '🇺🇸', name: 'USA' },
+            mexico: { currency: 'MXN', symbol: '$', rate: 18.75, flag: '🇲🇽', name: 'México' },
+            costarica: { currency: 'CRC', symbol: '₡', rate: 525, flag: '🇨🇷', name: 'Costa Rica' },
+            panama: { currency: 'USD', symbol: '$', rate: 1, flag: '🇵🇦', name: 'Panamá' },
+            bolivia: { currency: 'BOB', symbol: 'Bs', rate: 6.95, flag: '🇧🇴', name: 'Bolivia' }
+        };
+
+        // Base prices in USD
+        const basePrices = [7.75, 3.95, 5.25, 3.95, 5.60];
+        const crSurcharge = 1.50; // Costa Rica surcharge
+        const usSurcharge = 2.24; // USA surcharge
+
+        let currentLanguage = 'es';
+        let currentCountry = 'usa';
+
+        const translations = {
+            es: {
+                headerTitle: '📺 Planes de Streaming',
+                headerSubtitle: 'Paquetes Exclusivos para Latinoamérica',
+                thPlatform: 'Características',
+                feat1: 'CANALES + 1000',
+                feat2: 'SERIES Y PELÍCULAS + 6000',
+                feat3: 'ANIMÉ',
+                feat4: 'DEPORTES',
+                feat5: 'CANALES LOCALES E INTERNACIONALES',
+                feat6: '3 DISPOSITIVOS',
+                feat7: '1 DISPOSITIVO',
+                feat8: 'SISTEMAS ANDROID - TV BOX -FIRE TV',
+                feat9: 'ACCESO WEB - OIS/ANDROID/WINDOWS',
+                feat10: 'PRUEBA GRATUITA 24 HORAS DESCARGA APP ES NECESARIA - NO WEB',
+                feat11: 'PRUEBA GRATUITA 72 HORAS DESCARGA APP ES NECESARIA',
+                priceLabel: '💲 Precio Mensual',
+                ctaTitle: '¿Listo para disfrutar del mejor streaming?',
+                ctaSubtitle: 'Contáctanos ahora y activa tu plan en minutos',
+                ctaButton: 'Contactar por WhatsApp',
+                notesTitle: '💡 Notas Importantes',
+                note1: 'Todos los precios son <strong>por mes</strong>',
+                note2: 'Los planes incluyen canales locales e internacionales según tu país',
+                note3: 'Acceso garantizado según plan contratado',
+                note4: 'Incluye soporte técnico y configuración inicial',
+                note5: 'Prueba gratuita disponible en planes seleccionados',
+                footer: '© 2025 Skyplay Streaming | Planes LATAM | Calidad Premium Garantizada',
+                waTooltip: '¡Contáctanos!',
+                scrollHint: '<div class="scroll-hint-content"><span class="scroll-text">📱 Desliza horizontalmente para ver todos los planes</span><div class="scroll-arrows"><div class="arrow"></div><div class="arrow"></div><div class="arrow"></div></div></div>',
+                countryModalTitle: 'Selecciona tu país',
+                countryModalSubtitle: 'Precios se mostrarán en tu moneda local'
+            },
+            en: {
+                headerTitle: '📺 Streaming Plans',
+                headerSubtitle: 'Exclusive Packages for Latin America',
+                thPlatform: 'Features',
+                feat1: 'CHANNELS + 1000',
+                feat2: 'SERIES & MOVIES + 6000',
+                feat3: 'ANIME',
+                feat4: 'SPORTS',
+                feat5: 'LOCAL & INTERNATIONAL CHANNELS',
+                feat6: '3 DEVICES',
+                feat7: '1 DEVICE',
+                feat8: 'ANDROID SYSTEMS - TV BOX - FIRE TV',
+                feat9: 'WEB ACCESS - IOS/ANDROID/WINDOWS',
+                feat10: 'FREE 24-HOUR TRIAL APP DOWNLOAD REQUIRED - NO WEB',
+                feat11: 'FREE 72-HOUR TRIAL APP DOWNLOAD REQUIRED',
+                priceLabel: '💲 Monthly Price',
+                ctaTitle: 'Ready to enjoy the best streaming?',
+                ctaSubtitle: 'Contact us now and activate your plan in minutes',
+                ctaButton: 'Contact via WhatsApp',
+                notesTitle: '💡 Important Notes',
+                note1: 'All prices are <strong>per month</strong>',
+                note2: 'Plans include local and international channels according to your country',
+                note3: 'Guaranteed access according to contracted plan',
+                note4: 'Includes technical support and initial setup',
+                note5: 'Free trial available on selected plans',
+                footer: '© 2025 Skyplay Streaming | LATAM Plans | Premium Quality Guaranteed',
+                waTooltip: 'Contact us!',
+                scrollHint: '<div class="scroll-hint-content"><span class="scroll-text">📱 Swipe horizontally to see all plans</span><div class="scroll-arrows"><div class="arrow"></div><div class="arrow"></div><div class="arrow"></div></div></div>',
+                countryModalTitle: 'Select your country',
+                countryModalSubtitle: 'Prices will be shown in your local currency'
+            }
+        };
+
+        // Close modals when clicking outside
+        document.getElementById('languageModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+                document.getElementById('countryModal').classList.add('active');
+            }
+        });
+
+        document.getElementById('countryModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.remove('active');
+            }
+        });
+
+        // Auto-scroll function for scroll hint
+        function autoScrollPlans() {
+            const plansContainer = document.querySelector('.plans-container');
+            if (plansContainer) {
+                const scrollAmount = plansContainer.clientWidth * 0.7; // Scroll 70% of visible width
+                plansContainer.scrollBy({
+                    left: scrollAmount,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, showing language modal');
+            document.getElementById('languageModal').classList.add('active');
+            
+            // Add click event to scroll hint
+            const scrollHint = document.getElementById('scrollHint');
+            if (scrollHint) {
+                scrollHint.addEventListener('click', function() {
+                    autoScrollPlans();
+                    // Add visual feedback
+                    this.style.animation = 'none';
+                    setTimeout(() => {
+                        this.style.animation = 'pulseGlow 2s ease-in-out infinite';
+                    }, 100);
+                });
+                
+                // Add touch event for better mobile experience
+                scrollHint.addEventListener('touchstart', function(e) {
+                    e.preventDefault();
+                    autoScrollPlans();
+                });
+            }
+        });
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            console.log('DOM loaded, showing language modal');
+            document.getElementById('languageModal').classList.add('active');
+        });
+    </script>
+</body>
+</html>
