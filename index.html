@@ -847,6 +847,147 @@
                 grid-template-columns: repeat(2, 1fr);
             }
         }
+
+        /* Legal Modals Styles */
+        .legal-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            overflow-y: auto;
+        }
+
+        .legal-modal.active {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            padding: 20px 0;
+        }
+
+        .legal-modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 900px;
+            width: 90%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+            margin: 20px auto;
+        }
+
+        .legal-modal-header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 30px;
+            text-align: center;
+            position: sticky;
+            top: 0;
+            z-index: 10;
+        }
+
+        .legal-modal-header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .legal-modal-header p {
+            opacity: 0.9;
+            font-size: 14px;
+        }
+
+        .legal-modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            font-size: 24px;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.3s;
+        }
+
+        .legal-modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .legal-modal-body {
+            padding: 30px;
+            line-height: 1.8;
+            color: #374151;
+        }
+
+        .legal-modal-body h2 {
+            color: #1e3c72;
+            font-size: 22px;
+            margin: 25px 0 15px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #667eea;
+        }
+
+        .legal-modal-body h3 {
+            color: #2a5298;
+            font-size: 18px;
+            margin: 20px 0 10px 0;
+        }
+
+        .legal-modal-body p {
+            margin-bottom: 15px;
+        }
+
+        .legal-modal-body ul {
+            margin: 15px 0 15px 30px;
+        }
+
+        .legal-modal-body li {
+            margin-bottom: 8px;
+        }
+
+        .legal-highlight {
+            background: #dbeafe;
+            padding: 20px;
+            border-left: 4px solid #3b82f6;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        .legal-warning {
+            background: #fef3c7;
+            padding: 20px;
+            border-left: 4px solid #f59e0b;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 768px) {
+            .legal-modal-content {
+                width: 95%;
+                margin: 10px auto;
+            }
+            
+            .legal-modal-header {
+                padding: 20px;
+            }
+            
+            .legal-modal-header h1 {
+                font-size: 24px;
+            }
+            
+            .legal-modal-body {
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -921,6 +1062,296 @@
             <div class="modal-actions">
                 <button class="modal-btn btn-cancel" onclick="closeConfirmModal()" id="btnCancel">Cancelar</button>
                 <button class="modal-btn btn-confirm" onclick="proceedToStripe()" id="btnConfirm">Ir a Pago Seguro</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Privacy Policy Modal -->
+    <div class="legal-modal" id="privacyModal">
+        <div class="legal-modal-content">
+            <div class="legal-modal-header">
+                <button class="legal-modal-close" onclick="closeLegalModal('privacyModal')" aria-label="Cerrar">×</button>
+                <h1 id="privacyHeaderTitle">🔒 Política de Privacidad</h1>
+                <p id="privacyHeaderSubtitle">Última actualización: Enero 2025</p>
+            </div>
+            <div class="legal-modal-body">
+                <div class="legal-highlight" id="privacyHighlight">
+                    <strong>🛡️ Su privacidad es importante:</strong> En Skyplay Streaming nos comprometemos a proteger su información personal. Esta política explica qué datos recopilamos, cómo los usamos y sus derechos sobre ellos.
+                </div>
+
+                <h2>1. Información que Recopilamos</h2>
+                <h3>1.1 Información Personal</h3>
+                <p>Recopilamos información que usted nos proporciona directamente cuando:</p>
+                <ul>
+                    <li>Se registra para una cuenta</li>
+                    <li>Se suscribe a nuestros servicios</li>
+                    <li>Se comunica con nuestro equipo de soporte</li>
+                    <li>Participa en encuestas o promociones</li>
+                </ul>
+
+                <h3>1.2 Tipos de Datos</h3>
+                <p>Los datos personales que podemos recopilar incluyen:</p>
+                <ul>
+                    <li><strong>Información de contacto:</strong> nombre, dirección de correo electrónico, número de teléfono</li>
+                    <li><strong>Información de facturación:</strong> dirección, información de pago (procesada de forma segura)</li>
+                    <li><strong>Información técnica:</strong> dirección IP, tipo de dispositivo, navegador</li>
+                    <li><strong>Preferencias de uso:</strong> canales favoritos, historial de visualización</li>
+                </ul>
+
+                <h2>2. Cómo Usamos su Información</h2>
+                <p>Utilizamos la información recopilada para:</p>
+                <ul>
+                    <li>Proporcionar y mantener nuestro servicio de streaming</li>
+                    <li>Procesar pagos y transacciones</li>
+                    <li>Enviar comunicaciones importantes sobre el servicio</li>
+                    <li>Mejorar nuestros servicios y experiencia del usuario</li>
+                    <li>Cumplir con obligaciones legales</li>
+                </ul>
+
+                <h2>3. Compartir Información</h2>
+                <p><strong>No vendemos</strong> su información personal a terceros. Podemos compartir información únicamente en las siguientes circunstancias:</p>
+                <ul>
+                    <li>Con proveedores de servicios que nos ayudan a operar nuestro negocio</li>
+                    <li>Cuando sea requerido por ley o autoridades competentes</li>
+                    <li>Para proteger nuestros derechos legales o la seguridad de usuarios</li>
+                </ul>
+
+                <h2>4. Seguridad de los Datos</h2>
+                <div class="legal-warning">
+                    <strong>🔐 Medidas de Seguridad:</strong> Implementamos medidas técnicas y organizativas para proteger su información personal contra acceso no autorizado, alteración, divulgación o destrucción.
+                </div>
+
+                <h2>5. Sus Derechos</h2>
+                <p>Usted tiene derecho a:</p>
+                <ul>
+                    <li>Acceder a su información personal</li>
+                    <li>Corregir datos inexactos</li>
+                    <li>Solicitar la eliminación de sus datos</li>
+                    <li>Oponerse al procesamiento de sus datos</li>
+                    <li>Portabilidad de datos</li>
+                </ul>
+
+                <h2>6. Retención de Datos</h2>
+                <p>Conservamos su información personal solo durante el tiempo necesario para cumplir con los propósitos para los cuales fue recopilada, incluidas las obligaciones legales, contables y de informes.</p>
+
+                <h2>7. Cookies y Tecnologías Similares</h2>
+                <p>Utilizamos cookies y tecnologías similares para mejorar su experiencia, analizar el uso del sitio y personalizar el contenido. Puede controlar las cookies a través de la configuración de su navegador.</p>
+
+                <h2>8. Cambios a esta Política</h2>
+                <p>Podemos actualizar esta política de privacidad ocasionalmente. Le notificaremos sobre cambios significativos publicando la nueva política en nuestro sitio web.</p>
+
+                <h2>9. Contacto</h2>
+                <p>Si tiene preguntas sobre esta política de privacidad, contáctenos:</p>
+                <ul>
+                    <li><strong>Email:</strong> privacy@skyplay.us</li>
+                    <li><strong>Teléfono:</strong> +1 (786) 391-8722</li>
+                    <li><strong>Dirección:</strong> Miami, FL, USA</li>
+                </ul>
+
+                <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280;">
+                    <p id="privacyFooterCopy">© 2025 Skyplay Streaming. Todos los derechos reservados.</p>
+                    <p id="privacyFooterPrivacy">Nos comprometemos a proteger su privacidad y mantener sus datos seguros.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Terms and Conditions Modal -->
+    <div class="legal-modal" id="termsModal">
+        <div class="legal-modal-content">
+            <div class="legal-modal-header">
+                <button class="legal-modal-close" onclick="closeLegalModal('termsModal')" aria-label="Cerrar">×</button>
+                <h1 id="termsHeaderTitle">📋 Términos y Condiciones</h1>
+                <p id="termsHeaderSubtitle">Última actualización: Enero 2025</p>
+            </div>
+            <div class="legal-modal-body">
+                <div class="legal-highlight" id="termsHighlight">
+                    <strong>⚖️ Acuerdo Legal:</strong> Al utilizar Skyplay Streaming, usted acepta estos términos. Lea detenidamente antes de suscribirse a nuestros servicios.
+                </div>
+
+                <h2>1. Aceptación de Términos</h2>
+                <p>Al acceder y utilizar los servicios de Skyplay Streaming ("el Servicio"), usted acepta estar legalmente obligado por estos Términos y Condiciones ("Términos"). Si no está de acuerdo con alguna parte de estos términos, no debe utilizar nuestro servicio.</p>
+
+                <h2>2. Descripción del Servicio</h2>
+                <h3>2.1 Servicio de Streaming</h3>
+                <p>Skyplay Streaming proporciona acceso a contenido de televisión por internet (IPTV) que incluye:</p>
+                <ul>
+                    <li>Canales de televisión en vivo de múltiples países latinoamericanos</li>
+                    <li>Contenido deportivo, entretenimiento y noticias</li>
+                    <li>Acceso a través de aplicaciones compatibles</li>
+                    <li>Soporte técnico en español</li>
+                </ul>
+
+                <h3>2.2 Disponibilidad</h3>
+                <p>El servicio está disponible las 24 horas del día, los 7 días de la semana, sujeto a limitaciones técnicas ocasionales por mantenimiento o actualizaciones.</p>
+
+                <h2>3. Elegibilidad y Registro</h2>
+                <h3>3.1 Edad Mínima</h3>
+                <p>Debe tener al menos 18 años para registrarse. Si es menor de edad, necesita el consentimiento de un padre o tutor legal.</p>
+
+                <h3>3.2 Información Veraz</h3>
+                <p>Al registrarse, debe proporcionar información precisa y completa. Es su responsabilidad mantener actualizada su información de cuenta.</p>
+
+                <h2>4. Suscripciones y Pagos</h2>
+                <h3>4.1 Planes de Suscripción</h3>
+                <p>Ofrecemos diferentes planes de suscripción con características y precios variables. Los precios están sujetos a cambios con previo aviso de 30 días.</p>
+
+                <div class="legal-warning">
+                    <strong>⚠️ Renovación Automática:</strong> Todas las suscripciones se renuevan automáticamente cada mes. Se le cobrará automáticamente en la fecha de renovación utilizando el método de pago registrado.
+                </div>
+
+                <h3>4.2 Métodos de Pago</h3>
+                <p>Los pagos se procesan de manera segura a través de Stripe. Aceptamos tarjetas de crédito y débito. No almacenamos información de tarjetas en nuestros servidores.</p>
+
+                <h2>5. Cancelación y Reembolsos</h2>
+                <h3>5.1 Cancelación</h3>
+                <p>Puede cancelar su suscripción en cualquier momento desde su panel de cliente o contactándonos directamente. La cancelación será efectiva al final del periodo de facturación actual.</p>
+
+                <h3>5.2 Política de Reembolsos</h3>
+                <p>Ofrecemos reembolso completo dentro de las primeras 48 horas si el servicio no funciona correctamente. Para más detalles, consulte nuestra Política de Reembolsos.</p>
+
+                <h2>6. Uso Aceptable</h2>
+                <h3>6.1 Restricciones de Uso</h3>
+                <p>Usted acepta NO:</p>
+                <ul>
+                    <li>Compartir sus credenciales de acceso con terceros</li>
+                    <li>Revender o redistribuir el servicio</li>
+                    <li>Utilizar el servicio para fines comerciales sin autorización</li>
+                    <li>Intentar acceder a partes no autorizadas del sistema</li>
+                    <li>Utilizar más dispositivos simultáneos que los permitidos en su plan</li>
+                </ul>
+
+                <h3>6.2 Suspensión del Servicio</h3>
+                <p>Nos reservamos el derecho de suspender o terminar su acceso si detectamos violaciones de estos términos.</p>
+
+                <h2>7. Limitación de Dispositivos</h2>
+                <p>El número de dispositivos en los que puede usar el servicio simultáneamente está limitado según su plan:</p>
+                <ul>
+                    <li><strong>Planes 1 Dispositivo:</strong> Acceso en un solo dispositivo a la vez</li>
+                    <li><strong>Planes 3 Dispositivos:</strong> Acceso en hasta tres dispositivos simultáneamente</li>
+                </ul>
+
+                <h2>8. Propiedad Intelectual</h2>
+                <p>Todo el contenido, marcas registradas, logos y material disponible a través de Skyplay Streaming están protegidos por derechos de autor y otras leyes de propiedad intelectual.</p>
+
+                <h2>9. Limitación de Responsabilidad</h2>
+                <p>Skyplay Streaming no será responsable por daños indirectos, incidentales, especiales o consecuentes que resulten del uso o la imposibilidad de usar el servicio.</p>
+
+                <h2>10. Modificaciones</h2>
+                <p>Nos reservamos el derecho de modificar estos términos en cualquier momento. Los cambios serán efectivos inmediatamente después de su publicación en nuestro sitio web.</p>
+
+                <h2>11. Contacto</h2>
+                <p>Para preguntas sobre estos términos, contáctenos:</p>
+                <ul>
+                    <li><strong>Email:</strong> legal@skyplay.us</li>
+                    <li><strong>Teléfono:</strong> +1 (786) 391-8722</li>
+                    <li><strong>Dirección:</strong> Miami, FL, USA</li>
+                </ul>
+
+                <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280;">
+                    <p id="termsFooterCopy">© 2025 Skyplay Streaming. Todos los derechos reservados.</p>
+                    <p id="termsFooterLegal">Al utilizar nuestro servicio, acepta estos términos y condiciones.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Refunds Policy Modal -->
+    <div class="legal-modal" id="refundsModal">
+        <div class="legal-modal-content">
+            <div class="legal-modal-header">
+                <button class="legal-modal-close" onclick="closeLegalModal('refundsModal')" aria-label="Cerrar">×</button>
+                <h1 id="refundsHeaderTitle">💰 Política de Reembolsos</h1>
+                <p id="refundsHeaderSubtitle">Última actualización: Enero 2025</p>
+            </div>
+            <div class="legal-modal-body">
+                <div class="legal-highlight" id="refundsHighlight" style="background: #d1fae5; border-left-color: #10b981;">
+                    <strong>✅ Garantía de Satisfacción:</strong> En Skyplay Streaming nos comprometemos con la calidad de nuestro servicio. Si no está satisfecho, ofrecemos reembolsos bajo las condiciones descritas en esta política.
+                </div>
+
+                <h2>1. Política General de Reembolsos</h2>
+                
+                <h3>1.1 Periodo de Garantía</h3>
+                <p>Ofrecemos un periodo de garantía de <strong>48 horas</strong> desde la fecha de su primer pago para solicitar un reembolso completo si el servicio no funciona correctamente.</p>
+                
+                <div class="legal-highlight" style="background: #dbeafe; border-left-color: #3b82f6;">
+                    <strong>📅 Periodo de Garantía:</strong> 48 horas desde la activación<br>
+                    <strong>💯 Reembolso:</strong> 100% del monto pagado<br>
+                    <strong>⏱️ Tiempo de procesamiento:</strong> 5-10 días hábiles
+                </div>
+                
+                <h3>1.2 Condiciones para Reembolso Completo</h3>
+                <p>Se otorgará reembolso completo dentro de las primeras 48 horas si:</p>
+                <ul>
+                    <li>El servicio no funciona en su dispositivo después de seguir las instrucciones de configuración</li>
+                    <li>El contenido prometido no está disponible</li>
+                    <li>Experimenta problemas técnicos que no pueden resolverse</li>
+                    <li>La calidad del servicio es significativamente inferior a la descrita</li>
+                </ul>
+                
+                <h2>2. Casos que NO Califican para Reembolso</h2>
+                
+                <div class="legal-warning" style="background: #fee2e2; border-left-color: #ef4444;">
+                    <strong>⚠️ No se otorgarán reembolsos en los siguientes casos:</strong>
+                </div>
+                
+                <ul>
+                    <li><strong>Después de 48 horas:</strong> Una vez transcurrido el periodo de garantía</li>
+                    <li><strong>Uso completo:</strong> Si ha utilizado el servicio extensivamente durante el periodo de garantía</li>
+                    <li><strong>Cambio de opinión:</strong> Simplemente decidió que no quiere el servicio</li>
+                    <li><strong>Problemas de internet:</strong> Fallas causadas por su proveedor de internet</li>
+                    <li><strong>Dispositivo incompatible:</strong> Si no verificó compatibilidad antes de comprar</li>
+                    <li><strong>Compartir cuenta:</strong> Violación de términos de servicio</li>
+                    <li><strong>Renovaciones automáticas:</strong> Si olvidó cancelar antes de la renovación</li>
+                    <li><strong>Suspensión por incumplimiento:</strong> Si su servicio fue suspendido por violar términos</li>
+                </ul>
+                
+                <h2>3. Proceso de Solicitud de Reembolso</h2>
+                
+                <div style="background: #f9fafb; padding: 25px; border-radius: 12px; margin: 20px 0;">
+                    <h3>Pasos para solicitar reembolso:</h3>
+                    <ol style="margin-left: 20px;">
+                        <li>Contacte a nuestro equipo de soporte dentro de las primeras 48 horas</li>
+                        <li>Proporcione su número de orden y descripción del problema</li>
+                        <li>Permita que nuestro equipo intente resolver el problema técnico</li>
+                        <li>Si no se puede resolver, procesaremos su reembolso</li>
+                        <li>Recibirá confirmación y el reembolso en 5-10 días hábiles</li>
+                    </ol>
+                </div>
+                
+                <h2>4. Reembolsos Parciales</h2>
+                <p>En circunstancias excepcionales, podemos ofrecer reembolsos parciales prorrateados para situaciones como:</p>
+                <ul>
+                    <li>Interrupción prolongada del servicio (más de 72 horas)</li>
+                    <li>Cambios significativos en el servicio</li>
+                    <li>Errores en facturación</li>
+                </ul>
+                
+                <h2>5. Métodos de Reembolso</h2>
+                <p>Los reembolsos se procesarán utilizando el mismo método de pago utilizado para la compra original:</p>
+                <ul>
+                    <li><strong>Tarjetas de crédito/débito:</strong> 5-10 días hábiles</li>
+                    <li><strong>PayPal:</strong> 3-5 días hábiles</li>
+                    <li><strong>Transferencias bancarias:</strong> 7-14 días hábiles</li>
+                </ul>
+                
+                <h2>6. Cancelación de Suscripción</h2>
+                <div class="legal-highlight" style="background: #fef3c7; border-left-color: #f59e0b;">
+                    <strong>⚠️ Importante:</strong> Cancelar su suscripción NO implica automáticamente un reembolso. Las cancelaciones detienen futuras facturaciones pero no reembolsan el periodo actual.
+                </div>
+                
+                <h2>7. Contacto para Reembolsos</h2>
+                <p>Para solicitar un reembolso, contáctenos inmediatamente:</p>
+                <ul>
+                    <li><strong>Email:</strong> refunds@skyplay.us</li>
+                    <li><strong>WhatsApp:</strong> +1 (786) 391-8722</li>
+                    <li><strong>Horario:</strong> Lunes a Domingo, 9:00 AM - 9:00 PM EST</li>
+                </ul>
+
+                <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #e5e7eb; color: #6b7280;">
+                    <p id="refundsFooterCopy">© 2025 Skyplay Streaming. Todos los derechos reservados.</p>
+                    <p id="refundsFooterNote">Política de reembolsos sujeta a términos y condiciones.</p>
+                </div>
             </div>
         </div>
     </div>
@@ -1244,9 +1675,9 @@
                 <div class="footer-section">
                     <h3 id="footerLinks">Enlaces Útiles</h3>
                     <ul>
-                        <li><a href="terms.html" id="linkTerms">Términos y Condiciones</a></li>
-                        <li><a href="privacy.html" id="linkPrivacy">Política de Privacidad</a></li>
-                        <li><a href="refunds.html" id="linkRefunds">Política de Reembolsos</a></li>
+                        <li><a href="javascript:void(0)" onclick="openLegalModal('termsModal')" id="linkTerms">Términos y Condiciones</a></li>
+                        <li><a href="javascript:void(0)" onclick="openLegalModal('privacyModal')" id="linkPrivacy">Política de Privacidad</a></li>
+                        <li><a href="javascript:void(0)" onclick="openLegalModal('refundsModal')" id="linkRefunds">Política de Reembolsos</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -1366,7 +1797,7 @@
                 feat11: 'PRUEBA GRATUITA 72H (APP)',
                 priceLabel: '💲 Precio Mensual',
                 actionLabel: 'Acción',
-                buyBtn1: 'Comprar Ahora',
+                buyBtn1: 'Suscribir Ahora',
                 faqTitle: 'Preguntas Frecuentes',
                 faq1Q: '¿Puedo cancelar mi suscripción en cualquier momento?',
                 faq1A: 'Sí, puedes cancelar cuando quieras desde tu panel de cliente. Tu servicio seguirá activo hasta el final del periodo que pagaste. Sin penalidades ni cargos adicionales.',
@@ -1397,7 +1828,23 @@
                 confirmRecurring: 'Renovación automática mensual',
                 confirmPolicy: 'Puedes cancelar cuando quieras desde tu panel de cliente. Sin penalidades ni cargos adicionales.',
                 btnCancel: 'Cancelar',
-                btnConfirm: 'Ir a Pago Seguro'
+                btnConfirm: 'Ir a Pago Seguro',
+                // Legal Modals
+                privacyHeaderTitle: '🔒 Política de Privacidad',
+                privacyHeaderSubtitle: 'Última actualización: Enero 2025',
+                privacyHighlight: '<strong>🛡️ Su privacidad es importante:</strong> En Skyplay Streaming nos comprometemos a proteger su información personal. Esta política explica qué datos recopilamos, cómo los usamos y sus derechos sobre ellos.',
+                privacyFooterCopy: '© 2025 Skyplay Streaming. Todos los derechos reservados.',
+                privacyFooterPrivacy: 'Nos comprometemos a proteger su privacidad y mantener sus datos seguros.',
+                termsHeaderTitle: '📋 Términos y Condiciones',
+                termsHeaderSubtitle: 'Última actualización: Enero 2025',
+                termsHighlight: '<strong>⚖️ Acuerdo Legal:</strong> Al utilizar Skyplay Streaming, usted acepta estos términos. Lea detenidamente antes de suscribirse a nuestros servicios.',
+                termsFooterCopy: '© 2025 Skyplay Streaming. Todos los derechos reservados.',
+                termsFooterLegal: 'Al utilizar nuestro servicio, acepta estos términos y condiciones.',
+                refundsHeaderTitle: '💰 Política de Reembolsos',
+                refundsHeaderSubtitle: 'Última actualización: Enero 2025',
+                refundsHighlight: '<strong>✅ Garantía de Satisfacción:</strong> En Skyplay Streaming nos comprometemos con la calidad de nuestro servicio. Si no está satisfecho, ofrecemos reembolsos bajo las condiciones descritas en esta política.',
+                refundsFooterCopy: '© 2025 Skyplay Streaming. Todos los derechos reservados.',
+                refundsFooterNote: 'Política de reembolsos sujeta a términos y condiciones.'
             },
             en: {
                 headerTitle: '📺 Best IPTV Streaming Plans',
@@ -1429,7 +1876,7 @@
                 feat11: 'FREE 72H TRIAL (APP)',
                 priceLabel: '💲 Monthly Price',
                 actionLabel: 'Action',
-                buyBtn1: 'Buy Now',
+                buyBtn1: 'Subscribe Now',
                 faqTitle: 'Frequently Asked Questions',
                 faq1Q: 'Can I cancel my subscription at any time?',
                 faq1A: 'Yes, you can cancel whenever you want from your customer panel. Your service will remain active until the end of the period you paid for. No penalties or additional charges.',
@@ -1460,7 +1907,23 @@
                 confirmRecurring: 'Monthly automatic renewal',
                 confirmPolicy: 'You can cancel anytime from your customer panel. No penalties or additional charges.',
                 btnCancel: 'Cancel',
-                btnConfirm: 'Go to Secure Payment'
+                btnConfirm: 'Go to Secure Payment',
+                // Legal Modals
+                privacyHeaderTitle: '🔒 Privacy Policy',
+                privacyHeaderSubtitle: 'Last updated: January 2025',
+                privacyHighlight: '<strong>🛡️ Your privacy matters:</strong> At Skyplay Streaming we are committed to protecting your personal information. This policy explains what data we collect, how we use it, and your rights regarding it.',
+                privacyFooterCopy: '© 2025 Skyplay Streaming. All rights reserved.',
+                privacyFooterPrivacy: 'We are committed to protecting your privacy and keeping your data secure.',
+                termsHeaderTitle: '📋 Terms and Conditions',
+                termsHeaderSubtitle: 'Last updated: January 2025',
+                termsHighlight: '<strong>⚖️ Legal Agreement:</strong> By using Skyplay Streaming, you agree to these terms. Please read carefully before subscribing to our services.',
+                termsFooterCopy: '© 2025 Skyplay Streaming. All rights reserved.',
+                termsFooterLegal: 'By using our service, you agree to these terms and conditions.',
+                refundsHeaderTitle: '💰 Refund Policy',
+                refundsHeaderSubtitle: 'Last updated: January 2025',
+                refundsHighlight: '<strong>✅ Satisfaction Guarantee:</strong> At Skyplay Streaming we are committed to the quality of our service. If you are not satisfied, we offer refunds under the conditions described in this policy.',
+                refundsFooterCopy: '© 2025 Skyplay Streaming. All rights reserved.',
+                refundsFooterNote: 'Refund policy subject to terms and conditions.'
             }
         };
 
@@ -1615,6 +2078,75 @@
             document.getElementById('countryModal').classList.add('active');
         });
 
+        // Legal Modals Functions
+        function openLegalModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevent background scrolling
+                
+                // Update modal content based on current language
+                updateLegalModalContent(modalId, currentLanguage);
+            }
+        }
+
+        function closeLegalModal(modalId) {
+            const modal = document.getElementById(modalId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = 'auto'; // Restore scrolling
+            }
+        }
+
+        function updateLegalModalContent(modalId, lang) {
+            const translation = translations[lang];
+            
+            if (modalId === 'privacyModal') {
+                updateElement('privacyHeaderTitle', translation.privacyHeaderTitle);
+                updateElement('privacyHeaderSubtitle', translation.privacyHeaderSubtitle);
+                updateElement('privacyHighlight', translation.privacyHighlight);
+                updateElement('privacyFooterCopy', translation.privacyFooterCopy);
+                updateElement('privacyFooterPrivacy', translation.privacyFooterPrivacy);
+            } else if (modalId === 'termsModal') {
+                updateElement('termsHeaderTitle', translation.termsHeaderTitle);
+                updateElement('termsHeaderSubtitle', translation.termsHeaderSubtitle);
+                updateElement('termsHighlight', translation.termsHighlight);
+                updateElement('termsFooterCopy', translation.termsFooterCopy);
+                updateElement('termsFooterLegal', translation.termsFooterLegal);
+            } else if (modalId === 'refundsModal') {
+                updateElement('refundsHeaderTitle', translation.refundsHeaderTitle);
+                updateElement('refundsHeaderSubtitle', translation.refundsHeaderSubtitle);
+                updateElement('refundsHighlight', translation.refundsHighlight);
+                updateElement('refundsFooterCopy', translation.refundsFooterCopy);
+                updateElement('refundsFooterNote', translation.refundsFooterNote);
+            }
+        }
+
+        function updateElement(id, content) {
+            const element = document.getElementById(id);
+            if (element && content) {
+                element.innerHTML = content;
+            }
+        }
+
+        // Close modal when clicking outside
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('legal-modal')) {
+                const modalId = event.target.id;
+                closeLegalModal(modalId);
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                const activeModal = document.querySelector('.legal-modal.active');
+                if (activeModal) {
+                    closeLegalModal(activeModal.id);
+                }
+            }
+        });
+
         // Expose functions globally
         window.selectCountry = selectCountry;
         window.openCountryModal = openCountryModal;
@@ -1623,6 +2155,8 @@
         window.closeConfirmModal = closeConfirmModal;
         window.proceedToStripe = proceedToStripe;
         window.toggleFaq = toggleFaq;
+        window.openLegalModal = openLegalModal;
+        window.closeLegalModal = closeLegalModal;
     </script>
 </body>
 </html>
