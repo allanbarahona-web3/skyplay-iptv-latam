@@ -857,6 +857,240 @@
             color: var(--gray-400);
         }
         
+        /* 2-Step Payment Modal Styles */
+        .payment-step-modal {
+            max-width: 700px;
+        }
+        
+        .payment-step {
+            animation: slideIn 0.3s ease;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(20px); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        .step-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .step-header h2 {
+            font-size: 24px;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .step-header p {
+            color: var(--gray-600);
+            font-size: 16px;
+            margin-bottom: 0;
+        }
+        
+        .plan-info {
+            background: var(--gray-100);
+            padding: 12px 20px;
+            border-radius: 10px;
+            margin-top: 15px;
+            font-weight: 600;
+            color: var(--primary);
+        }
+        
+        /* Payment Type Selection */
+        .payment-type-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .payment-type-card {
+            border: 3px solid var(--gray-200);
+            border-radius: 15px;
+            padding: 25px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: white;
+        }
+        
+        .payment-type-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.2);
+        }
+        
+        .payment-type-icon {
+            font-size: 48px;
+            margin-bottom: 15px;
+        }
+        
+        .payment-type-content h3 {
+            font-size: 18px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .payment-type-content p {
+            font-size: 14px;
+            color: var(--gray-600);
+            margin-bottom: 5px;
+        }
+        
+        .payment-type-content small {
+            font-size: 12px;
+            color: var(--gray-500);
+        }
+        
+        .payment-type-arrow {
+            font-size: 20px;
+            color: var(--gray-400);
+            margin-top: 10px;
+        }
+        
+        /* Duration Selection */
+        .duration-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 15px;
+            margin-bottom: 30px;
+        }
+        
+        .duration-card {
+            border: 3px solid var(--gray-200);
+            border-radius: 12px;
+            padding: 20px 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            background: white;
+            position: relative;
+        }
+        
+        .duration-card:hover,
+        .duration-card.selected {
+            border-color: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(102, 126, 234, 0.2);
+        }
+        
+        .duration-card.selected {
+            background: rgba(102, 126, 234, 0.05);
+        }
+        
+        .duration-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: var(--primary);
+            margin-bottom: 8px;
+        }
+        
+        .duration-price {
+            font-size: 20px;
+            font-weight: 800;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+        
+        .duration-original-price {
+            font-size: 12px;
+            color: var(--gray-500);
+            text-decoration: line-through;
+            margin-bottom: 3px;
+        }
+        
+        .duration-savings {
+            font-size: 12px;
+            color: #10b981;
+            font-weight: 600;
+        }
+        
+        .duration-per-month {
+            font-size: 12px;
+            color: var(--gray-600);
+        }
+        
+        .duration-badge {
+            position: absolute;
+            top: -8px;
+            right: -8px;
+            background: #ef4444;
+            color: white;
+            font-size: 10px;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: 600;
+        }
+        
+        /* Payment Methods Section */
+        .payment-methods-section {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid var(--gray-200);
+        }
+        
+        .payment-methods-section h3 {
+            font-size: 18px;
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+        
+        /* Modal Actions */
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        
+        .modal-btn {
+            padding: 12px 30px;
+            border-radius: 50px;
+            border: none;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+        
+        .btn-cancel {
+            background: #e5e7eb;
+            color: #6b7280;
+        }
+        
+        .btn-cancel:hover {
+            background: #d1d5db;
+        }
+        
+        .btn-secondary {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #5a67d8;
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .payment-type-grid {
+                grid-template-columns: 1fr;
+                gap: 15px;
+            }
+            
+            .duration-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .modal-actions {
+                flex-direction: column;
+            }
+        }
+        
         /* Floating WhatsApp */
         .floating-whatsapp {
             position: fixed;
@@ -1385,49 +1619,68 @@
     </div>
 
     <!-- Payment Method Selection Modal -->
+    <!-- New 2-Step Payment Modal -->
     <div class="modal" id="paymentModal">
-        <div class="modal-content">
-            <h2 id="paymentModalTitle">Selecciona tu método de pago</h2>
-            <p id="paymentModalSubtitle" style="text-align: center; color: #6b7280; margin-bottom: 10px;">Elige cómo prefieres pagar tu suscripción</p>
-            <div class="payment-methods-grid">
-                <div class="payment-method-card" onclick="selectPaymentMethod('card')">
-                    <div class="payment-icon">💳</div>
-                    <div class="payment-info">
-                        <div class="payment-name" id="paymentCard">Tarjeta de Crédito/Débito</div>
-                        <div class="payment-desc" id="paymentCardDesc">Visa, Mastercard, American Express</div>
-                    </div>
-                    <div class="payment-arrow">→</div>
+        <div class="modal-content payment-step-modal">
+            <!-- Step 1: Payment Type Selection -->
+            <div class="payment-step" id="step1">
+                <div class="step-header">
+                    <h2 id="modalStep1Title">Selecciona el Tipo de Pago</h2>
+                    <p id="modalStep1Subtitle">Elige entre suscripción recurrente o pago único</p>
                 </div>
                 
-                <div class="payment-method-card" onclick="selectPaymentMethod('binance')">
-                    <div class="payment-icon">₿</div>
-                    <div class="payment-info">
-                        <div class="payment-name" id="paymentBinance">Binance Pay - USDT</div>
-                        <div class="payment-desc" id="paymentBinanceDesc">Pago con criptomonedas USDT</div>
+                <div class="payment-type-grid">
+                    <div class="payment-type-card" onclick="selectPaymentType('subscription')">
+                        <div class="payment-type-icon">�</div>
+                        <div class="payment-type-content">
+                            <h3 id="modalSubscriptionTitle">Suscripción</h3>
+                            <p id="modalSubscriptionDesc">Renovación automática</p>
+                            <small id="modalSubscriptionNote">Cancela cuando quieras</small>
+                        </div>
+                        <div class="payment-type-arrow">→</div>
                     </div>
-                    <div class="payment-arrow">→</div>
+                    
+                    <div class="payment-type-card" onclick="selectPaymentType('oneTime')">
+                        <div class="payment-type-icon">💰</div>
+                        <div class="payment-type-content">
+                            <h3 id="modalOneTimeTitle">Pago Único</h3>
+                            <p id="modalOneTimeDesc">Sin renovación automática</p>
+                            <small id="modalOneTimeNote">Acceso por tiempo limitado</small>
+                        </div>
+                        <div class="payment-type-arrow">→</div>
+                    </div>
                 </div>
                 
-                <div class="payment-method-card" onclick="selectPaymentMethod('paypal')">
-                    <div class="payment-icon">💰</div>
-                    <div class="payment-info">
-                        <div class="payment-name" id="paymentPaypal">PayPal</div>
-                        <div class="payment-desc" id="paymentPaypalDesc">Pago seguro con tu cuenta PayPal</div>
-                    </div>
-                    <div class="payment-arrow">→</div>
-                </div>
-                
-                <div class="payment-method-card" id="sinpeOption" style="display: none;" onclick="selectPaymentMethod('sinpe')">
-                    <div class="payment-icon">📱</div>
-                    <div class="payment-info">
-                        <div class="payment-name" id="paymentSinpe">SINPE Móvil 🇨🇷</div>
-                        <div class="payment-desc" id="paymentSinpeDesc">Solo disponible para Costa Rica</div>
-                    </div>
-                    <div class="payment-arrow">→</div>
+                <div class="modal-actions">
+                    <button class="modal-btn btn-cancel" onclick="closePaymentModal()">Cancelar</button>
                 </div>
             </div>
-            <div style="text-align: center; margin-top: 20px;">
-                <button class="modal-btn btn-cancel" onclick="closePaymentModal()" style="padding: 12px 30px; border-radius: 50px; border: none; background: #e5e7eb; color: #6b7280; font-weight: 600; cursor: pointer;">Cancelar</button>
+            
+            <!-- Step 2: Duration and Payment Method Selection -->
+            <div class="payment-step" id="step2" style="display: none;">
+                <div class="step-header">
+                    <h2 id="modalStep2Title">Selecciona la Duración</h2>
+                    <p id="modalStep2Subtitle">Escoge el período que prefieras</p>
+                    <div class="plan-info">
+                        <span id="selectedPlanName"></span> - <span id="selectedDeviceInfo"></span>
+                    </div>
+                </div>
+                
+                <div class="duration-grid" id="durationOptions">
+                    <!-- Duration options will be populated dynamically -->
+                </div>
+                
+                <div class="payment-methods-section" id="paymentMethodsSection" style="display: none;">
+                    <h3>Métodos de Pago Disponibles</h3>
+                    <div class="payment-methods-grid" id="availablePaymentMethods">
+                        <!-- Payment methods will be populated dynamically -->
+                    </div>
+                </div>
+                
+                <div class="modal-actions">
+                    <button class="modal-btn btn-secondary" id="modalBackButton" onclick="goBackToStep1()">← Volver</button>
+                    <button class="modal-btn btn-cancel" onclick="closePaymentModal()">Cancelar</button>
+                </div>
             </div>
         </div>
     </div>
@@ -1928,37 +2181,199 @@
     </div>
 
     <script>
-        // CONFIGURACIÓN - COINPAL.IO PAYMENT LINKS
-        const coinpalLinks = {
-            plan1: {
-                card: 'TU_COINPAL_LINK_PLAN1_TARJETA',
-                binance: 'TU_COINPAL_LINK_PLAN1_BINANCE',
-                paypal: 'TU_COINPAL_LINK_PLAN1_PAYPAL',
-                sinpe: 'TU_SINPE_LINK_PLAN1' // Solo CR
+        // PRICING STRUCTURE FOR SUBSCRIPTION AND ONE-TIME PAYMENTS
+        const pricingOptions = {
+            subscription: {
+                // Stripe subscription prices (recurring)
+                monthly: { months: 1, discount: 0, label: 'monthly' },
+                quarterly: { months: 3, discount: 3, label: 'quarterly' },
+                semiannual: { months: 6, discount: 6, label: 'semiannual' },
+                annual: { months: 12, discount: 9, label: 'annual' }
             },
-            plan2: {
-                card: 'TU_COINPAL_LINK_PLAN2_TARJETA',
-                binance: 'TU_COINPAL_LINK_PLAN2_BINANCE',
-                paypal: 'TU_COINPAL_LINK_PLAN2_PAYPAL',
-                sinpe: 'TU_SINPE_LINK_PLAN2'
+            oneTime: {
+                // One-time payment prices (all methods)
+                month1: { months: 1, discount: 0, label: 'month1' },
+                months3: { months: 3, discount: 5, label: 'months3' },
+                months6: { months: 6, discount: 10, label: 'months6' },
+                months12: { months: 12, discount: 15, label: 'months12' }
+            }
+        };
+
+        // Helper function to calculate discounted price
+        function calculateDiscountedPrice(basePrice, discount) {
+            return basePrice * (1 - discount / 100);
+        }
+
+        // CONFIGURACIÓN - PAYMENT LINKS
+        const paymentLinks = {
+            // FLUJO TV Plan
+            flujo: {
+                oneTime: {
+                    month1: {
+                        card: 'TU_COINPAL_LINK_FLUJO_1M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_FLUJO_1M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_FLUJO_1M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_FLUJO_1M'
+                    },
+                    months3: {
+                        card: 'TU_COINPAL_LINK_FLUJO_3M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_FLUJO_3M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_FLUJO_3M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_FLUJO_3M'
+                    },
+                    months6: {
+                        card: 'TU_COINPAL_LINK_FLUJO_6M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_FLUJO_6M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_FLUJO_6M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_FLUJO_6M'
+                    },
+                    months12: {
+                        card: 'TU_COINPAL_LINK_FLUJO_12M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_FLUJO_12M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_FLUJO_12M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_FLUJO_12M'
+                    }
+                }
             },
-            plan3: {
-                card: 'TU_COINPAL_LINK_PLAN3_TARJETA',
-                binance: 'TU_COINPAL_LINK_PLAN3_BINANCE',
-                paypal: 'TU_COINPAL_LINK_PLAN3_PAYPAL',
-                sinpe: 'TU_SINPE_LINK_PLAN3'
+            // MAGISTV PRO - 1 Device
+            magistv1: {
+                oneTime: {
+                    month1: {
+                        card: 'TU_COINPAL_LINK_MAGISTV1_1M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_MAGISTV1_1M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_MAGISTV1_1M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_MAGISTV1_1M'
+                    },
+                    months3: {
+                        card: 'TU_COINPAL_LINK_MAGISTV1_3M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_MAGISTV1_3M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_MAGISTV1_3M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_MAGISTV1_3M'
+                    },
+                    months6: {
+                        card: 'TU_COINPAL_LINK_MAGISTV1_6M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_MAGISTV1_6M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_MAGISTV1_6M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_MAGISTV1_6M'
+                    },
+                    months12: {
+                        card: 'TU_COINPAL_LINK_MAGISTV1_12M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_MAGISTV1_12M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_MAGISTV1_12M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_MAGISTV1_12M'
+                    }
+                },
+                subscription: {
+                    monthly: { stripe: 'TU_STRIPE_LINK_MAGISTV1_MONTHLY' },
+                    quarterly: { stripe: 'TU_STRIPE_LINK_MAGISTV1_QUARTERLY' },
+                    semiannual: { stripe: 'TU_STRIPE_LINK_MAGISTV1_SEMIANNUAL' },
+                    annual: { stripe: 'TU_STRIPE_LINK_MAGISTV1_ANNUAL' }
+                }
             },
-            plan4: {
-                card: 'TU_COINPAL_LINK_PLAN4_TARJETA',
-                binance: 'TU_COINPAL_LINK_PLAN4_BINANCE',
-                paypal: 'TU_COINPAL_LINK_PLAN4_PAYPAL',
-                sinpe: 'TU_SINPE_LINK_PLAN4'
+            // MAGISTV PRO - 3 Devices
+            magistv3: {
+                oneTime: {
+                    month1: {
+                        card: 'TU_COINPAL_LINK_MAGISTV3_1M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_MAGISTV3_1M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_MAGISTV3_1M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_MAGISTV3_1M'
+                    },
+                    months3: {
+                        card: 'TU_COINPAL_LINK_MAGISTV3_3M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_MAGISTV3_3M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_MAGISTV3_3M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_MAGISTV3_3M'
+                    },
+                    months6: {
+                        card: 'TU_COINPAL_LINK_MAGISTV3_6M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_MAGISTV3_6M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_MAGISTV3_6M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_MAGISTV3_6M'
+                    },
+                    months12: {
+                        card: 'TU_COINPAL_LINK_MAGISTV3_12M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_MAGISTV3_12M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_MAGISTV3_12M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_MAGISTV3_12M'
+                    }
+                },
+                subscription: {
+                    monthly: { stripe: 'TU_STRIPE_LINK_MAGISTV3_MONTHLY' },
+                    quarterly: { stripe: 'TU_STRIPE_LINK_MAGISTV3_QUARTERLY' },
+                    semiannual: { stripe: 'TU_STRIPE_LINK_MAGISTV3_SEMIANNUAL' },
+                    annual: { stripe: 'TU_STRIPE_LINK_MAGISTV3_ANNUAL' }
+                }
             },
-            plan5: {
-                card: 'TU_COINPAL_LINK_PLAN5_TARJETA',
-                binance: 'TU_COINPAL_LINK_PLAN5_BINANCE',
-                paypal: 'TU_COINPAL_LINK_PLAN5_PAYPAL',
-                sinpe: 'TU_SINPE_LINK_PLAN5'
+            // TELE-LATINO - 1 Device
+            telelatino1: {
+                oneTime: {
+                    month1: {
+                        card: 'TU_COINPAL_LINK_TELELATINO1_1M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_TELELATINO1_1M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_TELELATINO1_1M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_TELELATINO1_1M'
+                    },
+                    months3: {
+                        card: 'TU_COINPAL_LINK_TELELATINO1_3M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_TELELATINO1_3M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_TELELATINO1_3M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_TELELATINO1_3M'
+                    },
+                    months6: {
+                        card: 'TU_COINPAL_LINK_TELELATINO1_6M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_TELELATINO1_6M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_TELELATINO1_6M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_TELELATINO1_6M'
+                    },
+                    months12: {
+                        card: 'TU_COINPAL_LINK_TELELATINO1_12M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_TELELATINO1_12M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_TELELATINO1_12M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_TELELATINO1_12M'
+                    }
+                },
+                subscription: {
+                    monthly: { stripe: 'TU_STRIPE_LINK_TELELATINO1_MONTHLY' },
+                    quarterly: { stripe: 'TU_STRIPE_LINK_TELELATINO1_QUARTERLY' },
+                    semiannual: { stripe: 'TU_STRIPE_LINK_TELELATINO1_SEMIANNUAL' },
+                    annual: { stripe: 'TU_STRIPE_LINK_TELELATINO1_ANNUAL' }
+                }
+            },
+            // TELE-LATINO - 3 Devices
+            telelatino3: {
+                oneTime: {
+                    month1: {
+                        card: 'TU_COINPAL_LINK_TELELATINO3_1M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_TELELATINO3_1M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_TELELATINO3_1M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_TELELATINO3_1M'
+                    },
+                    months3: {
+                        card: 'TU_COINPAL_LINK_TELELATINO3_3M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_TELELATINO3_3M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_TELELATINO3_3M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_TELELATINO3_3M'
+                    },
+                    months6: {
+                        card: 'TU_COINPAL_LINK_TELELATINO3_6M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_TELELATINO3_6M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_TELELATINO3_6M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_TELELATINO3_6M'
+                    },
+                    months12: {
+                        card: 'TU_COINPAL_LINK_TELELATINO3_12M_TARJETA',
+                        binance: 'TU_COINPAL_LINK_TELELATINO3_12M_BINANCE',
+                        paypal: 'TU_COINPAL_LINK_TELELATINO3_12M_PAYPAL',
+                        sinpe: 'TU_SINPE_LINK_TELELATINO3_12M'
+                    }
+                },
+                subscription: {
+                    monthly: { stripe: 'TU_STRIPE_LINK_TELELATINO3_MONTHLY' },
+                    quarterly: { stripe: 'TU_STRIPE_LINK_TELELATINO3_QUARTERLY' },
+                    semiannual: { stripe: 'TU_STRIPE_LINK_TELELATINO3_SEMIANNUAL' },
+                    annual: { stripe: 'TU_STRIPE_LINK_TELELATINO3_ANNUAL' }
+                }
             }
         };
 
@@ -2136,7 +2551,34 @@
                 refundsHeaderSubtitle: 'Última actualización: Enero 2025',
                 refundsHighlight: '<strong>✅ Garantía de Satisfacción:</strong> En Skyplay Streaming nos comprometemos con la calidad de nuestro servicio. Si no está satisfecho, ofrecemos reembolsos bajo las condiciones descritas en esta política.',
                 refundsFooterCopy: '© 2025 Skyplay Streaming. Todos los derechos reservados.',
-                refundsFooterNote: 'Política de reembolsos sujeta a términos y condiciones.'
+                refundsFooterNote: 'Política de reembolsos sujeta a términos y condiciones.',
+                // New Modal Translations
+                modalStep1Title: 'Selecciona el Tipo de Pago',
+                modalStep1Subtitle: 'Elige entre suscripción recurrente o pago único',
+                modalSubscriptionTitle: '🔄 Suscripción',
+                modalSubscriptionDesc: 'Renovación automática',
+                modalSubscriptionNote: 'Cancela cuando quieras',
+                modalOneTimeTitle: '💰 Pago Único',
+                modalOneTimeDesc: 'Sin renovación automática',
+                modalOneTimeNote: 'Acceso por tiempo limitado',
+                modalStep2Title: 'Selecciona la Duración',
+                modalStep2Subtitle: 'Escoge el período que prefieras',
+                modalBackButton: '← Volver',
+                modalContinueButton: 'Continuar →',
+                modalMonthly: 'Mensual',
+                modalQuarterly: '3 Meses',
+                modalSemiannual: '6 Meses',
+                modalAnnual: '12 Meses',
+                modal1Month: '1 Mes',
+                modal3Months: '3 Meses',
+                modal6Months: '6 Meses',
+                modal12Months: '12 Meses',
+                modalSaveText: 'Ahorras',
+                modalOriginalPrice: 'Precio original:',
+                modalFinalPrice: 'Precio final:',
+                modalPerMonth: '/mes',
+                modalTotal: 'Total:',
+                modalOnlyStripe: 'Solo disponible con Stripe'
             },
             en: {
                 headerTitle: '📺 Best IPTV Streaming Plans',
@@ -2212,7 +2654,34 @@
                 refundsHeaderSubtitle: 'Last updated: January 2025',
                 refundsHighlight: '<strong>✅ Satisfaction Guarantee:</strong> At Skyplay Streaming we are committed to the quality of our service. If you are not satisfied, we offer refunds under the conditions described in this policy.',
                 refundsFooterCopy: '© 2025 Skyplay Streaming. All rights reserved.',
-                refundsFooterNote: 'Refund policy subject to terms and conditions.'
+                refundsFooterNote: 'Refund policy subject to terms and conditions.',
+                // New Modal Translations
+                modalStep1Title: 'Select Payment Type',
+                modalStep1Subtitle: 'Choose between recurring subscription or one-time payment',
+                modalSubscriptionTitle: '🔄 Subscription',
+                modalSubscriptionDesc: 'Automatic renewal',
+                modalSubscriptionNote: 'Cancel anytime',
+                modalOneTimeTitle: '💰 One-Time Payment',
+                modalOneTimeDesc: 'No automatic renewal',
+                modalOneTimeNote: 'Limited time access',
+                modalStep2Title: 'Select Duration',
+                modalStep2Subtitle: 'Choose your preferred period',
+                modalBackButton: '← Back',
+                modalContinueButton: 'Continue →',
+                modalMonthly: 'Monthly',
+                modalQuarterly: '3 Months',
+                modalSemiannual: '6 Months',
+                modalAnnual: '12 Months',
+                modal1Month: '1 Month',
+                modal3Months: '3 Months',
+                modal6Months: '6 Months',
+                modal12Months: '12 Months',
+                modalSaveText: 'Save',
+                modalOriginalPrice: 'Original price:',
+                modalFinalPrice: 'Final price:',
+                modalPerMonth: '/month',
+                modalTotal: 'Total:',
+                modalOnlyStripe: 'Only available with Stripe'
             }
         };
 
@@ -2373,16 +2842,23 @@
             }
         }
 
+        // Modal variables
+        let currentStep = 1;
+        let selectedPaymentType = null;
+        let selectedDuration = null;
+
         function showPaymentModal(planIndex) {
             selectedPlanIndex = planIndex;
+            currentStep = 1;
+            selectedPaymentType = null;
+            selectedDuration = null;
             
-            // Show/hide SINPE option based on country
-            const sinpeOption = document.getElementById('sinpeOption');
-            if (currentCountry === 'costarica') {
-                sinpeOption.style.display = 'flex';
-            } else {
-                sinpeOption.style.display = 'none';
-            }
+            // Update translations for modal
+            updateModalTranslations();
+            
+            // Show step 1
+            document.getElementById('step1').style.display = 'block';
+            document.getElementById('step2').style.display = 'none';
             
             document.getElementById('paymentModal').classList.add('active');
         }
@@ -2390,31 +2866,265 @@
         function closePaymentModal() {
             document.getElementById('paymentModal').classList.remove('active');
             selectedPlanIndex = null;
+            currentStep = 1;
+            selectedPaymentType = null;
+            selectedDuration = null;
+        }
+
+        function updateModalTranslations() {
+            const translation = translations[currentLanguage];
+            
+            // Update all modal text elements
+            const elements = [
+                'modalStep1Title', 'modalStep1Subtitle', 'modalSubscriptionTitle',
+                'modalSubscriptionDesc', 'modalSubscriptionNote', 'modalOneTimeTitle',
+                'modalOneTimeDesc', 'modalOneTimeNote', 'modalStep2Title',
+                'modalStep2Subtitle', 'modalBackButton'
+            ];
+            
+            elements.forEach(id => {
+                const element = document.getElementById(id);
+                if (element && translation[id]) {
+                    element.textContent = translation[id];
+                }
+            });
+        }
+
+        function selectPaymentType(type) {
+            selectedPaymentType = type;
+            goToStep2();
+        }
+
+        function goToStep2() {
+            currentStep = 2;
+            document.getElementById('step1').style.display = 'none';
+            document.getElementById('step2').style.display = 'block';
+            
+            // Update plan info
+            updatePlanInfo();
+            
+            // Generate duration options
+            generateDurationOptions();
+        }
+
+        function goBackToStep1() {
+            currentStep = 1;
+            selectedPaymentType = null;
+            selectedDuration = null;
+            document.getElementById('step1').style.display = 'block';
+            document.getElementById('step2').style.display = 'none';
+            document.getElementById('paymentMethodsSection').style.display = 'none';
+        }
+
+        function updatePlanInfo() {
+            const plan = plans[selectedPlanIndex];
+            const translation = translations[currentLanguage];
+            
+            let deviceInfo = '';
+            if (plan.hasDeviceSwitch) {
+                const is3Devices = planDeviceStates[selectedPlanIndex];
+                const deviceCount = is3Devices ? '3' : '1';
+                const deviceText = is3Devices ? translation.devicesText : translation.deviceText;
+                deviceInfo = `${deviceCount} ${deviceText}`;
+            }
+            
+            document.getElementById('selectedPlanName').textContent = plan.name;
+            document.getElementById('selectedDeviceInfo').textContent = deviceInfo;
+        }
+
+        function generateDurationOptions() {
+            const container = document.getElementById('durationOptions');
+            const translation = translations[currentLanguage];
+            const plan = plans[selectedPlanIndex];
+            
+            // Get base price for the plan
+            let basePrice;
+            if (plan.hasDeviceSwitch) {
+                const is3Devices = planDeviceStates[selectedPlanIndex];
+                basePrice = is3Devices ? plan.basePrice3Devices : plan.basePrice1Device;
+            } else {
+                basePrice = plan.basePrice;
+            }
+            
+            // Add country surcharges
+            const isCR = currentCountry === 'costarica';
+            const isUSA = currentCountry === 'usa';
+            if (isCR) {
+                basePrice += crSurcharge;
+            } else if (isUSA) {
+                basePrice += usSurcharge;
+            }
+            
+            const options = selectedPaymentType === 'subscription' ? 
+                pricingOptions.subscription : pricingOptions.oneTime;
+            
+            container.innerHTML = '';
+            
+            Object.entries(options).forEach(([key, option]) => {
+                const monthlyPrice = calculateDiscountedPrice(basePrice, option.discount);
+                const totalPrice = monthlyPrice * option.months;
+                const originalTotal = basePrice * option.months;
+                const savings = originalTotal - totalPrice;
+                
+                const card = document.createElement('div');
+                card.className = 'duration-card';
+                card.onclick = () => selectDuration(key, option);
+                
+                let durationLabel = '';
+                switch(option.months) {
+                    case 1: durationLabel = selectedPaymentType === 'subscription' ? translation.modalMonthly : translation.modal1Month; break;
+                    case 3: durationLabel = selectedPaymentType === 'subscription' ? translation.modalQuarterly : translation.modal3Months; break;
+                    case 6: durationLabel = selectedPaymentType === 'subscription' ? translation.modalSemiannual : translation.modal6Months; break;
+                    case 12: durationLabel = selectedPaymentType === 'subscription' ? translation.modalAnnual : translation.modal12Months; break;
+                }
+                
+                let badgeHTML = '';
+                if (option.discount > 0) {
+                    badgeHTML = `<div class="duration-badge">-${option.discount}%</div>`;
+                }
+                
+                let priceHTML = '';
+                if (selectedPaymentType === 'subscription') {
+                    priceHTML = `
+                        <div class="duration-price">$${monthlyPrice.toFixed(2)}</div>
+                        <div class="duration-per-month">${translation.modalPerMonth}</div>
+                    `;
+                    if (option.discount > 0) {
+                        priceHTML = `
+                            <div class="duration-original-price">$${basePrice.toFixed(2)}</div>
+                            <div class="duration-price">$${monthlyPrice.toFixed(2)}</div>
+                            <div class="duration-per-month">${translation.modalPerMonth}</div>
+                            <div class="duration-savings">${translation.modalSaveText} $${savings.toFixed(2)}</div>
+                        `;
+                    }
+                } else {
+                    priceHTML = `
+                        <div class="duration-price">$${totalPrice.toFixed(2)}</div>
+                        <div class="duration-per-month">${translation.modalTotal}</div>
+                    `;
+                    if (option.discount > 0) {
+                        priceHTML = `
+                            <div class="duration-original-price">$${originalTotal.toFixed(2)}</div>
+                            <div class="duration-price">$${totalPrice.toFixed(2)}</div>
+                            <div class="duration-per-month">${translation.modalTotal}</div>
+                            <div class="duration-savings">${translation.modalSaveText} $${savings.toFixed(2)}</div>
+                        `;
+                    }
+                }
+                
+                card.innerHTML = `
+                    ${badgeHTML}
+                    <div class="duration-title">${durationLabel}</div>
+                    ${priceHTML}
+                `;
+                
+                container.appendChild(card);
+            });
+        }
+
+        function selectDuration(key, option) {
+            selectedDuration = {key, option};
+            
+            // Update visual selection
+            document.querySelectorAll('.duration-card').forEach(card => {
+                card.classList.remove('selected');
+            });
+            event.currentTarget.classList.add('selected');
+            
+            // Show payment methods
+            generatePaymentMethods();
+        }
+
+        function generatePaymentMethods() {
+            const container = document.getElementById('availablePaymentMethods');
+            const translation = translations[currentLanguage];
+            
+            container.innerHTML = '';
+            
+            // Payment methods based on type
+            let methods = [];
+            
+            if (selectedPaymentType === 'subscription') {
+                // Only Stripe for subscriptions
+                methods = [
+                    {id: 'stripe', name: 'Stripe', desc: translation.modalOnlyStripe, icon: '💳'}
+                ];
+            } else {
+                // All methods for one-time payments
+                methods = [
+                    {id: 'card', name: translation.paymentCard, desc: translation.paymentCardDesc, icon: '💳'},
+                    {id: 'binance', name: translation.paymentBinance, desc: translation.paymentBinanceDesc, icon: '₿'},
+                    {id: 'paypal', name: translation.paymentPaypal, desc: translation.paymentPaypalDesc, icon: '💰'}
+                ];
+                
+                // Add SINPE for Costa Rica
+                if (currentCountry === 'costarica') {
+                    methods.push({id: 'sinpe', name: translation.paymentSinpe, desc: translation.paymentSinpeDesc, icon: '📱'});
+                }
+            }
+            
+            methods.forEach(method => {
+                const card = document.createElement('div');
+                card.className = 'payment-method-card';
+                card.onclick = () => selectPaymentMethod(method.id);
+                
+                card.innerHTML = `
+                    <div class="payment-icon">${method.icon}</div>
+                    <div class="payment-info">
+                        <div class="payment-name">${method.name}</div>
+                        <div class="payment-desc">${method.desc}</div>
+                    </div>
+                    <div class="payment-arrow">→</div>
+                `;
+                
+                container.appendChild(card);
+            });
+            
+            document.getElementById('paymentMethodsSection').style.display = 'block';
         }
 
         function selectPaymentMethod(method) {
-            if (selectedPlanIndex === null) return;
+            if (!selectedDuration) return;
             
             const plan = plans[selectedPlanIndex];
-            let paymentKey;
             
-            if (plan.hasDeviceSwitch) {
+            // Determine the plan key
+            let planKey = '';
+            if (plan.name === 'FLUJO TV') {
+                planKey = 'flujo';
+            } else if (plan.name === 'MAGISTV PRO') {
                 const is3Devices = planDeviceStates[selectedPlanIndex];
-                paymentKey = is3Devices ? plan.paymentKey3Devices : plan.paymentKey1Device;
-            } else {
-                paymentKey = plan.paymentKey;
+                planKey = is3Devices ? 'magistv3' : 'magistv1';
+            } else if (plan.name === 'TELE-LATINO') {
+                const is3Devices = planDeviceStates[selectedPlanIndex];
+                planKey = is3Devices ? 'telelatino3' : 'telelatino1';
             }
             
-            const paymentLinks = coinpalLinks[paymentKey];
-            const paymentLink = paymentLinks[method];
+            // Get the payment link
+            const paymentType = selectedPaymentType;
+            const durationKey = selectedDuration.key;
             
-            // Verificar si el link está configurado
-            if (paymentLink.startsWith('TU_')) {
-                alert('⚠️ Los Payment Links aún no están configurados. Por favor, agrega tus links de Coinpal.io en la sección de configuración del código.');
+            let paymentLink = '';
+            
+            if (paymentType === 'subscription') {
+                // Stripe subscription link
+                if (paymentLinks[planKey] && paymentLinks[planKey].subscription) {
+                    paymentLink = paymentLinks[planKey].subscription[durationKey]?.stripe;
+                }
+            } else {
+                // One-time payment links
+                if (paymentLinks[planKey] && paymentLinks[planKey].oneTime) {
+                    paymentLink = paymentLinks[planKey].oneTime[durationKey]?.[method];
+                }
+            }
+            
+            // Check if link is configured
+            if (!paymentLink || paymentLink.startsWith('TU_')) {
+                alert('⚠️ Los Payment Links aún no están configurados. Por favor, agrega tus links de Coinpal.io y Stripe en la sección de configuración del código.');
                 return;
             }
             
-            // Redirigir al link de pago
+            // Redirect to payment
             window.location.href = paymentLink;
         }
 
