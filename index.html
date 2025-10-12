@@ -115,6 +115,7 @@
             justify-content: center;
             gap: 15px;
             flex-wrap: wrap;
+            position: relative;
         }
         
         .wholesale-text {
@@ -133,6 +134,10 @@
             font-size: 14px;
             transition: all 0.3s ease;
             backdrop-filter: blur(10px);
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         
         .wholesale-btn:hover {
@@ -140,6 +145,23 @@
             border-color: rgba(255, 255, 255, 0.5);
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .coming-soon-badge {
+            background: #ef4444;
+            color: white;
+            font-size: 10px;
+            padding: 3px 8px;
+            border-radius: 12px;
+            font-weight: 700;
+            animation: bounce 2s infinite;
+            white-space: nowrap;
+        }
+        
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+            40% { transform: translateY(-5px); }
+            60% { transform: translateY(-3px); }
         }
         
         .container {
@@ -1637,7 +1659,10 @@
     <div class="wholesale-banner">
         <div class="wholesale-content">
             <span class="wholesale-text" id="wholesaleText">🏢 ¿Eres cliente mayorista?</span>
-            <a href="#" class="wholesale-btn" id="wholesaleBtn" onclick="openWholesaleLink()">Ver Precios Especiales →</a>
+            <a href="#" class="wholesale-btn" id="wholesaleBtn" onclick="showComingSoonMessage()">
+                Ver Precios Especiales →
+                <span class="coming-soon-badge" id="comingSoonBadge">Muy Pronto</span>
+            </a>
         </div>
     </div>
 
@@ -2725,7 +2750,9 @@
                 modalOnlyStripe: 'Solo disponible con Stripe',
                 // Wholesale Banner
                 wholesaleText: '🏢 ¿Eres cliente mayorista?',
-                wholesaleBtn: 'Ver Precios Especiales →'
+                wholesaleBtn: 'Ver Precios Especiales →',
+                comingSoonBadge: 'Muy Pronto',
+                comingSoonMessage: '🚀 ¡Estamos preparando algo increíble!\n\nPronto tendremos precios especiales para mayoristas.\n\nMientras tanto, ¡aprovecha nuestros planes actuales!'
             },
             en: {
                 headerTitle: '📺 Best IPTV Streaming Plans',
@@ -2831,7 +2858,9 @@
                 modalOnlyStripe: 'Only available with Stripe',
                 // Wholesale Banner
                 wholesaleText: '🏢 Are you a wholesale client?',
-                wholesaleBtn: 'View Special Prices →'
+                wholesaleBtn: 'View Special Prices →',
+                comingSoonBadge: 'Coming Soon',
+                comingSoonMessage: '🚀 We are preparing something incredible!\n\nSoon we will have special prices for wholesalers.\n\nMeanwhile, take advantage of our current plans!'
             }
         };
 
@@ -2970,7 +2999,12 @@
             Object.keys(translation).forEach(key => {
                 const element = document.getElementById(key);
                 if (element) {
-                    element.innerHTML = translation[key];
+                    // Special handling for elements that should use textContent instead of innerHTML
+                    if (key === 'comingSoonBadge') {
+                        element.textContent = translation[key];
+                    } else {
+                        element.innerHTML = translation[key];
+                    }
                 }
             });
             
@@ -3389,12 +3423,9 @@
             generatePricingCards();
         });
 
-        function openWholesaleLink() {
-            if (wholesaleLink.startsWith('TU_')) {
-                alert('⚠️ El link de mayoristas aún no está configurado. Por favor, agrega el link real en la configuración del código.');
-                return;
-            }
-            window.open(wholesaleLink, '_blank');
+        function showComingSoonMessage() {
+            const translation = translations[currentLanguage];
+            alert(translation.comingSoonMessage);
         }
 
         // Expose functions globally
@@ -3408,7 +3439,7 @@
         window.toggleFaq = toggleFaq;
         window.openLegalModal = openLegalModal;
         window.closeLegalModal = closeLegalModal;
-        window.openWholesaleLink = openWholesaleLink;
+        window.showComingSoonMessage = showComingSoonMessage;
     </script>
 </body>
 </html>
