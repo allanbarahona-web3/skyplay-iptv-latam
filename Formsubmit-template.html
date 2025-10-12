@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro Cliente Mayorista - Skyplay IPTV</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1e40af;
+            --primary-dark: #1e3a8a;
+            --accent: #10b981;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f1f5f9;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: var(--light);
+            padding: 40px 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .form-container {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            padding: 40px;
+            border-radius: 12px;
+            color: var(--white);
+        }
+
+        .form-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .form-header h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .form-header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .contact-form {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 12px;
+            color: var(--dark);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--light);
+            border-radius: 6px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .form-group textarea {
+            resize: vertical;
+            min-height: 120px;
+        }
+
+        .form-submit {
+            width: 100%;
+            padding: 14px;
+            background: var(--accent);
+            color: var(--white);
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .form-submit:hover {
+            background: #059669;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(16, 185, 129, 0.3);
+        }
+
+        .required {
+            color: #ef4444;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-container {
+                padding: 20px;
+            }
+            
+            .contact-form {
+                padding: 20px;
+            }
+        }
+
+        /* Instructions Box */
+        .instructions {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--accent);
+        }
+
+        .instructions h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .instructions ul {
+            margin-left: 20px;
+        }
+
+        .instructions li {
+            margin-bottom: 8px;
+            color: var(--gray);
+        }
+
+        .instructions code {
+            background: var(--light);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'Courier New', monospace;
+            color: var(--primary);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- INSTRUCTIONS - REMOVED FOR PRODUCTION
+        <div class="instructions">
+            <h2>📋 Formulario Cuenta Mayorista - Instrucciones</h2>
+            <p><strong>Configuración Rápida:</strong></p>
+            <ul>
+                <li>Cambiar la URL <code>action</code> por tu email: <code>https://formsubmit.co/TU_EMAIL</code></li>
+                <li>Actualizar la URL de redirección <code>_next</code> a tu página de gracias</li>
+                <li>Personalizar el <code>_subject</code> para tu proyecto</li>
+                <li>El formulario captura: Nombre Completo, Teléfono+País, Email</li>
+                <li>Incluye todos los países de Latinoamérica en el selector</li>
+                <li><strong>¡Remover este cuadro de instrucciones antes de publicar!</strong></li>
+            </ul>
+        </div>
+        -->
+
+        <div class="form-container">
+            <div class="form-header">
+                <h1>🏢 Registro Cliente Mayorista</h1>
+                <p>Complete el formulario para acceder a precios especiales y beneficios exclusivos.</p>
+            </div>
+
+            <div class="contact-form">
+                <h3>Información de Contacto</h3>
+                <form action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST">
+                    <!-- FormSubmit Configuration -->
+                    <input type="hidden" name="_subject" value="Nueva Solicitud - Cliente Mayorista">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
+                    <input type="hidden" name="_autoresponse" value="¡Gracias por tu interés en ser cliente mayorista! Nos pondremos en contacto contigo dentro de 24 horas.">
+                    <!-- Honeypot for spam protection -->
+                    <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
+                    
+                    <div class="form-group">
+                        <label>Nombre Completo <span class="required">*</span></label>
+                        <input type="text" name="Nombre_Completo" required placeholder="Ingresa tu nombre y apellidos">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Código de País <span class="required">*</span></label>
+                            <select name="Codigo_Pais" required>
+                                <option value="">Selecciona tu país</option>
+                                <option value="+1">🇺🇸 Estados Unidos (+1)</option>
+                                <option value="+1">🇨🇦 Canadá (+1)</option>
+                                <option value="+52">🇲🇽 México (+52)</option>
+                                <option value="+502">🇬🇹 Guatemala (+502)</option>
+                                <option value="+503">🇸🇻 El Salvador (+503)</option>
+                                <option value="+504">🇭🇳 Honduras (+504)</option>
+                                <option value="+505">🇳🇮 Nicaragua (+505)</option>
+                                <option value="+506">🇨🇷 Costa Rica (+506)</option>
+                                <option value="+507">🇵🇦 Panamá (+507)</option>
+                                <option value="+57">🇨🇴 Colombia (+57)</option>
+                                <option value="+58">🇻🇪 Venezuela (+58)</option>
+                                <option value="+593">🇪🇨 Ecuador (+593)</option>
+                                <option value="+51">🇵🇪 Perú (+51)</option>
+                                <option value="+591">🇧🇴 Bolivia (+591)</option>
+                                <option value="+56">🇨🇱 Chile (+56)</option>
+                                <option value="+54">🇦🇷 Argentina (+54)</option>
+                                <option value="+598">🇺🇾 Uruguay (+598)</option>
+                                <option value="+595">🇵🇾 Paraguay (+595)</option>
+                                <option value="+55">🇧🇷 Brasil (+55)</option>
+                                <option value="+34">🇪🇸 España (+34)</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label>Número de Teléfono <span class="required">*</span></label>
+                            <input type="tel" name="Telefono" required placeholder="Ej: 123456789">
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Correo Electrónico <span class="required">*</span></label>
+                        <input type="email" name="Email" required placeholder="tu@email.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label>Comentarios Adicionales (Opcional)</label>
+                        <textarea name="Comentarios" placeholder="Cuéntanos sobre tu negocio, volumen esperado, o cualquier pregunta específica..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="form-submit">Solicitar Cuenta Mayorista</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
