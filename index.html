@@ -92,6 +92,56 @@
             color: var(--primary);
         }
         
+        /* Wholesale Button */
+        .wholesale-banner {
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            color: white;
+            text-align: center;
+            padding: 12px 20px;
+            margin: 0 20px 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3);
+            animation: pulse-glow 3s ease-in-out infinite;
+        }
+        
+        @keyframes pulse-glow {
+            0%, 100% { box-shadow: 0 4px 15px rgba(245, 158, 11, 0.3); }
+            50% { box-shadow: 0 6px 25px rgba(245, 158, 11, 0.5); }
+        }
+        
+        .wholesale-content {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+        
+        .wholesale-text {
+            font-size: 16px;
+            font-weight: 600;
+        }
+        
+        .wholesale-btn {
+            background: rgba(255, 255, 255, 0.2);
+            color: white;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            padding: 8px 20px;
+            border-radius: 25px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+        
+        .wholesale-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
         .container {
             max-width: 1400px;
             margin: 20px auto;
@@ -1582,6 +1632,14 @@
             <button class="lang-btn" onclick="changeLanguage('en')" id="btnEn">🇺🇸 EN</button>
         </div>
     </div>
+    
+    <!-- Wholesale Banner -->
+    <div class="wholesale-banner">
+        <div class="wholesale-content">
+            <span class="wholesale-text" id="wholesaleText">🏢 ¿Eres cliente mayorista?</span>
+            <a href="#" class="wholesale-btn" id="wholesaleBtn" onclick="openWholesaleLink()">Ver Precios Especiales →</a>
+        </div>
+    </div>
 
     <!-- Country Selection Modal -->
     <div class="modal active" id="countryModal">
@@ -1631,7 +1689,7 @@
                 
                 <div class="payment-type-grid">
                     <div class="payment-type-card" onclick="selectPaymentType('subscription')">
-                        <div class="payment-type-icon">�</div>
+                        <div class="payment-type-icon">🔄</div>
                         <div class="payment-type-content">
                             <h3 id="modalSubscriptionTitle">Suscripción</h3>
                             <p id="modalSubscriptionDesc">Renovación automática</p>
@@ -2181,6 +2239,92 @@
     </div>
 
     <script>
+        /*
+        ========================================
+        📋 DOCUMENTACIÓN DE IDENTIFICADORES DE PAGO
+        ========================================
+        
+        Todos los links de pago están organizados por:
+        - Plan (flujo, magistv1, magistv3, telelatino1, telelatino3)
+        - Tipo de Pago (oneTime, subscription)
+        - Duración (month1, months3, months6, months12 / monthly, quarterly, semiannual, annual)
+        - Método de Pago (card, binance, paypal, sinpe / stripe)
+        
+        🎯 ESTRUCTURA COMPLETA DE IDENTIFICADORES:
+        
+        ┌─ FLUJO TV (Plan estático - $7.75)
+        │  └─ oneTime:
+        │     ├─ month1: TU_COINPAL_LINK_FLUJO_1M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_FLUJO_1M
+        │     ├─ months3: TU_COINPAL_LINK_FLUJO_3M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_FLUJO_3M
+        │     ├─ months6: TU_COINPAL_LINK_FLUJO_6M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_FLUJO_6M
+        │     └─ months12: TU_COINPAL_LINK_FLUJO_12M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_FLUJO_12M
+        │
+        ┌─ MAGISTV PRO - 1 Dispositivo ($3.95)
+        │  ├─ oneTime:
+        │  │  ├─ month1: TU_COINPAL_LINK_MAGISTV1_1M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_MAGISTV1_1M
+        │  │  ├─ months3: TU_COINPAL_LINK_MAGISTV1_3M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_MAGISTV1_3M
+        │  │  ├─ months6: TU_COINPAL_LINK_MAGISTV1_6M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_MAGISTV1_6M
+        │  │  └─ months12: TU_COINPAL_LINK_MAGISTV1_12M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_MAGISTV1_12M
+        │  └─ subscription:
+        │     ├─ monthly: TU_STRIPE_LINK_MAGISTV1_MONTHLY
+        │     ├─ quarterly: TU_STRIPE_LINK_MAGISTV1_QUARTERLY
+        │     ├─ semiannual: TU_STRIPE_LINK_MAGISTV1_SEMIANNUAL
+        │     └─ annual: TU_STRIPE_LINK_MAGISTV1_ANNUAL
+        │
+        ┌─ MAGISTV PRO - 3 Dispositivos ($5.25)
+        │  ├─ oneTime:
+        │  │  ├─ month1: TU_COINPAL_LINK_MAGISTV3_1M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_MAGISTV3_1M
+        │  │  ├─ months3: TU_COINPAL_LINK_MAGISTV3_3M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_MAGISTV3_3M
+        │  │  ├─ months6: TU_COINPAL_LINK_MAGISTV3_6M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_MAGISTV3_6M
+        │  │  └─ months12: TU_COINPAL_LINK_MAGISTV3_12M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_MAGISTV3_12M
+        │  └─ subscription:
+        │     ├─ monthly: TU_STRIPE_LINK_MAGISTV3_MONTHLY
+        │     ├─ quarterly: TU_STRIPE_LINK_MAGISTV3_QUARTERLY
+        │     ├─ semiannual: TU_STRIPE_LINK_MAGISTV3_SEMIANNUAL
+        │     └─ annual: TU_STRIPE_LINK_MAGISTV3_ANNUAL
+        │
+        ┌─ TELE-LATINO - 1 Dispositivo ($3.95)
+        │  ├─ oneTime:
+        │  │  ├─ month1: TU_COINPAL_LINK_TELELATINO1_1M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_TELELATINO1_1M
+        │  │  ├─ months3: TU_COINPAL_LINK_TELELATINO1_3M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_TELELATINO1_3M
+        │  │  ├─ months6: TU_COINPAL_LINK_TELELATINO1_6M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_TELELATINO1_6M
+        │  │  └─ months12: TU_COINPAL_LINK_TELELATINO1_12M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_TELELATINO1_12M
+        │  └─ subscription:
+        │     ├─ monthly: TU_STRIPE_LINK_TELELATINO1_MONTHLY
+        │     ├─ quarterly: TU_STRIPE_LINK_TELELATINO1_QUARTERLY
+        │     ├─ semiannual: TU_STRIPE_LINK_TELELATINO1_SEMIANNUAL
+        │     └─ annual: TU_STRIPE_LINK_TELELATINO1_ANNUAL
+        │
+        └─ TELE-LATINO - 3 Dispositivos ($5.60)
+           ├─ oneTime:
+           │  ├─ month1: TU_COINPAL_LINK_TELELATINO3_1M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_TELELATINO3_1M
+           │  ├─ months3: TU_COINPAL_LINK_TELELATINO3_3M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_TELELATINO3_3M
+           │  ├─ months6: TU_COINPAL_LINK_TELELATINO3_6M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_TELELATINO3_6M
+           │  └─ months12: TU_COINPAL_LINK_TELELATINO3_12M_[TARJETA|BINANCE|PAYPAL] / TU_SINPE_LINK_TELELATINO3_12M
+           └─ subscription:
+              ├─ monthly: TU_STRIPE_LINK_TELELATINO3_MONTHLY
+              ├─ quarterly: TU_STRIPE_LINK_TELELATINO3_QUARTERLY
+              ├─ semiannual: TU_STRIPE_LINK_TELELATINO3_SEMIANNUAL
+              └─ annual: TU_STRIPE_LINK_TELELATINO3_ANNUAL
+        
+        🔧 TOTAL DE LINKS ÚNICOS REQUERIDOS:
+        - FLUJO TV: 16 links (4 duraciones × 4 métodos de pago)
+        - MAGISTV PRO (1 device): 20 links (16 one-time + 4 subscription)
+        - MAGISTV PRO (3 devices): 20 links (16 one-time + 4 subscription)
+        - TELE-LATINO (1 device): 20 links (16 one-time + 4 subscription)
+        - TELE-LATINO (3 devices): 20 links (16 one-time + 4 subscription)
+        
+        📊 TOTAL: 96 links únicos de pago
+        
+        💡 NOTA: 
+        - SINPE solo disponible para Costa Rica
+        - Stripe solo para suscripciones
+        - Todos los identificadores siguen el patrón: PROVEEDOR_PLAN_DURACION_METODO
+        */
+        
+        // CONFIGURACIÓN - WHOLESALE LINK
+        const wholesaleLink = 'TU_LINK_MAYORISTAS'; // Reemplazar con el link real de mayoristas
+        
         // PRICING STRUCTURE FOR SUBSCRIPTION AND ONE-TIME PAYMENTS
         const pricingOptions = {
             subscription: {
@@ -2555,10 +2699,10 @@
                 // New Modal Translations
                 modalStep1Title: 'Selecciona el Tipo de Pago',
                 modalStep1Subtitle: 'Elige entre suscripción recurrente o pago único',
-                modalSubscriptionTitle: '🔄 Suscripción',
+                modalSubscriptionTitle: 'Suscripción',
                 modalSubscriptionDesc: 'Renovación automática',
                 modalSubscriptionNote: 'Cancela cuando quieras',
-                modalOneTimeTitle: '💰 Pago Único',
+                modalOneTimeTitle: 'Pago Único',
                 modalOneTimeDesc: 'Sin renovación automática',
                 modalOneTimeNote: 'Acceso por tiempo limitado',
                 modalStep2Title: 'Selecciona la Duración',
@@ -2578,7 +2722,10 @@
                 modalFinalPrice: 'Precio final:',
                 modalPerMonth: '/mes',
                 modalTotal: 'Total:',
-                modalOnlyStripe: 'Solo disponible con Stripe'
+                modalOnlyStripe: 'Solo disponible con Stripe',
+                // Wholesale Banner
+                wholesaleText: '🏢 ¿Eres cliente mayorista?',
+                wholesaleBtn: 'Ver Precios Especiales →'
             },
             en: {
                 headerTitle: '📺 Best IPTV Streaming Plans',
@@ -2658,10 +2805,10 @@
                 // New Modal Translations
                 modalStep1Title: 'Select Payment Type',
                 modalStep1Subtitle: 'Choose between recurring subscription or one-time payment',
-                modalSubscriptionTitle: '🔄 Subscription',
+                modalSubscriptionTitle: 'Subscription',
                 modalSubscriptionDesc: 'Automatic renewal',
                 modalSubscriptionNote: 'Cancel anytime',
-                modalOneTimeTitle: '💰 One-Time Payment',
+                modalOneTimeTitle: 'One-Time Payment',
                 modalOneTimeDesc: 'No automatic renewal',
                 modalOneTimeNote: 'Limited time access',
                 modalStep2Title: 'Select Duration',
@@ -2681,7 +2828,10 @@
                 modalFinalPrice: 'Final price:',
                 modalPerMonth: '/month',
                 modalTotal: 'Total:',
-                modalOnlyStripe: 'Only available with Stripe'
+                modalOnlyStripe: 'Only available with Stripe',
+                // Wholesale Banner
+                wholesaleText: '🏢 Are you a wholesale client?',
+                wholesaleBtn: 'View Special Prices →'
             }
         };
 
@@ -3239,6 +3389,14 @@
             generatePricingCards();
         });
 
+        function openWholesaleLink() {
+            if (wholesaleLink.startsWith('TU_')) {
+                alert('⚠️ El link de mayoristas aún no está configurado. Por favor, agrega el link real en la configuración del código.');
+                return;
+            }
+            window.open(wholesaleLink, '_blank');
+        }
+
         // Expose functions globally
         window.selectCountry = selectCountry;
         window.openCountryModal = openCountryModal;
@@ -3250,6 +3408,7 @@
         window.toggleFaq = toggleFaq;
         window.openLegalModal = openLegalModal;
         window.closeLegalModal = closeLegalModal;
+        window.openWholesaleLink = openWholesaleLink;
     </script>
 </body>
 </html>
