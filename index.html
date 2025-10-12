@@ -518,6 +518,57 @@
         .pricing-card.popular .subscribe-btn:hover {
             box-shadow: 0 10px 30px rgba(239, 68, 68, 0.4);
         }
+
+        /* Device Switch Styles */
+        .device-switch-container {
+            margin: 20px 0;
+            padding: 15px;
+            background: var(--gray-50);
+            border-radius: 12px;
+            border: 2px solid var(--gray-100);
+        }
+
+        .device-switch-label {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--gray-600);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .device-switch {
+            display: flex;
+            background: var(--gray-200);
+            border-radius: 25px;
+            padding: 4px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .device-option {
+            flex: 1;
+            padding: 8px 16px;
+            text-align: center;
+            font-size: 13px;
+            font-weight: 600;
+            color: var(--gray-600);
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 2;
+        }
+
+        .device-option.active {
+            color: white;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
+            box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
+        }
+
+        .device-price-diff {
+            font-size: 11px;
+            opacity: 0.8;
+            margin-top: 2px;
+        }
         
         /* FAQs */
         .faqs {
@@ -1920,7 +1971,7 @@
             bolivia: { currency: 'BOB', symbol: 'Bs', rate: 6.95, flag: '🇧🇴', name: 'Bolivia' }
         };
 
-        // Plan data
+        // Plan data - FLUJO TV + plans with device switch
         const plans = [
             {
                 name: 'FLUJO TV',
@@ -1937,31 +1988,25 @@
                     { text: 'Acceso Web', enabled: false },
                     { text: 'Prueba Gratuita', enabled: false }
                 ],
-                paymentKey: 'plan1'
+                paymentKey: 'plan1',
+                hasDeviceSwitch: false
             },
             {
                 name: 'MAGISTV PRO',
-                subtitle: '1 Dispositivo',
-                basePrice: 3.95,
-                popular: false,
-                features: [
-                    { text: '+ 1000 Canales', enabled: true },
-                    { text: '+ 6000 Series y Películas', enabled: true },
-                    { text: 'Animé y Deportes', enabled: true },
-                    { text: 'Canales Locales e Internacionales', enabled: true },
-                    { text: '1 Dispositivo', enabled: true },
-                    { text: 'Android - TV Box - Fire TV', enabled: true },
-                    { text: 'Acceso Web Multiplataforma', enabled: true },
-                    { text: 'Prueba Gratuita 24H', enabled: true }
-                ],
-                paymentKey: 'plan2'
-            },
-            {
-                name: 'MAGISTV PRO',
-                subtitle: '3 Dispositivos',
-                basePrice: 5.25,
+                basePrice1Device: 3.95,
+                basePrice3Devices: 5.25,
                 popular: true,
-                features: [
+                features1Device: [
+                    { text: '+ 1000 Canales', enabled: true },
+                    { text: '+ 6000 Series y Películas', enabled: true },
+                    { text: 'Animé y Deportes', enabled: true },
+                    { text: 'Canales Locales e Internacionales', enabled: true },
+                    { text: '1 Dispositivo', enabled: true },
+                    { text: 'Android - TV Box - Fire TV', enabled: true },
+                    { text: 'Acceso Web Multiplataforma', enabled: true },
+                    { text: 'Prueba Gratuita 24H', enabled: true }
+                ],
+                features3Devices: [
                     { text: '+ 1000 Canales', enabled: true },
                     { text: '+ 6000 Series y Películas', enabled: true },
                     { text: 'Animé y Deportes', enabled: true },
@@ -1971,14 +2016,16 @@
                     { text: 'Acceso Web Multiplataforma', enabled: true },
                     { text: 'Prueba Gratuita 24H', enabled: true }
                 ],
-                paymentKey: 'plan3'
+                paymentKey1Device: 'plan2',
+                paymentKey3Devices: 'plan3',
+                hasDeviceSwitch: true
             },
             {
                 name: 'TELE-LATINO',
-                subtitle: '1 Dispositivo',
-                basePrice: 3.95,
+                basePrice1Device: 3.95,
+                basePrice3Devices: 5.60,
                 popular: false,
-                features: [
+                features1Device: [
                     { text: '+ 1000 Canales', enabled: true },
                     { text: '+ 6000 Series y Películas', enabled: true },
                     { text: 'Animé y Deportes', enabled: true },
@@ -1988,14 +2035,7 @@
                     { text: 'Acceso Web', enabled: false },
                     { text: 'Prueba Gratuita 72H', enabled: true }
                 ],
-                paymentKey: 'plan4'
-            },
-            {
-                name: 'TELE-LATINO',
-                subtitle: '3 Dispositivos',
-                basePrice: 5.60,
-                popular: false,
-                features: [
+                features3Devices: [
                     { text: '+ 1000 Canales', enabled: true },
                     { text: '+ 6000 Series y Películas', enabled: true },
                     { text: 'Animé y Deportes', enabled: true },
@@ -2005,7 +2045,9 @@
                     { text: 'Acceso Web', enabled: false },
                     { text: 'Prueba Gratuita 72H', enabled: true }
                 ],
-                paymentKey: 'plan5'
+                paymentKey1Device: 'plan4',
+                paymentKey3Devices: 'plan5',
+                hasDeviceSwitch: true
             }
         ];
 
@@ -2016,6 +2058,7 @@
         let currentCountry = 'usa';
         let currentLanguage = 'es';
         let selectedPlanIndex = null;
+        let planDeviceStates = [false, false, false]; // false = 1 device, true = 3 devices (only for plans with switch)
 
         // Translations
         const translations = {
@@ -2037,6 +2080,9 @@
                 plansTitle: 'Nuestros Planes',
                 subscribeBtnText: 'Suscribir Ahora',
                 monthlyText: '/mes',
+                deviceSwitchLabel: 'Número de Dispositivos',
+                deviceText: 'Dispositivo',
+                devicesText: 'Dispositivos',
                 popularBadge: '🔥 Más Popular',
                 faqTitle: 'Preguntas Frecuentes',
                 ctaTitle: '¿Necesitas Ayuda para Elegir?',
@@ -2110,6 +2156,9 @@
                 plansTitle: 'Our Plans',
                 subscribeBtnText: 'Subscribe Now',
                 monthlyText: '/month',
+                deviceSwitchLabel: 'Number of Devices',
+                deviceText: 'Device',
+                devicesText: 'Devices',
                 popularBadge: '🔥 Most Popular',
                 faqTitle: 'Frequently Asked Questions',
                 ctaTitle: 'Need Help Choosing?',
@@ -2178,19 +2227,42 @@
             container.innerHTML = '';
             
             plans.forEach((plan, index) => {
-                let finalUSDPrice = plan.basePrice;
-                if (isCR) {
-                    finalUSDPrice = plan.basePrice + crSurcharge;
-                } else if (isUSA) {
-                    finalUSDPrice = plan.basePrice + usSurcharge;
+                let finalUSDPrice, currentFeatures, paymentKey, isPopular;
+                
+                if (plan.hasDeviceSwitch) {
+                    // Plan with device switch
+                    const is3Devices = planDeviceStates[index];
+                    const currentBasePrice = is3Devices ? plan.basePrice3Devices : plan.basePrice1Device;
+                    currentFeatures = is3Devices ? plan.features3Devices : plan.features1Device;
+                    paymentKey = is3Devices ? plan.paymentKey3Devices : plan.paymentKey1Device;
+                    isPopular = plan.popular && is3Devices;
+                    
+                    finalUSDPrice = currentBasePrice;
+                    if (isCR) {
+                        finalUSDPrice = currentBasePrice + crSurcharge;
+                    } else if (isUSA) {
+                        finalUSDPrice = currentBasePrice + usSurcharge;
+                    }
+                } else {
+                    // Regular plan without switch
+                    currentFeatures = plan.features;
+                    paymentKey = plan.paymentKey;
+                    isPopular = plan.popular;
+                    
+                    finalUSDPrice = plan.basePrice;
+                    if (isCR) {
+                        finalUSDPrice = plan.basePrice + crSurcharge;
+                    } else if (isUSA) {
+                        finalUSDPrice = plan.basePrice + usSurcharge;
+                    }
                 }
                 
                 const localPrice = finalUSDPrice * countryData.rate;
                 
                 const card = document.createElement('div');
-                card.className = `pricing-card ${plan.popular ? 'popular' : ''}`;
+                card.className = `pricing-card ${isPopular ? 'popular' : ''}`;
                 
-                let featuresHTML = plan.features.map(feature => `
+                let featuresHTML = currentFeatures.map(feature => `
                     <div class="feature-item">
                         <div class="feature-icon ${!feature.enabled ? 'disabled' : ''}">${feature.enabled ? '✓' : '—'}</div>
                         <div class="feature-text ${!feature.enabled ? 'disabled' : ''}">${feature.text}</div>
@@ -2201,12 +2273,39 @@
                 if (countryData.currency !== 'USD') {
                     localPriceHTML = `<span class="plan-price-local">${countryData.symbol}${localPrice.toFixed(countryData.currency === 'CRC' ? 0 : 2)} ${countryData.currency}</span>`;
                 }
+
+                // Device switch HTML (only for plans with switch)
+                let deviceSwitchHTML = '';
+                if (plan.hasDeviceSwitch) {
+                    const is3Devices = planDeviceStates[index];
+                    const price1Device = plan.basePrice1Device;
+                    const price3Devices = plan.basePrice3Devices;
+                    
+                    deviceSwitchHTML = `
+                        <div class="device-switch-container">
+                            <div class="device-switch-label">${translation.deviceSwitchLabel || 'Número de Dispositivos'}</div>
+                            <div class="device-switch" onclick="toggleDeviceSwitch(${index})">
+                                <div class="device-option ${!is3Devices ? 'active' : ''}">
+                                    1 ${translation.deviceText || 'Dispositivo'}
+                                    <div class="device-price-diff">$${price1Device.toFixed(2)}</div>
+                                </div>
+                                <div class="device-option ${is3Devices ? 'active' : ''}">
+                                    3 ${translation.devicesText || 'Dispositivos'}
+                                    <div class="device-price-diff">$${price3Devices.toFixed(2)}</div>
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                }
                 
                 card.innerHTML = `
-                    ${plan.popular ? `<div class="popular-badge">${translation.popularBadge}</div>` : ''}
+                    ${isPopular ? `<div class="popular-badge">${translation.popularBadge}</div>` : ''}
                     <div class="card-header">
                         <div class="plan-name">${plan.name}</div>
-                        <div class="plan-subtitle">${plan.subtitle}</div>
+                        ${plan.hasDeviceSwitch ? '' : `<div class="plan-subtitle">${plan.subtitle}</div>`}
+                        
+                        ${deviceSwitchHTML}
+                        
                         <div class="plan-price">
                             <span class="plan-price-symbol">$</span>${finalUSDPrice.toFixed(2)}
                             <span class="plan-period">${translation.monthlyText}</span>
@@ -2264,6 +2363,16 @@
             generatePricingCards();
         }
 
+        function toggleDeviceSwitch(planIndex) {
+            const plan = plans[planIndex];
+            
+            // Only toggle if the plan has device switch functionality
+            if (plan.hasDeviceSwitch) {
+                planDeviceStates[planIndex] = !planDeviceStates[planIndex];
+                generatePricingCards();
+            }
+        }
+
         function showPaymentModal(planIndex) {
             selectedPlanIndex = planIndex;
             
@@ -2287,7 +2396,16 @@
             if (selectedPlanIndex === null) return;
             
             const plan = plans[selectedPlanIndex];
-            const paymentLinks = coinpalLinks[plan.paymentKey];
+            let paymentKey;
+            
+            if (plan.hasDeviceSwitch) {
+                const is3Devices = planDeviceStates[selectedPlanIndex];
+                paymentKey = is3Devices ? plan.paymentKey3Devices : plan.paymentKey1Device;
+            } else {
+                paymentKey = plan.paymentKey;
+            }
+            
+            const paymentLinks = coinpalLinks[paymentKey];
             const paymentLink = paymentLinks[method];
             
             // Verificar si el link está configurado
@@ -2415,6 +2533,7 @@
         window.selectCountry = selectCountry;
         window.openCountryModal = openCountryModal;
         window.changeLanguage = changeLanguage;
+        window.toggleDeviceSwitch = toggleDeviceSwitch;
         window.showPaymentModal = showPaymentModal;
         window.closePaymentModal = closePaymentModal;
         window.selectPaymentMethod = selectPaymentMethod;
