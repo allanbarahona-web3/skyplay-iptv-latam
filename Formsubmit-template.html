@@ -200,13 +200,15 @@
 
             <div class="contact-form">
                 <h3>Información de Contacto</h3>
-                <form action="https://formsubmit.co/YOUR_EMAIL_HERE" method="POST">
+                <form action="https://formsubmit.co/abarahonag@barmentech.com" method="POST" id="wholesaleForm">
                     <!-- FormSubmit Configuration -->
-                    <input type="hidden" name="_subject" value="Nueva Solicitud - Cliente Mayorista">
+                    <input type="hidden" name="_subject" value="Nueva Solicitud - Cliente Mayorista Skyplay IPTV">
                     <input type="hidden" name="_captcha" value="false">
                     <input type="hidden" name="_template" value="table">
-                    <input type="hidden" name="_next" value="https://yourwebsite.com/thank-you.html">
-                    <input type="hidden" name="_autoresponse" value="¡Gracias por tu interés en ser cliente mayorista! Nos pondremos en contacto contigo dentro de 24 horas.">
+                    <input type="hidden" name="_next" value="https://skyplay-iptv-latam.vercel.app">
+                    <input type="hidden" name="_autoresponse" value="¡Gracias por tu interés en ser cliente mayorista de Skyplay IPTV! Nos pondremos en contacto contigo dentro de 24 horas para brindarte acceso a precios especiales y beneficios exclusivos.">
+                    <!-- Webhook preparation for future VPS integration -->
+                    <input type="hidden" name="_webhook" value="" id="webhookUrl">
                     <!-- Honeypot for spam protection -->
                     <input type="text" name="_honey" style="display:none" tabindex="-1" autocomplete="off">
                     
@@ -263,5 +265,72 @@
             </div>
         </div>
     </div>
+    
+    <script>
+        // Configuration for VPS webhook (to be activated later)
+        const VPS_CONFIG = {
+            enabled: false, // Set to true when VPS is ready
+            webhookUrl: 'https://your-vps-domain.com/api/webhook/wholesale-registration',
+            apiKey: 'your-api-key' // Add your VPS API key when ready
+        };
+
+        // Form submission handler
+        document.getElementById('wholesaleForm').addEventListener('submit', function(e) {
+            // If VPS is enabled, also send to webhook
+            if (VPS_CONFIG.enabled) {
+                sendToVPS(new FormData(this));
+            }
+            
+            // Continue with FormSubmit (email)
+            // The form will submit normally to FormSubmit
+        });
+
+        // Function to send data to VPS (for future use)
+        async function sendToVPS(formData) {
+            try {
+                const data = {
+                    nombre_completo: formData.get('Nombre_Completo'),
+                    codigo_pais: formData.get('Codigo_Pais'),
+                    telefono: formData.get('Telefono'),
+                    email: formData.get('Email'),
+                    comentarios: formData.get('Comentarios'),
+                    timestamp: new Date().toISOString(),
+                    source: 'skyplay-wholesale-form'
+                };
+
+                const response = await fetch(VPS_CONFIG.webhookUrl, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${VPS_CONFIG.apiKey}`
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (response.ok) {
+                    console.log('Data sent to VPS successfully');
+                } else {
+                    console.warn('Failed to send to VPS:', response.status);
+                }
+            } catch (error) {
+                console.error('Error sending to VPS:', error);
+            }
+        }
+
+        // Enable VPS integration (call this function when VPS is ready)
+        function enableVPSIntegration(webhookUrl, apiKey) {
+            VPS_CONFIG.enabled = true;
+            VPS_CONFIG.webhookUrl = webhookUrl;
+            VPS_CONFIG.apiKey = apiKey;
+            
+            // Update the hidden webhook field for FormSubmit
+            document.getElementById('webhookUrl').value = webhookUrl;
+            
+            console.log('VPS integration enabled');
+        }
+
+        // Example usage when VPS is ready:
+        // enableVPSIntegration('https://your-vps.com/api/webhook/wholesale', 'your-api-key');
+    </script>
 </body>
 </html>
