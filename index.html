@@ -118,6 +118,13 @@
             position: relative;
         }
         
+        .wholesale-actions {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-wrap: wrap;
+        }
+        
         .wholesale-text {
             font-size: 16px;
             font-weight: 600;
@@ -143,6 +150,28 @@
         .wholesale-btn:hover {
             background: rgba(255, 255, 255, 0.3);
             border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .create-wholesale-account-btn {
+            background: rgba(255, 255, 255, 0.9);
+            color: #d97706;
+            border: 2px solid rgba(255, 255, 255, 0.9);
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .create-wholesale-account-btn:hover {
+            background: white;
             transform: translateY(-2px);
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
@@ -394,6 +423,41 @@
         /* PRICING CARDS - NUEVO DISEÑO */
         .plans-section {
             padding: 60px 20px;
+        }
+        
+        .plans-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+        
+        .create-account-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(16, 185, 129, 0.3);
+        }
+        
+        .create-account-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+            background: linear-gradient(135deg, #059669 0%, #047857 100%);
+        }
+        
+        .create-account-icon {
+            font-size: 16px;
         }
         
         .country-selector {
@@ -1273,6 +1337,17 @@
                 padding: 40px 15px;
             }
             
+            .plans-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 15px;
+            }
+            
+            .create-account-btn {
+                font-size: 13px;
+                padding: 10px 20px;
+            }
+            
             .pricing-cards {
                 grid-template-columns: 1fr;
                 gap: 20px;
@@ -1659,10 +1734,15 @@
     <div class="wholesale-banner">
         <div class="wholesale-content">
             <span class="wholesale-text" id="wholesaleText">🏢 ¿Eres cliente mayorista?</span>
-            <a href="#" class="wholesale-btn" id="wholesaleBtn" onclick="showComingSoonMessage()">
-                Ver Precios Especiales →
-                <span class="coming-soon-badge" id="comingSoonBadge">Muy Pronto</span>
-            </a>
+            <div class="wholesale-actions">
+                <a href="#" class="wholesale-btn" id="wholesaleBtn" onclick="showComingSoonMessage()">
+                    Ver Precios Especiales →
+                    <span class="coming-soon-badge" id="comingSoonBadge">Muy Pronto</span>
+                </a>
+                <button class="create-wholesale-account-btn" id="createWholesaleAccountBtn" onclick="showCreateWholesaleAccountMessage()">
+                    <span id="createWholesaleAccountText">Crea una cuenta mayorista</span>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -2133,7 +2213,13 @@
 
         <!-- Plans Section - NOW WITH CARDS -->
         <div class="plans-section">
-            <h2 class="section-title" id="plansTitle">Nuestros Planes</h2>
+            <div class="plans-header">
+                <h2 class="section-title" id="plansTitle">Nuestros Planes</h2>
+                <button class="create-account-btn" id="createAccountBtn" onclick="showCreateAccountMessage()">
+                    <span class="create-account-icon">👤</span>
+                    <span id="createAccountText">Crear Cuenta</span>
+                </button>
+            </div>
             
             <div class="country-selector">
                 <button class="country-selector-btn" onclick="openCountryModal()" id="countrySelectorBtn">
@@ -2752,7 +2838,13 @@
                 wholesaleText: '🏢 ¿Eres cliente mayorista?',
                 wholesaleBtn: 'Ver Precios Especiales →',
                 comingSoonBadge: 'Muy Pronto',
-                comingSoonMessage: '🚀 ¡Estamos preparando algo increíble!\n\nPronto tendremos precios especiales para mayoristas.\n\nMientras tanto, ¡aprovecha nuestros planes actuales!'
+                comingSoonMessage: '🚀 ¡Estamos preparando algo increíble!\n\nPronto tendremos precios especiales para mayoristas.\n\nMientras tanto, ¡aprovecha nuestros planes actuales!',
+                // Create Account Button
+                createAccountText: 'Crear Cuenta',
+                createAccountMessage: '📝 ¡Únete a Skyplay!\n\nCrea tu cuenta para:\n• Gestionar tus suscripciones\n• Historial de pagos\n• Soporte prioritario\n• Renovaciones automáticas\n\n¡Es gratis y solo toma 2 minutos!',
+                // Wholesale Account Button
+                createWholesaleAccountText: 'Crea una cuenta mayorista',
+                createWholesaleAccountMessage: '🏢 ¡Regístrate como Cliente Mayorista!\n\nVentajas exclusivas:\n• Precios especiales al por mayor\n• Descuentos por volumen\n• Soporte técnico dedicado\n• Panel de administración\n• Facturación empresarial\n\n¡Contáctanos para comenzar!'
             },
             en: {
                 headerTitle: '📺 Best IPTV Streaming Plans',
@@ -2860,7 +2952,13 @@
                 wholesaleText: '🏢 Are you a wholesale client?',
                 wholesaleBtn: 'View Special Prices →',
                 comingSoonBadge: 'Coming Soon',
-                comingSoonMessage: '🚀 We are preparing something incredible!\n\nSoon we will have special prices for wholesalers.\n\nMeanwhile, take advantage of our current plans!'
+                comingSoonMessage: '🚀 We are preparing something incredible!\n\nSoon we will have special prices for wholesalers.\n\nMeanwhile, take advantage of our current plans!',
+                // Create Account Button
+                createAccountText: 'Create Account',
+                createAccountMessage: '📝 Join Skyplay!\n\nCreate your account for:\n• Manage your subscriptions\n• Payment history\n• Priority support\n• Automatic renewals\n\nIt\'s free and takes only 2 minutes!',
+                // Wholesale Account Button
+                createWholesaleAccountText: 'Create wholesale account',
+                createWholesaleAccountMessage: '🏢 Register as a Wholesale Client!\n\nExclusive benefits:\n• Special wholesale prices\n• Volume discounts\n• Dedicated technical support\n• Management panel\n• Business billing\n\nContact us to get started!'
             }
         };
 
@@ -3428,6 +3526,16 @@
             alert(translation.comingSoonMessage);
         }
 
+        function showCreateAccountMessage() {
+            const translation = translations[currentLanguage];
+            alert(translation.createAccountMessage);
+        }
+
+        function showCreateWholesaleAccountMessage() {
+            const translation = translations[currentLanguage];
+            alert(translation.createWholesaleAccountMessage);
+        }
+
         // Expose functions globally
         window.selectCountry = selectCountry;
         window.openCountryModal = openCountryModal;
@@ -3440,6 +3548,8 @@
         window.openLegalModal = openLegalModal;
         window.closeLegalModal = closeLegalModal;
         window.showComingSoonMessage = showComingSoonMessage;
+        window.showCreateAccountMessage = showCreateAccountMessage;
+        window.showCreateWholesaleAccountMessage = showCreateWholesaleAccountMessage;
     </script>
 </body>
 </html>
