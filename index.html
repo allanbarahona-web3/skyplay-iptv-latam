@@ -1709,6 +1709,359 @@
                 padding: 20px;
             }
         }
+
+        /* Wholesale Registration Modal */
+        .wholesale-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .wholesale-modal.active {
+            display: flex;
+        }
+
+        .wholesale-modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 600px;
+            width: 100%;
+            max-height: 90vh;
+            overflow-y: auto;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .wholesale-modal-header {
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+        }
+
+        .wholesale-modal-header h2 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+
+        .wholesale-modal-header p {
+            opacity: 0.9;
+            font-size: 16px;
+        }
+
+        .wholesale-form-container {
+            padding: 30px;
+        }
+
+        .wholesale-form-group {
+            margin-bottom: 20px;
+        }
+
+        .wholesale-form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        .wholesale-form-group input,
+        .wholesale-form-group select,
+        .wholesale-form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid var(--gray-200);
+            border-radius: 8px;
+            font-size: 16px;
+            transition: border-color 0.3s;
+            font-family: inherit;
+        }
+
+        .wholesale-form-group input:focus,
+        .wholesale-form-group select:focus,
+        .wholesale-form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        .wholesale-form-row {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 15px;
+        }
+
+        .wholesale-form-group textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+
+        .wholesale-submit-btn {
+            width: 100%;
+            padding: 14px;
+            background: linear-gradient(135deg, var(--success) 0%, #059669 100%);
+            color: white;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 10px;
+        }
+
+        .wholesale-submit-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .wholesale-submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .wholesale-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .wholesale-close-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .required-mark {
+            color: #ef4444;
+        }
+
+        /* Thank You Modal */
+        .thank-you-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 3000;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .thank-you-modal.active {
+            display: flex;
+        }
+
+        .thank-you-modal-content {
+            background: white;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+            padding: 40px 30px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .thank-you-icon {
+            font-size: 80px;
+            margin-bottom: 20px;
+        }
+
+        .thank-you-modal h3 {
+            font-size: 28px;
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+
+        .thank-you-modal p {
+            color: var(--gray-600);
+            margin-bottom: 25px;
+            line-height: 1.6;
+        }
+
+        .thank-you-steps {
+            background: var(--gray-50);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 25px 0;
+            text-align: left;
+        }
+
+        .thank-you-steps h4 {
+            color: var(--primary);
+            font-size: 18px;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .thank-you-steps ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .thank-you-steps li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+            color: var(--gray-600);
+            font-size: 14px;
+        }
+
+        .thank-you-steps li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--success);
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .thank-you-contact {
+            background: var(--white);
+            border: 2px solid var(--gray-200);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .thank-you-contact p {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .thank-you-contact strong {
+            color: var(--primary);
+        }
+
+        .thank-you-actions {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .thank-you-btn {
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: none;
+            font-size: 14px;
+        }
+
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: var(--success);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #059669;
+            transform: translateY(-2px);
+        }
+
+        /* Mobile responsiveness for modals */
+        @media (max-width: 768px) {
+            .wholesale-modal-content {
+                margin: 20px;
+                max-height: 85vh;
+            }
+
+            .wholesale-modal-header {
+                padding: 20px;
+            }
+
+            .wholesale-modal-header h2 {
+                font-size: 24px;
+            }
+
+            .wholesale-form-container {
+                padding: 20px;
+            }
+
+            .wholesale-form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .thank-you-modal-content {
+                margin: 20px;
+                padding: 30px 20px;
+            }
+
+            .thank-you-icon {
+                font-size: 60px;
+            }
+
+            .thank-you-modal h3 {
+                font-size: 24px;
+            }
+
+            .thank-you-actions {
+                flex-direction: column;
+            }
+
+            .thank-you-btn {
+                width: 100%;
+                padding: 14px;
+            }
+
+            .thank-you-steps {
+                padding: 15px;
+                margin: 20px 0;
+            }
+
+            .thank-you-steps h4 {
+                font-size: 16px;
+                margin-bottom: 12px;
+            }
+
+            .thank-you-steps li {
+                font-size: 13px;
+                padding: 6px 0;
+                padding-left: 20px;
+            }
+
+            .thank-you-contact {
+                padding: 15px;
+                margin: 15px 0;
+            }
+
+            .thank-you-contact p {
+                font-size: 13px;
+                margin-bottom: 6px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -2349,6 +2702,106 @@
         </a>
     </div>
 
+    <!-- Wholesale Registration Modal -->
+    <div class="wholesale-modal" id="wholesaleModal">
+        <div class="wholesale-modal-content">
+            <div class="wholesale-modal-header">
+                <button class="wholesale-close-btn" onclick="closeWholesaleModal()" aria-label="Cerrar">×</button>
+                <h2 id="wholesaleModalTitle">🏢 Registro Cliente Mayorista</h2>
+                <p id="wholesaleModalSubtitle">Complete el formulario para acceder a precios especiales y beneficios exclusivos.</p>
+            </div>
+            
+            <div class="wholesale-form-container">
+                <form id="wholesaleForm" onsubmit="submitWholesaleForm(event)">
+                    <div class="wholesale-form-group">
+                        <label for="fullName">Nombre Completo <span class="required-mark">*</span></label>
+                        <input type="text" id="fullName" name="fullName" required placeholder="Ingresa tu nombre y apellidos">
+                    </div>
+                    
+                    <div class="wholesale-form-row">
+                        <div class="wholesale-form-group">
+                            <label for="countryCode">Código de País <span class="required-mark">*</span></label>
+                            <select id="countryCode" name="countryCode" required>
+                                <option value="">Selecciona tu país</option>
+                                <option value="+1">🇺🇸 Estados Unidos (+1)</option>
+                                <option value="+1">🇨🇦 Canadá (+1)</option>
+                                <option value="+52">🇲🇽 México (+52)</option>
+                                <option value="+502">🇬🇹 Guatemala (+502)</option>
+                                <option value="+503">🇸🇻 El Salvador (+503)</option>
+                                <option value="+504">🇭🇳 Honduras (+504)</option>
+                                <option value="+505">🇳🇮 Nicaragua (+505)</option>
+                                <option value="+506">🇨🇷 Costa Rica (+506)</option>
+                                <option value="+507">🇵🇦 Panamá (+507)</option>
+                                <option value="+57">🇨🇴 Colombia (+57)</option>
+                                <option value="+58">🇻🇪 Venezuela (+58)</option>
+                                <option value="+593">🇪🇨 Ecuador (+593)</option>
+                                <option value="+51">🇵🇪 Perú (+51)</option>
+                                <option value="+591">🇧🇴 Bolivia (+591)</option>
+                                <option value="+56">🇨🇱 Chile (+56)</option>
+                                <option value="+54">🇦🇷 Argentina (+54)</option>
+                                <option value="+598">🇺🇾 Uruguay (+598)</option>
+                                <option value="+595">🇵🇾 Paraguay (+595)</option>
+                                <option value="+55">🇧🇷 Brasil (+55)</option>
+                                <option value="+34">🇪🇸 España (+34)</option>
+                            </select>
+                        </div>
+                        <div class="wholesale-form-group">
+                            <label for="phone">Número de Teléfono <span class="required-mark">*</span></label>
+                            <input type="tel" id="phone" name="phone" required placeholder="Ej: 123456789">
+                        </div>
+                    </div>
+                    
+                    <div class="wholesale-form-group">
+                        <label for="email">Correo Electrónico <span class="required-mark">*</span></label>
+                        <input type="email" id="email" name="email" required placeholder="tu@email.com">
+                    </div>
+                    
+                    <div class="wholesale-form-group">
+                        <label for="comments">Comentarios Adicionales (Opcional)</label>
+                        <textarea id="comments" name="comments" placeholder="Cuéntanos sobre tu negocio, volumen esperado, o cualquier pregunta específica..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="wholesale-submit-btn" id="submitBtn">
+                        <span id="submitBtnText">Solicitar Cuenta Mayorista</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Thank You Modal -->
+    <div class="thank-you-modal" id="thankYouModal">
+        <div class="thank-you-modal-content">
+            <div class="thank-you-icon">�</div>
+            <h3 id="thankYouTitle">¡Registro Recibido!</h3>
+            <p id="thankYouMessage">Tu registro como cliente mayorista ha sido enviado exitosamente. Agradecemos tu interés en el programa mayorista de Skyplay IPTV y te contactaremos dentro de 24 horas con precios exclusivos y beneficios.</p>
+            
+            <div class="thank-you-steps">
+                <h4 id="nextStepsTitle">¿Qué sigue ahora?</h4>
+                <ul id="nextStepsList">
+                    <li id="step1">Revisaremos tu solicitud mayorista</li>
+                    <li id="step2">Nuestro equipo te contactará dentro de 24 horas</li>
+                    <li id="step3">Recibirás precios mayoristas exclusivos</li>
+                    <li id="step4">Acceso a soporte dedicado y panel de gestión</li>
+                    <li id="step5">Descuentos por volumen y facturación empresarial</li>
+                </ul>
+            </div>
+            
+            <div class="thank-you-contact">
+                <p><strong id="immediateAssistanceText">¿Necesitas asistencia inmediata?</strong></p>
+                <p>Email: abarahonag@barmentech.com</p>
+                <p id="whatsappContactText">WhatsApp: +1 (786) 391-8722</p>
+                <p id="businessHoursText">Horario: Lunes - Viernes, 9AM - 6PM EST</p>
+            </div>
+            
+            <div class="thank-you-actions">
+                <button class="thank-you-btn btn-primary" onclick="closeThankYouModal()" id="backToPlansBtnText">Continuar Navegando</button>
+                <a href="https://wa.me/17863918722?text=Hi%2C%20I%27m%20following%20up%20on%20my%20wholesale%20registration%20for%20Skyplay%20IPTV" 
+                   class="thank-you-btn btn-secondary" target="_blank" id="whatsappBtnText">Contactar WhatsApp</a>
+            </div>
+        </div>
+    </div>
+
     <script>
         /*
         ========================================
@@ -2844,7 +3297,25 @@
                 createAccountMessage: '📝 ¡Únete a Skyplay!\n\nCrea tu cuenta para:\n• Gestionar tus suscripciones\n• Historial de pagos\n• Soporte prioritario\n• Renovaciones automáticas\n\n¡Es gratis y solo toma 2 minutos!',
                 // Wholesale Account Button
                 createWholesaleAccountText: 'Crea una cuenta mayorista',
-                createWholesaleAccountMessage: '🏢 ¡Regístrate como Cliente Mayorista!\n\nVentajas exclusivas:\n• Precios especiales al por mayor\n• Descuentos por volumen\n• Soporte técnico dedicado\n• Panel de administración\n• Facturación empresarial\n\n¡Contáctanos para comenzar!'
+                createWholesaleAccountMessage: '🏢 ¡Regístrate como Cliente Mayorista!\n\nVentajas exclusivas:\n• Precios especiales al por mayor\n• Descuentos por volumen\n• Soporte técnico dedicado\n• Panel de administración\n• Facturación empresarial\n\n¡Contáctanos para comenzar!',
+                // Wholesale Modal
+                wholesaleModalTitle: '🏢 Registro Cliente Mayorista',
+                wholesaleModalSubtitle: 'Complete el formulario para acceder a precios especiales y beneficios exclusivos.',
+                submitBtnText: 'Solicitar Cuenta Mayorista',
+                // Thank You Modal
+                thankYouTitle: '¡Registro Recibido!',
+                thankYouMessage: 'Tu registro como cliente mayorista ha sido enviado exitosamente. Agradecemos tu interés en el programa mayorista de Skyplay IPTV y te contactaremos dentro de 24 horas con precios exclusivos y beneficios.',
+                nextStepsTitle: '¿Qué sigue ahora?',
+                step1: 'Revisaremos tu solicitud mayorista',
+                step2: 'Nuestro equipo te contactará dentro de 24 horas',
+                step3: 'Recibirás precios mayoristas exclusivos',
+                step4: 'Acceso a soporte dedicado y panel de gestión',
+                step5: 'Descuentos por volumen y facturación empresarial',
+                immediateAssistanceText: '¿Necesitas asistencia inmediata?',
+                whatsappContactText: 'WhatsApp: +1 (786) 391-8722',
+                businessHoursText: 'Horario: Lunes - Viernes, 9AM - 6PM EST',
+                backToPlansBtnText: 'Continuar Navegando',
+                whatsappBtnText: 'Contactar WhatsApp'
             },
             en: {
                 headerTitle: '📺 Best IPTV Streaming Plans',
@@ -2958,7 +3429,25 @@
                 createAccountMessage: '📝 Join Skyplay!\n\nCreate your account for:\n• Manage your subscriptions\n• Payment history\n• Priority support\n• Automatic renewals\n\nIt\'s free and takes only 2 minutes!',
                 // Wholesale Account Button
                 createWholesaleAccountText: 'Create wholesale account',
-                createWholesaleAccountMessage: '🏢 Register as a Wholesale Client!\n\nExclusive benefits:\n• Special wholesale prices\n• Volume discounts\n• Dedicated technical support\n• Management panel\n• Business billing\n\nContact us to get started!'
+                createWholesaleAccountMessage: '🏢 Register as a Wholesale Client!\n\nExclusive benefits:\n• Special wholesale prices\n• Volume discounts\n• Dedicated technical support\n• Management panel\n• Business billing\n\nContact us to get started!',
+                // Wholesale Modal
+                wholesaleModalTitle: '🏢 Wholesale Client Registration',
+                wholesaleModalSubtitle: 'Complete the form to access special pricing and exclusive benefits.',
+                submitBtnText: 'Request Wholesale Account',
+                // Thank You Modal
+                thankYouTitle: 'Registration Received!',
+                thankYouMessage: 'Your wholesale client registration has been successfully submitted. We appreciate your interest in Skyplay IPTV\'s wholesale program and will contact you within 24 hours with exclusive pricing and benefits.',
+                nextStepsTitle: 'What happens next?',
+                step1: 'We\'ll review your wholesale application',
+                step2: 'Our team will contact you within 24 hours',
+                step3: 'You\'ll receive exclusive wholesale pricing',
+                step4: 'Access to dedicated support and management panel',
+                step5: 'Volume discounts and business billing options',
+                immediateAssistanceText: 'Need immediate assistance?',
+                whatsappContactText: 'WhatsApp: +1 (786) 391-8722',
+                businessHoursText: 'Business Hours: Monday - Friday, 9AM - 6PM EST',
+                backToPlansBtnText: 'Continue Browsing',
+                whatsappBtnText: 'Contact WhatsApp'
             }
         };
 
@@ -3532,9 +4021,141 @@
         }
 
         function showCreateWholesaleAccountMessage() {
-            // Abrir el formulario de registro mayorista en una nueva ventana
-            window.open('Formsubmit-template.html', '_blank', 'width=900,height=700,scrollbars=yes,resizable=yes');
+            // Abrir el modal de registro mayorista
+            document.getElementById('wholesaleModal').classList.add('active');
         }
+
+        // Wholesale Modal Functions
+        function closeWholesaleModal() {
+            document.getElementById('wholesaleModal').classList.remove('active');
+        }
+
+        function closeThankYouModal() {
+            document.getElementById('thankYouModal').classList.remove('active');
+        }
+
+        // Submit wholesale form
+        async function submitWholesaleForm(event) {
+            event.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const submitBtnText = document.getElementById('submitBtnText');
+            const originalText = submitBtnText.textContent;
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitBtnText.textContent = currentLanguage === 'es' ? 'Enviando...' : 'Sending...';
+            
+            const formData = new FormData(event.target);
+            const data = {
+                fullName: formData.get('fullName'),
+                countryCode: formData.get('countryCode'),
+                phone: formData.get('phone'),
+                email: formData.get('email'),
+                comments: formData.get('comments'),
+                timestamp: new Date().toISOString(),
+                source: 'skyplay-wholesale-modal'
+            };
+            
+            try {
+                // Send to FormSubmit (email)
+                const formSubmitData = new FormData();
+                formSubmitData.append('Nombre_Completo', data.fullName);
+                formSubmitData.append('Codigo_Pais', data.countryCode);
+                formSubmitData.append('Telefono', data.phone);
+                formSubmitData.append('Email', data.email);
+                formSubmitData.append('Comentarios', data.comments);
+                formSubmitData.append('_subject', 'Nueva Solicitud - Cliente Mayorista Skyplay IPTV (Modal)');
+                formSubmitData.append('_captcha', 'false');
+                formSubmitData.append('_template', 'table');
+                formSubmitData.append('_autoresponse', '¡Gracias por tu interés en ser cliente mayorista de Skyplay IPTV! Nos pondremos en contacto contigo dentro de 24 horas.');
+                
+                const response = await fetch('https://formsubmit.co/abarahonag@barmentech.com', {
+                    method: 'POST',
+                    body: formSubmitData
+                });
+                
+                // Send to VPS/n8n webhook (configure your URL below)
+                try {
+                    // 🔧 CONFIGURAR AQUÍ TU WEBHOOK URL
+                    const webhookConfig = {
+                        enabled: true, // Cambiar a false para deshabilitar
+                        url: 'https://tu-n8n-instance.com/webhook/skyplay-wholesale', // 👈 CAMBIAR ESTA URL
+                        apiKey: 'tu-api-key-opcional', // Solo si necesitas autenticación
+                        timeout: 10000 // 10 segundos timeout
+                    };
+                    
+                    if (webhookConfig.enabled && webhookConfig.url !== 'https://tu-n8n-instance.com/webhook/skyplay-wholesale') {
+                        const headers = {
+                            'Content-Type': 'application/json',
+                            'X-Source': 'skyplay-frontend'
+                        };
+                        
+                        // Agregar API key si está configurada
+                        if (webhookConfig.apiKey && webhookConfig.apiKey !== 'tu-api-key-opcional') {
+                            headers['Authorization'] = `Bearer ${webhookConfig.apiKey}`;
+                        }
+                        
+                        const controller = new AbortController();
+                        const timeoutId = setTimeout(() => controller.abort(), webhookConfig.timeout);
+                        
+                        const webhookResponse = await fetch(webhookConfig.url, {
+                            method: 'POST',
+                            headers: headers,
+                            body: JSON.stringify(data),
+                            signal: controller.signal
+                        });
+                        
+                        clearTimeout(timeoutId);
+                        
+                        if (webhookResponse.ok) {
+                            console.log('✅ Datos enviados a VPS exitosamente');
+                        } else {
+                            console.warn('⚠️ VPS respondió con error:', webhookResponse.status);
+                        }
+                    } else {
+                        console.log('🔧 Webhook no configurado - solo enviado por email');
+                    }
+                } catch (webhookError) {
+                    console.log('⚠️ Error enviando a VPS (email enviado correctamente):', webhookError.message);
+                }
+                
+                // Show success
+                closeWholesaleModal();
+                document.getElementById('thankYouModal').classList.add('active');
+                
+                // Reset form
+                event.target.reset();
+                
+                // Google Analytics tracking
+                if (typeof gtag !== 'undefined') {
+                    gtag('event', 'conversion', {
+                        event_category: 'Wholesale',
+                        event_label: 'Wholesale Registration Completed via Modal'
+                    });
+                }
+                
+            } catch (error) {
+                console.error('Error submitting form:', error);
+                alert(currentLanguage === 'es' ? 
+                    'Hubo un error al enviar el formulario. Por favor intenta de nuevo.' : 
+                    'There was an error submitting the form. Please try again.');
+            } finally {
+                // Reset button state
+                submitBtn.disabled = false;
+                submitBtnText.textContent = originalText;
+            }
+        }
+
+        // Close modals when clicking outside
+        document.addEventListener('click', function(event) {
+            if (event.target.classList.contains('wholesale-modal')) {
+                closeWholesaleModal();
+            }
+            if (event.target.classList.contains('thank-you-modal')) {
+                closeThankYouModal();
+            }
+        });
 
         // Expose functions globally
         window.selectCountry = selectCountry;
@@ -3550,6 +4171,9 @@
         window.showComingSoonMessage = showComingSoonMessage;
         window.showCreateAccountMessage = showCreateAccountMessage;
         window.showCreateWholesaleAccountMessage = showCreateWholesaleAccountMessage;
+        window.closeWholesaleModal = closeWholesaleModal;
+        window.closeThankYouModal = closeThankYouModal;
+        window.submitWholesaleForm = submitWholesaleForm;
     </script>
 </body>
 </html>

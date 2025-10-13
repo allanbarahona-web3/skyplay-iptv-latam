@@ -31,28 +31,74 @@ CREATE INDEX idx_wholesale_created ON wholesale_clients(created_at);
 
 ## 🔗 Endpoint VPS Requerido
 
+### **Opción 1: n8n Webhook (Recomendado)**
+```bash
+# URL del webhook n8n
+https://tu-n8n-instance.com/webhook/skyplay-wholesale
+
+# Método: POST
+# Content-Type: application/json
+# Headers: X-Source: skyplay-frontend
+```
+
+### **Opción 2: API Directo Nest.js**
+```bash
+# URL del API directo
+https://tu-vps-domain.com/api/v1/wholesale/register
+
+# Headers requeridos:
+# Content-Type: application/json
+# Authorization: Bearer tu-api-key
+# X-API-Source: skyplay-frontend
+```
+
+### **Estructura JSON enviada:**
 ```javascript
-// POST /api/webhook/wholesale-registration
 {
-    "nombre_completo": "Juan Pérez García",
-    "codigo_pais": "+506",
-    "telefono": "12345678",
+    "fullName": "Juan Pérez García",
+    "countryCode": "+506", 
+    "phone": "12345678",
     "email": "juan@email.com",
-    "comentarios": "Interesado en plan para empresa",
-    "timestamp": "2025-10-11T22:25:00.000Z",
-    "source": "skyplay-wholesale-form"
+    "comments": "Interesado en plan para empresa",
+    "timestamp": "2025-10-13T15:30:00.000Z",
+    "source": "skyplay-wholesale-modal"
 }
 ```
 
-## ⚙️ Activación del Webhook
+## ⚙️ Configuración del Webhook
 
-Cuando el VPS esté listo, ejecutar en la consola del navegador:
+### **Paso 1: Configurar URL en el código**
+Editar `index.html` línea ~3950:
 
 ```javascript
-enableVPSIntegration(
-    'https://tu-vps-domain.com/api/webhook/wholesale-registration',
-    'tu-api-key-segura'
-);
+const webhookConfig = {
+    enabled: true,
+    url: 'https://tu-n8n-real.com/webhook/skyplay-wholesale', // 👈 CAMBIAR
+    apiKey: 'tu-api-key-si-necesitas', // Opcional
+    timeout: 10000
+};
+```
+
+### **Paso 2: Ejemplo configuración n8n**
+```javascript
+// Para n8n
+const webhookConfig = {
+    enabled: true,
+    url: 'https://n8n.tudominio.com/webhook/skyplay-wholesale',
+    apiKey: '', // n8n no requiere API key por defecto
+    timeout: 10000
+};
+```
+
+### **Paso 3: Ejemplo configuración API directo**
+```javascript
+// Para tu Nest.js API
+const webhookConfig = {
+    enabled: true,
+    url: 'https://api.tudominio.com/api/v1/wholesale/register',
+    apiKey: 'bearer-token-secreto',
+    timeout: 15000
+};
 ```
 
 ## 📧 Estado Actual del Email
@@ -87,9 +133,52 @@ enableVPSIntegration(
 - 🇨🇷 Costa Rica (+506)
 - [Y 18 más...]
 
+## 🤖 Configuración n8n (Recomendada)
+
+### **Flujo n8n sugerido:**
+1. **Webhook Trigger** → Recibe datos del formulario
+2. **PostgreSQL Node** → Inserta en base de datos
+3. **Email Node** → Notifica al equipo (opcional)
+4. **HTTP Response** → Confirma recepción
+
+### **Nodos n8n necesarios:**
+```bash
+1. Webhook (Trigger)
+   - Method: POST
+   - Path: /webhook/skyplay-wholesale
+
+2. PostgreSQL (Database)
+   - Operation: Insert
+   - Table: wholesale_clients
+   - Columns: Map from webhook data
+
+3. HTTP Response (Optional)
+   - Status: 200
+   - Body: {"status": "success", "message": "Registration received"}
+```
+
 ## 🚀 Próximos Pasos
 
-1. **Configurar VPS PostgreSQL**
-2. **Crear endpoint webhook**
-3. **Activar integración dual**
-4. **Monitoreo y análisis**
+1. **Instalar n8n** o configurar Nest.js API
+2. **Crear workflow** en n8n o endpoint
+3. **Actualizar URL** en el código frontend
+4. **Probar integración** completa
+5. **Monitoreo y análisis**
+
+## 🧪 Testing
+
+### **URL de prueba:**
+```bash
+curl -X POST https://tu-webhook-url.com/webhook/skyplay-wholesale \
+  -H "Content-Type: application/json" \
+  -H "X-Source: skyplay-frontend" \
+  -d '{
+    "fullName": "Test User",
+    "countryCode": "+506",
+    "phone": "12345678", 
+    "email": "test@example.com",
+    "comments": "Test registration",
+    "timestamp": "2025-10-13T15:30:00.000Z",
+    "source": "skyplay-wholesale-modal"
+  }'
+```
