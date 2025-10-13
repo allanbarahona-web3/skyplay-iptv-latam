@@ -3825,19 +3825,19 @@
             if (selectedPaymentType === 'subscription') {
                 // Only Credit/Debit Cards for subscriptions (via Stripe)
                 methods = [
-                    {id: 'stripe', name: translation.paymentCard, desc: translation.paymentCardDesc, icon: '💳'}
+                    {id: 'creditcard', name: translation.paymentCard, desc: translation.paymentCardDesc, icon: '💳'}
                 ];
             } else {
                 // All methods for one-time payments
                 methods = [
-                    {id: 'card', name: translation.paymentCard, desc: translation.paymentCardDesc, icon: '💳'},
-                    {id: 'binance', name: translation.paymentBinance, desc: translation.paymentBinanceDesc, icon: '₿'},
-                    {id: 'paypal', name: translation.paymentPaypal, desc: translation.paymentPaypalDesc, icon: '💰'}
+                    {id: 'creditcard', name: translation.paymentCard, desc: translation.paymentCardDesc, icon: '💳'},
+                    {id: 'binancepay', name: translation.paymentBinance, desc: translation.paymentBinanceDesc, icon: '₿'},
+                    {id: 'paypalcheckout', name: translation.paymentPaypal, desc: translation.paymentPaypalDesc, icon: '💰'}
                 ];
 
                 // Add SINPE ONLY for Costa Rica
                 if (currentCountry === 'costarica') {
-                    methods.push({id: 'sinpe', name: translation.paymentSinpe, desc: translation.paymentSinpeDesc, icon: '📱'});
+                    methods.push({id: 'sinpemovil', name: translation.paymentSinpe, desc: translation.paymentSinpeDesc, icon: '📱'});
                 }
             }
 
@@ -3885,15 +3885,30 @@
             let paymentLink = '';
 
             if (paymentType === 'subscription') {
-                // Stripe subscription link
+                // Credit card subscription link (processed via Stripe)
                 if (paymentLinks[planKey] && paymentLinks[planKey].subscription) {
                     paymentLink = paymentLinks[planKey].subscription[durationKey]?.stripe;
                 }
             } else {
-                // One-time payment links
+                // One-time payment links - map unique IDs to config keys
                 if (paymentLinks[planKey] && paymentLinks[planKey].oneTime) {
-                    // Use Stripe links for 'card' method as well
-                    const linkMethod = method === 'card' ? 'stripe' : method;
+                    let linkMethod;
+                    switch(method) {
+                        case 'creditcard':
+                            linkMethod = 'stripe';
+                            break;
+                        case 'binancepay':
+                            linkMethod = 'binance';
+                            break;
+                        case 'paypalcheckout':
+                            linkMethod = 'paypal';
+                            break;
+                        case 'sinpemovil':
+                            linkMethod = 'sinpe';
+                            break;
+                        default:
+                            linkMethod = method;
+                    }
                     paymentLink = paymentLinks[planKey].oneTime[durationKey]?.[linkMethod];
                 }
             }
