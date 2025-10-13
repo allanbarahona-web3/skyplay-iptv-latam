@@ -2761,8 +2761,8 @@
                         <textarea id="comments" name="comments" placeholder="Cuéntanos sobre tu negocio, volumen esperado, o cualquier pregunta específica..."></textarea>
                     </div>
                     
-                    <button type="submit" class="wholesale-submit-btn" id="submitBtn">
-                        <span id="submitBtnText">Solicitar Cuenta Mayorista</span>
+                    <button type="submit" class="wholesale-submit-btn" id="wholesaleSubmitBtn">
+                        <span id="wholesaleSubmitBtnText">Solicitar Cuenta Mayorista</span>
                     </button>
                 </form>
             </div>
@@ -2772,7 +2772,7 @@
     <!-- Thank You Modal -->
     <div class="thank-you-modal" id="thankYouModal">
         <div class="thank-you-modal-content">
-            <div class="thank-you-icon">�</div>
+            <div class="thank-you-icon">✅</div>
             <h3 id="thankYouTitle">¡Registro Recibido!</h3>
             <p id="thankYouMessage">Tu registro como cliente mayorista ha sido enviado exitosamente. Agradecemos tu interés en el programa mayorista de Skyplay IPTV y te contactaremos dentro de 24 horas con precios exclusivos y beneficios.</p>
             
@@ -3301,7 +3301,7 @@
                 // Wholesale Modal
                 wholesaleModalTitle: '🏢 Registro Cliente Mayorista',
                 wholesaleModalSubtitle: 'Complete el formulario para acceder a precios especiales y beneficios exclusivos.',
-                submitBtnText: 'Solicitar Cuenta Mayorista',
+                wholesaleSubmitBtnText: 'Solicitar Cuenta Mayorista',
                 // Thank You Modal
                 thankYouTitle: '¡Registro Recibido!',
                 thankYouMessage: 'Tu registro como cliente mayorista ha sido enviado exitosamente. Agradecemos tu interés en el programa mayorista de Skyplay IPTV y te contactaremos dentro de 24 horas con precios exclusivos y beneficios.',
@@ -3433,7 +3433,7 @@
                 // Wholesale Modal
                 wholesaleModalTitle: '🏢 Wholesale Client Registration',
                 wholesaleModalSubtitle: 'Complete the form to access special pricing and exclusive benefits.',
-                submitBtnText: 'Request Wholesale Account',
+                wholesaleSubmitBtnText: 'Request Wholesale Account',
                 // Thank You Modal
                 thankYouTitle: 'Registration Received!',
                 thankYouMessage: 'Your wholesale client registration has been successfully submitted. We appreciate your interest in Skyplay IPTV\'s wholesale program and will contact you within 24 hours with exclusive pricing and benefits.',
@@ -4038,8 +4038,8 @@
         async function submitWholesaleForm(event) {
             event.preventDefault();
             
-            const submitBtn = document.getElementById('submitBtn');
-            const submitBtnText = document.getElementById('submitBtnText');
+            const submitBtn = document.getElementById('wholesaleSubmitBtn');
+            const submitBtnText = document.getElementById('wholesaleSubmitBtnText');
             const originalText = submitBtnText.textContent;
             
             // Show loading state
@@ -4147,12 +4147,15 @@
             }
         }
 
-        // Close modals when clicking outside
-        document.addEventListener('click', function(event) {
-            if (event.target.classList.contains('wholesale-modal')) {
+        // Close modals when clicking outside (specific to wholesale modals only)
+        document.getElementById('wholesaleModal').addEventListener('click', function(event) {
+            if (event.target.id === 'wholesaleModal') {
                 closeWholesaleModal();
             }
-            if (event.target.classList.contains('thank-you-modal')) {
+        });
+        
+        document.getElementById('thankYouModal').addEventListener('click', function(event) {
+            if (event.target.id === 'thankYouModal') {
                 closeThankYouModal();
             }
         });
