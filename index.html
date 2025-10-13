@@ -435,7 +435,8 @@
         }
 
         .create-account-btn {
-            display: inline-flex;
+            display: none; /* 🔒 OCULTO - Para futuro sistema de cuentas de usuario */
+            /* display: inline-flex; */ /* 👈 Descomentar para reactivar */
             align-items: center;
             gap: 8px;
             padding: 12px 24px;
@@ -2568,6 +2569,7 @@
         <div class="plans-section">
             <div class="plans-header">
                 <h2 class="section-title" id="plansTitle">Nuestros Planes</h2>
+                <!-- 🔒 BOTÓN OCULTO - Para futuro sistema de cuentas de usuario -->
                 <button class="create-account-btn" id="createAccountBtn" onclick="showCreateAccountMessage()">
                     <span class="create-account-icon">👤</span>
                     <span id="createAccountText">Crear Cuenta</span>
@@ -4052,6 +4054,7 @@
             alert(translation.comingSoonMessage);
         }
 
+        // 🔒 FUNCIÓN OCULTA - Para futuro sistema de cuentas de usuario
         function showCreateAccountMessage() {
             const translation = translations[currentLanguage];
             alert(translation.createAccountMessage);
