@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title data-en="Thank You - Skyplay IPTV" data-es="Gracias - Skyplay IPTV">Thank You - Skyplay IPTV</title>
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Frame-Options" content="DENY">
+    <meta http-equiv="X-Content-Type-Options" content="nosniff">
+    <meta http-equiv="Referrer-Policy" content="strict-origin-when-cross-origin">
+    <meta http-equiv="Permissions-Policy" content="camera=(), microphone=(), geolocation=()">
+    
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-RCVWPKGP00"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-RCVWPKGP00');
+
+        // Track successful wholesale registration conversion
+        gtag('event', 'conversion', {
+            event_category: 'Wholesale',
+            event_label: 'Wholesale Registration Completed Successfully'
+        });
+
+        function trackWhatsAppFollowUp() {
+            gtag('event', 'whatsapp_followup', {
+                event_category: 'Wholesale',
+                event_label: 'WhatsApp Follow-up from Wholesale Thank You'
+            });
+        }
+    </script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1e40af;
+            --accent: #10b981;
+            --dark: #0f172a;
+            --gray: #64748b;
+            --light: #f1f5f9;
+            --white: #ffffff;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+            line-height: 1.6;
+            color: var(--dark);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--accent) 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+        }
+
+        .container {
+            max-width: 600px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .thank-you-card {
+            background: var(--white);
+            padding: 60px 40px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            position: relative;
+        }
+
+        /* Language Toggle */
+        .lang-toggle {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: var(--primary);
+            color: var(--white);
+            border: none;
+            padding: 8px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .lang-toggle:hover {
+            background: var(--accent);
+            transform: scale(1.05);
+        }
+
+        .success-icon {
+            font-size: 80px;
+            margin-bottom: 30px;
+            color: var(--accent);
+        }
+
+        h1 {
+            font-size: 36px;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+
+        .message {
+            font-size: 18px;
+            color: var(--gray);
+            margin-bottom: 30px;
+            line-height: 1.8;
+        }
+
+        .next-steps {
+            background: var(--light);
+            padding: 30px;
+            border-radius: 12px;
+            margin-bottom: 30px;
+            text-align: left;
+        }
+
+        .next-steps h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .next-steps ul {
+            list-style: none;
+            color: var(--gray);
+        }
+
+        .next-steps li {
+            padding: 8px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .next-steps li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: bold;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 14px 32px;
+            background: var(--primary);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s;
+            margin: 10px;
+            font-size: 14px;
+        }
+
+        .btn:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(16, 185, 129, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--accent);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary);
+        }
+
+        .contact-info {
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 1px solid var(--light);
+            color: var(--gray);
+        }
+
+        .contact-info p {
+            margin-bottom: 8px;
+        }
+
+        .tax-info {
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid #e2e8f0;
+            text-align: center;
+            color: #64748b;
+        }
+
+        .tax-info small {
+            font-size: 0.8em;
+            line-height: 1.4;
+        }
+
+        /* Enhanced Mobile Responsiveness */
+        @media (max-width: 768px) {
+            body {
+                padding: 5px;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .thank-you-card {
+                padding: 40px 20px;
+                border-radius: 15px;
+            }
+
+            .lang-toggle {
+                top: 15px;
+                right: 15px;
+                padding: 6px 10px;
+                font-size: 11px;
+            }
+
+            h1 {
+                font-size: 28px;
+                margin-bottom: 15px;
+            }
+
+            .message {
+                font-size: 16px;
+                margin-bottom: 25px;
+            }
+
+            .success-icon {
+                font-size: 60px;
+                margin-bottom: 20px;
+            }
+
+            .next-steps {
+                padding: 20px;
+                margin-bottom: 25px;
+            }
+
+            .next-steps h3 {
+                font-size: 18px;
+                margin-bottom: 12px;
+            }
+
+            .next-steps li {
+                font-size: 14px;
+                padding: 6px 0;
+                padding-left: 20px;
+            }
+
+            .btn {
+                padding: 12px 24px;
+                margin: 8px 5px;
+                font-size: 13px;
+                display: block;
+                width: calc(100% - 10px);
+                text-align: center;
+            }
+
+            .contact-info {
+                margin-top: 30px;
+                padding-top: 20px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .thank-you-card {
+                padding: 30px 15px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            .message {
+                font-size: 15px;
+            }
+
+            .success-icon {
+                font-size: 50px;
+                margin-bottom: 15px;
+            }
+
+            .next-steps {
+                padding: 15px;
+            }
+
+            .next-steps h3 {
+                font-size: 16px;
+            }
+
+            .next-steps li {
+                font-size: 13px;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 12px;
+            }
+        }
+
+        /* Landscape orientation adjustments */
+        @media (max-height: 600px) and (orientation: landscape) {
+            body {
+                align-items: flex-start;
+                padding-top: 20px;
+            }
+
+            .thank-you-card {
+                padding: 30px 20px;
+            }
+
+            .success-icon {
+                font-size: 40px;
+                margin-bottom: 15px;
+            }
+
+            h1 {
+                font-size: 24px;
+                margin-bottom: 10px;
+            }
+
+            .message {
+                font-size: 14px;
+                margin-bottom: 20px;
+            }
+
+            .next-steps {
+                padding: 20px;
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="thank-you-card">
+            <button class="lang-toggle" onclick="toggleLanguage()">ES</button>
+            
+            <div class="success-icon">🏢</div>
+            <h1 data-en="Registration Received!" data-es="¡Registro Recibido!">Registration Received!</h1>
+            <p class="message" data-en="Your wholesale client registration has been successfully submitted. We appreciate your interest in Skyplay IPTV's wholesale program and will contact you within 24 hours with exclusive pricing and benefits." data-es="Tu registro como cliente mayorista ha sido enviado exitosamente. Agradecemos tu interés en el programa mayorista de Skyplay IPTV y te contactaremos dentro de 24 horas con precios exclusivos y beneficios.">
+                Your wholesale client registration has been successfully submitted. We appreciate your interest in Skyplay IPTV's wholesale program and will contact you within 24 hours with exclusive pricing and benefits.
+            </p>
+            
+            <div class="next-steps">
+                <h3 data-en="What happens next?" data-es="¿Qué sigue ahora?">What happens next?</h3>
+                <ul>
+                    <li data-en="We'll review your wholesale application" data-es="Revisaremos tu solicitud mayorista">We'll review your wholesale application</li>
+                    <li data-en="Our team will contact you within 24 hours" data-es="Nuestro equipo te contactará dentro de 24 horas">Our team will contact you within 24 hours</li>
+                    <li data-en="You'll receive exclusive wholesale pricing" data-es="Recibirás precios mayoristas exclusivos">You'll receive exclusive wholesale pricing</li>
+                    <li data-en="Access to dedicated support and management panel" data-es="Acceso a soporte dedicado y panel de gestión">Access to dedicated support and management panel</li>
+                    <li data-en="Volume discounts and business billing options" data-es="Descuentos por volumen y facturación empresarial">Volume discounts and business billing options</li>
+                </ul>
+            </div>
+
+            <a href="index.html" class="btn" data-en="Return to Plans" data-es="Volver a Planes">Return to Plans</a>
+            <a href="https://wa.me/17863918722?text=Hi%2C%20I%27m%20following%20up%20on%20my%20wholesale%20registration%20for%20Skyplay%20IPTV" class="btn btn-secondary" onclick="trackWhatsAppFollowUp()" data-en="Contact via WhatsApp" data-es="Contactar por WhatsApp">Contact via WhatsApp</a>
+
+            <div class="contact-info">
+                <p><strong data-en="Need immediate assistance?" data-es="¿Necesitas asistencia inmediata?">Need immediate assistance?</strong></p>
+                <p>Email: abarahonag@barmentech.com</p>
+                <p data-en="WhatsApp: +1 (786) 391-8722" data-es="WhatsApp: +1 (786) 391-8722">WhatsApp: +1 (786) 391-8722</p>
+                <p data-en="Business Hours: Monday - Friday, 9AM - 6PM EST" data-es="Horario: Lunes - Viernes, 9AM - 6PM EST">Business Hours: Monday - Friday, 9AM - 6PM EST</p>
+            </div>
+
+            <div class="tax-info">
+                <p><small data-en="Wholesale Program Terms: Volume discounts available. Business billing options included. • Support: abarahonag@barmentech.com" data-es="Términos Programa Mayorista: Descuentos por volumen disponibles. Facturación empresarial incluida. • Soporte: abarahonag@barmentech.com">Wholesale Program Terms: Volume discounts available. Business billing options included. • Support: abarahonag@barmentech.com</small></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Language toggle system with automatic detection
+        let currentLang = detectBrowserLanguage();  // Auto-detect browser language
+
+        function detectBrowserLanguage() {
+            // Get browser language
+            const browserLang = navigator.language || navigator.languages[0] || 'en';
+            
+            // Extract the language code (first 2 characters)
+            const langCode = browserLang.toLowerCase().substring(0, 2);
+            
+            // Return 'en' for English, 'es' for Spanish or any other language as default
+            return langCode === 'en' ? 'en' : 'es';
+        }
+
+        function toggleLanguage() {
+            currentLang = currentLang === 'en' ? 'es' : 'en';
+            updateLanguage();
+            // Save user preference to localStorage
+            localStorage.setItem('preferred-language', currentLang);
+        }
+
+        function updateLanguage() {
+            const elements = document.querySelectorAll('[data-en][data-es]');
+            elements.forEach(el => {
+                const text = el.getAttribute(`data-${currentLang}`);
+                if (text) {
+                    // Security: Use textContent to prevent XSS attacks
+                    el.textContent = text;
+                }
+            });
+
+            // Update document language
+            document.documentElement.lang = currentLang;
+            
+            // Update language toggle button text
+            const langButton = document.querySelector('.lang-toggle');
+            if (langButton) {
+                langButton.textContent = currentLang === 'en' ? 'ES' : 'EN';
+            }
+        }
+
+        function initializeLanguage() {
+            // Check if user has a saved preference
+            const savedLang = localStorage.getItem('preferred-language');
+            
+            if (savedLang && (savedLang === 'en' || savedLang === 'es')) {
+                // Use saved preference
+                currentLang = savedLang;
+            } else {
+                // Use browser detection
+                currentLang = detectBrowserLanguage();
+            }
+            
+            // Apply the language
+            updateLanguage();
+        }
+
+        // Initialize language on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeLanguage();
+        });
+
+        // Auto-redirect after 30 seconds if user wants to return (with language support)
+        setTimeout(function() {
+            const message = currentLang === 'es' 
+                ? '¿Te gustaría volver a la página principal?' 
+                : 'Would you like to return to the homepage?';
+            
+            const userChoice = confirm(message);
+            if (userChoice) {
+                window.location.href = 'index.html';
+            }
+        }, 30000);
+    </script>
+</body>
+</html>
