@@ -4241,7 +4241,7 @@ https://iptv.skyplay.us`);
                         timeout: 10000 // 10 segundos timeout
                     };
 
-                    if (webhookConfig.enabled && webhookConfig.url !== 'http://64.23.191.96:5678/webhook/wholesale-skyplay') {
+                    if (webhookConfig.enabled && webhookConfig.url === 'http://64.23.191.96:5678/webhook/wholesale-skyplay') {
                         const headers = {
                             'Content-Type': 'application/json',
                             'X-Source': 'skyplay-frontend'
