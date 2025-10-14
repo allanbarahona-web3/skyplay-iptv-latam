@@ -2126,6 +2126,73 @@
                     <span class="option-name">Panamá</span>
                     <div class="option-currency">USD</div>
                 </div>
+                <div class="option-card" onclick="selectCountry('canada')">
+                    <span class="flag-big">🇨🇦</span>
+                    <span class="option-name">Canadá</span>
+                    <div class="option-currency">CAD</div>
+                    </div>
+                <div class="option-card" onclick="selectCountry('guatemala')">
+                    <span class="flag-big">🇬🇹</span>
+                    <span class="option-name">Guatemala</span>
+                    <div class="option-currency">GTQ</div>
+                    </div>
+                <div class="option-card" onclick="selectCountry('colombia')">
+                    <span class="flag-big">🇨🇴</span>
+                    <span class="option-name">Colombia</span>
+                    <div class="option-currency">COP</div>
+                </div>
+                <div class="option-card" onclick="selectCountry('ecuador')">
+                    <span class="flag-big">🇪🇨</span>
+                    <span class="option-name">Ecuador</span>
+                    <div class="option-currency">USD</div>
+                </div>
+                <div class="option-card" onclick="selectCountry('peru')">
+                    <span class="flag-big">🇵🇪</span>
+                    <span class="option-name">Perú</span>
+                    <div class="option-currency">PEN</div>
+                </div>
+                <div class="option-card" onclick="selectCountry('honduras')">
+                    <span class="flag-big">🇭🇳</span>
+                    <span class="option-name">Honduras</span>
+                    <div class="option-currency">HNL</div>
+                </div>
+                <div class="option-card" onclick="selectCountry('nicaragua')">
+                    <span class="flag-big">🇳🇮</span>
+                    <span class="option-name">Nicaragua</span>
+                    <div class="option-currency">NIO</div>
+                </div>
+                <div class="option-card" onclick="selectCountry('chile')">
+                    <span class="flag-big">🇨🇱</span>
+                    <span class="option-name">Chile</span>
+                    <div class="option-currency">CLP</div>
+                </div>
+                <div class="option-card" onclick="selectCountry('argentina')">
+                     <span class="flag-big">🇦🇷</span>
+                     <span class="option-name">Argentina</span>
+                     <div class="option-currency">ARS</div>
+                </div>
+                    <div class="option-card" onclick="selectCountry('guatemala')">
+                    <span class="flag-big">🇬🇹</span>
+                    <span class="option-name">Guatemala</span>
+                    <div class="option-currency">GTQ</div>
+                </div>
+
+                <div class="option-card" onclick="selectCountry('paraguay')">
+                    <span class="flag-big">🇵🇾</span>
+                    <span class="option-name">Paraguay</span>
+                    <div class="option-currency">PYG</div>
+                </div>
+                <div class="option-card" onclick="selectCountry('uruguay')">
+                    <span class="flag-big">🇺🇾</span>
+                    <span class="option-name">Uruguay</span>
+                    <div class="option-currency">UYU</div>
+                </div>
+                <div class="option-card" onclick="selectCountry('brasil')">
+                    <span class="flag-big">🇧🇷</span>
+                    <span class="option-name">Brasil</span>
+                    <div class="option-currency">BRL</div>
+                </div>
+
                 <div class="option-card" onclick="selectCountry('bolivia')">
                     <span class="flag-big">🇧🇴</span>
                     <span class="option-name">Bolivia</span>
@@ -3089,12 +3156,27 @@
 
         // Exchange rates
         const exchangeRates = {
-            usa: { currency: 'USD', symbol: '$', rate: 1, flag: '🇺🇸', name: 'USA' },
-            mexico: { currency: 'MXN', symbol: '$', rate: 18.75, flag: '🇲🇽', name: 'México' },
-            costarica: { currency: 'CRC', symbol: '₡', rate: 525, flag: '🇨🇷', name: 'Costa Rica' },
-            panama: { currency: 'USD', symbol: '$', rate: 1, flag: '🇵🇦', name: 'Panamá' },
-            bolivia: { currency: 'BOB', symbol: 'Bs', rate: 6.95, flag: '🇧🇴', name: 'Bolivia' }
-        };
+            argentina:      { currency: 'ARS', symbol: '$',  rate: 950,   flag: '🇦🇷', name: 'Argentina' },
+        bolivia:        { currency: 'BOB', symbol: 'Bs', rate: 6.9,   flag: '🇧🇴', name: 'Bolivia' },
+        brasil:         { currency: 'BRL', symbol: 'R$', rate: 5.6,   flag: '🇧🇷', name: 'Brasil' },
+        canada:         { currency: 'CAD', symbol: '$',  rate: 1.36,  flag: '🇨🇦', name: 'Canadá' },
+        chile:          { currency: 'CLP', symbol: '$',  rate: 930,   flag: '🇨🇱', name: 'Chile' },
+        colombia:       { currency: 'COP', symbol: '$',  rate: 4100,  flag: '🇨🇴', name: 'Colombia' },
+        costa_rica:     { currency: 'CRC', symbol: '₡',  rate: 520,   flag: '🇨🇷', name: 'Costa Rica' },
+        ecuador:        { currency: 'USD', symbol: '$',  rate: 1,     flag: '🇪🇨', name: 'Ecuador' },
+        el_salvador:    { currency: 'USD', symbol: '$',  rate: 1,     flag: '🇸🇻', name: 'El Salvador' },
+        espana:         { currency: 'EUR', symbol: '€',  rate: 0.92,  flag: '🇪🇸', name: 'España' },
+        estados_unidos: { currency: 'USD', symbol: '$',  rate: 1,     flag: '🇺🇸', name: 'Estados Unidos' },
+        guatemala:      { currency: 'GTQ', symbol: 'Q',  rate: 7.8,   flag: '🇬🇹', name: 'Guatemala' },
+        honduras:       { currency: 'HNL', symbol: 'L',  rate: 24.6,  flag: '🇭🇳', name: 'Honduras' },
+        mexico:         { currency: 'MXN', symbol: '$',  rate: 18.75, flag: '🇲🇽', name: 'México' },
+        nicaragua:      { currency: 'NIO', symbol: 'C$', rate: 36.7,  flag: '🇳🇮', name: 'Nicaragua' },
+        panama:         { currency: 'USD', symbol: '$',  rate: 1,     flag: '🇵🇦', name: 'Panamá' },
+        paraguay:      { currency: 'PYG', symbol: '₲',  rate: 7400,  flag: '🇵🇾', name: 'Paraguay' },
+        peru:           { currency: 'PEN', symbol: 'S/', rate: 3.8,   flag: '🇵🇪', name: 'Perú' },
+        uruguay:        { currency: 'UYU', symbol: '$U', rate: 39,    flag: '🇺🇾', name: 'Uruguay' },
+        venezuela:     { currency: 'VES', symbol: 'Bs.',rate: 36,    flag: '🇻🇪', name: 'Venezuela' }
+};
 
         // Plan data - FLUJO TV + plans with device switch
         const plans = [
@@ -4141,7 +4223,7 @@ Email: abarahonag@barmentech.com
 ¡Bienvenido a la familia Skyplay! 🚀
 
 ---
-Skyplay IPTV - Tu Partner en Streaming
+Skyplay - Tu Partner en Streaming
 https://iptv.skyplay.us`);
 
                 const response = await fetch('https://formsubmit.co/abarahonag@barmentech.com', {
