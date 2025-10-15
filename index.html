@@ -4012,7 +4012,6 @@
             generatePricingCards();
             document.getElementById('countryModal').classList.remove('active');
         }
-        window.selectCountry = selectCountry;
 
         function updateCountryDisplay() {
             const countryData = exchangeRates[currentCountry];
@@ -4680,7 +4679,8 @@ https://iptv.skyplay.us`);
         // Estas funciones se exponen al scope global para ser
         // accesibles desde el HTML (onclick handlers)
 
-        window.openCountryModal = openCountryModal;
+    window.selectCountry = selectCountry;
+    window.openCountryModal = openCountryModal;
         window.changeLanguage = changeLanguage;
         window.toggleDeviceSwitch = toggleDeviceSwitch;
         window.showPaymentModal = showPaymentModal;
