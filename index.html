@@ -2003,7 +2003,7 @@
 
 .otp-header {
     margin-bottom: 30px;
-}
+
 
 .otp-icon {
     font-size: 60px;
@@ -4512,13 +4512,14 @@
             document.getElementById('thankYouModal').classList.remove('active');
         }
 
-        // Submit wholesale form
-        async function submitWholesaleForm(event) {
-            event.preventDefault();
-
-            const submitBtn = document.getElementById('wholesaleSubmitBtn');
-            const submitBtnText = document.getElementById('wholesaleSubmitBtnText');
-            const originalText = submitBtnText.textContent;
+       // ⚠️ DEPRECATED - Old function kept for compatibility
+// New OTP system uses requestOTP() instead
+async function submitWholesaleForm(event) {
+    event.preventDefault();
+    console.log('⚠️ Old submitWholesaleForm called - use requestOTP instead');
+    // Redirect to new OTP flow
+    requestOTP(event);
+}
 
             // Show loading state
             submitBtn.disabled = true;
