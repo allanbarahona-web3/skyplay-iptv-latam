@@ -4236,12 +4236,12 @@ https://iptv.skyplay.us`);
                     // 🔧 CONFIGURAR AQUÍ TU WEBHOOK URL
                     const webhookConfig = {
                         enabled: true, // Cambiar a false para deshabilitar
-                        url: 'http://64.23.191.96:5678/webhook/wholesale-skyplay', // 👈 CAMBIAR ESTA URL
+                        url: 'https://n8n.skyplay.us/webhook/wholesale-skyplay', // 👈 CAMBIAR ESTA URL
                         apiKey: 'tu-api-key-opcional', // Solo si necesitas autenticación
                         timeout: 10000 // 10 segundos timeout
                     };
 
-                    if (webhookConfig.enabled && webhookConfig.url === 'http://64.23.191.96:5678/webhook/wholesale-skyplay') {
+                    if (webhookConfig.enabled && webhookConfig.url === 'https://n8n.skyplay.us/webhook/wholesale-skyplay') {
                         const headers = {
                             'Content-Type': 'application/json',
                             'X-Source': 'skyplay-frontend'
