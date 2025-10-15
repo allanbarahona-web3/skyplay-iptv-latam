@@ -4012,6 +4012,7 @@
             generatePricingCards();
             document.getElementById('countryModal').classList.remove('active');
         }
+        window.selectCountry = selectCountry;
 
         function updateCountryDisplay() {
             const countryData = exchangeRates[currentCountry];
