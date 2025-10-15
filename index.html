@@ -2099,6 +2099,17 @@
             </div>
         </div>
     </div>
+    <!-- Products Banner -->
+    <div class="header-products" style="display:flex;align-items:center;gap:12px;margin-top:10px;">
+      <button class="products-btn" id="productsBtn" onclick="toggleProductsMenu()" style="padding:8px 18px;border-radius:20px;background:#fff;color:#d97706;font-weight:600;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.04);cursor:pointer;">
+      <span id="productsBtnText">Productos</span> <span class="products-arrow">▼</span>
+      </button>
+      <div class="products-menu" id="productsMenu" style="display:none;position:absolute;z-index:1000;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.08);padding:10px 0;top:40px;">
+      <a href="https://landing-iptv.com" id="productIptv" target="_blank" style="display:block;padding:8px 24px;color:#d97706;text-decoration:none;font-weight:500;">IPTV</a>
+      <a href="https://landing-streaming.com" id="productStreaming" target="_blank" style="display:block;padding:8px 24px;color:#d97706;text-decoration:none;font-weight:500;">Streaming</a>
+      <a href="https://landing-pines.com" id="productPines" target="_blank" style="display:block;padding:8px 24px;color:#d97706;text-decoration:none;font-weight:500;">Pines</a>
+      </div>
+    </div>
 
     <!-- Country Selection Modal -->
     <div class="modal active" id="countryModal">
@@ -2392,7 +2403,7 @@
                 <h3>4.1 Planes de Suscripción</h3>
                 <p>Ofrecemos diferentes planes de suscripción con características y precios variables. Los precios están sujetos a cambios con previo aviso de 30 días.</p>
 
-                <div class="legal-warning">
+                <div
                     <strong>⚠️ Renovación Automática:</strong> Todas las suscripciones se renuevan automáticamente cada mes. Se le cobrará automáticamente en la fecha de renovación utilizando el método de pago registrado.
                 </div>
 
@@ -3692,6 +3703,7 @@
 
             // Regenerate cards with new language
             generatePricingCards();
+            updateProductsTranslations();
         }
 
         function toggleDeviceSwitch(planIndex) {
@@ -3704,6 +3716,34 @@
             }
         }
 
+        function toggleProductsMenu() {
+            const menu = document.getElementById('productsMenu');
+            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+  }
+
+        function updateProductsTranslations() {
+            const lang = currentLanguage;
+            const productsT = {
+                es: {
+                    productsBtn: 'Productos',
+                    iptv: 'IPTV',
+                    streaming: 'Streaming',
+                    pines: 'Pines'
+                },
+                en: {
+                    productsBtn: 'Products',
+                    iptv: 'IPTV',
+                    streaming: 'Streaming',
+      pines: 'Pins'
+    }
+  };
+  document.getElementById('productsBtnText').textContent = productsT[lang].productsBtn;
+  document.getElementById('productIptv').textContent = productsT[lang].iptv;
+  document.getElementById('productStreaming').textContent = productsT[lang].streaming;
+  document.getElementById('productPines').textContent = productsT[lang].pines;
+
+  
+}
         // Modal variables
         let currentStep = 1;
         let selectedPaymentType = null;
