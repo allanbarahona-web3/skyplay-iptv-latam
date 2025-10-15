@@ -2003,7 +2003,7 @@
 
 .otp-header {
     margin-bottom: 30px;
-
+}
 
 .otp-icon {
     font-size: 60px;
@@ -4512,16 +4512,16 @@
             document.getElementById('thankYouModal').classList.remove('active');
         }
 
-       // ⚠️ DEPRECATED - Old function kept for compatibility
-// New OTP system uses requestOTP() instead
-async function submitWholesaleForm(event) {
-    event.preventDefault();
-    console.log('⚠️ Old submitWholesaleForm called - use requestOTP instead');
+        // ⚠️ DEPRECATED - Old function kept for compatibility
+        // New OTP system uses requestOTP() instead
+        async function submitWholesaleForm(event) {
+            event.preventDefault();
+            console.log('⚠️ Old submitWholesaleForm called - use requestOTP instead');
     // Redirect to new OTP flow
-    requestOTP(event);
-}
+            requestOTP(event);
+      }
 
-            // Show loading state
+// Show loading state
             submitBtn.disabled = true;
             submitBtnText.textContent = currentLanguage === 'es' ? 'Enviando...' : 'Sending...';
 
@@ -4657,7 +4657,7 @@ https://iptv.skyplay.us`);
                 submitBtn.disabled = false;
                 submitBtnText.textContent = originalText;
             }
-        }
+        
 
         // Close modals when clicking outside (specific to wholesale modals only)
         document.getElementById('wholesaleModal').addEventListener('click', function(event) {
