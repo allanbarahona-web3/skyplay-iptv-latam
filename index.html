@@ -2420,42 +2420,42 @@
             <h2 id="countryModalTitle">Selecciona tu país</h2>
             <p id="countryModalSubtitle" style="text-align: center; color: #6b7280; margin-bottom: 10px;">Los precios se mostrarán en tu moneda local</p>
             <div class="options-grid">
-                <div class="option-card" onclick="selectCountry('usa')">
+                <div class="option-card" onclick="selectCountry('usa', event)">
                     <span class="flag-big">🇺🇸</span>
                     <span class="option-name">USA</span>
                     <div class="option-currency">USD</div>
                 </div>
-                <div class="option-card" onclick="selectCountry('mexico')">
+                <div class="option-card" onclick="selectCountry('mexico', event)">
                     <span class="flag-big">🇲🇽</span>
                     <span class="option-name">México</span>
                     <div class="option-currency">MXN</div>
                 </div>
-                <div class="option-card" onclick="selectCountry('costarica')">
+                <div class="option-card" onclick="selectCountry('costarica', event)">
                     <span class="flag-big">🇨🇷</span>
                     <span class="option-name">Costa Rica</span>
                     <div class="option-currency">CRC</div>
                 </div>
-                <div class="option-card" onclick="selectCountry('panama')">
+                <div class="option-card" onclick="selectCountry('panama', event)">
                     <span class="flag-big">🇵🇦</span>
                     <span class="option-name">Panamá</span>
                     <div class="option-currency">USD</div>
                 </div>
-                <div class="option-card" onclick="selectCountry('canada')">
+                <div class="option-card" onclick="selectCountry('canada', event)">
                     <span class="flag-big">🇨🇦</span>
                     <span class="option-name">Canadá</span>
                     <div class="option-currency">CAD</div>
                     </div>
-                <div class="option-card" onclick="selectCountry('guatemala')">
+                <div class="option-card" onclick="selectCountry('guatemala', event)">
                     <span class="flag-big">🇬🇹</span>
                     <span class="option-name">Guatemala</span>
                     <div class="option-currency">GTQ</div>
                     </div>
-                <div class="option-card" onclick="selectCountry('colombia')">
+                <div class="option-card" onclick="selectCountry('colombia', event)">
                     <span class="flag-big">🇨🇴</span>
                     <span class="option-name">Colombia</span>
                     <div class="option-currency">COP</div>
                 </div>
-                <div class="option-card" onclick="selectCountry('ecuador')">
+                <div class="option-card" onclick="selectCountry('ecuador', event)">
                     <span class="flag-big">🇪🇨</span>
                     <span class="option-name">Ecuador</span>
                     <div class="option-currency">USD</div>
@@ -4005,7 +4005,8 @@
         // 🎮 FUNCIONES DE INTERACCIÓN PRINCIPAL
         // ========================================
 
-        function selectCountry(country) {
+        function selectCountry(country, event) {
+            if (event) event.stopPropagation();
             currentCountry = country;
             updateCountryDisplay();
             generatePricingCards();
