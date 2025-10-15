@@ -2096,20 +2096,21 @@
                 <button class="create-wholesale-account-btn" id="createWholesaleAccountBtn" onclick="showCreateWholesaleAccountMessage()">
                     <span id="createWholesaleAccountText">Crea una cuenta mayorista</span>
                 </button>
-            </div>
-        </div>
-    </div>
-    <!-- Products Banner -->
+                <!-- Products Banner -->
     <div class="header-products" style="display:flex;align-items:center;gap:12px;margin-top:10px;">
       <button class="products-btn" id="productsBtn" onclick="toggleProductsMenu()" style="padding:8px 18px;border-radius:20px;background:#fff;color:#d97706;font-weight:600;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.04);cursor:pointer;">
       <span id="productsBtnText">Productos</span> <span class="products-arrow">▼</span>
       </button>
       <div class="products-menu" id="productsMenu" style="display:none;position:absolute;z-index:1000;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.08);padding:10px 0;top:40px;">
-      <a href="https://landing-iptv.com" id="productIptv" target="_blank" style="display:block;padding:8px 24px;color:#d97706;text-decoration:none;font-weight:500;">IPTV</a>
+      <a href="#plansTitle" id="productIptv" target="_self" style="display:block;padding:8px 24px;color:#d97706;text-decoration:none;font-weight:500;">IPTV</a>
       <a href="https://landing-streaming.com" id="productStreaming" target="_blank" style="display:block;padding:8px 24px;color:#d97706;text-decoration:none;font-weight:500;">Streaming</a>
       <a href="https://landing-pines.com" id="productPines" target="_blank" style="display:block;padding:8px 24px;color:#d97706;text-decoration:none;font-weight:500;">Pines</a>
       </div>
     </div>
+            </div>
+        </div>
+    </div>
+    
 
     <!-- Country Selection Modal -->
     <div class="modal active" id="countryModal">
@@ -3717,9 +3718,38 @@
         }
 
         function toggleProductsMenu() {
-            const menu = document.getElementById('productsMenu');
-            menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+  const menu = document.getElementById('productsMenu');
+  menu.style.display = menu.style.display === 'none' ? 'block' : 'none';
+  if (menu.style.display === 'block') {
+    setTimeout(() => {
+      document.addEventListener('mousedown', closeProductsMenuOnClickOutside);
+    }, 0);
+  } else {
+    document.removeEventListener('mousedown', closeProductsMenuOnClickOutside);
   }
+}
+
+function closeProductsMenuOnClickOutside(event) {
+  const menu = document.getElementById('productsMenu');
+  const btn = document.getElementById('productsBtn');
+  if (!menu.contains(event.target) && !btn.contains(event.target)) {
+    menu.style.display = 'none';
+    document.removeEventListener('mousedown', closeProductsMenuOnClickOutside);
+  }
+}
+
+// Cerrar menú al hacer clic en cualquier link del menú
+document.addEventListener('DOMContentLoaded', function() {
+  ['productIptv', 'productStreaming', 'productPines'].forEach(function(id) {
+    const link = document.getElementById(id);
+    if (link) {
+      link.addEventListener('click', function() {
+        document.getElementById('productsMenu').style.display = 'none';
+        document.removeEventListener('mousedown', closeProductsMenuOnClickOutside);
+      });
+    }
+  });
+});
 
         function updateProductsTranslations() {
             const lang = currentLanguage;
@@ -3734,7 +3764,7 @@
                     productsBtn: 'Products',
                     iptv: 'IPTV',
                     streaming: 'Streaming',
-      pines: 'Pins'
+                    pines: 'Pins'
     }
   };
   document.getElementById('productsBtnText').textContent = productsT[lang].productsBtn;
