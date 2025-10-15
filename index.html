@@ -2106,21 +2106,25 @@
             <h2 id="countryModalTitle">Selecciona tu país</h2>
             <p id="countryModalSubtitle" style="text-align: center; color: #6b7280; margin-bottom: 10px;">Los precios se mostrarán en tu moneda local</p>
             <div class="options-grid">
+
                 <div class="option-card" onclick="selectCountry('usa')">
                     <span class="flag-big">🇺🇸</span>
                     <span class="option-name">USA</span>
                     <div class="option-currency">USD</div>
                 </div>
+                
                 <div class="option-card" onclick="selectCountry('mexico')">
                     <span class="flag-big">🇲🇽</span>
                     <span class="option-name">México</span>
                     <div class="option-currency">MXN</div>
                 </div>
+
                 <div class="option-card" onclick="selectCountry('costarica')">
                     <span class="flag-big">🇨🇷</span>
                     <span class="option-name">Costa Rica</span>
                     <div class="option-currency">CRC</div>
                 </div>
+
                 <div class="option-card" onclick="selectCountry('panama')">
                     <span class="flag-big">🇵🇦</span>
                     <span class="option-name">Panamá</span>
@@ -3156,17 +3160,17 @@
 
         // Exchange rates
         const exchangeRates = {
-            argentina:      { currency: 'ARS', symbol: '$',  rate: 950,   flag: '🇦🇷', name: 'Argentina' },
+        argentina:      { currency: 'ARS', symbol: '$',  rate: 950,   flag: '🇦🇷', name: 'Argentina' },
         bolivia:        { currency: 'BOB', symbol: 'Bs', rate: 6.9,   flag: '🇧🇴', name: 'Bolivia' },
         brasil:         { currency: 'BRL', symbol: 'R$', rate: 5.6,   flag: '🇧🇷', name: 'Brasil' },
         canada:         { currency: 'CAD', symbol: '$',  rate: 1.36,  flag: '🇨🇦', name: 'Canadá' },
         chile:          { currency: 'CLP', symbol: '$',  rate: 930,   flag: '🇨🇱', name: 'Chile' },
         colombia:       { currency: 'COP', symbol: '$',  rate: 4100,  flag: '🇨🇴', name: 'Colombia' },
-        costa_rica:     { currency: 'CRC', symbol: '₡',  rate: 520,   flag: '🇨🇷', name: 'Costa Rica' },
+        costarica:     { currency: 'CRC', symbol: '₡',  rate: 520,   flag: '🇨🇷', name: 'Costa Rica' },
         ecuador:        { currency: 'USD', symbol: '$',  rate: 1,     flag: '🇪🇨', name: 'Ecuador' },
         el_salvador:    { currency: 'USD', symbol: '$',  rate: 1,     flag: '🇸🇻', name: 'El Salvador' },
         espana:         { currency: 'EUR', symbol: '€',  rate: 0.92,  flag: '🇪🇸', name: 'España' },
-        estados_unidos: { currency: 'USD', symbol: '$',  rate: 1,     flag: '🇺🇸', name: 'Estados Unidos' },
+        usa:            { currency: 'USD', symbol: '$',  rate: 1,     flag: '🇺🇸', name: 'Estados Unidos' },
         guatemala:      { currency: 'GTQ', symbol: 'Q',  rate: 7.8,   flag: '🇬🇹', name: 'Guatemala' },
         honduras:       { currency: 'HNL', symbol: 'L',  rate: 24.6,  flag: '🇭🇳', name: 'Honduras' },
         mexico:         { currency: 'MXN', symbol: '$',  rate: 18.75, flag: '🇲🇽', name: 'México' },
