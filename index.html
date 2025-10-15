@@ -4500,11 +4500,9 @@
         }
 
         function showCreateWholesaleAccountMessage() {
-            // Abrir el modal de registro mayorista
             document.getElementById('wholesaleModal').classList.add('active');
         }
 
-        // Wholesale Modal Functions
         function closeWholesaleModal() {
             document.getElementById('wholesaleModal').classList.remove('active');
         }
@@ -4513,18 +4511,15 @@
             document.getElementById('thankYouModal').classList.remove('active');
         }
 
-        // ⚠️ DEPRECATED - Old function kept for compatibility
-        // New OTP system uses requestOTP() instead
+        // Registro mayorista (envía datos a FormSubmit y webhook)
         async function submitWholesaleForm(event) {
             event.preventDefault();
-            console.log('⚠️ Old submitWholesaleForm called - use requestOTP instead');
-    // Redirect to new OTP flow
-            requestOTP(event);
-      }
+            const submitBtn = document.getElementById('submitWholesaleBtn');
+            const submitBtnText = document.getElementById('submitWholesaleBtnText');
+            const originalText = submitBtnText ? submitBtnText.textContent : '';
 
-// Show loading state
-            submitBtn.disabled = true;
-            submitBtnText.textContent = currentLanguage === 'es' ? 'Enviando...' : 'Sending...';
+            if (submitBtn) submitBtn.disabled = true;
+            if (submitBtnText) submitBtnText.textContent = currentLanguage === 'es' ? 'Enviando...' : 'Sending...';
 
             const formData = new FormData(event.target);
             const data = {
@@ -4538,7 +4533,7 @@
             };
 
             try {
-                // Send to FormSubmit (email)
+                // Enviar a FormSubmit (email)
                 const formSubmitData = new FormData();
                 formSubmitData.append('Nombre_Completo', data.fullName);
                 formSubmitData.append('Codigo_Pais', data.countryCode);
@@ -4548,96 +4543,53 @@
                 formSubmitData.append('_subject', 'Nueva Solicitud - Cliente Mayorista Skyplay IPTV (Modal)');
                 formSubmitData.append('_captcha', 'false');
                 formSubmitData.append('_template', 'table');
-                formSubmitData.append('_replyto', data.email);  // Email del usuario para autorespuesta
-                formSubmitData.append('_cc', 'abarahonag@barmentech.com'); // Copia para ti
-                formSubmitData.append('_autoresponse', `🏢 ¡Gracias ${data.fullName}!
+                formSubmitData.append('_replyto', data.email);
+                formSubmitData.append('_cc', 'abarahonag@barmentech.com');
+                formSubmitData.append('_autoresponse', `🏢 ¡Gracias ${data.fullName}!\n\nHemos recibido tu solicitud para convertirte en Cliente Mayorista de Skyplay IPTV.\n\n📋 DATOS RECIBIDOS:\n• Nombre: ${data.fullName}\n• País: ${data.countryCode}\n• Email: ${data.email}\n\n🎯 PRÓXIMOS PASOS:\n1. ✅ Revisaremos tu solicitud (24-48 horas)\n2. 📞 Te contactaremos vía WhatsApp/Email\n3. 💼 Te explicaremos nuestros planes mayoristas\n4. 🔐 Te daremos acceso al portal exclusivo\n\n💰 BENEFICIOS MAYORISTA:\n• 15-45% descuentos en TODOS los productos\n• Netflix, Disney+, HBO Max, Gaming y más\n• Billetera digital integrada\n• Soporte prioritario 24/7\n• Dashboard personalizado\n\n📞 CONTACTO INMEDIATO:\n¿Tienes preguntas urgentes? Escríbenos:\nWhatsApp: +1 (786) 391-8722\nLink directo: https://wa.me/17863918722\nEmail: abarahonag@barmentech.com\n\n¡Bienvenido a la familia Skyplay! 🚀\n---\nSkyplay - Tu Partner en Streaming\nhttps://iptv.skyplay.us`);
 
-Hemos recibido tu solicitud para convertirte en Cliente Mayorista de Skyplay IPTV.
-
-📋 DATOS RECIBIDOS:
-• Nombre: ${data.fullName}
-• País: ${data.countryCode}
-• Email: ${data.email}
-
-🎯 PRÓXIMOS PASOS:
-1. ✅ Revisaremos tu solicitud (24-48 horas)
-2. 📞 Te contactaremos vía WhatsApp/Email
-3. 💼 Te explicaremos nuestros planes mayoristas
-4. 🔐 Te daremos acceso al portal exclusivo
-
-💰 BENEFICIOS MAYORISTA:
-• 15-45% descuentos en TODOS los productos
-• Netflix, Disney+, HBO Max, Gaming y más
-• Billetera digital integrada
-• Soporte prioritario 24/7
-• Dashboard personalizado
-
-📞 CONTACTO INMEDIATO:
-¿Tienes preguntas urgentes? Escríbenos:
-WhatsApp: +1 (786) 391-8722
-Link directo: https://wa.me/17863918722
-Email: abarahonag@barmentech.com
-
-¡Bienvenido a la familia Skyplay! 🚀
-
----
-Skyplay - Tu Partner en Streaming
-https://iptv.skyplay.us`);
-
-                const response = await fetch('https://formsubmit.co/abarahonag@barmentech.com', {
+                await fetch('https://formsubmit.co/abarahonag@barmentech.com', {
                     method: 'POST',
                     body: formSubmitData
                 });
 
-                // Send to VPS/n8n webhook (configure your URL below)
-                try {
-                    // 🔧 CONFIGURAR AQUÍ TU WEBHOOK URL
-                    const webhookConfig = {
-                        enabled: true, // Cambiar a false para deshabilitar
-                        url: 'https://n8n.skyplay.us/webhook/wholesale-skyplay', // 👈 CAMBIAR ESTA URL
-                        apiKey: 'tu-api-key-opcional', // Solo si necesitas autenticación
-                        timeout: 10000 // 10 segundos timeout
+                // Enviar a VPS/n8n webhook
+                const webhookConfig = {
+                    enabled: true,
+                    url: 'https://n8n.skyplay.us/webhook/wholesale-skyplay',
+                    apiKey: 'tu-api-key-opcional',
+                    timeout: 10000
+                };
+
+                if (webhookConfig.enabled && webhookConfig.url) {
+                    const headers = {
+                        'Content-Type': 'application/json',
                     };
-
-                    if (webhookConfig.enabled && webhookConfig.url === 'https://n8n.skyplay.us/webhook/wholesale-skyplay') {
-                        const headers = {
-                            'Content-Type': 'application/json',
-                        };
-
-                        // Agregar API key si está configurada
-                        if (webhookConfig.apiKey && webhookConfig.apiKey !== 'tu-api-key-opcional') {
-                            headers['Authorization'] = `Bearer ${webhookConfig.apiKey}`;
-                        }
-
-                        const controller = new AbortController();
-                        const timeoutId = setTimeout(() => controller.abort(), webhookConfig.timeout);
-
+                    if (webhookConfig.apiKey && webhookConfig.apiKey !== 'tu-api-key-opcional') {
+                        headers['Authorization'] = `Bearer ${webhookConfig.apiKey}`;
+                    }
+                    const controller = new AbortController();
+                    const timeoutId = setTimeout(() => controller.abort(), webhookConfig.timeout);
+                    try {
                         const webhookResponse = await fetch(webhookConfig.url, {
                             method: 'POST',
                             headers: headers,
                             body: JSON.stringify(data),
                             signal: controller.signal
                         });
-
                         clearTimeout(timeoutId);
-
                         if (webhookResponse.ok) {
                             console.log('✅ Datos enviados a VPS exitosamente');
                         } else {
                             console.warn('⚠️ VPS respondió con error:', webhookResponse.status);
                         }
-                    } else {
-                        console.log('🔧 Webhook no configurado - solo enviado por email');
+                    } catch (webhookError) {
+                        console.log('⚠️ Error enviando a VPS (email enviado correctamente):', webhookError.message);
                     }
-                } catch (webhookError) {
-                    console.log('⚠️ Error enviando a VPS (email enviado correctamente):', webhookError.message);
                 }
 
-                // Show success
+                // Mostrar éxito
                 closeWholesaleModal();
                 document.getElementById('thankYouModal').classList.add('active');
-
-                // Reset form
                 event.target.reset();
 
                 // Google Analytics tracking
@@ -4647,18 +4599,16 @@ https://iptv.skyplay.us`);
                         event_label: 'Wholesale Registration Completed via Modal'
                     });
                 }
-
             } catch (error) {
                 console.error('Error submitting form:', error);
                 alert(currentLanguage === 'es' ?
                     'Hubo un error al enviar el formulario. Por favor intenta de nuevo.' :
                     'There was an error submitting the form. Please try again.');
             } finally {
-                // Reset button state
-                submitBtn.disabled = false;
-                submitBtnText.textContent = originalText;
+                if (submitBtn) submitBtn.disabled = false;
+                if (submitBtnText) submitBtnText.textContent = originalText;
             }
-        
+        }
 
         // Close modals when clicking outside (specific to wholesale modals only)
         document.getElementById('wholesaleModal').addEventListener('click', function(event) {
@@ -4736,287 +4686,143 @@ async function requestOTP(event) {
             },
             body: JSON.stringify(wholesaleFormData)
         });
-        
-        const data = await response.json();
-        
-        if (data.success) {
-            // Show Step 2
-            document.getElementById('wholesaleStep1').style.display = 'none';
-            document.getElementById('wholesaleStep2').style.display = 'block';
-            
-            // Update email display
-            document.getElementById('otpEmailDisplay').textContent = wholesaleFormData.email;
-            
-            // Start timer
-            startOTPTimer(data.expiresIn || 300);
-            
-            // Focus OTP input
-            setTimeout(() => {
-                document.getElementById('otpInput').focus();
-            }, 100);
-            
-            console.log('✅ OTP request successful');
-        } else {
-            alert(data.error || 'Error al enviar el código. Intenta de nuevo.');
-            console.error('❌ OTP request failed:', data);
-        }
-    } catch (error) {
-        console.error('❌ Error requesting OTP:', error);
-        alert('Error de conexión. Por favor intenta de nuevo.');
-    } finally {
-        btn.disabled = false;
-        btnText.textContent = originalText;
-    }
-}
+        let wholesaleFormData = {};
+        let otpTimer = null;
+        let otpExpiryTime = null;
+        let canResendOTP = true;
 
-// Verify OTP - Step 2
-async function verifyOTP() {
-    const otp = document.getElementById('otpInput').value.trim();
-    
-    if (otp.length !== 6) {
-        alert('Por favor ingresa un código de 6 dígitos');
-        return;
-    }
-    
-    const btn = document.getElementById('verifyOtpBtn');
-    const btnText = document.getElementById('verifyOtpBtnText');
-    const originalText = btnText.textContent;
-    
-    btn.disabled = true;
-    btnText.textContent = '⏳ Verificando...';
-    
-    try {
-        const response = await fetch('https://n8n.skyplay.us/webhook/wholesale-verify-otp', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({
-                email: wholesaleFormData.email,
-                otp: otp,
-                userData: wholesaleFormData
-            })
-        });
-        
-        const data = await response.json();
-        
-        if (data.success) {
-            // Stop timer
-            if (otpTimer) {
-                clearInterval(otpTimer);
-            }
-            
-            // Show success
-            document.getElementById('wholesaleStep2').style.display = 'none';
-            document.getElementById('wholesaleStep3').style.display = 'block';
-            
-            // Google Analytics
-            if (typeof gtag !== 'undefined') {
-                gtag('event', 'conversion', {
-                    event_category: 'Wholesale',
-                    event_label: 'Wholesale Registration with OTP Completed'
+        // Solicitar OTP (paso 1)
+        async function requestOTP(event) {
+            event.preventDefault();
+            const btn = document.getElementById('requestOtpBtn');
+            const btnText = document.getElementById('requestOtpBtnText');
+            const originalText = btnText.textContent;
+            btn.disabled = true;
+            btnText.textContent = '⏳ Enviando...';
+
+            // Capturar datos del formulario
+            wholesaleFormData = {
+                fullName: document.getElementById('fullName').value,
+                countryCode: document.getElementById('countryCode').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                comments: document.getElementById('comments').value || '',
+                timestamp: new Date().toISOString(),
+                source: 'skyplay-wholesale-modal'
+            };
+
+            try {
+                const response = await fetch('https://n8n.skyplay.us/webhook/wholesale-request-otp', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(wholesaleFormData)
                 });
+                const data = await response.json();
+                if (data.success) {
+                    document.getElementById('wholesaleStep1').style.display = 'none';
+                    document.getElementById('wholesaleStep2').style.display = 'block';
+                    document.getElementById('otpEmailDisplay').textContent = wholesaleFormData.email;
+                    startOTPTimer(data.expiresIn || 300);
+                    setTimeout(() => {
+                        document.getElementById('otpInput').focus();
+                    }, 100);
+                    console.log('✅ OTP request successful');
+                } else {
+                    alert(data.error || 'Error al enviar el código. Intenta de nuevo.');
+                    console.error('❌ OTP request failed:', data);
+                }
+            } catch (error) {
+                console.error('❌ Error requesting OTP:', error);
+                alert('Error de conexión. Por favor intenta de nuevo.');
+            } finally {
+                btn.disabled = false;
+                btnText.textContent = originalText;
             }
-            
-            console.log('✅ OTP verification successful');
-        } else {
-            // Show error
-            const otpInput = document.getElementById('otpInput');
-            otpInput.classList.add('error');
-            setTimeout(() => otpInput.classList.remove('error'), 500);
-            
-            let errorMsg = data.error || 'Código incorrecto. Intenta de nuevo.';
-            
-            if (data.attemptsLeft !== undefined) {
-                errorMsg += `\n\nIntentos restantes: ${data.attemptsLeft}`;
-            }
-            
-            alert(errorMsg);
-            
-            otpInput.value = '';
-            otpInput.focus();
-            
-            console.error('❌ OTP verification failed:', data);
         }
-    } catch (error) {
-        console.error('❌ Error verifying OTP:', error);
-        alert('Error de conexión. Por favor intenta de nuevo.');
-    } finally {
-        btn.disabled = false;
-        btnText.textContent = originalText;
-    }
-}
 
-// Resend OTP
-async function resendOTP() {
-    if (!canResendOTP) {
-        alert('⏳ Espera unos segundos antes de reenviar');
-        return;
-    }
-    
-    const btn = document.getElementById('resendOtpBtn');
-    const btnText = document.getElementById('resendOtpBtnText');
-    const originalText = btnText.textContent;
-    
-    btn.disabled = true;
-    btnText.textContent = '⏳ Reenviando...';
-    canResendOTP = false;
-    
-    // Clear OTP input
-    document.getElementById('otpInput').value = '';
-    
-    try {
-        const response = await fetch('https://n8n.skyplay.us/webhook/wholesale-request-otp', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify(wholesaleFormData)
-        });
-        
-        const data = await response.json();
-        
-        if (data.success) {
-            // Restart timer
-            if (otpTimer) {
-                clearInterval(otpTimer);
+        // Verificar OTP (paso 2)
+        async function verifyOTP(event) {
+            event.preventDefault();
+            const btn = document.getElementById('verifyOtpBtn');
+            const btnText = document.getElementById('verifyOtpBtnText');
+            const originalText = btnText ? btnText.textContent : '';
+            if (btn) btn.disabled = true;
+            if (btnText) btnText.textContent = currentLanguage === 'es' ? 'Verificando...' : 'Verifying...';
+            const otpValue = document.getElementById('otpInput').value;
+            const payload = {
+                ...wholesaleFormData,
+                otp: otpValue
+            };
+            try {
+                const response = await fetch('https://n8n.skyplay.us/webhook/wholesale-verify-otp', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+                const data = await response.json();
+                if (data.success) {
+                    document.getElementById('wholesaleStep2').style.display = 'none';
+                    document.getElementById('wholesaleStep3').style.display = 'block';
+                    // Aquí puedes mostrar el modal de éxito, tracking, etc.
+                } else {
+                    alert(data.error || 'Código incorrecto. Intenta de nuevo.');
+                }
+            } catch (error) {
+                console.error('Error verifying OTP:', error);
+                alert('Error de conexión. Por favor intenta de nuevo.');
+            } finally {
+                if (btn) btn.disabled = false;
+                if (btnText) btnText.textContent = originalText;
             }
-            startOTPTimer(data.expiresIn || 300);
-            
-            alert('✅ Nuevo código enviado a tu email');
-            document.getElementById('otpInput').focus();
-            
-            console.log('✅ OTP resent successfully');
-        } else {
-            alert(data.error || 'Error al reenviar el código');
-            console.error('❌ OTP resend failed:', data);
         }
-    } catch (error) {
-        console.error('❌ Error resending OTP:', error);
-        alert('Error de conexión. Por favor intenta de nuevo.');
-    } finally {
-        // Re-enable after 10 seconds to prevent spam
-        setTimeout(() => {
-            btn.disabled = false;
-            btnText.textContent = originalText;
+
+        function closeWholesaleModalAndReset() {
+            closeWholesaleModal();
+            resetWholesaleModal();
+        }
+
+        function resetWholesaleModal() {
+            if (otpTimer) clearInterval(otpTimer);
+            document.getElementById('wholesaleStep1').style.display = 'block';
+            document.getElementById('wholesaleStep2').style.display = 'none';
+            document.getElementById('wholesaleStep3').style.display = 'none';
+            const form = document.getElementById('wholesaleFormStep1');
+            if (form) form.reset();
+            document.getElementById('otpInput').value = '';
+            wholesaleFormData = {};
             canResendOTP = true;
-        }, 10000);
-    }
-}
-
-// Back to form
-function backToForm() {
-    if (otpTimer) {
-        clearInterval(otpTimer);
-    }
-    
-    document.getElementById('wholesaleStep2').style.display = 'none';
-    document.getElementById('wholesaleStep1').style.display = 'block';
-    document.getElementById('otpInput').value = '';
-    
-    console.log('↩️ Back to form');
-}
-
-// Close modal and reset
-function closeWholesaleModalAndReset() {
-    closeWholesaleModal();
-    resetWholesaleModal();
-}
-
-// Reset modal to step 1
-function resetWholesaleModal() {
-    if (otpTimer) {
-        clearInterval(otpTimer);
-    }
-    
-    document.getElementById('wholesaleStep1').style.display = 'block';
-    document.getElementById('wholesaleStep2').style.display = 'none';
-    document.getElementById('wholesaleStep3').style.display = 'none';
-    
-    const form = document.getElementById('wholesaleFormStep1');
-    if (form) {
-        form.reset();
-    }
-    
-    document.getElementById('otpInput').value = '';
-    
-    wholesaleFormData = {};
-    canResendOTP = true;
-    
-    console.log('🔄 Modal reset');
-}
-
-// Start OTP timer
-function startOTPTimer(seconds) {
-    let timeLeft = seconds;
-    const timerDisplay = document.getElementById('timerDisplay');
-    const timerContainer = document.getElementById('otpTimer');
-    
-    // Remove expired class if present
-    timerContainer.classList.remove('expired');
-    
-    otpExpiryTime = Date.now() + (seconds * 1000);
-    
-    if (otpTimer) {
-        clearInterval(otpTimer);
-    }
-    
-    otpTimer = setInterval(() => {
-        const mins = Math.floor(timeLeft / 60);
-        const secs = timeLeft % 60;
-        
-        timerDisplay.textContent = `${mins}:${secs.toString().padStart(2, '0')}`;
-        
-        // Change color when less than 60 seconds
-        if (timeLeft <= 60) {
-            timerContainer.classList.add('expired');
+            console.log('🔄 Modal reset');
         }
-        
-        if (--timeLeft < 0) {
-            clearInterval(otpTimer);
-            timerDisplay.textContent = 'Expirado';
-            alert('⏰ El código ha expirado. Por favor solicita uno nuevo.');
+
+        function startOTPTimer(seconds) {
+            let timeLeft = seconds;
+            const timerDisplay = document.getElementById('timerDisplay');
+            if (otpTimer) clearInterval(otpTimer);
+            timerDisplay.textContent = formatTime(timeLeft);
+            otpTimer = setInterval(() => {
+                timeLeft--;
+                timerDisplay.textContent = formatTime(timeLeft);
+                if (timeLeft <= 0) {
+                    clearInterval(otpTimer);
+                    canResendOTP = true;
+                    timerDisplay.textContent = currentLanguage === 'es' ? 'Expirado' : 'Expired';
+                }
+            }, 1000);
         }
-    }, 1000);
-    
-    console.log(`⏱️ Timer started: ${seconds} seconds`);
-}
 
-// Handle OTP input (auto-format and validation)
-function handleOTPInput(input) {
-    // Only allow numbers
-    input.value = input.value.replace(/[^0-9]/g, '');
-    
-    // Remove error class when user types
-    input.classList.remove('error');
-    
-    // Optional: auto-verify when 6 digits entered
-    // Uncomment if you want automatic verification:
-    // if (input.value.length === 6) {
-    //     verifyOTP();
-    // }
-}
+        function formatTime(seconds) {
+            const min = Math.floor(seconds / 60);
+            const sec = seconds % 60;
 
-// Override closeWholesaleModal to also reset
-const originalCloseWholesaleModal = window.closeWholesaleModal;
-window.closeWholesaleModal = function() {
-    if (originalCloseWholesaleModal) {
-        originalCloseWholesaleModal();
-    }
-    resetWholesaleModal();
-};
+            return `${min}:${sec.toString().padStart(2, '0')}`;
+        }
 
-// Expose OTP functions globally
-window.requestOTP = requestOTP;
-window.verifyOTP = verifyOTP;
-window.resendOTP = resendOTP;
-window.backToForm = backToForm;
-window.closeWholesaleModalAndReset = closeWholesaleModalAndReset;
-window.handleOTPInput = handleOTPInput;
-
-console.log('🔐 OTP System initialized');
-    </script>
+</script>
 </body>
 </html>
