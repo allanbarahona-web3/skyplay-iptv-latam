@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Skyplay Streaming </title>
     <link rel="icon" href="assets/imagen/Favicon2.png" type="image/png">
-    <meta name="description" content="Los mejores planes de streaming IPTV para Latinoamérica. +1000 canales, series, películas y deportes. Cancela cuando quieras.">
+    <meta name="description" content="Los mejores planes de streaming. Cancela cuando quieras.">
     <style>
         * {
             margin: 0;
@@ -18,6 +18,10 @@
             --primary-light: #2a5298;
             --secondary: #667eea;
             --accent: #764ba2;
+            --card-bg: #ffffff;
+            --card-radius: 14px;
+            --card-shadow: 0 12px 30px rgba(2,6,23,0.08);
+            --cta: var(--primary);
             --success: #10b981;
             --white: #ffffff;
             --gray-50: #f9fafb;
@@ -91,6 +95,108 @@
         .lang-btn.active {
             background: white;
             color: var(--primary);
+        }
+
+        /* Import a friendly sans-serif similar to brand typography */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+        /* Provider avatar styles for pricing cards */
+        .provider-avatar {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px auto;
+            color: var(--white);
+            font-weight: 800;
+            box-shadow: 0 8px 22px rgba(2,6,23,0.08);
+            overflow: hidden;
+            border: 3px solid #fff;
+            animation: floaty 6s ease-in-out infinite;
+            transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+        }
+
+        @keyframes floaty {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .provider-initial {
+            font-size: 32px;
+            line-height: 1;
+            font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        }
+
+        /* Avatar color classes (extend as needed) */
+    /* Brand-approx colors */
+    /* Brand-approx colors */
+    .avatar-disney { background: #113CCF; box-shadow: 0 8px 20px rgba(17,60,207,0.18); border-color: rgba(17,60,207,0.18); }
+    .avatar-vix { background: #F15A24; box-shadow: 0 8px 20px rgba(241,90,36,0.18); border-color: rgba(241,90,36,0.18); }
+    .avatar-crunchyroll { background: #F97316; box-shadow: 0 8px 20px rgba(249,115,22,0.16); border-color: rgba(249,115,22,0.16); }
+    .avatar-max { background: #4C1D95; box-shadow: 0 8px 20px rgba(76,29,149,0.16); border-color: rgba(76,29,149,0.16); }
+    .avatar-netflix { background: #E50914; box-shadow: 0 8px 20px rgba(229,9,20,0.16); border-color: rgba(229,9,20,0.16); }
+    .avatar-paramount { background: #2D47A1; box-shadow: 0 8px 20px rgba(45,71,161,0.16); border-color: rgba(45,71,161,0.16); }
+        .avatar-default { background: #374151; }
+
+        /* Card styling for professional look */
+        .pricing-card {
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            transition: transform .18s ease, box-shadow .18s ease;
+            color: #0f172a;
+            border: 1px solid rgba(15,23,42,0.04);
+        }
+
+        .pricing-card:hover { transform: translateY(-8px); box-shadow: 0 22px 48px rgba(2,6,23,0.12); }
+
+        .plan-name { font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial; font-weight:600; font-size:18px; text-align:center; color:#0b1220; }
+
+        .plan-price { font-size:30px; font-weight:800; color:var(--primary); text-align:center; margin-top:8px; }
+        .plan-price .plan-period { font-size:12px; font-weight:600; color:#6b7280; margin-left:8px; }
+
+        .subscribe-btn { display:block; width:100%; padding:12px 16px; border-radius:12px; background:var(--cta); color:#fff; font-weight:700; border:none; cursor:pointer; transition: transform .12s ease, box-shadow .12s ease; }
+        .subscribe-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(229,9,20,0.14); }
+        .subscribe-btn:focus { outline: 3px solid rgba(14,28,120,0.12); outline-offset: 2px; }
+
+        /* Variant pills */
+        .variant-option { display:inline-block; padding:8px 12px; border-radius:999px; background: #f3f4f6; color:#374151; margin:4px; cursor:pointer; font-weight:600; font-size:13px; }
+        .variant-option.active { background: var(--primary); color:#fff; }
+
+        /* Feature item styling */
+        .feature-item { display:flex; gap:10px; align-items:flex-start; margin-bottom:8px; }
+        .feature-icon { width:26px; height:26px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-weight:700; }
+        .feature-icon.disabled { opacity:0.45; }
+        .feature-text { color:#374151; font-size:14px; }
+
+        /* Responsive avatar sizes */
+        @media (max-width: 640px) {
+            .provider-avatar { width: 64px; height: 64px; border-width: 2px; }
+            .provider-initial { font-size: 22px; }
+            .pricing-card { padding: 14px; }
+            .plan-price { font-size:22px; }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .provider-avatar { width: 76px; height: 76px; }
+            .provider-initial { font-size: 28px; }
+            .pricing-card { padding: 18px; }
+            .plan-price { font-size:26px; }
+        }
+
+        /* Hover interaction: subtle scale on avatar */
+        .provider-avatar:hover { transform: scale(1.06); box-shadow: 0 14px 36px rgba(2,6,23,0.12); }
+
+        /* If you later upload an image, it can fit here */
+        .provider-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         /* Wholesale Button */
@@ -423,7 +529,7 @@
 
         /* PRICING CARDS - NUEVO DISEÑO */
         .plans-section {
-            padding: 60px 20px;
+            padding: 50px 18px;
         }
 
         .plans-header {
@@ -701,6 +807,11 @@
             background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
             box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
         }
+
+        /* Variant switch styles */
+        .variant-switch { display: flex; gap: 8px; }
+        .variant-option { flex: 1; padding: 8px 12px; text-align: center; font-size: 13px; font-weight: 700; color: var(--gray-600); border-radius: 18px; background: var(--gray-200); cursor: pointer; }
+        .variant-option.active { background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%); color: white; box-shadow: 0 6px 20px rgba(102,126,234,0.18); }
 
         .device-price-diff {
             font-size: 11px;
@@ -2999,179 +3110,128 @@
             return basePrice * (1 - discount / 100);
         }
 
-        // CONFIGURACIÓN - PAYMENT LINKS
+        // CONFIGURACIÓN - PAYMENT LINKS STREAMING
         const paymentLinks = {
-            // FLUJO TV Plan
-            flujo: {
-                oneTime: {
-                    month1: {
-                        stripe: 'TU_STRIPE_LINK_FLUJO_1M',
-                        binance: 'TU_COINPAL_LINK_FLUJO_1M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_FLUJO_1M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_FLUJO_1M'
-                    },
-                    months3: {
-                        stripe: 'TU_STRIPE_LINK_FLUJO_3M',
-                        binance: 'TU_COINPAL_LINK_FLUJO_3M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_FLUJO_3M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_FLUJO_3M'
-                    },
-                    months6: {
-                        stripe: 'TU_STRIPE_LINK_FLUJO_6M',
-                        binance: 'TU_COINPAL_LINK_FLUJO_6M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_FLUJO_6M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_FLUJO_6M'
-                    },
-                    months12: {
-                        stripe: 'TU_STRIPE_LINK_FLUJO_12M',
-                        binance: 'TU_COINPAL_LINK_FLUJO_12M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_FLUJO_12M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_FLUJO_12M'
-                    }
+            // DISNEY
+            disney: {
+                basico: {
+                    stripe: 'TU_STRIPE_LINK_DISNEY_BASICO',
+                    binance: 'TU_COINPAL_LINK_DISNEY_BASICO_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_DISNEY_BASICO_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_DISNEY_BASICO'
+                },
+                estandar: {
+                    stripe: 'TU_STRIPE_LINK_DISNEY_ESTANDAR',
+                    binance: 'TU_COINPAL_LINK_DISNEY_ESTANDAR_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_DISNEY_ESTANDAR_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_DISNEY_ESTANDAR'
                 }
             },
-            // MAGISTV PRO - 1 Device
-            magistv1: {
-                oneTime: {
-                    month1: {
-                        stripe: 'TU_STRIPE_LINK_MAGISTV1_1M',
-                        binance: 'TU_COINPAL_LINK_MAGISTV1_1M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_MAGISTV1_1M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_MAGISTV1_1M'
-                    },
-                    months3: {
-                        stripe: 'TU_STRIPE_LINK_MAGISTV1_3M',
-                        binance: 'TU_COINPAL_LINK_MAGISTV1_3M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_MAGISTV1_3M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_MAGISTV1_3M'
-                    },
-                    months6: {
-                        stripe: 'TU_STRIPE_LINK_MAGISTV1_6M',
-                        binance: 'TU_COINPAL_LINK_MAGISTV1_6M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_MAGISTV1_6M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_MAGISTV1_6M'
-                    },
-                    months12: {
-                        stripe: 'TU_STRIPE_LINK_MAGISTV1_12M',
-                        binance: 'TU_COINPAL_LINK_MAGISTV1_12M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_MAGISTV1_12M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_MAGISTV1_12M'
-                    }
+
+            // VIX
+            vix: {
+                mes1: {
+                    stripe: 'TU_STRIPE_LINK_VIX_1MES',
+                    binance: 'TU_COINPAL_LINK_VIX_1MES_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_VIX_1MES_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_VIX_1MES'
                 },
-                subscription: {
-                    monthly: { stripe: 'TU_STRIPE_LINK_MAGISTV1_MONTHLY' },
-                    quarterly: { stripe: 'TU_STRIPE_LINK_MAGISTV1_QUARTERLY' },
-                    semiannual: { stripe: 'TU_STRIPE_LINK_MAGISTV1_SEMIANNUAL' },
-                    annual: { stripe: 'TU_STRIPE_LINK_MAGISTV1_ANNUAL' }
+                anual: {
+                    stripe: 'TU_STRIPE_LINK_VIX_ANUAL',
+                    binance: 'TU_COINPAL_LINK_VIX_ANUAL_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_VIX_ANUAL_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_VIX_ANUAL'
+                },
+                perfil30: {
+                    stripe: 'TU_STRIPE_LINK_VIX_PERFIL30',
+                    binance: 'TU_COINPAL_LINK_VIX_PERFIL30_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_VIX_PERFIL30_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_VIX_PERFIL30'
                 }
             },
-            // MAGISTV PRO - 3 Devices
-            magistv3: {
-                oneTime: {
-                    month1: {
-                        stripe: 'TU_STRIPE_LINK_MAGISTV3_1M',
-                        binance: 'TU_COINPAL_LINK_MAGISTV3_1M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_MAGISTV3_1M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_MAGISTV3_1M'
-                    },
-                    months3: {
-                        stripe: 'TU_STRIPE_LINK_MAGISTV3_3M',
-                        binance: 'TU_COINPAL_LINK_MAGISTV3_3M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_MAGISTV3_3M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_MAGISTV3_3M'
-                    },
-                    months6: {
-                        stripe: 'TU_STRIPE_LINK_MAGISTV3_6M',
-                        binance: 'TU_COINPAL_LINK_MAGISTV3_6M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_MAGISTV3_6M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_MAGISTV3_6M'
-                    },
-                    months12: {
-                        stripe: 'TU_STRIPE_LINK_MAGISTV3_12M',
-                        binance: 'TU_COINPAL_LINK_MAGISTV3_12M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_MAGISTV3_12M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_MAGISTV3_12M'
-                    }
+
+            // CRUNCHYROLL
+            crunchyroll: {
+                mes1: {
+                    stripe: 'TU_STRIPE_LINK_CRUNCHYROLL_1MES',
+                    binance: 'TU_COINPAL_LINK_CRUNCHYROLL_1MES_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_CRUNCHYROLL_1MES_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_CRUNCHYROLL_1MES'
                 },
-                subscription: {
-                    monthly: { stripe: 'TU_STRIPE_LINK_MAGISTV3_MONTHLY' },
-                    quarterly: { stripe: 'TU_STRIPE_LINK_MAGISTV3_QUARTERLY' },
-                    semiannual: { stripe: 'TU_STRIPE_LINK_MAGISTV3_SEMIANNUAL' },
-                    annual: { stripe: 'TU_STRIPE_LINK_MAGISTV3_ANNUAL' }
+                anual: {
+                    stripe: 'TU_STRIPE_LINK_CRUNCHYROLL_ANUAL',
+                    binance: 'TU_COINPAL_LINK_CRUNCHYROLL_ANUAL_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_CRUNCHYROLL_ANUAL_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_CRUNCHYROLL_ANUAL'
+                },
+                perfil30: {
+                    stripe: 'TU_STRIPE_LINK_CRUNCHYROLL_PERFIL30',
+                    binance: 'TU_COINPAL_LINK_CRUNCHYROLL_PERFIL30_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_CRUNCHYROLL_PERFIL30_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_CRUNCHYROLL_PERFIL30'
                 }
             },
-            // TELE-LATINO - 1 Device
-            telelatino1: {
-                oneTime: {
-                    month1: {
-                        stripe: 'TU_STRIPE_LINK_TELELATINO1_1M',
-                        binance: 'TU_COINPAL_LINK_TELELATINO1_1M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_TELELATINO1_1M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_TELELATINO1_1M'
-                    },
-                    months3: {
-                        stripe: 'TU_STRIPE_LINK_TELELATINO1_3M',
-                        binance: 'TU_COINPAL_LINK_TELELATINO1_3M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_TELELATINO1_3M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_TELELATINO1_3M'
-                    },
-                    months6: {
-                        stripe: 'TU_STRIPE_LINK_TELELATINO1_6M',
-                        binance: 'TU_COINPAL_LINK_TELELATINO1_6M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_TELELATINO1_6M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_TELELATINO1_6M'
-                    },
-                    months12: {
-                        stripe: 'TU_STRIPE_LINK_TELELATINO1_12M',
-                        binance: 'TU_COINPAL_LINK_TELELATINO1_12M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_TELELATINO1_12M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_TELELATINO1_12M'
-                    }
+
+            // MAX
+            max: {
+                basic: {
+                    stripe: 'TU_STRIPE_LINK_MAX_BASIC',
+                    binance: 'TU_COINPAL_LINK_MAX_BASIC_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_MAX_BASIC_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_MAX_BASIC'
                 },
-                subscription: {
-                    monthly: { stripe: 'TU_STRIPE_LINK_TELELATINO1_MONTHLY' },
-                    quarterly: { stripe: 'TU_STRIPE_LINK_TELELATINO1_QUARTERLY' },
-                    semiannual: { stripe: 'TU_STRIPE_LINK_TELELATINO1_SEMIANNUAL' },
-                    annual: { stripe: 'TU_STRIPE_LINK_TELELATINO1_ANNUAL' }
+                standard: {
+                    stripe: 'TU_STRIPE_LINK_MAX_STANDARD',
+                    binance: 'TU_COINPAL_LINK_MAX_STANDARD_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_MAX_STANDARD_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_MAX_STANDARD'
+                },
+                perfil30: {
+                    stripe: 'TU_STRIPE_LINK_MAX_PERFIL30',
+                    binance: 'TU_COINPAL_LINK_MAX_PERFIL30_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_MAX_PERFIL30_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_MAX_PERFIL30'
                 }
             },
-            // TELE-LATINO - 3 Devices
-            telelatino3: {
-                oneTime: {
-                    month1: {
-                        stripe: 'TU_STRIPE_LINK_TELELATINO3_1M',
-                        binance: 'TU_COINPAL_LINK_TELELATINO3_1M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_TELELATINO3_1M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_TELELATINO3_1M'
-                    },
-                    months3: {
-                        stripe: 'TU_STRIPE_LINK_TELELATINO3_3M',
-                        binance: 'TU_COINPAL_LINK_TELELATINO3_3M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_TELELATINO3_3M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_TELELATINO3_3M'
-                    },
-                    months6: {
-                        stripe: 'TU_STRIPE_LINK_TELELATINO3_6M',
-                        binance: 'TU_COINPAL_LINK_TELELATINO3_6M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_TELELATINO3_6M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_TELELATINO3_6M'
-                    },
-                    months12: {
-                        stripe: 'TU_STRIPE_LINK_TELELATINO3_12M',
-                        binance: 'TU_COINPAL_LINK_TELELATINO3_12M_BINANCE',
-                        paypal: 'TU_COINPAL_LINK_TELELATINO3_12M_PAYPAL',
-                        sinpe: 'TU_SINPE_LINK_TELELATINO3_12M'
-                    }
+
+            // NETFLIX
+            netflix: {
+                basic: {
+                    stripe: 'TU_STRIPE_LINK_NETFLIX_BASIC',
+                    binance: 'TU_COINPAL_LINK_NETFLIX_BASIC_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_NETFLIX_BASIC_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_NETFLIX_BASIC'
                 },
-                subscription: {
-                    monthly: { stripe: 'TU_STRIPE_LINK_TELELATINO3_MONTHLY' },
-                    quarterly: { stripe: 'TU_STRIPE_LINK_TELELATINO3_QUARTERLY' },
-                    semiannual: { stripe: 'TU_STRIPE_LINK_TELELATINO3_SEMIANNUAL' },
-                    annual: { stripe: 'TU_STRIPE_LINK_TELELATINO3_ANNUAL' }
+                standard: {
+                    stripe: 'TU_STRIPE_LINK_NETFLIX_STANDARD',
+                    binance: 'TU_COINPAL_LINK_NETFLIX_STANDARD_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_NETFLIX_STANDARD_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_NETFLIX_STANDARD'
+                },
+                premium: {
+                    stripe: 'TU_STRIPE_LINK_NETFLIX_PREMIUM',
+                    binance: 'TU_COINPAL_LINK_NETFLIX_PREMIUM_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_NETFLIX_PREMIUM_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_NETFLIX_PREMIUM'
+                }
+            },
+
+            // PARAMOUNT
+            paramount: {
+                mes: {
+                    stripe: 'TU_STRIPE_LINK_PARAMOUNT_MES',
+                    binance: 'TU_COINPAL_LINK_PARAMOUNT_MES_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_PARAMOUNT_MES_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_PARAMOUNT_MES'
+                },
+                perfil30: {
+                    stripe: 'TU_STRIPE_LINK_PARAMOUNT_PERFIL30',
+                    binance: 'TU_COINPAL_LINK_PARAMOUNT_PERFIL30_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_PARAMOUNT_PERFIL30_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_PARAMOUNT_PERFIL30'
                 }
             }
         };
-
         // Exchange rates
         const exchangeRates = {
         argentina:      { currency: 'ARS', symbol: '$',  rate: 950,   flag: '🇦🇷', name: 'Argentina' },
@@ -3180,7 +3240,7 @@
         canada:         { currency: 'CAD', symbol: '$',  rate: 1.36,  flag: '🇨🇦', name: 'Canadá' },
         chile:          { currency: 'CLP', symbol: '$',  rate: 930,   flag: '🇨🇱', name: 'Chile' },
         colombia:       { currency: 'COP', symbol: '$',  rate: 4100,  flag: '🇨🇴', name: 'Colombia' },
-        costarica:     { currency: 'CRC', symbol: '₡',  rate: 520,   flag: '🇨🇷', name: 'Costa Rica' },
+        costarica:      {currency: 'CRC', symbol: '₡',  rate: 520,   flag: '🇨🇷', name: 'Costa Rica' },
         ecuador:        { currency: 'USD', symbol: '$',  rate: 1,     flag: '🇪🇨', name: 'Ecuador' },
         el_salvador:    { currency: 'USD', symbol: '$',  rate: 1,     flag: '🇸🇻', name: 'El Salvador' },
         espana:         { currency: 'EUR', symbol: '€',  rate: 0.92,  flag: '🇪🇸', name: 'España' },
@@ -3196,85 +3256,252 @@
         venezuela:     { currency: 'VES', symbol: 'Bs.',rate: 36,    flag: '🇻🇪', name: 'Venezuela' }
 };
 
-        // Plan data - FLUJO TV + plans with device switch
-        const plans = [
-            {
-                name: 'FLUJO TV',
-                subtitle: '3 Dispositivos',
-                basePrice: 7.75,
-                popular: false,
-                features: [
-                    { text: '+ 1000 Canales', enabled: true },
-                    { text: '+ 6000 Series y Películas', enabled: true },
-                    { text: 'Animé y Deportes', enabled: true },
-                    { text: 'Canales Locales e Internacionales', enabled: true },
-                    { text: '3 Dispositivos Simultáneos', enabled: true },
-                    { text: 'Android - TV Box - Fire TV', enabled: true },
-                    { text: 'Acceso Web', enabled: false },
-                    { text: 'Prueba Gratuita', enabled: false }
-                ],
-                paymentKey: 'plan1',
-                hasDeviceSwitch: false
-            },
-            {
-                name: 'MAGISTV PRO',
-                basePrice1Device: 3.95,
-                basePrice3Devices: 5.25,
-                popular: true,
-                features1Device: [
-                    { text: '+ 1000 Canales', enabled: true },
-                    { text: '+ 6000 Series y Películas', enabled: true },
-                    { text: 'Animé y Deportes', enabled: true },
-                    { text: 'Canales Locales e Internacionales', enabled: true },
-                    { text: '1 Dispositivo', enabled: true },
-                    { text: 'Android - TV Box - Fire TV', enabled: true },
-                    { text: 'Acceso Web Multiplataforma', enabled: true },
-                    { text: 'Prueba Gratuita 24H', enabled: true }
-                ],
-                features3Devices: [
-                    { text: '+ 1000 Canales', enabled: true },
-                    { text: '+ 6000 Series y Películas', enabled: true },
-                    { text: 'Animé y Deportes', enabled: true },
-                    { text: 'Canales Locales e Internacionales', enabled: true },
-                    { text: '3 Dispositivos Simultáneos', enabled: true },
-                    { text: 'Android - TV Box - Fire TV', enabled: true },
-                    { text: 'Acceso Web Multiplataforma', enabled: true },
-                    { text: 'Prueba Gratuita 24H', enabled: true }
-                ],
-                paymentKey1Device: 'plan2',
-                paymentKey3Devices: 'plan3',
-                hasDeviceSwitch: true
-            },
-            {
-                name: 'TELE-LATINO',
-                basePrice1Device: 3.95,
-                basePrice3Devices: 5.60,
-                popular: false,
-                features1Device: [
-                    { text: '+ 1000 Canales', enabled: true },
-                    { text: '+ 6000 Series y Películas', enabled: true },
-                    { text: 'Animé y Deportes', enabled: true },
-                    { text: 'Canales Locales e Internacionales', enabled: true },
-                    { text: '1 Dispositivo', enabled: true },
-                    { text: 'Android - TV Box - Fire TV', enabled: true },
-                    { text: 'Acceso Web', enabled: false },
-                    { text: 'Prueba Gratuita 72H', enabled: true }
-                ],
-                features3Devices: [
-                    { text: '+ 1000 Canales', enabled: true },
-                    { text: '+ 6000 Series y Películas', enabled: true },
-                    { text: 'Animé y Deportes', enabled: true },
-                    { text: 'Canales Locales e Internacionales', enabled: true },
-                    { text: '3 Dispositivos Simultáneos', enabled: true },
-                    { text: 'Android - TV Box - Fire TV', enabled: true },
-                    { text: 'Acceso Web', enabled: false },
-                    { text: 'Prueba Gratuita 72H', enabled: true }
-                ],
-                paymentKey1Device: 'plan4',
-                paymentKey3Devices: 'plan5',
-                hasDeviceSwitch: true
-            }
-        ];
+    // Plan data - STREAMING SERVICES
+    const streamingPlans = [
+    {
+        name: 'Disney+',
+        key: 'disney',
+        variants: [
+            { label: 'Básico', priceProp: 'basePriceBasico', featuresProp: 'featuresBasico', paymentVariant: 'basico' },
+            { label: 'Estándar', priceProp: 'basePriceEstandar', featuresProp: 'featuresEstandar', paymentVariant: 'estandar' }
+        ],
+        logo: '🎬',
+        basePriceBasico: 2,
+        basePriceEstandar: 3,
+        popular: true,
+        featuresBasico: [
+            { text: 'Contenido Disney, Pixar, Marvel', enabled: true },
+            { text: 'Star Wars y National Geographic', enabled: true },
+            { text: 'Calidad HD', enabled: true },
+            { text: '1 Pantalla Simultánea', enabled: true },
+            { text: 'Descarga de Contenido', enabled: false },
+            { text: 'Perfiles Ilimitados', enabled: true }
+        ],
+        featuresEstandar: [
+            { text: 'Contenido Disney, Pixar, Marvel', enabled: true },
+            { text: 'Star Wars y National Geographic', enabled: true },
+            { text: 'Calidad 4K Ultra HD', enabled: true },
+            { text: '4 Pantallas Simultáneas', enabled: true },
+            { text: 'Descarga de Contenido', enabled: true },
+            { text: 'Perfiles Ilimitados', enabled: true }
+        ],
+        paymentKeyBasico: 'disney.basico',
+        paymentKeyEstandar: 'disney.estandar',
+        hasSwitch: true,
+        switchOptions: ['Básico', 'Estándar']
+    },
+    {
+        name: 'VIX',
+        key: 'vix',
+        variants: [
+            { label: 'Perfil 30', priceProp: 'basePricePerfil30', featuresProp: 'featuresPerfil30', paymentVariant: 'perfil30' },
+            { label: '1 Mes', priceProp: 'basePriceMes1', featuresProp: 'featuresMes1', paymentVariant: 'mes1' },
+            { label: 'Anual', priceProp: 'basePriceAnual', featuresProp: 'featuresAnual', paymentVariant: 'anual' }
+        ],
+        logo: '📺',
+        basePricePerfil30: 1,
+        basePriceMes1: 2,
+        basePriceAnual: 3,
+        popular: false,
+        featuresPerfil30: [
+            { text: 'Contenido en Español', enabled: true },
+            { text: 'Novelas y Series Latinas', enabled: true },
+            { text: 'Deportes en Vivo', enabled: true },
+            { text: '30 Días de Acceso', enabled: true },
+            { text: 'Calidad HD', enabled: true },
+            { text: '1 Pantalla Simultánea', enabled: true }
+        ],
+        featuresMes1: [
+            { text: 'Contenido en Español', enabled: true },
+            { text: 'Novelas y Series Latinas', enabled: true },
+            { text: 'Deportes en Vivo', enabled: true },
+            { text: '1 Mes de Acceso', enabled: true },
+            { text: 'Calidad HD', enabled: true },
+            { text: '2 Pantallas Simultáneas', enabled: true }
+        ],
+        featuresAnual: [
+            { text: 'Contenido en Español', enabled: true },
+            { text: 'Novelas y Series Latinas', enabled: true },
+            { text: 'Deportes en Vivo', enabled: true },
+            { text: '1 Año de Acceso', enabled: true },
+            { text: 'Calidad Full HD', enabled: true },
+            { text: '3 Pantallas Simultáneas', enabled: true }
+        ],
+        paymentKeyPerfil30: 'vix.perfil30',
+        paymentKeyMes1: 'vix.mes1',
+        paymentKeyAnual: 'vix.anual',
+        hasSwitch: true,
+        switchOptions: ['Perfil 30', '1 Mes', 'Anual']
+    },
+    {
+        name: 'Crunchyroll',
+        logo: '🍥',
+        basePricePerfil30: 1,
+        basePriceMes1: 2,
+        basePriceAnual: 3,
+        popular: true,
+        variants: [
+            { label: 'Perfil 30', priceProp: 'basePricePerfil30', featuresProp: 'featuresPerfil30', paymentVariant: 'perfil30' },
+            { label: '1 Mes', priceProp: 'basePriceMes1', featuresProp: 'featuresMes1', paymentVariant: 'mes1' },
+            { label: 'Anual', priceProp: 'basePriceAnual', featuresProp: 'featuresAnual', paymentVariant: 'anual' }
+        ],
+        featuresPerfil30: [
+            { text: 'Más de 1,000 Series Anime', enabled: true },
+            { text: 'Simulcasts desde Japón', enabled: true },
+            { text: 'Subtítulos en Español', enabled: true },
+            { text: '30 Días de Acceso', enabled: true },
+            { text: 'Sin Publicidad', enabled: true },
+            { text: 'Calidad HD', enabled: true }
+        ],
+        featuresMes1: [
+            { text: 'Más de 1,000 Series Anime', enabled: true },
+            { text: 'Simulcasts desde Japón', enabled: true },
+            { text: 'Subtítulos en Español', enabled: true },
+            { text: '1 Mes de Acceso', enabled: true },
+            { text: 'Sin Publicidad', enabled: true },
+            { text: 'Calidad Full HD', enabled: true }
+        ],
+        featuresAnual: [
+            { text: 'Más de 1,000 Series Anime', enabled: true },
+            { text: 'Simulcasts desde Japón', enabled: true },
+            { text: 'Subtítulos y Doblaje', enabled: true },
+            { text: '1 Año de Acceso', enabled: true },
+            { text: 'Sin Publicidad', enabled: true },
+            { text: 'Descarga Offline', enabled: true }
+        ],
+        paymentKeyPerfil30: 'crunchyroll.perfil30',
+        paymentKeyMes1: 'crunchyroll.mes1',
+        paymentKeyAnual: 'crunchyroll.anual',
+        hasSwitch: true,
+        switchOptions: ['Perfil 30', '1 Mes', 'Anual']
+    },
+    {
+        name: 'MAX',
+        logo: '🎭',
+        basePriceBasic: 1,
+        basePriceStandard: 2,
+        basePricePerfil30: 3,
+        popular: false,
+        variants: [
+            { label: 'Basic', priceProp: 'basePriceBasic', featuresProp: 'featuresBasic', paymentVariant: 'basic' },
+            { label: 'Standard', priceProp: 'basePriceStandard', featuresProp: 'featuresStandard', paymentVariant: 'standard' },
+            { label: 'Perfil 30', priceProp: 'basePricePerfil30', featuresProp: 'featuresPerfil30', paymentVariant: 'perfil30' }
+        ],
+        featuresBasic: [
+            { text: 'HBO, Warner Bros, DC Comics', enabled: true },
+            { text: 'Contenido Original MAX', enabled: true },
+            { text: 'Calidad HD', enabled: true },
+            { text: '1 Pantalla Simultánea', enabled: true },
+            { text: 'Con Anuncios', enabled: false },
+            { text: 'Descarga de Contenido', enabled: false }
+        ],
+        featuresStandard: [
+            { text: 'HBO, Warner Bros, DC Comics', enabled: true },
+            { text: 'Contenido Original MAX', enabled: true },
+            { text: 'Calidad Full HD', enabled: true },
+            { text: '2 Pantallas Simultáneas', enabled: true },
+            { text: 'Sin Anuncios', enabled: true },
+            { text: 'Descarga de Contenido', enabled: true }
+        ],
+        featuresPerfil30: [
+            { text: 'HBO, Warner Bros, DC Comics', enabled: true },
+            { text: 'Contenido Original MAX', enabled: true },
+            { text: 'Calidad 4K Ultra HD', enabled: true },
+            { text: '4 Pantallas Simultáneas', enabled: true },
+            { text: 'Sin Anuncios', enabled: true },
+            { text: '30 Días Premium', enabled: true }
+        ],
+        paymentKeyBasic: 'max.basic',
+        paymentKeyStandard: 'max.standard',
+        paymentKeyPerfil30: 'max.perfil30',
+        hasSwitch: true,
+        switchOptions: ['Basic', 'Standard', 'Perfil 30']
+    },
+    {
+        name: 'Netflix',
+        logo: '🎥',
+        basePriceBasic: 1,
+        basePriceStandard: 2,
+        basePricePremium: 3,
+        popular: true,
+        variants: [
+            { label: 'Basic', priceProp: 'basePriceBasic', featuresProp: 'featuresBasic', paymentVariant: 'basic' },
+            { label: 'Standard', priceProp: 'basePriceStandard', featuresProp: 'featuresStandard', paymentVariant: 'standard' },
+            { label: 'Premium', priceProp: 'basePricePremium', featuresProp: 'featuresPremium', paymentVariant: 'premium' }
+        ],
+        featuresBasic: [
+            { text: 'Series y Películas Ilimitadas', enabled: true },
+            { text: 'Contenido Original Netflix', enabled: true },
+            { text: 'Calidad 720p', enabled: true },
+            { text: '1 Pantalla Simultánea', enabled: true },
+            { text: 'Ver en Móviles y Tablets', enabled: true },
+            { text: 'Descarga de Contenido', enabled: true }
+        ],
+        featuresStandard: [
+            { text: 'Series y Películas Ilimitadas', enabled: true },
+            { text: 'Contenido Original Netflix', enabled: true },
+            { text: 'Calidad Full HD 1080p', enabled: true },
+            { text: '2 Pantallas Simultáneas', enabled: true },
+            { text: 'Ver en Todos los Dispositivos', enabled: true },
+            { text: 'Descarga de Contenido', enabled: true }
+        ],
+        featuresPremium: [
+            { text: 'Series y Películas Ilimitadas', enabled: true },
+            { text: 'Contenido Original Netflix', enabled: true },
+            { text: 'Calidad 4K + HDR', enabled: true },
+            { text: '4 Pantallas Simultáneas', enabled: true },
+            { text: 'Audio Espacial Disponible', enabled: true },
+            { text: 'Descarga en 6 Dispositivos', enabled: true }
+        ],
+        paymentKeyBasic: 'netflix.basic',
+        paymentKeyStandard: 'netflix.standard',
+        paymentKeyPremium: 'netflix.premium',
+        hasSwitch: true,
+        switchOptions: ['Basic', 'Standard', 'Premium']
+    },
+    {
+        name: 'Paramount+',
+        logo: '⭐',
+        basePriceMes: 2,
+        basePricePerfil30: 3,
+        popular: false,
+        variants: [
+            { label: 'Mes', priceProp: 'basePriceMes', featuresProp: 'featuresMes', paymentVariant: 'mes' },
+            { label: 'Perfil 30', priceProp: 'basePricePerfil30', featuresProp: 'featuresPerfil30', paymentVariant: 'perfil30' }
+        ],
+        featuresMes: [
+            { text: 'Contenido CBS, MTV, Nickelodeon', enabled: true },
+            { text: 'Películas de Paramount Pictures', enabled: true },
+            { text: 'Deportes en Vivo (CBS Sports)', enabled: true },
+            { text: '1 Mes de Acceso', enabled: true },
+            { text: 'Calidad HD', enabled: true },
+            { text: '2 Pantallas Simultáneas', enabled: true }
+        ],
+        featuresPerfil30: [
+            { text: 'Contenido CBS, MTV, Nickelodeon', enabled: true },
+            { text: 'Películas de Paramount Pictures', enabled: true },
+            { text: 'Deportes en Vivo (CBS Sports)', enabled: true },
+            { text: '30 Días Premium', enabled: true },
+            { text: 'Calidad Full HD', enabled: true },
+            { text: '3 Pantallas Simultáneas', enabled: true }
+        ],
+        paymentKeyMes: 'paramount.mes',
+        paymentKeyPerfil30: 'paramount.perfil30',
+        hasSwitch: true,
+        switchOptions: ['Mes', 'Perfil 30']
+    }
+]; 
+
+// Flatten streamingPlans into `plans` used by the renderer.
+// Each provider variant becomes its own card so the existing render logic (which
+// expects `plans` array with basePrice, features and paymentKey) can work
+// without large changes.
+// Use streamingPlans directly (one card per provider). We track per-card variant state for providers
+// that have multiple variants (e.g., Disney, VIX).
+const plans = streamingPlans; // alias used by existing rendering code
+
+// Per-plan variant selection state (index into plan.variants if present)
+let planVariantStates = new Array(streamingPlans.length).fill(0);
 
         // Surcharges
         const crSurcharge = 1.50;
@@ -3283,7 +3510,8 @@
         let currentCountry = 'usa';
         let currentLanguage = 'es';
         let selectedPlanIndex = null;
-        let planDeviceStates = [false, false, false]; // false = 1 device, true = 3 devices (only for plans with switch)
+        // Initialize planDeviceStates to the same length as plans to avoid index issues
+        let planDeviceStates = new Array(plans.length).fill(false); // false = 1 device, true = 3 devices
 
         // Translations
         const translations = {
@@ -3566,7 +3794,14 @@
             plans.forEach((plan, index) => {
                 let finalUSDPrice, currentFeatures, paymentKey, isPopular;
 
-                if (plan.hasDeviceSwitch) {
+                    // If plan has variants (streaming providers like Disney/VIX), read current variant selection
+                    let variant = null;
+                    if (plan.variants && plan.variants.length > 0) {
+                        const variantIndex = planVariantStates[index] || 0;
+                        variant = plan.variants[variantIndex];
+                    }
+
+                    if (plan.hasDeviceSwitch) {
                     // Plan with device switch
                     const is3Devices = planDeviceStates[index];
                     const currentBasePrice = is3Devices ? plan.basePrice3Devices : plan.basePrice1Device;
@@ -3574,30 +3809,47 @@
                     paymentKey = is3Devices ? plan.paymentKey3Devices : plan.paymentKey1Device;
                     isPopular = plan.popular && is3Devices;
 
-                    finalUSDPrice = currentBasePrice;
+                        finalUSDPrice = currentBasePrice;
                     if (isCR) {
                         finalUSDPrice = currentBasePrice + crSurcharge;
                     } else if (isUSA) {
                         finalUSDPrice = currentBasePrice + usSurcharge;
                     }
                 } else {
-                    // Regular plan without switch
-                    currentFeatures = plan.features;
-                    paymentKey = plan.paymentKey;
-                    isPopular = plan.popular;
+                        // Regular plan without device-switch
+                        if (variant) {
+                            // Use variant-specific price and features
+                            currentFeatures = plan[variant.featuresProp] || [];
+                            finalUSDPrice = plan[variant.priceProp] || 0;
+                            // derive payment keys via plan.key + variant.paymentVariant
+                            paymentKey = `${plan.key || plan.name.toLowerCase().replace(/\s|\+/g, '')}.${variant.paymentVariant}`;
+                            isPopular = plan.popular;
+                            if (isCR) {
+                                finalUSDPrice = finalUSDPrice + crSurcharge;
+                            } else if (isUSA) {
+                                finalUSDPrice = finalUSDPrice + usSurcharge;
+                            }
+                        } else {
+                            currentFeatures = plan.features;
+                            paymentKey = plan.paymentKey;
+                            isPopular = plan.popular;
 
-                    finalUSDPrice = plan.basePrice;
-                    if (isCR) {
-                        finalUSDPrice = plan.basePrice + crSurcharge;
-                    } else if (isUSA) {
-                        finalUSDPrice = plan.basePrice + usSurcharge;
-                    }
+                            finalUSDPrice = plan.basePrice;
+                            if (isCR) {
+                                finalUSDPrice = plan.basePrice + crSurcharge;
+                            } else if (isUSA) {
+                                finalUSDPrice = plan.basePrice + usSurcharge;
+                            }
+                        }
                 }
 
                 const localPrice = finalUSDPrice * countryData.rate;
 
                 const card = document.createElement('div');
                 card.className = `pricing-card ${isPopular ? 'popular' : ''}`;
+
+                // Defensive: ensure currentFeatures is always an array
+                currentFeatures = Array.isArray(currentFeatures) ? currentFeatures : [];
 
                 let featuresHTML = currentFeatures.map(feature => `
                     <div class="feature-item">
@@ -3635,13 +3887,32 @@
                     `;
                 }
 
+                // Variant switch HTML (for streaming providers with variants)
+                let variantSwitchHTML = '';
+                if (plan.variants && plan.variants.length > 0) {
+                    const variantIndex = planVariantStates[index] || 0;
+                    const optionsHtml = plan.variants.map((v, i) => {
+                        return `<div class=\"variant-option ${i === variantIndex ? 'active' : ''}\" onclick=\"selectVariant(${index}, ${i})\">${v.label}</div>`;
+                    }).join('');
+                    variantSwitchHTML = `
+                        <div class="device-switch-container variant-switch-container">
+                            <div class="device-switch-label">${translation.deviceSwitchLabel || 'Variante'}</div>
+                            <div class="device-switch variant-switch">${optionsHtml}</div>
+                        </div>
+                    `;
+                }
+
                 card.innerHTML = `
-                    ${isPopular ? `<div class="popular-badge">${translation.popularBadge}</div>` : ''}
-                    <div class="card-header">
-                        <div class="plan-name">${plan.name}</div>
-                        ${plan.hasDeviceSwitch ? '' : `<div class="plan-subtitle">${plan.subtitle}</div>`}
+                        ${isPopular ? `<div class="popular-badge">${translation.popularBadge}</div>` : ''}
+                    <div class="card-header" style="text-align:center;">
+                        <div class="provider-avatar ${'avatar-' + (plan.key || plan.name.toLowerCase().replace(/\s|\+/g,''))}">
+                            <div class="provider-initial">${(plan.name || '').charAt(0).toUpperCase()}</div>
+                        </div>
+                        <div class="plan-name" style="font-size:18px;margin-bottom:6px;font-family:'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;font-weight:600;color:#111827;">${plan.name}</div>
+                        ${plan.hasDeviceSwitch ? '' : `<div class="plan-subtitle" style="color:rgba(0,0,0,0.6);font-size:13px;margin-bottom:8px;">${plan.subtitle || ''}</div>`}
 
                         ${deviceSwitchHTML}
+                        ${variantSwitchHTML}
 
                         <div class="plan-price">
                             <span class="plan-price-symbol">$</span>${finalUSDPrice.toFixed(2)}
@@ -3729,6 +4000,16 @@
   } else {
     document.removeEventListener('mousedown', closeProductsMenuOnClickOutside);
   }
+}
+
+// Select a variant inside a provider card
+function selectVariant(planIndex, variantIndex) {
+    if (!planVariantStates || !Array.isArray(planVariantStates)) {
+        planVariantStates = new Array(plans.length).fill(0);
+    }
+    planVariantStates[planIndex] = variantIndex;
+    // Re-render cards to reflect new selection
+    generatePricingCards();
 }
 
 function closeProductsMenuOnClickOutside(event) {
@@ -3902,10 +4183,45 @@ document.addEventListener('DOMContentLoaded', function() {
                 basePrice += usSurcharge;
             }
 
-            const options = selectedPaymentType === 'subscription' ?
-                pricingOptions.subscription : pricingOptions.oneTime;
-
             container.innerHTML = '';
+
+            // If this is a streaming plan variant (we attached paymentProvider and paymentDurationKey),
+            // show a single duration option corresponding to that variant.
+            if (plan.paymentProvider && plan.paymentDurationKey) {
+                const variantKey = plan.paymentDurationKey;
+
+                // Friendly label for common variant keys
+                const variantLabels = {
+                    basico: 'Básico', estandar: 'Estándar', mes1: '1 Mes', perfil30: 'Perfil 30', anual: 'Anual', basic: 'Basic', standard: 'Standard', premium: 'Premium', mes: '1 Mes'
+                };
+
+                const label = variantLabels[variantKey] || variantKey;
+                const monthlyPrice = basePrice;
+                const totalPrice = basePrice;
+
+                const card = document.createElement('div');
+                card.className = 'duration-card';
+                card.dataset.key = variantKey;
+                card.innerHTML = `
+                    <div class="duration-title">${label}</div>
+                    <div class="duration-price">$${monthlyPrice.toFixed(2)}</div>
+                    <div class="duration-per-month">${translation.modalPerMonth}</div>
+                `;
+
+                card.addEventListener('click', () => {
+                    // mark selected
+                    document.querySelectorAll('.duration-card').forEach(c => c.classList.remove('selected'));
+                    card.classList.add('selected');
+                    selectedDuration = { key: variantKey, option: { months: 1 } };
+                    // show payment methods
+                    generatePaymentMethods();
+                });
+
+                container.appendChild(card);
+                return;
+            }
+
+            const options = selectedPaymentType === 'subscription' ? pricingOptions.subscription : pricingOptions.oneTime;
 
             Object.entries(options).forEach(([key, option]) => {
                 const monthlyPrice = calculateDiscountedPrice(basePrice, option.discount);
@@ -4035,16 +4351,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const plan = plans[selectedPlanIndex];
 
-            // Determine the plan key
+            // Determine the plan key and variant
+            // For streaming plans we created `paymentProvider` and `paymentDurationKey` on each plan variant.
             let planKey = '';
-            if (plan.name === 'FLUJO TV') {
-                planKey = 'flujo';
-            } else if (plan.name === 'MAGISTV PRO') {
-                const is3Devices = planDeviceStates[selectedPlanIndex];
-                planKey = is3Devices ? 'magistv3' : 'magistv1';
-            } else if (plan.name === 'TELE-LATINO') {
-                const is3Devices = planDeviceStates[selectedPlanIndex];
-                planKey = is3Devices ? 'telelatino3' : 'telelatino1';
+            let variantKey = null;
+            if (plan.paymentProvider) {
+                planKey = plan.paymentProvider;
+                variantKey = plan.paymentDurationKey || null;
+            } else {
+                // Legacy behavior - keep existing mappings for older plans
+                if (plan.name === 'FLUJO TV') {
+                    planKey = 'flujo';
+                } else if (plan.name === 'MAGISTV PRO') {
+                    const is3Devices = planDeviceStates[selectedPlanIndex];
+                    planKey = is3Devices ? 'magistv3' : 'magistv1';
+                } else if (plan.name === 'TELE-LATINO') {
+                    const is3Devices = planDeviceStates[selectedPlanIndex];
+                    planKey = is3Devices ? 'telelatino3' : 'telelatino1';
+                }
             }
 
             // Get the payment link
@@ -4053,14 +4377,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
             let paymentLink = '';
 
-            if (paymentType === 'subscription') {
-                // Credit card subscription link (processed via Stripe)
-                if (paymentLinks[planKey] && paymentLinks[planKey].subscription) {
-                    paymentLink = paymentLinks[planKey].subscription[durationKey]?.stripe;
-                }
-            } else {
-                // One-time payment links - map unique IDs to config keys
-                if (paymentLinks[planKey] && paymentLinks[planKey].oneTime) {
+            if (planKey && variantKey && paymentLinks[planKey] && paymentLinks[planKey][variantKey]) {
+                // Streaming provider shape: paymentLinks[provider][variant] -> { stripe, binance, paypal, sinpe }
+                if (paymentType === 'subscription') {
+                    // Use the provider's stripe link for subscriptions (same link used for all recurrence options)
+                    paymentLink = paymentLinks[planKey][variantKey].stripe;
+                } else {
+                    // One-time: select method-specific link mapping
                     let linkMethod;
                     switch(method) {
                         case 'creditcard':
@@ -4078,7 +4401,35 @@ document.addEventListener('DOMContentLoaded', function() {
                         default:
                             linkMethod = method;
                     }
-                    paymentLink = paymentLinks[planKey].oneTime[durationKey]?.[linkMethod];
+                    paymentLink = paymentLinks[planKey][variantKey][linkMethod];
+                }
+            } else {
+                // Fallback to legacy paymentLinks structure (plan1..plan5)
+                if (paymentType === 'subscription') {
+                    if (paymentLinks[planKey] && paymentLinks[planKey].subscription) {
+                        paymentLink = paymentLinks[planKey].subscription[durationKey]?.stripe;
+                    }
+                } else {
+                    if (paymentLinks[planKey] && paymentLinks[planKey].oneTime) {
+                        let linkMethod;
+                        switch(method) {
+                            case 'creditcard':
+                                linkMethod = 'stripe';
+                                break;
+                            case 'binancepay':
+                                linkMethod = 'binance';
+                                break;
+                            case 'paypalcheckout':
+                                linkMethod = 'paypal';
+                                break;
+                            case 'sinpemovil':
+                                linkMethod = 'sinpe';
+                                break;
+                            default:
+                                linkMethod = method;
+                        }
+                        paymentLink = paymentLinks[planKey].oneTime[durationKey]?.[linkMethod];
+                    }
                 }
             }
 
