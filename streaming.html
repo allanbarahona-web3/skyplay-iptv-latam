@@ -164,8 +164,9 @@
         .subscribe-btn:focus { outline: 3px solid rgba(14,28,120,0.12); outline-offset: 2px; }
 
         /* Variant pills */
-        .variant-option { display:inline-block; padding:8px 12px; border-radius:999px; background: #f3f4f6; color:#374151; margin:4px; cursor:pointer; font-weight:600; font-size:13px; }
-        .variant-option.active { background: var(--primary); color:#fff; }
+    /* Generic variant option (used in a few places) */
+    .variant-option { display:inline-block; padding:8px 12px; border-radius:999px; background: #f3f4f6; color:#374151; margin:4px; cursor:pointer; font-weight:600; font-size:13px; }
+    .variant-option.active { background: var(--primary); color:#fff; }
 
         /* Pulse hint for new users on variant buttons */
         @keyframes pulse-border {
@@ -830,8 +831,9 @@
         }
 
         /* Variant switch styles */
-        .variant-switch { display: flex; gap: 8px; }
-        .variant-option { flex: 1; padding: 8px 12px; text-align: center; font-size: 13px; font-weight: 700; color: var(--gray-600); border-radius: 18px; background: var(--gray-200); cursor: pointer; }
+    /* Variant switch container: center and wrap options to avoid overflow */
+    .variant-switch { display: flex; gap: 8px; justify-content: center; align-items: center; flex-wrap: wrap; padding: 8px; }
+    .variant-switch .variant-option { flex: 0 1 auto; min-width: 80px; max-width: 160px; padding: 8px 12px; text-align: center; font-size: 13px; font-weight: 700; color: var(--gray-600); border-radius: 18px; background: var(--gray-200); cursor: pointer; box-sizing: border-box; }
         .variant-option.active { background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%); color: white; box-shadow: 0 6px 20px rgba(102,126,234,0.18); }
 
         .device-price-diff {
@@ -1662,6 +1664,16 @@
                 width: 26px;
                 height: 26px;
             }
+        }
+
+        /* Mobile tweaks for variant options to ensure wrapping and proper centering */
+        @media (max-width: 520px) {
+            .variant-switch .variant-option { min-width: 64px; padding: 8px 10px; font-size: 12px; }
+            .device-switch-container { padding: 8px 6px; }
+        }
+
+        @media (min-width: 521px) and (max-width: 900px) {
+            .variant-switch .variant-option { min-width: 72px; padding: 8px 11px; font-size: 13px; }
         }
 
         @media (max-width: 320px) {
