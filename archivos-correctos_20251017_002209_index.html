@@ -2715,7 +2715,7 @@
             </div>
 
             <div class="header-content">
-                <h1 id="headerTitle">📺 Los Mejores Planes de IPTV </h1>
+                <h1 id="headerTitle">📺 Los Mejores Planes de Streaming IPTV</h1>
                 <p id="headerSubtitle">Paquetes Premium para Latinoamérica • +1000 Canales • Series • Películas • Deportes</p>
             </div>
 
@@ -2765,7 +2765,7 @@
         <!-- Plans Section - NOW WITH CARDS -->
         <div class="plans-section">
             <div class="plans-header">
-                <h2 class="section-title" id="plansTitle">Nuestros Planes IPTV</h2>
+                <h2 class="section-title" id="plansTitle">Nuestros Planes</h2>
                 <!-- 🔒 BOTÓN OCULTO - Para futuro sistema de cuentas de usuario -->
                 <button class="create-account-btn" id="createAccountBtn" onclick="showCreateAccountMessage()">
                     <span class="create-account-icon">👤</span>
@@ -2796,7 +2796,7 @@
                         <span class="faq-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        <p id="faq1A">Sí, puedes cancelar cuando quieras, nada mas debes contactarnos por WhatsApp. Tu servicio seguirá activo hasta el final del periodo que pagaste. Sin penalidades ni cargos adicionales.</p>
+                        <p id="faq1A">Sí, puedes cancelar cuando quieras desde tu panel de cliente. Tu servicio seguirá activo hasta el final del periodo que pagaste. Sin penalidades ni cargos adicionales.</p>
                     </div>
                 </div>
 
@@ -2806,7 +2806,7 @@
                         <span class="faq-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        <p id="faq2A">Después de completar tu pago, recibirás tus credenciales de acceso por correo electrónico de forma inmediata. Para pagos con Sinpe Movil, puedes reportarlo por Whatsapp. La mayoría de entregas son inmediatas.</p>
+                        <p id="faq2A">Después de completar tu pago, recibirás tus credenciales de acceso por WhatsApp y correo electrónico en un plazo máximo de 2 horas. La mayoría de entregas son inmediatas.</p>
                     </div>
                 </div>
 
@@ -2816,7 +2816,7 @@
                         <span class="faq-icon">▼</span>
                     </div>
                     <div class="faq-answer">
-                        <p id="faq3A"> Hay 2 Modalidades, en una puedes suscribirte a un plan recurrente. También tenemos la opción de Pago Unico, que NO renueva automáticamente. Recibirás un recibo por email cada mes y puedes cancelar cuando desees.</p>
+                        <p id="faq3A">Sí, tu suscripción se renueva automáticamente cada mes para que no pierdas acceso al servicio. Recibirás un recibo por email cada mes y puedes cancelar cuando desees.</p>
                     </div>
                 </div>
 
@@ -3093,16 +3093,16 @@
             subscription: {
                 // Stripe subscription prices (recurring)
                 monthly: { months: 1, discount: 0, label: 'monthly' },
-                quarterly: { months: 3, discount: 10, label: 'quarterly' },
-                semiannual: { months: 6, discount: 20, label: 'semiannual' },
-                annual: { months: 12, discount: 30, label: 'annual' }
+                quarterly: { months: 3, discount: 3, label: 'quarterly' },
+                semiannual: { months: 6, discount: 6, label: 'semiannual' },
+                annual: { months: 12, discount: 9, label: 'annual' }
             },
             oneTime: {
                 // One-time payment prices (all methods)
                 month1: { months: 1, discount: 0, label: 'month1' },
-                months3: { months: 3, discount: 10, label: 'months3' },
-                months6: { months: 6, discount: 20, label: 'months6' },
-                months12: { months: 12, discount: 30, label: 'months12' }
+                months3: { months: 3, discount: 5, label: 'months3' },
+                months6: { months: 6, discount: 10, label: 'months6' },
+                months12: { months: 12, discount: 15, label: 'months12' }
             }
         };
 
@@ -3319,17 +3319,17 @@
                 popular: false,
                 features1Device: [
                     { text: '+ 1000 Canales', enabled: true },
-                    { text: '+ 7000 Series y Películas', enabled: true },
+                    { text: '+ 6000 Series y Películas', enabled: true },
                     { text: 'Animé y Deportes', enabled: true },
                     { text: 'Canales Locales e Internacionales', enabled: true },
-                    { text: '3 Dispositivos', enabled: true },
+                    { text: '1 Dispositivo', enabled: true },
                     { text: 'Android - TV Box - Fire TV', enabled: true },
                     { text: 'Acceso Web', enabled: false },
                     { text: 'Prueba Gratuita', enabled: false }
                 ],
                 features3Devices: [
                     { text: '+ 1000 Canales', enabled: true },
-                    { text: '+ 7000 Series y Películas', enabled: true },
+                    { text: '+ 6000 Series y Películas', enabled: true },
                     { text: 'Animé y Deportes', enabled: true },
                     { text: 'Canales Locales e Internacionales', enabled: true },
                     { text: '3 Dispositivos Simultáneos', enabled: true },
@@ -3346,11 +3346,11 @@
             {
                 name: 'MAGISTV PRO',
                 basePrice1Device: 3.95,
-                basePrice3Devices: 5.2,
+                basePrice3Devices: 5.25,
                 popular: true,
                 features1Device: [
-                    { text: '+ 800 Canales', enabled: true },
-                    { text: '+ 5000 Series y Películas', enabled: true },
+                    { text: '+ 1000 Canales', enabled: true },
+                    { text: '+ 6000 Series y Películas', enabled: true },
                     { text: 'Animé y Deportes', enabled: true },
                     { text: 'Canales Locales e Internacionales', enabled: true },
                     { text: '1 Dispositivo', enabled: true },
@@ -3359,8 +3359,8 @@
                     { text: 'Prueba Gratuita 24H', enabled: true }
                 ],
                 features3Devices: [
-                    { text: '+ 800 Canales', enabled: true },
-                    { text: '+ 5000 Series y Películas', enabled: true },
+                    { text: '+ 1000 Canales', enabled: true },
+                    { text: '+ 6000 Series y Películas', enabled: true },
                     { text: 'Animé y Deportes', enabled: true },
                     { text: 'Canales Locales e Internacionales', enabled: true },
                     { text: '3 Dispositivos Simultáneos', enabled: true },
@@ -3375,14 +3375,14 @@
             {
                 name: 'TELE-LATINO',
                 basePrice1Device: 3.95,
-                basePrice3Devices: 5.99,
+                basePrice3Devices: 5.60,
                 popular: false,
                 features1Device: [
-                    { text: '+ 2000 Canales', enabled: true },
-                    { text: '+ 8000 Series y Películas', enabled: true },
+                    { text: '+ 1000 Canales', enabled: true },
+                    { text: '+ 6000 Series y Películas', enabled: true },
                     { text: 'Animé y Deportes', enabled: true },
                     { text: 'Canales Locales e Internacionales', enabled: true },
-                    { text: '3 Dispositivo', enabled: true },
+                    { text: '1 Dispositivo', enabled: true },
                     { text: 'Android - TV Box - Fire TV', enabled: true },
                     { text: 'Acceso Web', enabled: false },
                     { text: 'Prueba Gratuita 72H', enabled: true }
@@ -3392,7 +3392,7 @@
                     { text: '+ 6000 Series y Películas', enabled: true },
                     { text: 'Animé y Deportes', enabled: true },
                     { text: 'Canales Locales e Internacionales', enabled: true },
-                    { text: '1 Dispositivos Simultáneos', enabled: true },
+                    { text: '3 Dispositivos Simultáneos', enabled: true },
                     { text: 'Android - TV Box - Fire TV', enabled: true },
                     { text: 'Acceso Web', enabled: false },
                     { text: 'Prueba Gratuita 72H', enabled: true }
@@ -3404,8 +3404,8 @@
         ];
 
         // Surcharges
-        const crSurcharge = 1.75;
-        const usSurcharge = 4.20;
+        const crSurcharge = 1.50;
+        const usSurcharge = 2.24;
 
     let currentCountry = 'usa';
     let currentLanguage = 'es';
@@ -4093,18 +4093,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 const originalTotal = basePrice * option.months;
                 const savings = originalTotal - totalPrice;
 
-                // Bonus months gift (display-only) for specific plans
-                // FLUJO TV: +1 month for 6-month option
-                // MAGISTV PRO: +1 month for 6-month, +2 months for 12-month
-                let bonusMonths = 0;
-                const planName = (plan.name || '').toUpperCase();
-                if ((planName === 'FLUJO TV' || planName === 'MAGISTV PRO')) {
-                    if (option.months === 6) bonusMonths = 1;
-                    if (option.months === 12) bonusMonths = 2;
-                }
-                const bonusValue = bonusMonths * basePrice; // value to add to displayed savings (uses basePrice with country surcharge)
-                const displaySavings = savings + bonusValue;
-
                 const card = document.createElement('div');
                 card.className = 'duration-card';
                 card.onclick = () => selectDuration(key, option);
@@ -4124,19 +4112,16 @@ document.addEventListener('DOMContentLoaded', function() {
 
                 let priceHTML = '';
                 if (selectedPaymentType === 'subscription') {
-                    // For subscriptions show the total charged per billing period
-                    // and an equivalent per-month price for reference
-                    const equivalentPerMonth = monthlyPrice; // already discounted monthly-equivalent
                     priceHTML = `
-                        <div class="duration-price">$${totalPrice.toFixed(2)}</div>
-                        <div class="duration-per-month">${translation.modalTotal} ${option.months > 1 ? `(cada ${option.months} meses)` : ''}</div>
+                        <div class="duration-price">$${monthlyPrice.toFixed(2)}</div>
+                        <div class="duration-per-month">${translation.modalPerMonth}</div>
                     `;
                     if (option.discount > 0) {
                         priceHTML = `
-                            <div class="duration-original-price">$${originalTotal.toFixed(2)}</div>
-                            <div class="duration-price">$${totalPrice.toFixed(2)}</div>
-                            <div class="duration-per-month">${translation.modalTotal} ${option.months > 1 ? `(cada ${option.months} meses)` : ''}</div>
-                            <div class="duration-savings">${translation.modalSaveText} $${displaySavings.toFixed(2)}</div>
+                            <div class="duration-original-price">$${basePrice.toFixed(2)}</div>
+                            <div class="duration-price">$${monthlyPrice.toFixed(2)}</div>
+                            <div class="duration-per-month">${translation.modalPerMonth}</div>
+                            <div class="duration-savings">${translation.modalSaveText} $${savings.toFixed(2)}</div>
                         `;
                     }
                 } else {
@@ -4149,7 +4134,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <div class="duration-original-price">$${originalTotal.toFixed(2)}</div>
                             <div class="duration-price">$${totalPrice.toFixed(2)}</div>
                             <div class="duration-per-month">${translation.modalTotal}</div>
-                            <div class="duration-savings">${translation.modalSaveText} $${displaySavings.toFixed(2)}</div>
+                            <div class="duration-savings">${translation.modalSaveText} $${savings.toFixed(2)}</div>
                         `;
                     }
                 }
