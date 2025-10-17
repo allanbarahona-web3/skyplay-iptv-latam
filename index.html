@@ -521,7 +521,8 @@
 
         .avatar-default { background: #374151; }
         .avatar-flujo-tv { background: #113CCF; }
-        .avatar-magistv { background: #10B981; }
+    /* MAGISTV avatar: darker green so white initial remains visible */
+    .avatar-magistv { background: #0f4f3a; }
         .avatar-tele-latino { background: #F97316; }
 
         /* Details overlay inside card (visual only) */
@@ -531,23 +532,28 @@
             position: absolute;
             left: 18px;
             right: 18px;
-            /* Instead of anchoring to the bottom, start the panel lower so it doesn't fully cover the top/logo area */
-            top: 110px; /* places the panel beginning just below the avatar/logo area */
+            /* start approximately in the middle of the card so logos remain visible */
+            top: 50%;
+            transform: translateY(-10%);
             box-sizing: border-box;
             overflow: auto;
             max-height: 0;
             opacity: 0;
-            transform: translateY(8px);
             transition: max-height .28s ease, opacity .18s linear, transform .18s ease;
             pointer-events: none;
             z-index: 60; /* high so it floats above nearby elements */
         }
         .card-details[data-open="true"] {
-            /* allow the panel to expand downwards but keep its top anchored below the logos */
-            max-height: 520px;
+            /* expand downward but keep top area visible; reduce max-height so it doesn't cover whole card */
+            max-height: 48vh;
             opacity: 1;
             pointer-events: auto;
             transform: translateY(0);
+        }
+
+        /* Mobile tweak: start a bit higher so usable space remains */
+        @media (max-width: 480px) {
+            .card-details { top: 40%; }
         }
         .card-details-inner {
             padding: 14px 16px;
