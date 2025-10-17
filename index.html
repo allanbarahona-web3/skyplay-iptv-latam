@@ -3308,9 +3308,21 @@
             {
                 name: 'FLUJO TV',
                 subtitle: '3 Dispositivos',
-                basePrice: 7.75,
+                /* Provide both 1-device and 3-device prices (Flujo only offers 3 devices in practice) */
+                basePrice1Device: 7.75,
+                basePrice3Devices: 7.75,
                 popular: false,
-                features: [
+                features1Device: [
+                    { text: '+ 1000 Canales', enabled: true },
+                    { text: '+ 6000 Series y Películas', enabled: true },
+                    { text: 'Animé y Deportes', enabled: true },
+                    { text: 'Canales Locales e Internacionales', enabled: true },
+                    { text: '1 Dispositivo', enabled: true },
+                    { text: 'Android - TV Box - Fire TV', enabled: true },
+                    { text: 'Acceso Web', enabled: false },
+                    { text: 'Prueba Gratuita', enabled: false }
+                ],
+                features3Devices: [
                     { text: '+ 1000 Canales', enabled: true },
                     { text: '+ 6000 Series y Películas', enabled: true },
                     { text: 'Animé y Deportes', enabled: true },
@@ -3320,8 +3332,9 @@
                     { text: 'Acceso Web', enabled: false },
                     { text: 'Prueba Gratuita', enabled: false }
                 ],
-                paymentKey: 'plan1',
-                hasDeviceSwitch: false
+                paymentKey1Device: 'plan1a',
+                paymentKey3Devices: 'plan1b',
+                hasDeviceSwitch: true
             },
             {
                 name: 'MAGISTV PRO',
