@@ -3958,7 +3958,6 @@ let variantTouched = new Array(streamingPlans.length).fill(false);
                                 </div>
                                 <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;">
                                     <button class="close-details-btn" onclick="closeCardDetails(${index})">Cerrar</button>
-                                    <button class="subscribe-btn" onclick="showPaymentModal(${index})">${translation.subscribeBtnText}</button>
                                 </div>
                             </div>
                         </div>
@@ -4078,12 +4077,27 @@ function toggleCardDetails(index) {
 }
 
 function openCardDetails(index) {
-    const el = document.getElementById(`card-details-${index}`);
-    const btn = document.querySelector(`.variant-details-btn[onclick*="${index}"]`);
-    if (!el) return;
-    el.setAttribute('data-open', 'true');
-    el.setAttribute('aria-hidden', 'false');
-    if (btn) btn.setAttribute('aria-expanded', 'true');
+    // Close all other details panels first so only one is visible at a time
+    document.querySelectorAll('.card-details').forEach(el => {
+        if (el.id === `card-details-${index}`) {
+            el.setAttribute('data-open', 'true');
+            el.setAttribute('aria-hidden', 'false');
+        } else {
+            el.setAttribute('data-open', 'false');
+            el.setAttribute('aria-hidden', 'true');
+        }
+    });
+
+    // Update aria-expanded on all detail buttons
+    document.querySelectorAll('.variant-details-btn').forEach(btn => {
+        try {
+            const onclick = btn.getAttribute('onclick') || '';
+            const matches = onclick.includes(`(${index})`);
+            btn.setAttribute('aria-expanded', matches ? 'true' : 'false');
+        } catch (e) {
+            // ignore
+        }
+    });
 }
 
 function closeCardDetails(index) {
