@@ -3355,10 +3355,13 @@ const streamingPlans = [
         const crSurcharge = 1.50;
         const usSurcharge = 2.24;
 
-        let currentCountry = 'usa';
-        let currentLanguage = 'es';
-        let selectedPlanIndex = null;
-        let planDeviceStates = [false, false, false]; // false = 1 device, true = 3 devices (only for plans with switch)
+    let currentCountry = 'usa';
+    let currentLanguage = 'es';
+    let selectedPlanIndex = null;
+    // Alias streamingPlans -> plans so the existing renderer code continues to work
+    const plans = streamingPlans;
+    // Initialize planDeviceStates dynamically to avoid index errors when plan count changes
+    let planDeviceStates = new Array(plans.length).fill(false); // false = 1 device, true = 3 devices (only for plans with switch)
 
         // Translations
         const translations = {
