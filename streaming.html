@@ -164,8 +164,9 @@
         .subscribe-btn:focus { outline: 3px solid rgba(14,28,120,0.12); outline-offset: 2px; }
 
         /* Variant pills */
-        .variant-option { display:inline-block; padding:8px 12px; border-radius:999px; background: #f3f4f6; color:#374151; margin:4px; cursor:pointer; font-weight:600; font-size:13px; }
-        .variant-option.active { background: var(--primary); color:#fff; }
+    /* Generic variant option (used in a few places) */
+    .variant-option { display:inline-block; padding:8px 12px; border-radius:999px; background: #f3f4f6; color:#374151; margin:4px; cursor:pointer; font-weight:600; font-size:13px; }
+    .variant-option.active { background: var(--primary); color:#fff; }
 
         /* Pulse hint for new users on variant buttons */
         @keyframes pulse-border {
@@ -185,12 +186,14 @@
         /* Inline accordion prototype for details (mobile-first) */
     .close-details-btn { padding:10px 12px; border-radius:10px; border:none; background:#f3f4f6; color:#111; font-weight:700; cursor:pointer; }
 
-    .card-details { display:none; overflow:hidden; transition: max-height .28s ease, opacity .18s linear; max-height:0; opacity:0; }
-        .card-details[data-open="true"] { display:block; max-height:800px; opacity:1; }
-        .card-details-inner { padding:12px; background:#fff; border-radius:10px; border:1px solid rgba(15,23,42,0.04); box-shadow:0 6px 20px rgba(2,6,23,0.04); }
+    /* Details panel is an overlay inside the card so it doesn't affect grid layout */
+    .card-details { display:block; position:absolute; left:18px; right:18px; box-sizing: border-box; overflow:auto; max-height:0; opacity:0; transition: max-height .28s ease, opacity .18s linear, transform .2s ease; pointer-events:none; z-index:6; }
+    .card-details[data-open="true"] { max-height:520px; opacity:1; pointer-events:auto; transform: translateY(0); }
+        .card-details-inner { padding:12px; background:#fff; border-radius:10px; border:1px solid rgba(15,23,42,0.04); box-shadow:0 12px 36px rgba(2,6,23,0.08); }
 
         @media (min-width:900px) {
-            /* On desktop keep it inline but constrained */
+            /* On desktop keep overlay width constrained slightly */
+            .card-details { left:22px; right:22px; }
             .card-details-inner { max-width:520px; }
         }
 
@@ -622,6 +625,8 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 15px;
+            align-items: start; /* ensure cards don't stretch to the same height */
+            grid-auto-rows: auto; /* let each card compute its own height */
         }
 
         .pricing-card {
@@ -633,7 +638,9 @@
             position: relative;
             display: flex;
             flex-direction: column;
+            align-items: stretch;
             border: 3px solid transparent;
+            height: auto; /* allow card to expand without affecting grid siblings */
         }
 
         .pricing-card:hover {
@@ -830,8 +837,9 @@
         }
 
         /* Variant switch styles */
-        .variant-switch { display: flex; gap: 8px; }
-        .variant-option { flex: 1; padding: 8px 12px; text-align: center; font-size: 13px; font-weight: 700; color: var(--gray-600); border-radius: 18px; background: var(--gray-200); cursor: pointer; }
+    /* Variant switch container: center and wrap options to avoid overflow */
+    .variant-switch { display: flex; gap: 8px; justify-content: center; align-items: center; flex-wrap: wrap; padding: 8px; }
+    .variant-switch .variant-option { flex: 0 1 auto; min-width: 80px; max-width: 160px; padding: 8px 12px; text-align: center; font-size: 13px; font-weight: 700; color: var(--gray-600); border-radius: 18px; background: var(--gray-200); cursor: pointer; box-sizing: border-box; }
         .variant-option.active { background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%); color: white; box-shadow: 0 6px 20px rgba(102,126,234,0.18); }
 
         .device-price-diff {
@@ -1662,6 +1670,16 @@
                 width: 26px;
                 height: 26px;
             }
+        }
+
+        /* Mobile tweaks for variant options to ensure wrapping and proper centering */
+        @media (max-width: 520px) {
+            .variant-switch .variant-option { min-width: 64px; padding: 8px 10px; font-size: 12px; }
+            .device-switch-container { padding: 8px 6px; }
+        }
+
+        @media (min-width: 521px) and (max-width: 900px) {
+            .variant-switch .variant-option { min-width: 72px; padding: 8px 11px; font-size: 13px; }
         }
 
         @media (max-width: 320px) {
@@ -3533,6 +3551,10 @@ let variantTouched = new Array(streamingPlans.length).fill(false);
         let currentCountry = 'usa';
         let currentLanguage = 'es';
         let selectedPlanIndex = null;
+        // Track which details panel is currently open and the outside-click handler
+        let currentOpenDetailsIndex = null;
+        let detailsOutsideClickHandler = null;
+        let detailsInsideClickHandler = null;
         // Initialize planDeviceStates to the same length as plans to avoid index issues
         let planDeviceStates = new Array(plans.length).fill(false); // false = 1 device, true = 3 devices
 
@@ -3915,8 +3937,8 @@ let variantTouched = new Array(streamingPlans.length).fill(false);
                 if (plan.variants && plan.variants.length > 0) {
                     const variantIndex = planVariantStates[index] || 0;
                     const optionsHtml = plan.variants.map((v, i) => {
-                        // for prototype card (index 0) add hint class if user hasn't interacted
-                        const hintClass = (index === 0 && !variantTouched[index]) ? ' hint' : '';
+                        // Add hint class per-plan if user hasn't interacted with variants yet
+                        const hintClass = (!variantTouched[index]) ? ' hint' : '';
                         return `<div class=\"variant-option ${i === variantIndex ? 'active' : ''}${hintClass}\" onclick=\"selectVariant(${index}, ${i})\">${v.label}</div>`;
                     }).join('');
                     variantSwitchHTML = `
@@ -3938,6 +3960,9 @@ let variantTouched = new Array(streamingPlans.length).fill(false);
 
                         ${deviceSwitchHTML}
                         ${variantSwitchHTML}
+                        <div>
+                            <button class="variant-details-btn" onclick="toggleCardDetails(${index})" aria-expanded="false" aria-controls="card-details-${index}" style="margin-top:8px;background:transparent;border:none;color:var(--primary);font-weight:700;cursor:pointer;">Más detalles</button>
+                        </div>
 
                         <div class="plan-price">
                             <span class="plan-price-symbol">$</span>${finalUSDPrice.toFixed(2)}
@@ -3945,28 +3970,20 @@ let variantTouched = new Array(streamingPlans.length).fill(false);
                         </div>
                         ${localPriceHTML}
                     </div>
-                    ${index === 0 ? '' : `
-                    <div class="card-features">
-                        ${featuresHTML}
-                    </div>
-                    `}
-                        <!-- Prototype: inline accordion for first card -->
-                        ${index === 0 ? `
-                        <div class="card-details-wrapper">
-                            <div id="card-details-${index}" class="card-details" data-open="false" aria-hidden="true">
-                                <div class="card-details-inner">
-                                    <h4 style="margin-bottom:8px;">${plan.name} — Detalles</h4>
-                                    <div class="details-features">
-                                        ${featuresHTML}
-                                    </div>
-                                    <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;">
-                                        <button class="close-details-btn" onclick="closeCardDetails(${index})">Cerrar</button>
-                                        <button class="subscribe-btn" onclick="showPaymentModal(${index})">${translation.subscribeBtnText}</button>
-                                    </div>
+                    <!-- Compact card: features are shown inside the details panel (hidden by default) -->
+                    <div class="card-details-wrapper">
+                        <div id="card-details-${index}" class="card-details" data-open="false" aria-hidden="true">
+                            <div class="card-details-inner">
+                                <h4 style="margin-bottom:8px;">${plan.name} — Detalles</h4>
+                                <div class="details-features">
+                                    ${featuresHTML}
+                                </div>
+                                <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;">
+                                    <button class="close-details-btn" onclick="closeCardDetails(${index})">Cerrar</button>
                                 </div>
                             </div>
                         </div>
-                        ` : ''}
+                    </div>
                         <div class="card-action">
                             <button class="subscribe-btn" onclick="showPaymentModal(${index})">
                                 ${translation.subscribeBtnText}
@@ -4060,17 +4077,16 @@ function selectVariant(planIndex, variantIndex) {
     // mark that the user touched variants for this plan (stop hinting)
     variantTouched[planIndex] = true;
 
-    // Prototype behavior for card 0: toggle details when selecting variants
-    if (planIndex === 0) {
-        // If user clicked the same variant again -> close details
+    // Variant-driven details behavior: toggle the corresponding card's details panel
+    // If the user clicks the same variant again => close the panel; otherwise open it
+    // small timeout to allow DOM re-render
+    setTimeout(() => {
         if (previous === variantIndex) {
-            // small timeout to allow DOM re-render
-            setTimeout(() => { closeCardDetails(0); }, 60);
+            closeCardDetails(planIndex);
         } else {
-            // If different variant selected -> open details showing the new content
-            setTimeout(() => { openCardDetails(0); }, 60);
+            openCardDetails(planIndex);
         }
-    }
+    }, 60);
 }
 
 // Accordion controls for prototype card
@@ -4083,12 +4099,75 @@ function toggleCardDetails(index) {
 }
 
 function openCardDetails(index) {
+    // Close all other details panels first so only one is visible at a time
+    document.querySelectorAll('.card-details').forEach(el => {
+        el.setAttribute('data-open', 'false');
+        el.setAttribute('aria-hidden', 'true');
+    });
+
     const el = document.getElementById(`card-details-${index}`);
-    const btn = document.querySelector(`.variant-details-btn[onclick*="${index}"]`);
     if (!el) return;
+
+    // Position the overlay inside the owning card so it doesn't affect layout
+    const card = el.closest('.pricing-card');
+    if (card) {
+        // Ensure card is positioned relatively for absolute overlay
+        card.style.position = 'relative';
+
+        // Compute top offset: place overlay below header area (approx header height)
+        const header = card.querySelector('.card-header');
+        let topOffset = header ? (header.getBoundingClientRect().height + 12) : 80;
+        // Clamp topOffset to reasonable values
+        topOffset = Math.max(60, Math.min(topOffset, 260));
+        el.style.top = `${topOffset}px`;
+    }
+
     el.setAttribute('data-open', 'true');
     el.setAttribute('aria-hidden', 'false');
-    if (btn) btn.setAttribute('aria-expanded', 'true');
+
+    // Update aria-expanded on all detail buttons
+    document.querySelectorAll('.variant-details-btn').forEach(btn => {
+        try {
+            const onclick = btn.getAttribute('onclick') || '';
+            const matches = onclick.includes(`(${index})`);
+            btn.setAttribute('aria-expanded', matches ? 'true' : 'false');
+        } catch (e) {
+            // ignore
+        }
+    });
+    // Track current open panel and attach outside click handler
+    currentOpenDetailsIndex = index;
+    // remove existing handler just in case
+    if (detailsOutsideClickHandler) document.removeEventListener('mousedown', detailsOutsideClickHandler);
+    detailsOutsideClickHandler = function(ev) {
+        const target = ev.target;
+        const panel = document.getElementById(`card-details-${currentOpenDetailsIndex}`);
+        if (!panel) return;
+        if (!panel.contains(target)) {
+            closeCardDetails(currentOpenDetailsIndex);
+            document.removeEventListener('mousedown', detailsOutsideClickHandler);
+            detailsOutsideClickHandler = null;
+            currentOpenDetailsIndex = null;
+        }
+    };
+    // Delay attaching to avoid immediate close from the click that opened the panel
+    setTimeout(() => document.addEventListener('mousedown', detailsOutsideClickHandler), 50);
+    // Attach inside-panel click handler to close when clicking anywhere inside the panel
+    if (detailsInsideClickHandler) {
+        try { document.removeEventListener('mousedown', detailsInsideClickHandler); } catch(e){}
+    }
+    detailsInsideClickHandler = function(ev) {
+        const panel = document.getElementById(`card-details-${index}`);
+        if (!panel) return;
+        if (panel.contains(ev.target)) {
+            // close immediately
+            closeCardDetails(index);
+            try { document.removeEventListener('mousedown', detailsInsideClickHandler); } catch(e){}
+            detailsInsideClickHandler = null;
+        }
+    };
+    // attach after a short delay to avoid closing from the opening click
+    setTimeout(() => document.addEventListener('mousedown', detailsInsideClickHandler), 60);
 }
 
 function closeCardDetails(index) {
@@ -4097,7 +4176,18 @@ function closeCardDetails(index) {
     if (!el) return;
     el.setAttribute('data-open', 'false');
     el.setAttribute('aria-hidden', 'true');
+    el.style.top = '';
     if (btn) btn.setAttribute('aria-expanded', 'false');
+    // Remove outside click handler if present
+    if (detailsOutsideClickHandler) {
+        document.removeEventListener('mousedown', detailsOutsideClickHandler);
+        detailsOutsideClickHandler = null;
+    }
+    if (detailsInsideClickHandler) {
+        try { document.removeEventListener('mousedown', detailsInsideClickHandler); } catch(e){}
+        detailsInsideClickHandler = null;
+    }
+    currentOpenDetailsIndex = null;
 }
 
 function closeProductsMenuOnClickOutside(event) {
