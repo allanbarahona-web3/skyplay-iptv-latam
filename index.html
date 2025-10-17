@@ -497,6 +497,89 @@
             padding: 0 15px;
         }
 
+        /* Provider avatar and details overlay (visual only) */
+        .provider-avatar {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px auto;
+            color: var(--white);
+            font-weight: 800;
+            box-shadow: 0 8px 22px rgba(2,6,23,0.08);
+            overflow: hidden;
+            border: 3px solid #fff;
+            animation: floaty 6s ease-in-out infinite;
+            transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+        }
+
+        @keyframes floaty { 0% { transform: translateY(0px);} 50% { transform: translateY(-6px);} 100% { transform: translateY(0px);} }
+
+        .provider-initial { font-size: 32px; line-height: 1; font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; }
+
+        .avatar-default { background: #374151; }
+        .avatar-flujo-tv { background: #113CCF; }
+        .avatar-magistv { background: #10B981; }
+        .avatar-tele-latino { background: #F97316; }
+
+        /* Details overlay inside card (visual only) */
+        /* Positioned to float above the card bottom; initial translateY makes it feel like it rises into view */
+        .card-details {
+            display: block;
+            position: absolute;
+            left: 18px;
+            right: 18px;
+            bottom: 20px; /* anchor near the bottom so it appears 'over' the card */
+            box-sizing: border-box;
+            overflow: auto;
+            max-height: 0;
+            opacity: 0;
+            transform: translateY(12px);
+            transition: max-height .28s ease, opacity .18s linear, transform .18s ease;
+            pointer-events: none;
+            z-index: 60; /* high so it floats above nearby elements */
+        }
+        .card-details[data-open="true"] {
+            max-height: 520px;
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+        .card-details-inner {
+            padding: 14px 16px;
+            background: #fff;
+            border-radius: 12px;
+            border: 1px solid rgba(15,23,42,0.04);
+            box-shadow: 0 18px 46px rgba(2,6,23,0.12);
+        }
+
+        /* Allow the card to overflow so the details panel isn't clipped by parent stacking contexts */
+        .pricing-card {
+            overflow: visible;
+        }
+
+        /* Improve Close button appearance inside details (pill style, subtle gray) */
+        .close-details-btn {
+            display: block;
+            width: 100%;
+            padding: 10px 14px;
+            background: #f3f4f6;
+            border: none;
+            color: #374151;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 14px rgba(2,6,23,0.06);
+            transition: background .15s ease, transform .08s ease;
+        }
+        .close-details-btn:hover { background: #e9ecef; transform: translateY(-1px); }
+
+        /* Ensure grid doesn't stretch when overlays open */
+        .pricing-cards { align-items: start; grid-auto-rows: auto; }
+        .pricing-card { height: auto; align-items: stretch; position: relative; }
+
         .pricing-card {
             background: white;
             border-radius: 20px;
@@ -681,6 +764,18 @@
             padding: 4px;
             position: relative;
             cursor: pointer;
+        }
+
+        /* Pulsing hint for variant/device controls until user interacts */
+        .device-switch.hint {
+            box-shadow: 0 0 0 0 rgba(59,130,246,0.35);
+            animation: pulse-border 2.2s infinite;
+        }
+
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(59,130,246,0.35); }
+            70% { box-shadow: 0 0 0 10px rgba(59,130,246,0); }
+            100% { box-shadow: 0 0 0 0 rgba(59,130,246,0); }
         }
 
         .device-option {
@@ -3280,10 +3375,12 @@
         const crSurcharge = 1.50;
         const usSurcharge = 2.24;
 
-        let currentCountry = 'usa';
-        let currentLanguage = 'es';
-        let selectedPlanIndex = null;
-        let planDeviceStates = [false, false, false]; // false = 1 device, true = 3 devices (only for plans with switch)
+    let currentCountry = 'usa';
+    let currentLanguage = 'es';
+    let selectedPlanIndex = null;
+    let planDeviceStates = [false, false, false]; // false = 1 device, true = 3 devices (only for plans with switch)
+    // Tracks whether the user has interacted with the device/variant controls per-plan
+    let variantTouched = new Array(plans.length).fill(false);
 
         // Translations
         const translations = {
@@ -3617,11 +3714,12 @@
                     const is3Devices = planDeviceStates[index];
                     const price1Device = plan.basePrice1Device;
                     const price3Devices = plan.basePrice3Devices;
+                    const hintClass = (typeof variantTouched[index] !== 'undefined' && !variantTouched[index]) ? ' hint' : '';
 
                     deviceSwitchHTML = `
                         <div class="device-switch-container">
                             <div class="device-switch-label">${translation.deviceSwitchLabel || 'Número de Dispositivos'}</div>
-                            <div class="device-switch" onclick="toggleDeviceSwitch(${index})">
+                            <div class="device-switch${hintClass}" onclick="toggleDeviceSwitch(${index})">
                                 <div class="device-option ${!is3Devices ? 'active' : ''}">
                                     1 ${translation.deviceText || 'Dispositivo'}
                                     <div class="device-price-diff">$${price1Device.toFixed(2)}</div>
@@ -3638,10 +3736,15 @@
                 card.innerHTML = `
                     ${isPopular ? `<div class="popular-badge">${translation.popularBadge}</div>` : ''}
                     <div class="card-header">
+                        <div class="provider-avatar avatar-${(plan.name || '').toLowerCase().replace(/\s+/g,'-')}">
+                            <div class="provider-initial">${(plan.name || '').charAt(0).toUpperCase()}</div>
+                        </div>
                         <div class="plan-name">${plan.name}</div>
-                        ${plan.hasDeviceSwitch ? '' : `<div class="plan-subtitle">${plan.subtitle}</div>`}
+                        ${plan.hasDeviceSwitch ? '' : `<div class="plan-subtitle">${plan.subtitle || ''}</div>`}
 
-                        ${deviceSwitchHTML}
+                        <div style="margin-top:8px;text-align:center;">
+                            <button class="variant-details-btn" onclick="toggleCardDetails(${index})" aria-expanded="false" aria-controls="card-details-${index}" style="background:transparent;border:none;color:var(--primary);font-weight:700;cursor:pointer;">Más detalles</button>
+                        </div>
 
                         <div class="plan-price">
                             <span class="plan-price-symbol">$</span>${finalUSDPrice.toFixed(2)}
@@ -3649,13 +3752,34 @@
                         </div>
                         ${localPriceHTML}
                     </div>
-                    <div class="card-features">
-                        ${featuresHTML}
-                    </div>
+
+                    <!-- Keep main card minimal. All interactive controls and full details live inside the overlay below -->
+                    <!-- Device switch visible in main card (like streaming.html) -->
+                    ${deviceSwitchHTML}
+
+                    <!-- Subscribe action visible in main card -->
                     <div class="card-action">
                         <button class="subscribe-btn" onclick="showPaymentModal(${index})">
                             ${translation.subscribeBtnText}
                         </button>
+                    </div>
+
+                    <div class="card-details-wrapper">
+                        <div id="card-details-${index}" class="card-details" data-open="false" aria-hidden="true">
+                            <div class="card-details-inner">
+                                <h4 style="margin-bottom:8px;">${plan.name} — Detalles</h4>
+
+                                <!-- Full features list inside details -->
+                                <div class="details-features">
+                                    ${featuresHTML}
+                                </div>
+
+                                <!-- Close only inside details -->
+                                <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;">
+                                    <button class="close-details-btn" onclick="closeCardDetails(${index})">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 `;
 
@@ -3714,8 +3838,17 @@
 
             // Only toggle if the plan has device switch functionality
             if (plan.hasDeviceSwitch) {
+                // mark as touched so the pulsing hint stops
+                variantTouched[planIndex] = true;
+
                 planDeviceStates[planIndex] = !planDeviceStates[planIndex];
                 generatePricingCards();
+
+                // Open the details panel for this card to show the selection effect
+                // Use a short timeout to ensure DOM updated
+                setTimeout(() => {
+                    try { openCardDetails(planIndex); } catch (e) {}
+                }, 50);
             }
         }
 
@@ -4393,6 +4526,79 @@ https://iptv.skyplay.us`);
         });
 
         // ========================================
+        // 🔎 Card details overlay controls (open/close/toggle)
+        // ========================================
+
+        let currentOpenDetailsIndex = null;
+        let detailsOutsideClickHandler = null;
+        let detailsInsideClickHandler = null;
+
+        function openCardDetails(index) {
+            // Close currently open details (only one open at a time)
+            if (currentOpenDetailsIndex !== null && currentOpenDetailsIndex !== index) {
+                closeCardDetails(currentOpenDetailsIndex);
+            }
+
+            const detailEl = document.getElementById(`card-details-${index}`);
+            if (!detailEl) return;
+
+            // Mark as open
+            detailEl.dataset.open = 'true';
+            detailEl.setAttribute('aria-hidden', 'false');
+
+            // Update toggle button aria
+            const toggleBtn = document.querySelector(`button[aria-controls="card-details-${index}"]`);
+            if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'true');
+
+            currentOpenDetailsIndex = index;
+
+            // Close when clicking outside the details panel
+            detailsOutsideClickHandler = function(e) {
+                if (!detailEl.contains(e.target) && !e.target.closest('[aria-controls="card-details-' + index + '"]')) {
+                    closeCardDetails(index);
+                }
+            };
+            document.addEventListener('mousedown', detailsOutsideClickHandler);
+
+            // Also close when clicking anywhere inside the panel (per user request)
+            detailsInsideClickHandler = function() {
+                closeCardDetails(index);
+            };
+            detailEl.addEventListener('click', detailsInsideClickHandler);
+        }
+
+        function closeCardDetails(index) {
+            const detailEl = document.getElementById(`card-details-${index}`);
+            if (!detailEl) return;
+
+            detailEl.dataset.open = 'false';
+            detailEl.setAttribute('aria-hidden', 'true');
+
+            const toggleBtn = document.querySelector(`button[aria-controls="card-details-${index}"]`);
+            if (toggleBtn) toggleBtn.setAttribute('aria-expanded', 'false');
+
+            // Remove handlers
+            if (detailsOutsideClickHandler) {
+                document.removeEventListener('mousedown', detailsOutsideClickHandler);
+                detailsOutsideClickHandler = null;
+            }
+            if (detailsInsideClickHandler) {
+                try { detailEl.removeEventListener('click', detailsInsideClickHandler); } catch (e) {}
+                detailsInsideClickHandler = null;
+            }
+
+            if (currentOpenDetailsIndex === index) currentOpenDetailsIndex = null;
+        }
+
+        function toggleCardDetails(index) {
+            if (currentOpenDetailsIndex === index) {
+                closeCardDetails(index);
+            } else {
+                openCardDetails(index);
+            }
+        }
+
+        // ========================================
         // 🌐 EXPOSICIÓN DE FUNCIONES GLOBALES
         // ========================================
         // Estas funciones se exponen al scope global para ser
@@ -4414,6 +4620,9 @@ https://iptv.skyplay.us`);
         window.closeWholesaleModal = closeWholesaleModal;
         window.closeThankYouModal = closeThankYouModal;
         window.submitWholesaleForm = submitWholesaleForm;
+    window.openCardDetails = openCardDetails;
+    window.closeCardDetails = closeCardDetails;
+    window.toggleCardDetails = toggleCardDetails;
     </script>
 </body>
 </html>
