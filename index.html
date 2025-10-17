@@ -3334,7 +3334,9 @@
                 ],
                 paymentKey1Device: 'plan1a',
                 paymentKey3Devices: 'plan1b',
-                hasDeviceSwitch: true
+                hasDeviceSwitch: true,
+                /* This plan only exposes the 3-device option visually */
+                onlyThreeDevices: true
             },
             {
                 name: 'MAGISTV PRO',
@@ -3741,21 +3743,36 @@
                     const price3Devices = plan.basePrice3Devices;
                     const hintClass = (typeof variantTouched[index] !== 'undefined' && !variantTouched[index]) ? ' hint' : '';
 
-                    deviceSwitchHTML = `
-                        <div class="device-switch-container">
-                            <div class="device-switch-label">${translation.deviceSwitchLabel || 'Número de Dispositivos'}</div>
-                            <div class="device-switch${hintClass}" onclick="toggleDeviceSwitch(${index})">
-                                <div class="device-option ${!is3Devices ? 'active' : ''}">
-                                    1 ${translation.deviceText || 'Dispositivo'}
-                                    <div class="device-price-diff">$${price1Device.toFixed(2)}</div>
-                                </div>
-                                <div class="device-option ${is3Devices ? 'active' : ''}">
-                                    3 ${translation.devicesText || 'Dispositivos'}
-                                    <div class="device-price-diff">$${price3Devices.toFixed(2)}</div>
+                    if (plan.onlyThreeDevices) {
+                        // Render only the 3-device option visually (active)
+                        deviceSwitchHTML = `
+                            <div class="device-switch-container">
+                                <div class="device-switch-label">${translation.deviceSwitchLabel || 'Número de Dispositivos'}</div>
+                                <div class="device-switch" onclick="toggleCardDetails(${index})">
+                                    <div class="device-option active">
+                                        3 ${translation.devicesText || 'Dispositivos'}
+                                        <div class="device-price-diff">$${price3Devices.toFixed(2)}</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    `;
+                        `;
+                    } else {
+                        deviceSwitchHTML = `
+                            <div class="device-switch-container">
+                                <div class="device-switch-label">${translation.deviceSwitchLabel || 'Número de Dispositivos'}</div>
+                                <div class="device-switch${hintClass}" onclick="toggleDeviceSwitch(${index})">
+                                    <div class="device-option ${!is3Devices ? 'active' : ''}">
+                                        1 ${translation.deviceText || 'Dispositivo'}
+                                        <div class="device-price-diff">$${price1Device.toFixed(2)}</div>
+                                    </div>
+                                    <div class="device-option ${is3Devices ? 'active' : ''}">
+                                        3 ${translation.devicesText || 'Dispositivos'}
+                                        <div class="device-price-diff">$${price3Devices.toFixed(2)}</div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    }
                 }
 
                 card.innerHTML = `
