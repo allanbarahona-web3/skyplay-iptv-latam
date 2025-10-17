@@ -521,8 +521,13 @@
 
         .avatar-default { background: #374151; }
         .avatar-flujo-tv { background: #113CCF; }
-    /* MAGISTV avatar: darker green so white initial remains visible */
-    .avatar-magistv { background: #0f4f3a; }
+    /* MAGISTV avatar: white background with intense red initial for better contrast */
+    .avatar-magistv {
+        background: #ffffff; /* white background */
+        color: #c8102e; /* intense red for the initial (Magistv branding feel) */
+        border: 3px solid rgba(200,16,46,0.12); /* subtle red-tinted border */
+        box-shadow: 0 8px 22px rgba(200,16,46,0.06); /* soft red shadow for separation */
+    }
         .avatar-tele-latino { background: #F97316; }
 
         /* Details overlay inside card (visual only) */
