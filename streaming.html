@@ -18,6 +18,10 @@
             --primary-light: #2a5298;
             --secondary: #667eea;
             --accent: #764ba2;
+            --card-bg: #ffffff;
+            --card-radius: 14px;
+            --card-shadow: 0 12px 30px rgba(2,6,23,0.08);
+            --cta: var(--primary);
             --success: #10b981;
             --white: #ffffff;
             --gray-50: #f9fafb;
@@ -91,6 +95,129 @@
         .lang-btn.active {
             background: white;
             color: var(--primary);
+        }
+
+        /* Import a friendly sans-serif similar to brand typography */
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&display=swap');
+
+        /* Provider avatar styles for pricing cards */
+        .provider-avatar {
+            width: 84px;
+            height: 84px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 12px auto;
+            color: var(--white);
+            font-weight: 800;
+            box-shadow: 0 8px 22px rgba(2,6,23,0.08);
+            overflow: hidden;
+            border: 3px solid #fff;
+            animation: floaty 6s ease-in-out infinite;
+            transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+        }
+
+        @keyframes floaty {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-6px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .provider-initial {
+            font-size: 32px;
+            line-height: 1;
+            font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
+        }
+
+        /* Avatar color classes (extend as needed) */
+    /* Brand-approx colors */
+    /* Brand-approx colors */
+    .avatar-disney { background: #113CCF; box-shadow: 0 8px 20px rgba(17,60,207,0.18); border-color: rgba(17,60,207,0.18); }
+    .avatar-vix { background: #F15A24; box-shadow: 0 8px 20px rgba(241,90,36,0.18); border-color: rgba(241,90,36,0.18); }
+    .avatar-crunchyroll { background: #F97316; box-shadow: 0 8px 20px rgba(249,115,22,0.16); border-color: rgba(249,115,22,0.16); }
+    .avatar-max { background: #4C1D95; box-shadow: 0 8px 20px rgba(76,29,149,0.16); border-color: rgba(76,29,149,0.16); }
+    .avatar-netflix { background: #E50914; box-shadow: 0 8px 20px rgba(229,9,20,0.16); border-color: rgba(229,9,20,0.16); }
+    .avatar-paramount { background: #2D47A1; box-shadow: 0 8px 20px rgba(45,71,161,0.16); border-color: rgba(45,71,161,0.16); }
+        .avatar-default { background: #374151; }
+
+        /* Card styling for professional look */
+        .pricing-card {
+            background: var(--card-bg);
+            border-radius: var(--card-radius);
+            box-shadow: var(--card-shadow);
+            padding: 20px;
+            transition: transform .18s ease, box-shadow .18s ease;
+            color: #0f172a;
+            border: 1px solid rgba(15,23,42,0.04);
+        }
+
+        .pricing-card:hover { transform: translateY(-8px); box-shadow: 0 22px 48px rgba(2,6,23,0.12); }
+
+        .plan-name { font-family: 'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial; font-weight:600; font-size:18px; text-align:center; color:#0b1220; }
+
+        .plan-price { font-size:30px; font-weight:800; color:var(--primary); text-align:center; margin-top:8px; }
+        .plan-price .plan-period { font-size:12px; font-weight:600; color:#6b7280; margin-left:8px; }
+
+        .subscribe-btn { display:block; width:100%; padding:12px 16px; border-radius:12px; background:var(--cta); color:#fff; font-weight:700; border:none; cursor:pointer; transition: transform .12s ease, box-shadow .12s ease; }
+        .subscribe-btn:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(229,9,20,0.14); }
+        .subscribe-btn:focus { outline: 3px solid rgba(14,28,120,0.12); outline-offset: 2px; }
+
+        /* Variant pills */
+        .variant-option { display:inline-block; padding:8px 12px; border-radius:999px; background: #f3f4f6; color:#374151; margin:4px; cursor:pointer; font-weight:600; font-size:13px; }
+        .variant-option.active { background: var(--primary); color:#fff; }
+
+        /* Pulse hint for new users on variant buttons */
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(99,102,241,0.0); }
+            50% { box-shadow: 0 0 0 6px rgba(99,102,241,0.1); }
+            100% { box-shadow: 0 0 0 0 rgba(99,102,241,0.0); }
+        }
+
+        .variant-option.hint { animation: pulse-border 1.8s infinite ease-in-out; border: 2px solid rgba(99,102,241,0.12); }
+
+        /* Feature item styling */
+        .feature-item { display:flex; gap:10px; align-items:flex-start; margin-bottom:8px; }
+        .feature-icon { width:26px; height:26px; border-radius:6px; display:flex; align-items:center; justify-content:center; font-weight:700; }
+        .feature-icon.disabled { opacity:0.45; }
+        .feature-text { color:#374151; font-size:14px; }
+
+        /* Inline accordion prototype for details (mobile-first) */
+    .close-details-btn { padding:10px 12px; border-radius:10px; border:none; background:#f3f4f6; color:#111; font-weight:700; cursor:pointer; }
+
+    .card-details { display:none; overflow:hidden; transition: max-height .28s ease, opacity .18s linear; max-height:0; opacity:0; }
+        .card-details[data-open="true"] { display:block; max-height:800px; opacity:1; }
+        .card-details-inner { padding:12px; background:#fff; border-radius:10px; border:1px solid rgba(15,23,42,0.04); box-shadow:0 6px 20px rgba(2,6,23,0.04); }
+
+        @media (min-width:900px) {
+            /* On desktop keep it inline but constrained */
+            .card-details-inner { max-width:520px; }
+        }
+
+        /* Responsive avatar sizes */
+        @media (max-width: 640px) {
+            .provider-avatar { width: 64px; height: 64px; border-width: 2px; }
+            .provider-initial { font-size: 22px; }
+            .pricing-card { padding: 14px; }
+            .plan-price { font-size:22px; }
+        }
+
+        @media (min-width: 641px) and (max-width: 1024px) {
+            .provider-avatar { width: 76px; height: 76px; }
+            .provider-initial { font-size: 28px; }
+            .pricing-card { padding: 18px; }
+            .plan-price { font-size:26px; }
+        }
+
+        /* Hover interaction: subtle scale on avatar */
+        .provider-avatar:hover { transform: scale(1.06); box-shadow: 0 14px 36px rgba(2,6,23,0.12); }
+
+        /* If you later upload an image, it can fit here */
+        .provider-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
         }
 
         /* Wholesale Button */
@@ -701,6 +828,11 @@
             background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%);
             box-shadow: 0 2px 8px rgba(102, 126, 234, 0.3);
         }
+
+        /* Variant switch styles */
+        .variant-switch { display: flex; gap: 8px; }
+        .variant-option { flex: 1; padding: 8px 12px; text-align: center; font-size: 13px; font-weight: 700; color: var(--gray-600); border-radius: 18px; background: var(--gray-200); cursor: pointer; }
+        .variant-option.active { background: linear-gradient(135deg, var(--secondary) 0%, var(--accent) 100%); color: white; box-shadow: 0 6px 20px rgba(102,126,234,0.18); }
 
         .device-price-diff {
             font-size: 11px;
@@ -2120,16 +2252,16 @@
                     <span id="createWholesaleAccountText">Crea una cuenta mayorista</span>
                 </button>
                 <!-- Products Banner -->
-        <div class="header-products" style="display:flex;align-items:center;gap:12px;margin-top:10px;">
-            <button class="products-btn" id="productsBtn" onclick="toggleProductsMenu()" style="padding:8px 18px;border-radius:20px;background:#fff;color:#d97706;font-weight:600;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.04);cursor:pointer;">
-            <span id="productsBtnText">Productos</span> <span class="products-arrow">▼</span>
-            </button>
-            <div class="products-menu" id="productsMenu" style="display:none;position:absolute;z-index:1000;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.08);padding:10px 0;top:40px;">
-        <a href="./index.html#plansTitle" id="productIptv" target="_self" style="display:block;padding:8px 24px;color:#d97706;text-decoration:none;font-weight:500;">IPTV</a>
-            <a href="#plansTitle" id="productStreaming" target="_self" style="display:block;padding:8px 24px;color:#d97706;text-decoration:none;font-weight:500;">Streaming</a>
-            <a href="https://landing-pines.com" id="productPines" target="_blank" style="display:block;padding:8px 24px;color:#d97706;text-decoration:none;font-weight:500;">Pines</a>
-            </div>
-        </div>
+    <div class="header-products" style="display:flex;align-items:center;gap:12px;margin-top:10px;">
+      <button class="products-btn" id="productsBtn" onclick="toggleProductsMenu()" style="padding:8px 18px;border-radius:20px;background:#fff;color:#d97706;font-weight:600;border:none;box-shadow:0 2px 8px rgba(0,0,0,0.04);cursor:pointer;">
+      <span id="productsBtnText">Productos</span> <span class="products-arrow">▼</span>
+      </button>
+      <div class="products-menu" id="productsMenu" style="display:none;position:absolute;z-index:1000;background:#fff;border-radius:12px;box-shadow:0 2px 8px rgba(0,0,0,0.08);padding:10px 0;top:40px;">
+      <a href="#plansTitle" id="productIptv" target="_self" style="display:block;padding:8px 24px;color:#d97706;text-decoration:none;font-weight:500;">IPTV</a>
+      <a href="https://landing-streaming.com" id="productStreaming" target="_blank" style="display:block;padding:8px 24px;color:#d97706;text-decoration:none;font-weight:500;">Streaming</a>
+      <a href="https://landing-pines.com" id="productPines" target="_blank" style="display:block;padding:8px 24px;color:#d97706;text-decoration:none;font-weight:500;">Pines</a>
+      </div>
+    </div>
             </div>
         </div>
     </div>
@@ -3000,127 +3132,127 @@
         }
 
         // CONFIGURACIÓN - PAYMENT LINKS STREAMING
-const paymentLinks = {
-    // DISNEY
-    disney: {
-        basico: {
-            stripe: 'TU_STRIPE_LINK_DISNEY_BASICO',
-            binance: 'TU_COINPAL_LINK_DISNEY_BASICO_BINANCE',
-            paypal: 'TU_COINPAL_LINK_DISNEY_BASICO_PAYPAL',
-            sinpe: 'TU_SINPE_LINK_DISNEY_BASICO'
-        },
-        estandar: {
-            stripe: 'TU_STRIPE_LINK_DISNEY_ESTANDAR',
-            binance: 'TU_COINPAL_LINK_DISNEY_ESTANDAR_BINANCE',
-            paypal: 'TU_COINPAL_LINK_DISNEY_ESTANDAR_PAYPAL',
-            sinpe: 'TU_SINPE_LINK_DISNEY_ESTANDAR'
-        }
-    },
+        const paymentLinks = {
+            // DISNEY
+            disney: {
+                basico: {
+                    stripe: 'TU_STRIPE_LINK_DISNEY_BASICO',
+                    binance: 'TU_COINPAL_LINK_DISNEY_BASICO_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_DISNEY_BASICO_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_DISNEY_BASICO'
+                },
+                estandar: {
+                    stripe: 'TU_STRIPE_LINK_DISNEY_ESTANDAR',
+                    binance: 'TU_COINPAL_LINK_DISNEY_ESTANDAR_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_DISNEY_ESTANDAR_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_DISNEY_ESTANDAR'
+                }
+            },
 
-    // VIX
-    vix: {
-        mes1: {
-            stripe: 'TU_STRIPE_LINK_VIX_1MES',
-            binance: 'TU_COINPAL_LINK_VIX_1MES_BINANCE',
-            paypal: 'TU_COINPAL_LINK_VIX_1MES_PAYPAL',
-            sinpe: 'TU_SINPE_LINK_VIX_1MES'
-        },
-        anual: {
-            stripe: 'TU_STRIPE_LINK_VIX_ANUAL',
-            binance: 'TU_COINPAL_LINK_VIX_ANUAL_BINANCE',
-            paypal: 'TU_COINPAL_LINK_VIX_ANUAL_PAYPAL',
-            sinpe: 'TU_SINPE_LINK_VIX_ANUAL'
-        },
-        perfil30: {
-            stripe: 'TU_STRIPE_LINK_VIX_PERFIL30',
-            binance: 'TU_COINPAL_LINK_VIX_PERFIL30_BINANCE',
-            paypal: 'TU_COINPAL_LINK_VIX_PERFIL30_PAYPAL',
-            sinpe: 'TU_SINPE_LINK_VIX_PERFIL30'
-        }
-    },
+            // VIX
+            vix: {
+                mes1: {
+                    stripe: 'TU_STRIPE_LINK_VIX_1MES',
+                    binance: 'TU_COINPAL_LINK_VIX_1MES_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_VIX_1MES_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_VIX_1MES'
+                },
+                anual: {
+                    stripe: 'TU_STRIPE_LINK_VIX_ANUAL',
+                    binance: 'TU_COINPAL_LINK_VIX_ANUAL_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_VIX_ANUAL_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_VIX_ANUAL'
+                },
+                perfil30: {
+                    stripe: 'TU_STRIPE_LINK_VIX_PERFIL30',
+                    binance: 'TU_COINPAL_LINK_VIX_PERFIL30_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_VIX_PERFIL30_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_VIX_PERFIL30'
+                }
+            },
 
-    // CRUNCHYROLL
-    crunchyroll: {
-        mes1: {
-            stripe: 'TU_STRIPE_LINK_CRUNCHYROLL_1MES',
-            binance: 'TU_COINPAL_LINK_CRUNCHYROLL_1MES_BINANCE',
-            paypal: 'TU_COINPAL_LINK_CRUNCHYROLL_1MES_PAYPAL',
-            sinpe: 'TU_SINPE_LINK_CRUNCHYROLL_1MES'
-        },
-        anual: {
-            stripe: 'TU_STRIPE_LINK_CRUNCHYROLL_ANUAL',
-            binance: 'TU_COINPAL_LINK_CRUNCHYROLL_ANUAL_BINANCE',
-            paypal: 'TU_COINPAL_LINK_CRUNCHYROLL_ANUAL_PAYPAL',
-            sinpe: 'TU_SINPE_LINK_CRUNCHYROLL_ANUAL'
-        },
-        perfil30: {
-            stripe: 'TU_STRIPE_LINK_CRUNCHYROLL_PERFIL30',
-            binance: 'TU_COINPAL_LINK_CRUNCHYROLL_PERFIL30_BINANCE',
-            paypal: 'TU_COINPAL_LINK_CRUNCHYROLL_PERFIL30_PAYPAL',
-            sinpe: 'TU_SINPE_LINK_CRUNCHYROLL_PERFIL30'
-        }
-    },
+            // CRUNCHYROLL
+            crunchyroll: {
+                mes1: {
+                    stripe: 'TU_STRIPE_LINK_CRUNCHYROLL_1MES',
+                    binance: 'TU_COINPAL_LINK_CRUNCHYROLL_1MES_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_CRUNCHYROLL_1MES_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_CRUNCHYROLL_1MES'
+                },
+                anual: {
+                    stripe: 'TU_STRIPE_LINK_CRUNCHYROLL_ANUAL',
+                    binance: 'TU_COINPAL_LINK_CRUNCHYROLL_ANUAL_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_CRUNCHYROLL_ANUAL_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_CRUNCHYROLL_ANUAL'
+                },
+                perfil30: {
+                    stripe: 'TU_STRIPE_LINK_CRUNCHYROLL_PERFIL30',
+                    binance: 'TU_COINPAL_LINK_CRUNCHYROLL_PERFIL30_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_CRUNCHYROLL_PERFIL30_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_CRUNCHYROLL_PERFIL30'
+                }
+            },
 
-    // MAX
-    max: {
-        basic: {
-            stripe: 'TU_STRIPE_LINK_MAX_BASIC',
-            binance: 'TU_COINPAL_LINK_MAX_BASIC_BINANCE',
-            paypal: 'TU_COINPAL_LINK_MAX_BASIC_PAYPAL',
-            sinpe: 'TU_SINPE_LINK_MAX_BASIC'
-        },
-        standard: {
-            stripe: 'TU_STRIPE_LINK_MAX_STANDARD',
-            binance: 'TU_COINPAL_LINK_MAX_STANDARD_BINANCE',
-            paypal: 'TU_COINPAL_LINK_MAX_STANDARD_PAYPAL',
-            sinpe: 'TU_SINPE_LINK_MAX_STANDARD'
-        },
-        perfil30: {
-            stripe: 'TU_STRIPE_LINK_MAX_PERFIL30',
-            binance: 'TU_COINPAL_LINK_MAX_PERFIL30_BINANCE',
-            paypal: 'TU_COINPAL_LINK_MAX_PERFIL30_PAYPAL',
-            sinpe: 'TU_SINPE_LINK_MAX_PERFIL30'
-        }
-    },
+            // MAX
+            max: {
+                basic: {
+                    stripe: 'TU_STRIPE_LINK_MAX_BASIC',
+                    binance: 'TU_COINPAL_LINK_MAX_BASIC_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_MAX_BASIC_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_MAX_BASIC'
+                },
+                standard: {
+                    stripe: 'TU_STRIPE_LINK_MAX_STANDARD',
+                    binance: 'TU_COINPAL_LINK_MAX_STANDARD_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_MAX_STANDARD_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_MAX_STANDARD'
+                },
+                perfil30: {
+                    stripe: 'TU_STRIPE_LINK_MAX_PERFIL30',
+                    binance: 'TU_COINPAL_LINK_MAX_PERFIL30_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_MAX_PERFIL30_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_MAX_PERFIL30'
+                }
+            },
 
-    // NETFLIX
-    netflix: {
-        basic: {
-            stripe: 'TU_STRIPE_LINK_NETFLIX_BASIC',
-            binance: 'TU_COINPAL_LINK_NETFLIX_BASIC_BINANCE',
-            paypal: 'TU_COINPAL_LINK_NETFLIX_BASIC_PAYPAL',
-            sinpe: 'TU_SINPE_LINK_NETFLIX_BASIC'
-        },
-        standard: {
-            stripe: 'TU_STRIPE_LINK_NETFLIX_STANDARD',
-            binance: 'TU_COINPAL_LINK_NETFLIX_STANDARD_BINANCE',
-            paypal: 'TU_COINPAL_LINK_NETFLIX_STANDARD_PAYPAL',
-            sinpe: 'TU_SINPE_LINK_NETFLIX_STANDARD'
-        },
-        premium: {
-            stripe: 'TU_STRIPE_LINK_NETFLIX_PREMIUM',
-            binance: 'TU_COINPAL_LINK_NETFLIX_PREMIUM_BINANCE',
-            paypal: 'TU_COINPAL_LINK_NETFLIX_PREMIUM_PAYPAL',
-            sinpe: 'TU_SINPE_LINK_NETFLIX_PREMIUM'
-        }
-    },
+            // NETFLIX
+            netflix: {
+                basic: {
+                    stripe: 'TU_STRIPE_LINK_NETFLIX_BASIC',
+                    binance: 'TU_COINPAL_LINK_NETFLIX_BASIC_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_NETFLIX_BASIC_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_NETFLIX_BASIC'
+                },
+                standard: {
+                    stripe: 'TU_STRIPE_LINK_NETFLIX_STANDARD',
+                    binance: 'TU_COINPAL_LINK_NETFLIX_STANDARD_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_NETFLIX_STANDARD_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_NETFLIX_STANDARD'
+                },
+                premium: {
+                    stripe: 'TU_STRIPE_LINK_NETFLIX_PREMIUM',
+                    binance: 'TU_COINPAL_LINK_NETFLIX_PREMIUM_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_NETFLIX_PREMIUM_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_NETFLIX_PREMIUM'
+                }
+            },
 
-    // PARAMOUNT
-    paramount: {
-        mes: {
-            stripe: 'TU_STRIPE_LINK_PARAMOUNT_MES',
-            binance: 'TU_COINPAL_LINK_PARAMOUNT_MES_BINANCE',
-            paypal: 'TU_COINPAL_LINK_PARAMOUNT_MES_PAYPAL',
-            sinpe: 'TU_SINPE_LINK_PARAMOUNT_MES'
-        },
-        perfil30: {
-            stripe: 'TU_STRIPE_LINK_PARAMOUNT_PERFIL30',
-            binance: 'TU_COINPAL_LINK_PARAMOUNT_PERFIL30_BINANCE',
-            paypal: 'TU_COINPAL_LINK_PARAMOUNT_PERFIL30_PAYPAL',
-            sinpe: 'TU_SINPE_LINK_PARAMOUNT_PERFIL30'
-        }
-    }
-};
+            // PARAMOUNT
+            paramount: {
+                mes: {
+                    stripe: 'TU_STRIPE_LINK_PARAMOUNT_MES',
+                    binance: 'TU_COINPAL_LINK_PARAMOUNT_MES_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_PARAMOUNT_MES_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_PARAMOUNT_MES'
+                },
+                perfil30: {
+                    stripe: 'TU_STRIPE_LINK_PARAMOUNT_PERFIL30',
+                    binance: 'TU_COINPAL_LINK_PARAMOUNT_PERFIL30_BINANCE',
+                    paypal: 'TU_COINPAL_LINK_PARAMOUNT_PERFIL30_PAYPAL',
+                    sinpe: 'TU_SINPE_LINK_PARAMOUNT_PERFIL30'
+                }
+            }
+        };
         // Exchange rates
         const exchangeRates = {
         argentina:      { currency: 'ARS', symbol: '$',  rate: 950,   flag: '🇦🇷', name: 'Argentina' },
@@ -3129,7 +3261,7 @@ const paymentLinks = {
         canada:         { currency: 'CAD', symbol: '$',  rate: 1.36,  flag: '🇨🇦', name: 'Canadá' },
         chile:          { currency: 'CLP', symbol: '$',  rate: 930,   flag: '🇨🇱', name: 'Chile' },
         colombia:       { currency: 'COP', symbol: '$',  rate: 4100,  flag: '🇨🇴', name: 'Colombia' },
-        costarica:     { currency: 'CRC', symbol: '₡',  rate: 520,   flag: '🇨🇷', name: 'Costa Rica' },
+        costarica:      {currency: 'CRC', symbol: '₡',  rate: 520,   flag: '🇨🇷', name: 'Costa Rica' },
         ecuador:        { currency: 'USD', symbol: '$',  rate: 1,     flag: '🇪🇨', name: 'Ecuador' },
         el_salvador:    { currency: 'USD', symbol: '$',  rate: 1,     flag: '🇸🇻', name: 'El Salvador' },
         espana:         { currency: 'EUR', symbol: '€',  rate: 0.92,  flag: '🇪🇸', name: 'España' },
@@ -3145,10 +3277,15 @@ const paymentLinks = {
         venezuela:     { currency: 'VES', symbol: 'Bs.',rate: 36,    flag: '🇻🇪', name: 'Venezuela' }
 };
 
-      // Plan data - STREAMING SERVICES
-const streamingPlans = [
+    // Plan data - STREAMING SERVICES
+    const streamingPlans = [
     {
         name: 'Disney+',
+        key: 'disney',
+        variants: [
+            { label: 'Básico', priceProp: 'basePriceBasico', featuresProp: 'featuresBasico', paymentVariant: 'basico' },
+            { label: 'Estándar', priceProp: 'basePriceEstandar', featuresProp: 'featuresEstandar', paymentVariant: 'estandar' }
+        ],
         logo: '🎬',
         basePriceBasico: 2,
         basePriceEstandar: 3,
@@ -3176,6 +3313,12 @@ const streamingPlans = [
     },
     {
         name: 'VIX',
+        key: 'vix',
+        variants: [
+            { label: 'Perfil 30', priceProp: 'basePricePerfil30', featuresProp: 'featuresPerfil30', paymentVariant: 'perfil30' },
+            { label: '1 Mes', priceProp: 'basePriceMes1', featuresProp: 'featuresMes1', paymentVariant: 'mes1' },
+            { label: 'Anual', priceProp: 'basePriceAnual', featuresProp: 'featuresAnual', paymentVariant: 'anual' }
+        ],
         logo: '📺',
         basePricePerfil30: 1,
         basePriceMes1: 2,
@@ -3218,6 +3361,11 @@ const streamingPlans = [
         basePriceMes1: 2,
         basePriceAnual: 3,
         popular: true,
+        variants: [
+            { label: 'Perfil 30', priceProp: 'basePricePerfil30', featuresProp: 'featuresPerfil30', paymentVariant: 'perfil30' },
+            { label: '1 Mes', priceProp: 'basePriceMes1', featuresProp: 'featuresMes1', paymentVariant: 'mes1' },
+            { label: 'Anual', priceProp: 'basePriceAnual', featuresProp: 'featuresAnual', paymentVariant: 'anual' }
+        ],
         featuresPerfil30: [
             { text: 'Más de 1,000 Series Anime', enabled: true },
             { text: 'Simulcasts desde Japón', enabled: true },
@@ -3255,6 +3403,11 @@ const streamingPlans = [
         basePriceStandard: 2,
         basePricePerfil30: 3,
         popular: false,
+        variants: [
+            { label: 'Basic', priceProp: 'basePriceBasic', featuresProp: 'featuresBasic', paymentVariant: 'basic' },
+            { label: 'Standard', priceProp: 'basePriceStandard', featuresProp: 'featuresStandard', paymentVariant: 'standard' },
+            { label: 'Perfil 30', priceProp: 'basePricePerfil30', featuresProp: 'featuresPerfil30', paymentVariant: 'perfil30' }
+        ],
         featuresBasic: [
             { text: 'HBO, Warner Bros, DC Comics', enabled: true },
             { text: 'Contenido Original MAX', enabled: true },
@@ -3292,6 +3445,11 @@ const streamingPlans = [
         basePriceStandard: 2,
         basePricePremium: 3,
         popular: true,
+        variants: [
+            { label: 'Basic', priceProp: 'basePriceBasic', featuresProp: 'featuresBasic', paymentVariant: 'basic' },
+            { label: 'Standard', priceProp: 'basePriceStandard', featuresProp: 'featuresStandard', paymentVariant: 'standard' },
+            { label: 'Premium', priceProp: 'basePricePremium', featuresProp: 'featuresPremium', paymentVariant: 'premium' }
+        ],
         featuresBasic: [
             { text: 'Series y Películas Ilimitadas', enabled: true },
             { text: 'Contenido Original Netflix', enabled: true },
@@ -3328,6 +3486,10 @@ const streamingPlans = [
         basePriceMes: 2,
         basePricePerfil30: 3,
         popular: false,
+        variants: [
+            { label: 'Mes', priceProp: 'basePriceMes', featuresProp: 'featuresMes', paymentVariant: 'mes' },
+            { label: 'Perfil 30', priceProp: 'basePricePerfil30', featuresProp: 'featuresPerfil30', paymentVariant: 'perfil30' }
+        ],
         featuresMes: [
             { text: 'Contenido CBS, MTV, Nickelodeon', enabled: true },
             { text: 'Películas de Paramount Pictures', enabled: true },
@@ -3351,17 +3513,28 @@ const streamingPlans = [
     }
 ]; 
 
+// Flatten streamingPlans into `plans` used by the renderer.
+// Each provider variant becomes its own card so the existing render logic (which
+// expects `plans` array with basePrice, features and paymentKey) can work
+// without large changes.
+// Use streamingPlans directly (one card per provider). We track per-card variant state for providers
+// that have multiple variants (e.g., Disney, VIX).
+const plans = streamingPlans; // alias used by existing rendering code
+
+// Per-plan variant selection state (index into plan.variants if present)
+let planVariantStates = new Array(streamingPlans.length).fill(0);
+// Track whether a user has interacted with variants for a plan (used to stop pulsing hint)
+let variantTouched = new Array(streamingPlans.length).fill(false);
+
         // Surcharges
         const crSurcharge = 1.50;
         const usSurcharge = 2.24;
 
-    let currentCountry = 'usa';
-    let currentLanguage = 'es';
-    let selectedPlanIndex = null;
-    // Alias streamingPlans -> plans so the existing renderer code continues to work
-    const plans = streamingPlans;
-    // Initialize planDeviceStates dynamically to avoid index errors when plan count changes
-    let planDeviceStates = new Array(plans.length).fill(false); // false = 1 device, true = 3 devices (only for plans with switch)
+        let currentCountry = 'usa';
+        let currentLanguage = 'es';
+        let selectedPlanIndex = null;
+        // Initialize planDeviceStates to the same length as plans to avoid index issues
+        let planDeviceStates = new Array(plans.length).fill(false); // false = 1 device, true = 3 devices
 
         // Translations
         const translations = {
@@ -3644,7 +3817,14 @@ const streamingPlans = [
             plans.forEach((plan, index) => {
                 let finalUSDPrice, currentFeatures, paymentKey, isPopular;
 
-                if (plan.hasDeviceSwitch) {
+                    // If plan has variants (streaming providers like Disney/VIX), read current variant selection
+                    let variant = null;
+                    if (plan.variants && plan.variants.length > 0) {
+                        const variantIndex = planVariantStates[index] || 0;
+                        variant = plan.variants[variantIndex];
+                    }
+
+                    if (plan.hasDeviceSwitch) {
                     // Plan with device switch
                     const is3Devices = planDeviceStates[index];
                     const currentBasePrice = is3Devices ? plan.basePrice3Devices : plan.basePrice1Device;
@@ -3652,30 +3832,47 @@ const streamingPlans = [
                     paymentKey = is3Devices ? plan.paymentKey3Devices : plan.paymentKey1Device;
                     isPopular = plan.popular && is3Devices;
 
-                    finalUSDPrice = currentBasePrice;
+                        finalUSDPrice = currentBasePrice;
                     if (isCR) {
                         finalUSDPrice = currentBasePrice + crSurcharge;
                     } else if (isUSA) {
                         finalUSDPrice = currentBasePrice + usSurcharge;
                     }
                 } else {
-                    // Regular plan without switch
-                    currentFeatures = plan.features;
-                    paymentKey = plan.paymentKey;
-                    isPopular = plan.popular;
+                        // Regular plan without device-switch
+                        if (variant) {
+                            // Use variant-specific price and features
+                            currentFeatures = plan[variant.featuresProp] || [];
+                            finalUSDPrice = plan[variant.priceProp] || 0;
+                            // derive payment keys via plan.key + variant.paymentVariant
+                            paymentKey = `${plan.key || plan.name.toLowerCase().replace(/\s|\+/g, '')}.${variant.paymentVariant}`;
+                            isPopular = plan.popular;
+                            if (isCR) {
+                                finalUSDPrice = finalUSDPrice + crSurcharge;
+                            } else if (isUSA) {
+                                finalUSDPrice = finalUSDPrice + usSurcharge;
+                            }
+                        } else {
+                            currentFeatures = plan.features;
+                            paymentKey = plan.paymentKey;
+                            isPopular = plan.popular;
 
-                    finalUSDPrice = plan.basePrice;
-                    if (isCR) {
-                        finalUSDPrice = plan.basePrice + crSurcharge;
-                    } else if (isUSA) {
-                        finalUSDPrice = plan.basePrice + usSurcharge;
-                    }
+                            finalUSDPrice = plan.basePrice;
+                            if (isCR) {
+                                finalUSDPrice = plan.basePrice + crSurcharge;
+                            } else if (isUSA) {
+                                finalUSDPrice = plan.basePrice + usSurcharge;
+                            }
+                        }
                 }
 
                 const localPrice = finalUSDPrice * countryData.rate;
 
                 const card = document.createElement('div');
                 card.className = `pricing-card ${isPopular ? 'popular' : ''}`;
+
+                // Defensive: ensure currentFeatures is always an array
+                currentFeatures = Array.isArray(currentFeatures) ? currentFeatures : [];
 
                 let featuresHTML = currentFeatures.map(feature => `
                     <div class="feature-item">
@@ -3713,13 +3910,34 @@ const streamingPlans = [
                     `;
                 }
 
+                // Variant switch HTML (for streaming providers with variants)
+                let variantSwitchHTML = '';
+                if (plan.variants && plan.variants.length > 0) {
+                    const variantIndex = planVariantStates[index] || 0;
+                    const optionsHtml = plan.variants.map((v, i) => {
+                        // for prototype card (index 0) add hint class if user hasn't interacted
+                        const hintClass = (index === 0 && !variantTouched[index]) ? ' hint' : '';
+                        return `<div class=\"variant-option ${i === variantIndex ? 'active' : ''}${hintClass}\" onclick=\"selectVariant(${index}, ${i})\">${v.label}</div>`;
+                    }).join('');
+                    variantSwitchHTML = `
+                        <div class="device-switch-container variant-switch-container">
+                            <div class="device-switch-label">${translation.deviceSwitchLabel || 'Variante'}</div>
+                            <div class="device-switch variant-switch">${optionsHtml}</div>
+                        </div>
+                    `;
+                }
+
                 card.innerHTML = `
-                    ${isPopular ? `<div class="popular-badge">${translation.popularBadge}</div>` : ''}
-                    <div class="card-header">
-                        <div class="plan-name">${plan.name}</div>
-                        ${plan.hasDeviceSwitch ? '' : `<div class="plan-subtitle">${plan.subtitle}</div>`}
+                        ${isPopular ? `<div class="popular-badge">${translation.popularBadge}</div>` : ''}
+                    <div class="card-header" style="text-align:center;">
+                        <div class="provider-avatar ${'avatar-' + (plan.key || plan.name.toLowerCase().replace(/\s|\+/g,''))}">
+                            <div class="provider-initial">${(plan.name || '').charAt(0).toUpperCase()}</div>
+                        </div>
+                        <div class="plan-name" style="font-size:18px;margin-bottom:6px;font-family:'Poppins', system-ui, -apple-system, 'Segoe UI', Roboto, Arial;font-weight:600;color:#111827;">${plan.name}</div>
+                        ${plan.hasDeviceSwitch ? '' : `<div class="plan-subtitle" style="color:rgba(0,0,0,0.6);font-size:13px;margin-bottom:8px;">${plan.subtitle || ''}</div>`}
 
                         ${deviceSwitchHTML}
+                        ${variantSwitchHTML}
 
                         <div class="plan-price">
                             <span class="plan-price-symbol">$</span>${finalUSDPrice.toFixed(2)}
@@ -3727,14 +3945,33 @@ const streamingPlans = [
                         </div>
                         ${localPriceHTML}
                     </div>
+                    ${index === 0 ? '' : `
                     <div class="card-features">
                         ${featuresHTML}
                     </div>
-                    <div class="card-action">
-                        <button class="subscribe-btn" onclick="showPaymentModal(${index})">
-                            ${translation.subscribeBtnText}
-                        </button>
-                    </div>
+                    `}
+                        <!-- Prototype: inline accordion for first card -->
+                        ${index === 0 ? `
+                        <div class="card-details-wrapper">
+                            <div id="card-details-${index}" class="card-details" data-open="false" aria-hidden="true">
+                                <div class="card-details-inner">
+                                    <h4 style="margin-bottom:8px;">${plan.name} — Detalles</h4>
+                                    <div class="details-features">
+                                        ${featuresHTML}
+                                    </div>
+                                    <div style="margin-top:12px;display:flex;flex-direction:column;gap:8px;">
+                                        <button class="close-details-btn" onclick="closeCardDetails(${index})">Cerrar</button>
+                                        <button class="subscribe-btn" onclick="showPaymentModal(${index})">${translation.subscribeBtnText}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        ` : ''}
+                        <div class="card-action">
+                            <button class="subscribe-btn" onclick="showPaymentModal(${index})">
+                                ${translation.subscribeBtnText}
+                            </button>
+                        </div>
                 `;
 
                 container.appendChild(card);
@@ -3807,6 +4044,60 @@ const streamingPlans = [
   } else {
     document.removeEventListener('mousedown', closeProductsMenuOnClickOutside);
   }
+}
+
+// Select a variant inside a provider card
+function selectVariant(planIndex, variantIndex) {
+    if (!planVariantStates || !Array.isArray(planVariantStates)) {
+        planVariantStates = new Array(plans.length).fill(0);
+    }
+    const previous = planVariantStates[planIndex] || 0;
+    // Update variant
+    planVariantStates[planIndex] = variantIndex;
+    // Re-render cards to reflect new selection
+    generatePricingCards();
+
+    // mark that the user touched variants for this plan (stop hinting)
+    variantTouched[planIndex] = true;
+
+    // Prototype behavior for card 0: toggle details when selecting variants
+    if (planIndex === 0) {
+        // If user clicked the same variant again -> close details
+        if (previous === variantIndex) {
+            // small timeout to allow DOM re-render
+            setTimeout(() => { closeCardDetails(0); }, 60);
+        } else {
+            // If different variant selected -> open details showing the new content
+            setTimeout(() => { openCardDetails(0); }, 60);
+        }
+    }
+}
+
+// Accordion controls for prototype card
+function toggleCardDetails(index) {
+    const el = document.getElementById(`card-details-${index}`);
+    const btn = document.querySelector(`.variant-details-btn[onclick*="${index}"]`);
+    if (!el) return;
+    const open = el.getAttribute('data-open') === 'true';
+    if (open) closeCardDetails(index); else openCardDetails(index);
+}
+
+function openCardDetails(index) {
+    const el = document.getElementById(`card-details-${index}`);
+    const btn = document.querySelector(`.variant-details-btn[onclick*="${index}"]`);
+    if (!el) return;
+    el.setAttribute('data-open', 'true');
+    el.setAttribute('aria-hidden', 'false');
+    if (btn) btn.setAttribute('aria-expanded', 'true');
+}
+
+function closeCardDetails(index) {
+    const el = document.getElementById(`card-details-${index}`);
+    const btn = document.querySelector(`.variant-details-btn[onclick*="${index}"]`);
+    if (!el) return;
+    el.setAttribute('data-open', 'false');
+    el.setAttribute('aria-hidden', 'true');
+    if (btn) btn.setAttribute('aria-expanded', 'false');
 }
 
 function closeProductsMenuOnClickOutside(event) {
@@ -3980,10 +4271,45 @@ document.addEventListener('DOMContentLoaded', function() {
                 basePrice += usSurcharge;
             }
 
-            const options = selectedPaymentType === 'subscription' ?
-                pricingOptions.subscription : pricingOptions.oneTime;
-
             container.innerHTML = '';
+
+            // If this is a streaming plan variant (we attached paymentProvider and paymentDurationKey),
+            // show a single duration option corresponding to that variant.
+            if (plan.paymentProvider && plan.paymentDurationKey) {
+                const variantKey = plan.paymentDurationKey;
+
+                // Friendly label for common variant keys
+                const variantLabels = {
+                    basico: 'Básico', estandar: 'Estándar', mes1: '1 Mes', perfil30: 'Perfil 30', anual: 'Anual', basic: 'Basic', standard: 'Standard', premium: 'Premium', mes: '1 Mes'
+                };
+
+                const label = variantLabels[variantKey] || variantKey;
+                const monthlyPrice = basePrice;
+                const totalPrice = basePrice;
+
+                const card = document.createElement('div');
+                card.className = 'duration-card';
+                card.dataset.key = variantKey;
+                card.innerHTML = `
+                    <div class="duration-title">${label}</div>
+                    <div class="duration-price">$${monthlyPrice.toFixed(2)}</div>
+                    <div class="duration-per-month">${translation.modalPerMonth}</div>
+                `;
+
+                card.addEventListener('click', () => {
+                    // mark selected
+                    document.querySelectorAll('.duration-card').forEach(c => c.classList.remove('selected'));
+                    card.classList.add('selected');
+                    selectedDuration = { key: variantKey, option: { months: 1 } };
+                    // show payment methods
+                    generatePaymentMethods();
+                });
+
+                container.appendChild(card);
+                return;
+            }
+
+            const options = selectedPaymentType === 'subscription' ? pricingOptions.subscription : pricingOptions.oneTime;
 
             Object.entries(options).forEach(([key, option]) => {
                 const monthlyPrice = calculateDiscountedPrice(basePrice, option.discount);
@@ -4113,16 +4439,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
             const plan = plans[selectedPlanIndex];
 
-            // Determine the plan key
+            // Determine the plan key and variant
+            // For streaming plans we created `paymentProvider` and `paymentDurationKey` on each plan variant.
             let planKey = '';
-            if (plan.name === 'FLUJO TV') {
-                planKey = 'flujo';
-            } else if (plan.name === 'MAGISTV PRO') {
-                const is3Devices = planDeviceStates[selectedPlanIndex];
-                planKey = is3Devices ? 'magistv3' : 'magistv1';
-            } else if (plan.name === 'TELE-LATINO') {
-                const is3Devices = planDeviceStates[selectedPlanIndex];
-                planKey = is3Devices ? 'telelatino3' : 'telelatino1';
+            let variantKey = null;
+            if (plan.paymentProvider) {
+                planKey = plan.paymentProvider;
+                variantKey = plan.paymentDurationKey || null;
+            } else {
+                // Legacy behavior - keep existing mappings for older plans
+                if (plan.name === 'FLUJO TV') {
+                    planKey = 'flujo';
+                } else if (plan.name === 'MAGISTV PRO') {
+                    const is3Devices = planDeviceStates[selectedPlanIndex];
+                    planKey = is3Devices ? 'magistv3' : 'magistv1';
+                } else if (plan.name === 'TELE-LATINO') {
+                    const is3Devices = planDeviceStates[selectedPlanIndex];
+                    planKey = is3Devices ? 'telelatino3' : 'telelatino1';
+                }
             }
 
             // Get the payment link
@@ -4131,14 +4465,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
             let paymentLink = '';
 
-            if (paymentType === 'subscription') {
-                // Credit card subscription link (processed via Stripe)
-                if (paymentLinks[planKey] && paymentLinks[planKey].subscription) {
-                    paymentLink = paymentLinks[planKey].subscription[durationKey]?.stripe;
-                }
-            } else {
-                // One-time payment links - map unique IDs to config keys
-                if (paymentLinks[planKey] && paymentLinks[planKey].oneTime) {
+            if (planKey && variantKey && paymentLinks[planKey] && paymentLinks[planKey][variantKey]) {
+                // Streaming provider shape: paymentLinks[provider][variant] -> { stripe, binance, paypal, sinpe }
+                if (paymentType === 'subscription') {
+                    // Use the provider's stripe link for subscriptions (same link used for all recurrence options)
+                    paymentLink = paymentLinks[planKey][variantKey].stripe;
+                } else {
+                    // One-time: select method-specific link mapping
                     let linkMethod;
                     switch(method) {
                         case 'creditcard':
@@ -4156,7 +4489,35 @@ document.addEventListener('DOMContentLoaded', function() {
                         default:
                             linkMethod = method;
                     }
-                    paymentLink = paymentLinks[planKey].oneTime[durationKey]?.[linkMethod];
+                    paymentLink = paymentLinks[planKey][variantKey][linkMethod];
+                }
+            } else {
+                // Fallback to legacy paymentLinks structure (plan1..plan5)
+                if (paymentType === 'subscription') {
+                    if (paymentLinks[planKey] && paymentLinks[planKey].subscription) {
+                        paymentLink = paymentLinks[planKey].subscription[durationKey]?.stripe;
+                    }
+                } else {
+                    if (paymentLinks[planKey] && paymentLinks[planKey].oneTime) {
+                        let linkMethod;
+                        switch(method) {
+                            case 'creditcard':
+                                linkMethod = 'stripe';
+                                break;
+                            case 'binancepay':
+                                linkMethod = 'binance';
+                                break;
+                            case 'paypalcheckout':
+                                linkMethod = 'paypal';
+                                break;
+                            case 'sinpemovil':
+                                linkMethod = 'sinpe';
+                                break;
+                            default:
+                                linkMethod = method;
+                        }
+                        paymentLink = paymentLinks[planKey].oneTime[durationKey]?.[linkMethod];
+                    }
                 }
             }
 
