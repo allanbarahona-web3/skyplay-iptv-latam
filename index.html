@@ -3406,6 +3406,7 @@
         // Surcharges
         const crSurcharge = 1.75;
         const usSurcharge = 4.20;
+        const caSurcharge = 2.50;
 
     let currentCountry = 'usa';
     let currentLanguage = 'es';
@@ -3688,6 +3689,7 @@
             const countryData = exchangeRates[currentCountry];
             const isCR = currentCountry === 'costarica';
             const isUSA = currentCountry === 'usa';
+            const isCA = currentCountry === 'canada';
             const translation = translations[currentLanguage];
 
             container.innerHTML = '';
@@ -3708,6 +3710,8 @@
                         finalUSDPrice = currentBasePrice + crSurcharge;
                     } else if (isUSA) {
                         finalUSDPrice = currentBasePrice + usSurcharge;
+                    } else if (isCA) {
+                        finalUSDPrice = currentBasePrice + caSurcharge;
                     }
                 } else {
                     // Regular plan without switch
@@ -3720,6 +3724,8 @@
                         finalUSDPrice = plan.basePrice + crSurcharge;
                     } else if (isUSA) {
                         finalUSDPrice = plan.basePrice + usSurcharge;
+                    } else if (isCA) {
+                        finalUSDPrice = plan.basePrice + caSurcharge;
                     }
                 }
 
@@ -3749,14 +3755,13 @@
                     const hintClass = (typeof variantTouched[index] !== 'undefined' && !variantTouched[index]) ? ' hint' : '';
 
                     if (plan.onlyThreeDevices) {
-                        // Render only the 3-device option visually (active)
+                        // Render only the 3-device option visually (active) - hide price inside switch
                         deviceSwitchHTML = `
                             <div class="device-switch-container">
                                 <div class="device-switch-label">${translation.deviceSwitchLabel || 'Número de Dispositivos'}</div>
                                 <div class="device-switch" onclick="toggleCardDetails(${index})">
                                     <div class="device-option active">
                                         3 ${translation.devicesText || 'Dispositivos'}
-                                        <div class="device-price-diff">$${price3Devices.toFixed(2)}</div>
                                     </div>
                                 </div>
                             </div>
@@ -3768,11 +3773,9 @@
                                 <div class="device-switch${hintClass}" onclick="toggleDeviceSwitch(${index})">
                                     <div class="device-option ${!is3Devices ? 'active' : ''}">
                                         1 ${translation.deviceText || 'Dispositivo'}
-                                        <div class="device-price-diff">$${price1Device.toFixed(2)}</div>
                                     </div>
                                     <div class="device-option ${is3Devices ? 'active' : ''}">
                                         3 ${translation.devicesText || 'Dispositivos'}
-                                        <div class="device-price-diff">$${price3Devices.toFixed(2)}</div>
                                     </div>
                                 </div>
                             </div>
@@ -4080,6 +4083,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 basePrice += crSurcharge;
             } else if (isUSA) {
                 basePrice += usSurcharge;
+            } else if (isCA) {
+                basePrice += caSurcharge;
             }
 
             const options = selectedPaymentType === 'subscription' ?
