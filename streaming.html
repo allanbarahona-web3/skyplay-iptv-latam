@@ -3554,6 +3554,7 @@ let variantTouched = new Array(streamingPlans.length).fill(false);
         // Track which details panel is currently open and the outside-click handler
         let currentOpenDetailsIndex = null;
         let detailsOutsideClickHandler = null;
+        let detailsInsideClickHandler = null;
         // Initialize planDeviceStates to the same length as plans to avoid index issues
         let planDeviceStates = new Array(plans.length).fill(false); // false = 1 device, true = 3 devices
 
@@ -4151,6 +4152,22 @@ function openCardDetails(index) {
     };
     // Delay attaching to avoid immediate close from the click that opened the panel
     setTimeout(() => document.addEventListener('mousedown', detailsOutsideClickHandler), 50);
+    // Attach inside-panel click handler to close when clicking anywhere inside the panel
+    if (detailsInsideClickHandler) {
+        try { document.removeEventListener('mousedown', detailsInsideClickHandler); } catch(e){}
+    }
+    detailsInsideClickHandler = function(ev) {
+        const panel = document.getElementById(`card-details-${index}`);
+        if (!panel) return;
+        if (panel.contains(ev.target)) {
+            // close immediately
+            closeCardDetails(index);
+            try { document.removeEventListener('mousedown', detailsInsideClickHandler); } catch(e){}
+            detailsInsideClickHandler = null;
+        }
+    };
+    // attach after a short delay to avoid closing from the opening click
+    setTimeout(() => document.addEventListener('mousedown', detailsInsideClickHandler), 60);
 }
 
 function closeCardDetails(index) {
@@ -4165,6 +4182,10 @@ function closeCardDetails(index) {
     if (detailsOutsideClickHandler) {
         document.removeEventListener('mousedown', detailsOutsideClickHandler);
         detailsOutsideClickHandler = null;
+    }
+    if (detailsInsideClickHandler) {
+        try { document.removeEventListener('mousedown', detailsInsideClickHandler); } catch(e){}
+        detailsInsideClickHandler = null;
     }
     currentOpenDetailsIndex = null;
 }
