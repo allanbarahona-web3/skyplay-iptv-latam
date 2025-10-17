@@ -3915,8 +3915,8 @@ let variantTouched = new Array(streamingPlans.length).fill(false);
                 if (plan.variants && plan.variants.length > 0) {
                     const variantIndex = planVariantStates[index] || 0;
                     const optionsHtml = plan.variants.map((v, i) => {
-                        // for prototype card (index 0) add hint class if user hasn't interacted
-                        const hintClass = (index === 0 && !variantTouched[index]) ? ' hint' : '';
+                        // Add hint class per-plan if user hasn't interacted with variants yet
+                        const hintClass = (!variantTouched[index]) ? ' hint' : '';
                         return `<div class=\"variant-option ${i === variantIndex ? 'active' : ''}${hintClass}\" onclick=\"selectVariant(${index}, ${i})\">${v.label}</div>`;
                     }).join('');
                     variantSwitchHTML = `
@@ -4056,17 +4056,16 @@ function selectVariant(planIndex, variantIndex) {
     // mark that the user touched variants for this plan (stop hinting)
     variantTouched[planIndex] = true;
 
-    // Prototype behavior for card 0: toggle details when selecting variants
-    if (planIndex === 0) {
-        // If user clicked the same variant again -> close details
+    // Variant-driven details behavior: toggle the corresponding card's details panel
+    // If the user clicks the same variant again => close the panel; otherwise open it
+    // small timeout to allow DOM re-render
+    setTimeout(() => {
         if (previous === variantIndex) {
-            // small timeout to allow DOM re-render
-            setTimeout(() => { closeCardDetails(0); }, 60);
+            closeCardDetails(planIndex);
         } else {
-            // If different variant selected -> open details showing the new content
-            setTimeout(() => { openCardDetails(0); }, 60);
+            openCardDetails(planIndex);
         }
-    }
+    }, 60);
 }
 
 // Accordion controls for prototype card
