@@ -186,12 +186,14 @@
         /* Inline accordion prototype for details (mobile-first) */
     .close-details-btn { padding:10px 12px; border-radius:10px; border:none; background:#f3f4f6; color:#111; font-weight:700; cursor:pointer; }
 
-    .card-details { display:none; overflow:hidden; transition: max-height .28s ease, opacity .18s linear; max-height:0; opacity:0; }
-        .card-details[data-open="true"] { display:block; max-height:800px; opacity:1; }
-        .card-details-inner { padding:12px; background:#fff; border-radius:10px; border:1px solid rgba(15,23,42,0.04); box-shadow:0 6px 20px rgba(2,6,23,0.04); }
+    /* Details panel is an overlay inside the card so it doesn't affect grid layout */
+    .card-details { display:block; position:absolute; left:18px; right:18px; box-sizing: border-box; overflow:auto; max-height:0; opacity:0; transition: max-height .28s ease, opacity .18s linear, transform .2s ease; pointer-events:none; z-index:6; }
+    .card-details[data-open="true"] { max-height:520px; opacity:1; pointer-events:auto; transform: translateY(0); }
+        .card-details-inner { padding:12px; background:#fff; border-radius:10px; border:1px solid rgba(15,23,42,0.04); box-shadow:0 12px 36px rgba(2,6,23,0.08); }
 
         @media (min-width:900px) {
-            /* On desktop keep it inline but constrained */
+            /* On desktop keep overlay width constrained slightly */
+            .card-details { left:22px; right:22px; }
             .card-details-inner { max-width:520px; }
         }
 
@@ -623,6 +625,8 @@
             max-width: 1400px;
             margin: 0 auto;
             padding: 0 15px;
+            align-items: start; /* ensure cards don't stretch to the same height */
+            grid-auto-rows: auto; /* let each card compute its own height */
         }
 
         .pricing-card {
@@ -634,7 +638,9 @@
             position: relative;
             display: flex;
             flex-direction: column;
+            align-items: stretch;
             border: 3px solid transparent;
+            height: auto; /* allow card to expand without affecting grid siblings */
         }
 
         .pricing-card:hover {
@@ -3545,6 +3551,9 @@ let variantTouched = new Array(streamingPlans.length).fill(false);
         let currentCountry = 'usa';
         let currentLanguage = 'es';
         let selectedPlanIndex = null;
+        // Track which details panel is currently open and the outside-click handler
+        let currentOpenDetailsIndex = null;
+        let detailsOutsideClickHandler = null;
         // Initialize planDeviceStates to the same length as plans to avoid index issues
         let planDeviceStates = new Array(plans.length).fill(false); // false = 1 device, true = 3 devices
 
@@ -4091,14 +4100,29 @@ function toggleCardDetails(index) {
 function openCardDetails(index) {
     // Close all other details panels first so only one is visible at a time
     document.querySelectorAll('.card-details').forEach(el => {
-        if (el.id === `card-details-${index}`) {
-            el.setAttribute('data-open', 'true');
-            el.setAttribute('aria-hidden', 'false');
-        } else {
-            el.setAttribute('data-open', 'false');
-            el.setAttribute('aria-hidden', 'true');
-        }
+        el.setAttribute('data-open', 'false');
+        el.setAttribute('aria-hidden', 'true');
     });
+
+    const el = document.getElementById(`card-details-${index}`);
+    if (!el) return;
+
+    // Position the overlay inside the owning card so it doesn't affect layout
+    const card = el.closest('.pricing-card');
+    if (card) {
+        // Ensure card is positioned relatively for absolute overlay
+        card.style.position = 'relative';
+
+        // Compute top offset: place overlay below header area (approx header height)
+        const header = card.querySelector('.card-header');
+        let topOffset = header ? (header.getBoundingClientRect().height + 12) : 80;
+        // Clamp topOffset to reasonable values
+        topOffset = Math.max(60, Math.min(topOffset, 260));
+        el.style.top = `${topOffset}px`;
+    }
+
+    el.setAttribute('data-open', 'true');
+    el.setAttribute('aria-hidden', 'false');
 
     // Update aria-expanded on all detail buttons
     document.querySelectorAll('.variant-details-btn').forEach(btn => {
@@ -4110,6 +4134,23 @@ function openCardDetails(index) {
             // ignore
         }
     });
+    // Track current open panel and attach outside click handler
+    currentOpenDetailsIndex = index;
+    // remove existing handler just in case
+    if (detailsOutsideClickHandler) document.removeEventListener('mousedown', detailsOutsideClickHandler);
+    detailsOutsideClickHandler = function(ev) {
+        const target = ev.target;
+        const panel = document.getElementById(`card-details-${currentOpenDetailsIndex}`);
+        if (!panel) return;
+        if (!panel.contains(target)) {
+            closeCardDetails(currentOpenDetailsIndex);
+            document.removeEventListener('mousedown', detailsOutsideClickHandler);
+            detailsOutsideClickHandler = null;
+            currentOpenDetailsIndex = null;
+        }
+    };
+    // Delay attaching to avoid immediate close from the click that opened the panel
+    setTimeout(() => document.addEventListener('mousedown', detailsOutsideClickHandler), 50);
 }
 
 function closeCardDetails(index) {
@@ -4118,7 +4159,14 @@ function closeCardDetails(index) {
     if (!el) return;
     el.setAttribute('data-open', 'false');
     el.setAttribute('aria-hidden', 'true');
+    el.style.top = '';
     if (btn) btn.setAttribute('aria-expanded', 'false');
+    // Remove outside click handler if present
+    if (detailsOutsideClickHandler) {
+        document.removeEventListener('mousedown', detailsOutsideClickHandler);
+        detailsOutsideClickHandler = null;
+    }
+    currentOpenDetailsIndex = null;
 }
 
 function closeProductsMenuOnClickOutside(event) {
